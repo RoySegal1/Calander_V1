@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Course, CourseGroup } from '../types';
 
 interface WeeklyScheduleProps {
@@ -19,6 +19,8 @@ export default function WeeklySchedule({
   const hours = Array.from({ length: 14 }, (_, i) => i + 8); // 8:00 to 21:00
 
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
+
+
 
   const getGroupStyle = (group: CourseGroup, courseId: string, isSelected: boolean = false, conflictCount: number = 1, conflictIndex: number = 0) => {
     const startHour = parseInt(group.startTime.split(':')[0]);
