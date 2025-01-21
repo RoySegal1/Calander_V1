@@ -35,9 +35,9 @@ export default function WeeklySchedule({
 
     const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
     const hasLectureOrLecturePractice = courseGroups?.groups.some(
-      g => g.lectureType === 'Lecture' || g.lectureType === 'Lecture+Practice'
+      g => g.lectureType === 0
     );
-    const hasPractice = courseGroups?.groups.some(g => g.lectureType === 'Practice');
+    const hasPractice = courseGroups?.groups.some(g => g.lectureType === 1);
     const isComplete = hasLectureOrLecturePractice && hasPractice;
 
     return {
@@ -63,7 +63,7 @@ export default function WeeklySchedule({
   };
 
   const getConflictingGroups = (dayIndex: number, startTime: string, endTime: string, courseId: string) => {
-    const course = selectedCourses.find(c => c.id === courseId);
+    const course = selectedCourses.find(c => c.Course_Code === courseId);
     if (!course) return [];
     
     return course.Groups.filter(group => {
@@ -116,22 +116,22 @@ export default function WeeklySchedule({
                   course.Groups.map(group => {
                     if (group.dayOfWeek !== dayIndex) return null;
                     
-                    const conflictingGroups = getConflictingGroups(dayIndex, group.startTime, group.endTime, course.id);
+                    const conflictingGroups = getConflictingGroups(dayIndex, group.startTime, group.endTime, course.Course_Code);
                     const conflictIndex = conflictingGroups.findIndex(g => g.GroupsCode === group.GroupsCode);
-                    const isSelected = isGroupSelected(group, course.id);
+                    const isSelected = isGroupSelected(group, course.Course_Code);
                     
                     return (
                       <div
-                        key={`${course.id}-${group.GroupsCode}`}
-                        style={getGroupStyle(group, course.id, isSelected, conflictingGroups.length, conflictIndex)}
-                        onClick={() => onGroupSelect(group, course.id)}
+                        key={`${course.Course_Code}-${group.GroupsCode}`}
+                        style={getGroupStyle(group, course.Course_Code, isSelected, conflictingGroups.length, conflictIndex)}
+                        onClick={() => onGroupSelect(group, course.Course_Code)}
                         className="hover:shadow-lg"
                       >
-                        <div className="font-medium">{course.name}</div>
-                        <div className="text-xs">{group.GroupsCode} - {group.lectureType}</div>
+                        <div className="font-medium">{course.Course_Name}</div>
+                        <div className="text-xs">{group.GroupsCode} - {group.lectureType == 0 ? "Lecture" : "Practice"}</div>
                         <div className="text-xs">{group.lecturer}</div>
                         <div className="text-xs">
-                          {group.building} - {group.classNumber}
+                          {group.room}
                         </div>
                       </div>
                     );

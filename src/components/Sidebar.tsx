@@ -1,4 +1,3 @@
-import React from 'react';
 import { Course, CourseType } from '../types';
 import { Filter, BookOpen } from 'lucide-react';
 
@@ -15,7 +14,7 @@ interface SidebarProps {
   onFilterChange: (filters: any) => void;
 }
 
-const courseTypes: CourseType[] = ['Mandatory', 'Selection', 'English', 'General', 'Seminar', 'Final Projects'];
+const courseTypes: CourseType[] = ["'קורסי חובה שנה א", 'Selection', 'English', 'General', 'Seminar', 'Final Projects'];
 const departments = ['Computer Science', 'Mathematics', 'English'];
 
 export default function Sidebar({
@@ -107,22 +106,22 @@ export default function Sidebar({
         <div className="divide-y divide-gray-200">
           {courses.map(course => (
             <div
-              key={course.id}
+              key={course.Course_Code}
               className={`p-4 hover:bg-gray-50 transition-colors cursor-pointer ${
-                selectedCourses.includes(course.id) ? 'bg-indigo-50' : ''
+                selectedCourses.includes(course.Course_Code) ? 'bg-indigo-50' : ''
               }`}
               onClick={() => onCourseSelect(course)}
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-sm font-medium text-gray-900">{course.name}</h3>
+                <h3 className="text-sm font-medium text-gray-900">{course.Course_Name}</h3>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  course.type === 'Mandatory' 
+                  course.Course_Type === "'קורסי חובה שנה א"
                     ? 'bg-red-100 text-red-800'
-                    : course.type === 'English'
+                    : course.Course_Type === 'English'
                     ? 'bg-blue-100 text-blue-800'
                     : 'bg-green-100 text-green-800'
                 }`}>
-                  {course.type}
+                  {course.Course_Type}
                 </span>
               </div>
             </div>

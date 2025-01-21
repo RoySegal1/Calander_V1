@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import LoginPage from './components/LoginPage';
 import MainLayout from './components/MainLayout';
 import { AuthState } from './types';
