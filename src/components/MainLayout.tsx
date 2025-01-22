@@ -21,7 +21,7 @@ export default function MainLayout() {
   });
 
   const handleCourseSelect = (course: Course) => {
-    if (selectedCourses.includes(course.Course_Code)) {
+    if (selectedCourses.includes(course.courseCode)) {
       // If course is already selected, check if it has complete group selection
       // const courseGroups = selectedGroups.find(sg => sg.courseId === course.id);
       // const hasLectureOrLecturePractice = courseGroups?.groups.some(
@@ -34,11 +34,11 @@ export default function MainLayout() {
       //   setSelectedCourses(selectedCourses.filter(id => id !== course.id));
       //   setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.id));
       // }
-      setSelectedCourses(selectedCourses.filter(id => id !== course.Course_Code));
-      setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.Course_Code));
+      setSelectedCourses(selectedCourses.filter(id => id !== course.courseCode));
+      setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.courseCode));
     } else {
       // Add new course
-      setSelectedCourses([...selectedCourses, course.Course_Code]);
+      setSelectedCourses([...selectedCourses, course.courseCode]);
     }
   };
 
@@ -50,9 +50,9 @@ export default function MainLayout() {
       const existingGroupOfType = courseGroups.groups.find(g => g.lectureType === group.lectureType);
       
       if (existingGroupOfType) {
-        if (existingGroupOfType.GroupsCode === group.GroupsCode) {
+        if (existingGroupOfType.groupCode === group.groupCode) {
           // Deselect the group if it's the same one
-          const updatedGroups = courseGroups.groups.filter(g => g.GroupsCode !== group.GroupsCode);
+          const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
           setSelectedGroups(selectedGroups.map(sg => 
             sg.courseId === courseId 
               ? { ...sg, groups: updatedGroups }
@@ -85,7 +85,7 @@ export default function MainLayout() {
 
   const filteredCourses = mockCourses.filter(course => {
     if (filters.department && course.department !== filters.department) return false;
-    if (filters.type && course.Course_Type !== filters.type) return false;
+    if (filters.type && course.courseType !== filters.type) return false;
     return true;
   });
 
@@ -103,7 +103,7 @@ export default function MainLayout() {
         <div className="max-w-5xl mx-auto space-y-6">
           <h2 className="text-2xl font-semibold text-gray-800">Weekly Schedule</h2>
           <WeeklySchedule
-            selectedCourses={selectedCourses.map(id => mockCourses.find(c => c.Course_Code === id)!)}
+            selectedCourses={selectedCourses.map(id => mockCourses.find(c => c.courseCode === id)!)}
             selectedGroups={selectedGroups}
             onGroupSelect={handleGroupSelect}
           />

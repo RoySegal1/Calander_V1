@@ -16,7 +16,7 @@ export default function WeeklySchedule({
   onGroupSelect,
 }: WeeklyScheduleProps) {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  const hours = Array.from({ length: 15 }, (_, i) => i + 8); // 8:00 to 21:00
+  const hours = Array.from({ length: 15 }, (_, i) => i + 8); // 8:00 to 22:00
 
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
 
@@ -63,10 +63,10 @@ export default function WeeklySchedule({
   };
 
   const getConflictingGroups = (dayIndex: number, startTime: string, endTime: string, courseId: string) => {
-    const course = selectedCourses.find(c => c.Course_Code === courseId);
+    const course = selectedCourses.find(c => c.courseCode === courseId);
     if (!course) return [];
     
-    return course.Groups.filter(group => {
+    return course.groups.filter(group => {
       if (group.dayOfWeek !== dayIndex) return false;
       
       const groupStart = parseInt(group.startTime.replace(':', ''));
@@ -83,7 +83,7 @@ export default function WeeklySchedule({
   const isGroupSelected = (group: CourseGroup, courseId: string) => {
     return selectedGroups.some(sg => 
       sg.courseId === courseId && 
-      sg.groups.some(g => g.GroupsCode === group.GroupsCode)
+      sg.groups.some(g => g.groupCode === group.groupCode)
     );
   };
 
@@ -105,7 +105,7 @@ export default function WeeklySchedule({
               <div className="h-8 text-sm font-medium text-gray-700 text-center sticky top-0 bg-white">
                 {day}
               </div>
-              <div className="relative h-[840px]"> {/* 14 hours * 60px */}
+              <div className="relative h-[840px]"> {/* 15 hours * 60px */}
                 {hours.map(hour => (
                   <div
                     key={hour}
@@ -113,22 +113,22 @@ export default function WeeklySchedule({
                   />
                 ))}
                 {selectedCourses.map(course => 
-                  course.Groups.map(group => {
+                  course.groups.map(group => {
                     if (group.dayOfWeek !== dayIndex) return null;
                     
-                    const conflictingGroups = getConflictingGroups(dayIndex, group.startTime, group.endTime, course.Course_Code);
-                    const conflictIndex = conflictingGroups.findIndex(g => g.GroupsCode === group.GroupsCode);
-                    const isSelected = isGroupSelected(group, course.Course_Code);
+                    const conflictingGroups = getConflictingGroups(dayIndex, group.startTime, group.endTime, course.courseCode);
+                    const conflictIndex = conflictingGroups.findIndex(g => g.groupCode === group.groupCode);
+                    const isSelected = isGroupSelected(group, course.courseCode);
                     
                     return (
                       <div
-                        key={`${course.Course_Code}-${group.GroupsCode}`}
-                        style={getGroupStyle(group, course.Course_Code, isSelected, conflictingGroups.length, conflictIndex)}
-                        onClick={() => onGroupSelect(group, course.Course_Code)}
+                        key={`${course.courseCode}-${group.groupCode}`}
+                        style={getGroupStyle(group, course.courseCode, isSelected, conflictingGroups.length, conflictIndex)}
+                        onClick={() => onGroupSelect(group, course.courseCode)}
                         className="hover:shadow-lg"
                       >
-                        <div className="font-medium">{course.Course_Name}</div>
-                        <div className="text-xs">{group.GroupsCode} - {group.lectureType == 0 ? "Lecture" : "Practice"}</div>
+                        <div className="font-medium">{course.courseName}</div>
+                        <div className="text-xs">{group.groupCode} - {group.lectureType == 0 ? "Lecture" : "Practice"}</div>
                         <div className="text-xs">{group.lecturer}</div>
                         <div className="text-xs">
                           {group.room}

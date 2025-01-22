@@ -2,7 +2,7 @@ export type CourseType = "קורסי חובה שנה א" | 'Selection' | 'Englis
 export type LectureType =  1 | 0; // 1 for practice 0 for lecture
 
 export interface CourseGroup {
-  GroupsCode: string;
+  groupCode: string;
   lectureType: LectureType;
   startTime: string;
   endTime: string;
@@ -12,13 +12,13 @@ export interface CourseGroup {
 }
 
 export interface Course {
-  Course_Code: string;
-  Course_Name: string;
+  courseCode: string;
+  courseName: string;
   semester: string;
-  Course_Type : CourseType;
+  courseType : CourseType;
   department: string;
   prerequisites: string[];
-  Groups: CourseGroup[];
+  groups: CourseGroup[];
 }
 
 export interface User {
