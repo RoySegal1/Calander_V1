@@ -2,7 +2,7 @@ import { Course, User } from '../types';
 
 export const mockCourses: Course[] = [
   {
-    Course_Type: "'קורסי חובה שנה א",
+    Course_Type: "קורסי חובה שנה א",
     Course_Name: "מבוא למדעי המחשב",
     Course_Code: "10016",
     semester: "א",
@@ -204,7 +204,7 @@ export const mockCourses: Course[] = [
   {
     Course_Code: '2',
     Course_Name: 'Advanced Mathematics',
-    Course_Type: "'קורסי חובה שנה א",
+    Course_Type: "קורסי חובה שנה א",
     department: 'Mathematics',
     prerequisites: ['10016'],
     semester: "א",
@@ -247,6 +247,143 @@ export const mockCourses: Course[] = [
       },
     ],
   },
+  {
+    Course_Type: "קורסי חובה שנה ב",
+    Course_Name: "מבוא לתכנות מערכות",
+    Course_Code: "10010",
+    semester: "א",
+    department: "cs",
+    prerequisites: [],
+    Groups: [
+        {
+            GroupsCode: "251001003",
+            lectureType: 0,
+            startTime: "11:00",
+            endTime: "12:50",
+            room: "קריה ז'3",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 0
+        },
+        {
+            GroupsCode: "251001004",
+            lectureType: 0,
+            startTime: "09:00",
+            endTime: "10:50",
+            room: "קריה ז'3",
+            lecturer: "מר רוטברג ליאור",
+            dayOfWeek: 0
+        },
+        {
+            GroupsCode: "251001005",
+            lectureType: 0,
+            startTime: "11:00",
+            endTime: "12:50",
+            room: "קריה ה'9",
+            lecturer: "מר רוטברג ליאור",
+            dayOfWeek: 0
+        },
+        {
+            GroupsCode: "251001006",
+            lectureType: 0,
+            startTime: "16:00",
+            endTime: "17:50",
+            room: "קריה ז'3",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 0
+        },
+        {
+            GroupsCode: "251001007",
+            lectureType: 0,
+            startTime: "13:00",
+            endTime: "14:50",
+            room: "קריה ז'3",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 0
+        },
+        {
+            GroupsCode: "251001008",
+            lectureType: 0,
+            startTime: "15:00",
+            endTime: "16:50",
+            room: "קריה ה'4",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 1
+        },
+        {
+            GroupsCode: "251001003",
+            lectureType: 1,
+            startTime: "14:00",
+            endTime: "15:50",
+            room: "קריה ז'4",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 3
+        },
+        {
+            GroupsCode: "251001004",
+            lectureType: 1,
+            startTime: "12:00",
+            endTime: "13:50",
+            room: "054 פרונטלי בנין מעבדות",
+            lecturer: "מר רוטברג ליאור",
+            dayOfWeek: 4
+        },
+        {
+            GroupsCode: "251001005",
+            lectureType: 1,
+            startTime: "09:00",
+            endTime: "10:50",
+            room: "קריה ה'4",
+            lecturer: "מר רוטברג ליאור",
+            dayOfWeek: 3
+        },
+        {
+            GroupsCode: "251001006",
+            lectureType: 1,
+            startTime: "09:00",
+            endTime: "10:50",
+            room: "קריה ה'11 מעב דואלי",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 3
+        },
+        {
+            GroupsCode: "251001007",
+            lectureType: 1,
+            startTime: "11:00",
+            endTime: "12:50",
+            room: "קריה ז'3",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 1
+        },
+        {
+            GroupsCode: "251001008",
+            lectureType: 1,
+            startTime: "16:00",
+            endTime: "17:50",
+            room: "קריה ה'4",
+            lecturer: "גב' הרצברג מורג אפרת",
+            dayOfWeek: 3
+        },
+        {
+            GroupsCode: "251001002",
+            lectureType: 0,
+            startTime: "18:00",
+            endTime: "19:50",
+            room: "ז'2 קריה - עגלת תחשבים",
+            lecturer: "מר ברקת ארנון",
+            dayOfWeek: 4
+        },
+        {
+            GroupsCode: "251001002",
+            lectureType: 1,
+            startTime: "20:00",
+            endTime: "21:50",
+            room: "ז'2 קריה - עגלת תחשבים",
+            lecturer: "מר ברקת ארנון",
+            dayOfWeek: 4
+        }
+    ]
+}
+
 ];
 
 export const mockUser: User = {

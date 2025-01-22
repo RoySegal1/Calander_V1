@@ -1,4 +1,3 @@
-import React from 'react';
 import { mockUser } from '../data/mockData';
 import { GraduationCap, Book, BookOpen, Award } from 'lucide-react';
 

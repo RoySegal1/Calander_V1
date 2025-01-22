@@ -14,7 +14,7 @@ interface SidebarProps {
   onFilterChange: (filters: any) => void;
 }
 
-const courseTypes: CourseType[] = ["'קורסי חובה שנה א", 'Selection', 'English', 'General', 'Seminar', 'Final Projects'];
+const courseTypes: CourseType[] = ["קורסי חובה שנה א","קורסי חובה שנה ב", 'Selection', 'English', 'General', 'Seminar', 'Final Projects'];
 const departments = ['Computer Science', 'Mathematics', 'English'];
 
 export default function Sidebar({
@@ -115,7 +115,7 @@ export default function Sidebar({
               <div className="flex justify-between items-center">
                 <h3 className="text-sm font-medium text-gray-900">{course.Course_Name}</h3>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  course.Course_Type === "'קורסי חובה שנה א"
+                  course.Course_Type === "קורסי חובה שנה א"
                     ? 'bg-red-100 text-red-800'
                     : course.Course_Type === 'English'
                     ? 'bg-blue-100 text-blue-800'
