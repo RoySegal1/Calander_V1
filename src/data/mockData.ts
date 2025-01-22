@@ -82,7 +82,7 @@ export const mockCourses: Course[] = [
             dayOfWeek: 3
         },
         {
-            groupCode: "251001604/1",
+            groupCode: "251001604/2",
             lectureType: 1,
             startTime: "13:00",
             endTime: "15:50",
@@ -100,7 +100,7 @@ export const mockCourses: Course[] = [
             dayOfWeek: 1
         },
         {
-            groupCode: "251001605/1",
+            groupCode: "251001605/2",
             lectureType: 1,
             startTime: "08:00",
             endTime: "10:50",
@@ -118,7 +118,7 @@ export const mockCourses: Course[] = [
             dayOfWeek: 4
         },
         {
-            groupCode: "251001606/1",
+            groupCode: "251001606/2",
             lectureType: 1,
             startTime: "10:00",
             endTime: "12:50",
@@ -136,7 +136,7 @@ export const mockCourses: Course[] = [
             dayOfWeek: 1
         },
         {
-            groupCode: "251001608/1",
+            groupCode: "251001608/2",
             lectureType: 1,
             startTime: "10:00",
             endTime: "12:50",
@@ -154,7 +154,7 @@ export const mockCourses: Course[] = [
             dayOfWeek: 2
         },
         {
-            groupCode: "251001609/1",
+            groupCode: "251001609/2",
             lectureType: 1,
             startTime: "17:00",
             endTime: "19:50",

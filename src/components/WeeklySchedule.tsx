@@ -39,6 +39,19 @@ export default function WeeklySchedule({
     );
     const hasPractice = courseGroups?.groups.some(g => g.lectureType === 1);
     const isComplete = hasLectureOrLecturePractice && hasPractice;
+    const getBackgroundColor = () => {
+      if (isSelected) return 'rgba(99, 102, 241, 0.8)';
+      if (isComplete) return 'rgba(99, 102, 241, 0.1)';
+      const colors = [
+        'rgba(255, 99, 132, 0.2)', // Red
+        'rgba(54, 162, 235, 0.2)', // Blue
+        'rgba(255, 206, 86, 0.2)', // Yellow
+        'rgba(75, 192, 192, 0.2)', // Green
+        'rgba(153, 102, 255, 0.2)', // Purple
+        'rgba(255, 159, 64, 0.2)', // Orange
+      ];
+      return colors[parseInt(courseId) % colors.length];
+    };
 
     return {
       position: 'absolute' as const,
@@ -46,11 +59,7 @@ export default function WeeklySchedule({
       height: `${height}px`,
       width,
       left,
-      backgroundColor: isSelected 
-        ? 'rgba(99, 102, 241, 0.8)' 
-        : isComplete 
-          ? 'rgba(99, 102, 241, 0.1)'
-          : 'rgba(99, 102, 241, 0.2)',
+      backgroundColor: getBackgroundColor(),
       borderRadius: '0.5rem',
       padding: '0.5rem',
       color: isSelected ? 'white' : 'rgb(79, 70, 229)',
