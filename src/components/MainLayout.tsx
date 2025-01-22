@@ -16,6 +16,7 @@ export default function MainLayout() {
   const [filters, setFilters] = useState({
     department: '',
     type: '',
+    semester: '',
     prerequisites: false,
     hideCompleted: false,
   });
@@ -86,6 +87,7 @@ export default function MainLayout() {
   const filteredCourses = mockCourses.filter(course => {
     if (filters.department && course.department !== filters.department) return false;
     if (filters.type && course.courseType !== filters.type) return false;
+    if (filters.semester && course.semester !== filters.semester) return false;
     return true;
   });
 

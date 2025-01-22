@@ -6,7 +6,7 @@ export const mockCourses: Course[] = [
     courseName: "מבוא למדעי המחשב",
     courseCode: "10016",
     semester: "א",
-    department: "cs",
+    department: "מדעי המחשב",
     prerequisites: [],
     groups: [
         {
@@ -168,8 +168,8 @@ export const mockCourses: Course[] = [
       courseType: "קורסי חובה שנה א",
       courseName: "תכנות מונחה עצמים",
       courseCode: "10128",
-      semester: "א",
-      department: "cs",
+      semester: "ב",
+      department: "מדעי המחשב",
       prerequisites: [],
       groups: [
           {
@@ -197,7 +197,7 @@ export const mockCourses: Course[] = [
     courseName: "ארגון המחשב ושפת סף",
     courseCode: "10145",
     semester: "א",
-    department: "cs",
+    department: "מדעי המחשב",
     prerequisites: [],
     groups: [
         {

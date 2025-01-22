@@ -7,6 +7,7 @@ interface SidebarProps {
   onCourseSelect: (course: Course) => void;
   filters: {
     department: string;
+    semester:string;
     type: string;
     prerequisites: boolean;
     hideCompleted: boolean;
@@ -15,7 +16,8 @@ interface SidebarProps {
 }
 
 const courseTypes: CourseType[] = ["קורסי חובה שנה א","קורסי חובה שנה ב", 'Selection', 'English', 'General', 'Seminar', 'Final Projects'];
-const departments = ['Computer Science', 'Mathematics', 'English'];
+const departments = ['מדעי המחשב', 'Mathematics', 'English'];
+const semesters = ["א","ב","קיץ"];
 
 export default function Sidebar({
   courses,
@@ -49,7 +51,23 @@ export default function Sidebar({
               ))}
             </select>
           </div>
-
+          <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              סמסטר
+            </label>
+            <select
+              value={filters.semester}
+              onChange={(e) => onFilterChange({ ...filters, semester: e.target.value })}
+              className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            >
+              <option value="">כל הסמסטרים</option>
+              {semesters.map(dept => (
+                <option key={dept} value={dept}>{dept}</option>
+              ))}
+            </select>
+          </div>
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Course Type
