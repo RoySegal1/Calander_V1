@@ -23,21 +23,24 @@ export default function MainLayout() {
 
   const handleCourseSelect = (course: Course) => {
     if (selectedCourses.includes(course.courseCode)) {
-      // If course is already selected, check if it has complete group selection
-      // const courseGroups = selectedGroups.find(sg => sg.courseId === course.id);
-      // const hasLectureOrLecturePractice = courseGroups?.groups.some(
-      //   g => g.lectureType === 'Lecture' || g.lectureType === 'Lecture+Practice'
-      // );
-      // const hasPractice = courseGroups?.groups.some(g => g.lectureType === 'Practice');
+     // If course is already selected, check if it has complete group selection
+      const courseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode);
+      const hasLecture = courseGroups?.groups.some(g => g.lectureType === 0);
+      const hasPractice = courseGroups?.groups.some(g => g.lectureType === 1);
 
-      // if (hasLectureOrLecturePractice && hasPractice) {
-      //   // Remove course and its groups if selection is complete
-      //   setSelectedCourses(selectedCourses.filter(id => id !== course.id));
-      //   setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.id));
-      // }
-      setSelectedCourses(selectedCourses.filter(id => id !== course.courseCode));
-      setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.courseCode));
-    } else {
+      if (hasLecture && hasPractice) 
+      {
+         // Remove course and its groups if selection is complete
+         //setSelectedCourses(selectedCourses.filter(id => id !== course.courseCode));
+         setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.courseCode && courseGroups?.groups.every(g => g.groupCode !== sg.groups[0].groupCode)));
+      }
+      else
+      {
+        setSelectedCourses(selectedCourses.filter(id => id !== course.courseCode));
+        setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.courseCode));
+      }
+    }
+    else {
       // Add new course
       setSelectedCourses([...selectedCourses, course.courseCode]);
     }
