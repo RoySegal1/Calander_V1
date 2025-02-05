@@ -35,7 +35,7 @@ export default function CourseList({
               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                 course.courseType === "קורסי חובה שנה א"
                   ? 'bg-red-100 text-red-800'
-                  : course.courseType === 'English'
+                  : course.courseType === 'קורסי חובה שנה ב'
                   ? 'bg-blue-100 text-blue-800'
                   : 'bg-green-100 text-green-800'
               }`}>

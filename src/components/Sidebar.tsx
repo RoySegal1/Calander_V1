@@ -9,13 +9,11 @@ interface SidebarProps {
     department: string;
     semester:string;
     type: string;
-    prerequisites: boolean;
-    hideCompleted: boolean;
   };
   onFilterChange: (filters: any) => void;
 }
 
-const courseTypes: CourseType[] = ["קורסי חובה שנה א","קורסי חובה שנה ב", 'Selection', 'English', 'General', 'Seminar', 'Final Projects'];
+const courseTypes: CourseType[] = ["קורסי חובה שנה א" ,"קורסי חובה שנה ב","קורסי חובה שנה ג", 'קורסי בחירה' , 'קורסי חובה לימודי אנגלית' , 'סמינר חובה'  , 'קורסי יחידה ללימודי חברה ורוח' , 'קורסי בחירה נוספים'];
 const departments = ['מדעי המחשב', 'Mathematics', 'English'];
 const semesters = ["א","ב","קיץ"];
 
@@ -77,14 +75,14 @@ export default function Sidebar({
               onChange={(e) => onFilterChange({ ...filters, type: e.target.value })}
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
-              <option value="">All Types</option>
+              <option value="">כל סוגי הקורסים</option>
               {courseTypes.map(type => (
                 <option key={type} value={type}>{type}</option>
               ))}
             </select>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <input
               type="checkbox"
               id="prerequisites"
@@ -108,7 +106,7 @@ export default function Sidebar({
             <label htmlFor="hideCompleted" className="text-sm text-gray-700">
               Hide completed courses
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -135,7 +133,7 @@ export default function Sidebar({
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                   course.courseType === "קורסי חובה שנה א"
                     ? 'bg-red-100 text-red-800'
-                    : course.courseType === 'English'
+                    : course.courseType === 'קורסי חובה שנה ב'
                     ? 'bg-blue-100 text-blue-800'
                     : 'bg-green-100 text-green-800'
                 }`}>
