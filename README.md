@@ -83,7 +83,7 @@ Represents a course with the following properties:
 
 Represents a group within a course with the following properties:
 - `GroupsCode`: The unique code of the group.
-- `lectureType`: The type of lecture (e.g., "Lecture", "Lab").
+- `lectureType`: The type of lecture (e.g., "Lecture", "Practice").
 - `lecturer`: The name of the lecturer.
 - `building`: The building where the group meets.
 - `classNumber`: The room number where the group meets.

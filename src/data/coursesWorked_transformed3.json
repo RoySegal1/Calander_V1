@@ -836,7 +836,7 @@
         "groups": [
             {
                 "groupCode": "251022402",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "18:50",
                 "room": "מפ\"ט רימון",
@@ -845,7 +845,7 @@
             },
             {
                 "groupCode": "251022405",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "14:00",
                 "endTime": "15:50",
                 "room": "קריה ה'7",
@@ -853,8 +853,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251022402",
-                "lectureType": 2,
+                "groupCode": "251022402/1",
+                "lectureType": 1,
                 "startTime": "19:00",
                 "endTime": "20:50",
                 "room": "101 פיקוס",
@@ -862,8 +862,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251022405",
-                "lectureType": 2,
+                "groupCode": "251022405/1",
+                "lectureType": 1,
                 "startTime": "17:00",
                 "endTime": "18:50",
                 "room": "ז'2 קריה - עגלת תחשבים",

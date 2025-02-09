@@ -16,7 +16,7 @@ export default function WeeklySchedule({
   onGroupSelect,
 }: WeeklyScheduleProps) {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  const hours = Array.from({ length: 15 }, (_, i) => i + 8); // 8:00 to 22:00
+  const hours = Array.from({ length: 16 }, (_, i) => i + 8); // 8:00 to 22:00
 
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
 
