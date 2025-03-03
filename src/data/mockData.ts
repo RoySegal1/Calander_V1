@@ -262,6 +262,7 @@ export const mockUser: User = {
   remainingRequirements: {
     english: 2,
     general: 4,
+    elective: 6,
     mandatory: 8,
   },
 };
