@@ -38,6 +38,7 @@ export interface User {
   remainingRequirements: {
     english: number;
     general: number;
+    elective: number;
     mandatory: number;
   };
 }

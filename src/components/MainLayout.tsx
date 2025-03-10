@@ -21,24 +21,10 @@ export default function MainLayout() {
 
   const handleCourseSelect = (course: Course) => {
     if (selectedCourses.includes(course.courseCode)) {
-     // If course is already selected, check if it has complete group selection
-      const courseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode);
-      const hasLecture = courseGroups?.groups.some(g => g.lectureType === 0);
-      const hasPractice = courseGroups?.groups.some(g => g.lectureType === 1);
-
-      if (hasLecture && hasPractice) 
-      {
-         // Remove course and its groups if selection is complete
-         //setSelectedCourses(selectedCourses.filter(id => id !== course.courseCode));
-         setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.courseCode && courseGroups?.groups.every(g => g.groupCode !== sg.groups[0].groupCode)));
-      }
-      else
-      {
-        setSelectedCourses(selectedCourses.filter(id => id !== course.courseCode));
-        setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.courseCode));
-      }
-    }
-    else {
+      // If course is already selected, remove it and its groups
+      setSelectedCourses(selectedCourses.filter(id => id !== course.courseCode));
+      setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== course.courseCode));
+    } else {
       // Add new course
       setSelectedCourses([...selectedCourses, course.courseCode]);
     }
@@ -46,41 +32,72 @@ export default function MainLayout() {
 
   const handleGroupSelect = (group: CourseGroup, courseId: string) => {
     const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
-    
-    if (courseGroups) {
-      // Check if we're trying to select a group of the same type
-      const existingGroupOfType = courseGroups.groups.find(g => g.lectureType === group.lectureType);
-      
-      if (existingGroupOfType) {
-        if (existingGroupOfType.groupCode === group.groupCode) {
-          // Deselect the group if it's the same one
-          const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
-          setSelectedGroups(selectedGroups.map(sg => 
-            sg.courseId === courseId 
-              ? { ...sg, groups: updatedGroups }
-              : sg
-          ));
-        } else {
-          // Replace the existing group with the new one
-          const updatedGroups = courseGroups.groups.map(g => 
-            g.lectureType === group.lectureType ? group : g
-          );
-          setSelectedGroups(selectedGroups.map(sg => 
-            sg.courseId === courseId 
-              ? { ...sg, groups: updatedGroups }
-              : sg
-          ));
-        }
+  
+    // If the group is already selected, remove it (deselection)
+    if (courseGroups?.groups.some(g => g.groupCode === group.groupCode)) {
+      const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
+  
+      if (updatedGroups.length === 0) {
+        setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId)); // Remove course if no groups left
       } else {
-        // Add new group type
         setSelectedGroups(selectedGroups.map(sg => 
-          sg.courseId === courseId 
-            ? { ...sg, groups: [...sg.groups, group] }
-            : sg
+          sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
         ));
       }
+      return;
+    }
+  
+    // Check for time conflicts with existing groups
+    const hasConflict = selectedGroups.some(sg =>
+      sg.groups.some(g =>
+        g.dayOfWeek === group.dayOfWeek &&
+        (
+          (parseInt(group.startTime.split(':')[0]) < parseInt(g.endTime.split(':')[0]) ||
+           (parseInt(group.startTime.split(':')[0]) === parseInt(g.endTime.split(':')[0]) && 
+            parseInt(group.startTime.split(':')[1]) < parseInt(g.endTime.split(':')[1]))) &&
+          (parseInt(group.endTime.split(':')[0]) > parseInt(g.startTime.split(':')[0]) ||
+           (parseInt(group.endTime.split(':')[0]) === parseInt(g.startTime.split(':')[0]) && 
+            parseInt(group.endTime.split(':')[1]) > parseInt(g.startTime.split(':')[1])))
+        )
+    ));
+  
+    if (hasConflict) {
+      // Option 1: Prevent selection if there's a conflict
+      console.log("Time conflict detected!");
+      // You could show a notification to the user here
+      
+      // Option 2: Allow the selection anyway (uncomment to enable)
+      // addGroupToCourse(group, courseId);
+      
+      return;
+    }
+    
+    // No conflict, add the group
+    addGroupToCourse(group, courseId);
+  };
+  
+  // Helper function to add a group to a course
+  const addGroupToCourse = (group: CourseGroup, courseId: string) => {
+    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+    
+    // Check if we're trying to add a duplicate lecture/practice type
+    const isDuplicateType = courseGroups?.groups.some(g => g.lectureType === group.lectureType);
+    
+    if (isDuplicateType) {
+      // Replace the existing group of the same type
+      setSelectedGroups(selectedGroups.map(sg => 
+        sg.courseId === courseId ? { 
+          ...sg, 
+          groups: [...sg.groups.filter(g => g.lectureType !== group.lectureType), group] 
+        } : sg
+      ));
+    } else if (courseGroups) {
+      // Add a new group type to existing course
+      setSelectedGroups(selectedGroups.map(sg => 
+        sg.courseId === courseId ? { ...sg, groups: [...sg.groups, group] } : sg
+      ));
     } else {
-      // Create new course groups entry
+      // Add a completely new course and group
       setSelectedGroups([...selectedGroups, { courseId, groups: [group] }]);
     }
   };
@@ -91,6 +108,11 @@ export default function MainLayout() {
     if (filters.semester && course.semester !== filters.semester) return false;
     return true;
   });
+
+  // Get full course objects for selected courses
+  const selectedCourseObjects = selectedCourses
+    .map(id => mockCourses.find(c => c.courseCode === id))
+    .filter(course => course !== undefined) as Course[];
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
@@ -106,7 +128,7 @@ export default function MainLayout() {
         <div className="max-w-5xl mx-auto space-y-6">
           <h2 className="text-2xl font-semibold text-gray-800">Weekly Schedule</h2>
           <WeeklySchedule
-            selectedCourses={selectedCourses.map(id => mockCourses.find(c => c.courseCode === id)!)}
+            selectedCourses={selectedCourseObjects}
             selectedGroups={selectedGroups}
             onGroupSelect={handleGroupSelect}
           />
@@ -116,3 +138,4 @@ export default function MainLayout() {
     </div>
   );
 }
+

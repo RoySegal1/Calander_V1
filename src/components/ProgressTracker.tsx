@@ -16,7 +16,7 @@ export default function ProgressTracker() {
       {/* Credits Progress */}
       <div>
         <div className="flex justify-between mb-2">
-          <span className="text-sm font-medium text-gray-700">Credits Progress</span>
+          <span className="text-sm font-medium text-gray-700">Credit Points Progress</span>
           <span className="text-sm text-gray-500">
             {credits.completed} / {credits.required} credits
           </span>
@@ -38,8 +38,8 @@ export default function ProgressTracker() {
         </div>
       </div>
 
-      {/* Remaining Requirements */}
-      <div className="grid grid-cols-3 gap-4">
+      Remaining Requirements
+      <div className="grid grid-cols-4 gap-4">
         <div className="p-4 bg-red-50 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
             <Book size={16} className="text-red-600" />
@@ -48,7 +48,7 @@ export default function ProgressTracker() {
           <div className="text-xl font-bold text-red-600">
             {remainingRequirements.mandatory}
           </div>
-          <div className="text-xs text-gray-500">courses remaining</div>
+          <div className="text-xs text-gray-500">Credits Remaining</div>
         </div>
 
         <div className="p-4 bg-blue-50 rounded-lg">
@@ -59,10 +59,21 @@ export default function ProgressTracker() {
           <div className="text-xl font-bold text-blue-600">
             {remainingRequirements.english}
           </div>
-          <div className="text-xs text-gray-500">courses remaining</div>
+          <div className="text-xs text-gray-500">Credits Remaining</div>
         </div>
 
-        <div className="p-4 bg-green-50 rounded-lg">
+        <div className="p-4 bg-yellow-50 rounded-lg">
+          <div className="flex items-center gap-2 mb-2">
+            <BookOpen size={16} className="text-blue-600" />
+            <span className="text-sm font-medium text-gray-700">Elective</span>
+          </div>
+          <div className="text-xl font-bold text-blue-600">
+            {remainingRequirements.elective}
+          </div>
+          <div className="text-xs text-gray-500">Credits Remaining</div>
+        </div>
+        
+           <div className="p-4 bg-green-50 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
             <Book size={16} className="text-green-600" />
             <span className="text-sm font-medium text-gray-700">General</span>
@@ -70,7 +81,7 @@ export default function ProgressTracker() {
           <div className="text-xl font-bold text-green-600">
             {remainingRequirements.general}
           </div>
-          <div className="text-xs text-gray-500">courses remaining</div>
+          <div className="text-xs text-gray-500">Credits Remaining</div>
         </div>
       </div>
     </div>
