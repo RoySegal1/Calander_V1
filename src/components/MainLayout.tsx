@@ -16,7 +16,7 @@ export default function MainLayout() {
   const [filters, setFilters] = useState({
     department: '',
     type: '',
-    semester: '',
+    semester: 'א',
   });
 
   const handleCourseSelect = (course: Course) => {

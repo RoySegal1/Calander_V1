@@ -59,7 +59,6 @@ export default function Sidebar({
               onChange={(e) => onFilterChange({ ...filters, semester: e.target.value })}
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
-              <option value="">כל הסמסטרים</option>
               {semesters.map(dept => (
                 <option key={dept} value={dept}>{dept}</option>
               ))}

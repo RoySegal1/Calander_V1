@@ -325,7 +325,7 @@
         "groups": [
             {
                 "groupCode": "251011001",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "20:00",
                 "endTime": "20:50",
                 "room": "קריה ה'13",
@@ -334,7 +334,7 @@
             },
             {
                 "groupCode": "251011003",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "15:00",
                 "endTime": "15:50",
                 "room": "מפ\"ט אתרוג",
@@ -342,8 +342,8 @@
                 "dayOfWeek": 4
             },
             {
-                "groupCode": "251011001",
-                "lectureType": 2,
+                "groupCode": "251011001/1",
+                "lectureType": 1,
                 "startTime": "17:00",
                 "endTime": "19:50",
                 "room": "קריה ה'13",
@@ -351,8 +351,8 @@
                 "dayOfWeek": 4
             },
             {
-                "groupCode": "251011003",
-                "lectureType": 2,
+                "groupCode": "251011003/1",
+                "lectureType": 1,
                 "startTime": "12:00",
                 "endTime": "14:50",
                 "room": "מפ\"ט אתרוג",
@@ -371,7 +371,7 @@
         "groups": [
             {
                 "groupCode": "251011004",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "17:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -379,8 +379,8 @@
                 "dayOfWeek": 4
             },
             {
-                "groupCode": "251011004",
-                "lectureType": 2,
+                "groupCode": "251011004/1",
+                "lectureType": 1,
                 "startTime": "18:00",
                 "endTime": "20:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -640,7 +640,7 @@
         "groups": [
             {
                 "groupCode": "251021201",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "18:50",
                 "room": "קריה ה'13",
@@ -648,8 +648,8 @@
                 "dayOfWeek": 2
             },
             {
-                "groupCode": "251021201",
-                "lectureType": 2,
+                "groupCode": "251021201/1",
+                "lectureType": 1,
                 "startTime": "19:00",
                 "endTime": "22:50",
                 "room": "קריה ה'13",
@@ -668,7 +668,7 @@
         "groups": [
             {
                 "groupCode": "251021604",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "09:00",
                 "endTime": "10:50",
                 "room": "קריה ה'5",
@@ -676,8 +676,8 @@
                 "dayOfWeek": 0
             },
             {
-                "groupCode": "251021604",
-                "lectureType": 2,
+                "groupCode": "251021604/1",
+                "lectureType": 1,
                 "startTime": "11:00",
                 "endTime": "12:50",
                 "room": "קריה ה'11 מעב דואלי",
@@ -696,7 +696,7 @@
         "groups": [
             {
                 "groupCode": "251021602",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "19:50",
                 "room": "קריה ה'7",
@@ -704,8 +704,8 @@
                 "dayOfWeek": 0
             },
             {
-                "groupCode": "251021602",
-                "lectureType": 2,
+                "groupCode": "251021602/1",
+                "lectureType": 1,
                 "startTime": "17:00",
                 "endTime": "19:50",
                 "room": "קריה ה'9",
@@ -1336,7 +1336,7 @@
         "groups": [
             {
                 "groupCode": "251034203",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "10:00",
                 "endTime": "12:50",
                 "room": "קריה ה'7",
@@ -1345,7 +1345,7 @@
             },
             {
                 "groupCode": "251034204",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "10:00",
                 "endTime": "12:50",
                 "room": "קריה ה'9",
@@ -1353,8 +1353,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251034203",
-                "lectureType": 2,
+                "groupCode": "251034203/1",
+                "lectureType": 1,
                 "startTime": "14:00",
                 "endTime": "15:50",
                 "room": "קריה ה'5",
@@ -1362,8 +1362,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251034204",
-                "lectureType": 2,
+                "groupCode": "251034204/1",
+                "lectureType": 1,
                 "startTime": "12:00",
                 "endTime": "13:50",
                 "room": "קריה ה'7",
@@ -1382,7 +1382,7 @@
         "groups": [
             {
                 "groupCode": "251034202",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "20:00",
                 "endTime": "22:50",
                 "room": "251 פיקוס",
@@ -1390,8 +1390,8 @@
                 "dayOfWeek": 4
             },
             {
-                "groupCode": "251034202",
-                "lectureType": 2,
+                "groupCode": "251034202/1",
+                "lectureType": 1,
                 "startTime": "20:00",
                 "endTime": "21:50",
                 "room": "204 פיקוס",
@@ -1410,7 +1410,7 @@
         "groups": [
             {
                 "groupCode": "251034201",
-                "lectureType": 3,
+                "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "20:50",
                 "room": "ז'2 קריה - עגלת תחשבים",
@@ -1418,8 +1418,8 @@
                 "dayOfWeek": 1
             },
             {
-                "groupCode": "251034201",
-                "lectureType": 2,
+                "groupCode": "251034201/1",
+                "lectureType": 1,
                 "startTime": "17:00",
                 "endTime": "19:50",
                 "room": "קריה ה'9",
@@ -3382,7 +3382,7 @@
                 "dayOfWeek": 4
             },
             {
-                "groupCode": "259090119/1",
+                "groupCode": "259090119/1_2",
                 "lectureType": 1,
                 "startTime": "08:00",
                 "endTime": "09:50",
@@ -5580,8 +5580,8 @@
                 "dayOfWeek": 1
             },
             {
-                "groupCode": "251001309",
-                "lectureType": 2,
+                "groupCode": "251001309/1",
+                "lectureType": 1,
                 "startTime": "14:00",
                 "endTime": "15:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5589,8 +5589,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251001310",
-                "lectureType": 2,
+                "groupCode": "251001310/1",
+                "lectureType": 1,
                 "startTime": "15:00",
                 "endTime": "16:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5598,8 +5598,8 @@
                 "dayOfWeek": 0
             },
             {
-                "groupCode": "251001311",
-                "lectureType": 2,
+                "groupCode": "251001311/1",
+                "lectureType": 1,
                 "startTime": "13:00",
                 "endTime": "14:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5607,8 +5607,8 @@
                 "dayOfWeek": 0
             },
             {
-                "groupCode": "251001312",
-                "lectureType": 2,
+                "groupCode": "251001312/1",
+                "lectureType": 1,
                 "startTime": "09:00",
                 "endTime": "10:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5616,8 +5616,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251001313",
-                "lectureType": 2,
+                "groupCode": "251001313/1",
+                "lectureType": 1,
                 "startTime": "17:00",
                 "endTime": "18:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5625,8 +5625,8 @@
                 "dayOfWeek": 0
             },
             {
-                "groupCode": "251001314",
-                "lectureType": 2,
+                "groupCode": "251001314/1",
+                "lectureType": 1,
                 "startTime": "16:00",
                 "endTime": "17:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5634,8 +5634,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251001319",
-                "lectureType": 2,
+                "groupCode": "251001319/1",
+                "lectureType": 1,
                 "startTime": "11:00",
                 "endTime": "12:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5643,8 +5643,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251001320",
-                "lectureType": 2,
+                "groupCode": "251001320/1",
+                "lectureType": 1,
                 "startTime": "17:00",
                 "endTime": "18:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5652,8 +5652,8 @@
                 "dayOfWeek": 2
             },
             {
-                "groupCode": "251001321",
-                "lectureType": 2,
+                "groupCode": "251001321/1",
+                "lectureType": 1,
                 "startTime": "15:00",
                 "endTime": "16:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5661,8 +5661,8 @@
                 "dayOfWeek": 2
             },
             {
-                "groupCode": "251001322",
-                "lectureType": 2,
+                "groupCode": "251001322/1",
+                "lectureType": 1,
                 "startTime": "13:00",
                 "endTime": "14:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5670,8 +5670,8 @@
                 "dayOfWeek": 2
             },
             {
-                "groupCode": "251001323",
-                "lectureType": 2,
+                "groupCode": "251001323/1",
+                "lectureType": 1,
                 "startTime": "18:00",
                 "endTime": "19:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
@@ -5679,8 +5679,8 @@
                 "dayOfWeek": 3
             },
             {
-                "groupCode": "251001325",
-                "lectureType": 2,
+                "groupCode": "251001325/1",
+                "lectureType": 1,
                 "startTime": "20:00",
                 "endTime": "21:50",
                 "room": "114-פיקוס מעב סיסקו/מחש",
