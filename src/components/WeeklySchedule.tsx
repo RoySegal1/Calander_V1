@@ -1,5 +1,5 @@
-
 import { Course, CourseGroup } from '../types';
+import { useState, useMemo } from 'react';
 
 interface WeeklyScheduleProps {
   selectedCourses: Course[];
@@ -17,84 +17,230 @@ export default function WeeklySchedule({
 }: WeeklyScheduleProps) {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const hours = Array.from({ length: 16 }, (_, i) => i + 8); // 8:00 to 22:00
+  const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
+
+  // Define a set of distinct colors for courses
+  const courseColors = useMemo(() => {
+    // Base colors for different courses
+    const baseColors = [
+      { name: 'indigo', bg: 'rgba(79, 70, 229, 1)', bgLight: 'rgba(79, 70, 229, 0.2)', text: 'rgb(79, 70, 229)' },
+      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
+      { name: 'amber', bg: 'rgba(245, 158, 11, 1)', bgLight: 'rgba(245, 158, 11, 0.2)', text: 'rgb(245, 158, 11)' },
+      { name: 'rose', bg: 'rgba(225, 29, 72, 1)', bgLight: 'rgba(225, 29, 72, 0.2)', text: 'rgb(225, 29, 72)' },
+      { name: 'emerald', bg: 'rgba(16, 185, 129, 1)', bgLight: 'rgba(16, 185, 129, 0.2)', text: 'rgb(16, 185, 129)' },
+      { name: 'violet', bg: 'rgba(139, 92, 246, 1)', bgLight: 'rgba(139, 92, 246, 0.2)', text: 'rgb(139, 92, 246)' },
+      { name: 'cyan', bg: 'rgba(6, 182, 212, 1)', bgLight: 'rgba(6, 182, 212, 0.2)', text: 'rgb(6, 182, 212)' },
+      { name: 'fuchsia', bg: 'rgba(192, 38, 211, 1)', bgLight: 'rgba(192, 38, 211, 0.2)', text: 'rgb(192, 38, 211)' },
+      { name: 'lime', bg: 'rgba(132, 204, 22, 1)', bgLight: 'rgba(132, 204, 22, 0.2)', text: 'rgb(132, 204, 22)' },
+      { name: 'sky', bg: 'rgba(14, 165, 233, 1)', bgLight: 'rgba(14, 165, 233, 0.2)', text: 'rgb(14, 165, 233)' },
+    ];
+    
+    // Assign a color to each course
+    const colorMap = new Map<string, typeof baseColors[0]>();
+    selectedCourses.forEach((course, index) => {
+      colorMap.set(course.courseCode, baseColors[index % baseColors.length]);
+    });
+    
+    return colorMap;
+  }, [selectedCourses]);
 
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
 
+  // Get all courses with their groups that are currently selected in selectedGroups
+  const getSelectedCoursesWithGroups = () => {
+    const result: { 
+      course: Course; 
+      groups: CourseGroup[];
+    }[] = [];
 
-
-  const getGroupStyle = (group: CourseGroup, courseId: string, isSelected: boolean = false, conflictCount: number = 1, conflictIndex: number = 0) => {
-    const startHour = parseInt(group.startTime.split(':')[0]);
-    const endHour = parseInt(group.endTime.split(':')[0]);
-    const startMinutes = parseInt(group.startTime.split(':')[1]);
-    const endMinutes = parseInt(group.endTime.split(':')[1]);
-    
-    const top = (startHour - 8) * 60 + startMinutes;
-    const height = (endHour - startHour) * 60 + (endMinutes - startMinutes);
-    const width = conflictCount > 1 ? `${90 / conflictCount}%` : '90%';
-    const left = conflictCount > 1 ? `${(90 / conflictCount) * conflictIndex + 5}%` : '5%';
-
-    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
-    const hasLectureOrLecturePractice = courseGroups?.groups.some(
-      g => g.lectureType === 0
-    );
-    const hasPractice = courseGroups?.groups.some(g => g.lectureType === 1);
-    const isComplete = hasLectureOrLecturePractice && hasPractice;
-    const getBackgroundColor = () => {
-      if (isSelected) return 'rgba(99, 102, 241, 0.8)';
-      if (isComplete) return 'rgba(99, 102, 241, 0.1)';
-      const colors = [
-        'rgba(255, 99, 132, 0.2)', // Red
-        'rgba(54, 162, 235, 0.2)', // Blue
-        'rgba(255, 206, 86, 0.2)', // Yellow
-        'rgba(75, 192, 192, 0.2)', // Green
-        'rgba(153, 102, 255, 0.2)', // Purple
-        'rgba(255, 159, 64, 0.2)', // Orange
-      ];
-      return colors[parseInt(courseId) % colors.length];
-    };
-
-    return {
-      position: 'absolute' as const,
-      top: `${top}px`,
-      height: `${height}px`,
-      width,
-      left,
-      backgroundColor: getBackgroundColor(),
-      borderRadius: '0.5rem',
-      padding: '0.5rem',
-      color: isSelected ? 'white' : 'rgb(79, 70, 229)',
-      fontSize: '0.875rem',
-      overflow: 'hidden',
-      transition: 'all 0.2s ease-in-out',
-      cursor: isComplete && !isSelected ? 'not-allowed' : 'pointer',
-      opacity: isComplete && !isSelected ? 0.5 : 1,
-    };
-  };
-
-  const getConflictingGroups = (dayIndex: number, startTime: string, endTime: string, courseId: string) => {
-    const course = selectedCourses.find(c => c.courseCode === courseId);
-    if (!course) return [];
-    
-    return course.groups.filter(group => {
-      if (group.dayOfWeek !== dayIndex) return false;
-      
-      const groupStart = parseInt(group.startTime.replace(':', ''));
-      const groupEnd = parseInt(group.endTime.replace(':', ''));
-      const timeStart = parseInt(startTime.replace(':', ''));
-      const timeEnd = parseInt(endTime.replace(':', ''));
-      
-      return (groupStart >= timeStart && groupStart < timeEnd) ||
-             (groupEnd > timeStart && groupEnd <= timeEnd) ||
-             (groupStart <= timeStart && groupEnd >= timeEnd);
+    selectedGroups.forEach(sg => {
+      const course = selectedCourses.find(c => c.courseCode === sg.courseId);
+      if (course && sg.groups.length > 0) {
+        result.push({
+          course,
+          groups: sg.groups
+        });
+      }
     });
+
+    return result;
   };
 
-  const isGroupSelected = (group: CourseGroup, courseId: string) => {
-    return selectedGroups.some(sg => 
+  // Get all course blocks to be rendered in the schedule
+  const getCourseBlocks = () => {
+    const blocks: {
+      course: Course;
+      group: CourseGroup;
+      isSelected: boolean;
+    }[] = [];
+
+    // Add all selected groups
+    getSelectedCoursesWithGroups().forEach(item => {
+      item.groups.forEach(group => {
+        blocks.push({
+          course: item.course,
+          group,
+          isSelected: true
+        });
+      });
+    });
+
+    // Add all available groups from selected courses that aren't already selected
+    selectedCourses.forEach(course => {
+      const selectedCourseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode)?.groups || [];
+      const selectedGroupCodes = new Set(selectedCourseGroups.map(g => g.groupCode));
+
+      course.groups.forEach(group => {
+        if (!selectedGroupCodes.has(group.groupCode)) {
+          blocks.push({
+            course,
+            group,
+            isSelected: false
+          });
+        }
+      });
+    });
+
+    return blocks;
+  };
+
+  // Helper function to parse "HH:MM" time format to minutes since 00:00
+  const parseTimeToMinutes = (time: string) => {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  };
+
+  // Find all groups that overlap with a specific time slot
+  const getOverlappingGroups = (dayIndex: number, group: CourseGroup) => {
+    return getCourseBlocks()
+      .filter(block => {
+        const otherGroup = block.group;
+        
+        if (otherGroup.dayOfWeek !== dayIndex) return false;
+        if (otherGroup.groupCode === group.groupCode) return false;
+        
+        const thisStart = parseTimeToMinutes(group.startTime);
+        const thisEnd = parseTimeToMinutes(group.endTime);
+        const otherStart = parseTimeToMinutes(otherGroup.startTime);
+        const otherEnd = parseTimeToMinutes(otherGroup.endTime);
+        
+        return (thisStart < otherEnd && thisEnd > otherStart);
+      })
+      .map(block => block.group);
+  };
+
+  // Find all groups that are in the same time slot (day + time)
+  const getGroupsInSameTimeSlot = (group: CourseGroup) => {
+    return getCourseBlocks()
+      .filter(block => {
+        const otherGroup = block.group;
+        
+        // Check if same day
+        if (otherGroup.dayOfWeek !== group.dayOfWeek) return false;
+        // Don't include self
+        if (otherGroup.groupCode === group.groupCode) return false;
+        
+        const thisStart = parseTimeToMinutes(group.startTime);
+        const thisEnd = parseTimeToMinutes(group.endTime);
+        const otherStart = parseTimeToMinutes(otherGroup.startTime);
+        const otherEnd = parseTimeToMinutes(otherGroup.endTime);
+        
+        // Check for overlap
+        return (thisStart < otherEnd && thisEnd > otherStart);
+      });
+  };
+
+  // Custom group selection handler to handle replacing groups in the same time slot
+  const handleGroupSelect = (group: CourseGroup, courseId: string) => {
+    // Find which groups would be automatically deselected due to time conflict
+    const conflictingBlocks = getGroupsInSameTimeSlot(group);
+    
+    // Call the original onGroupSelect with the group to select/deselect
+    onGroupSelect(group, courseId);
+    
+    // If this is a selection (not a deselection) and there are conflicts,
+    // automatically deselect the conflicting groups
+    const isCurrentlySelected = selectedGroups.some(sg => 
       sg.courseId === courseId && 
       sg.groups.some(g => g.groupCode === group.groupCode)
     );
+    
+    if (!isCurrentlySelected) {
+      // For each conflicting group, deselect it
+      conflictingBlocks.forEach(block => {
+        if (block.isSelected) {
+          onGroupSelect(block.group, block.course.courseCode);
+        }
+      });
+    }
   };
+
+  // Get style for a course group block
+  const getGroupStyle = (course: Course, group: CourseGroup, isSelected: boolean) => {
+    const startMinutes = parseTimeToMinutes(group.startTime) - 8 * 60; // Offset by 8 hours (schedule start)
+    const endMinutes = parseTimeToMinutes(group.endTime) - 8 * 60;
+    const height = endMinutes - startMinutes;
+
+    // Find all groups that overlap with this one at the same time
+    const overlappingGroups = getOverlappingGroups(group.dayOfWeek, group);
+    
+    // Add this group to create the full set of overlapping groups
+    const allGroups = [group, ...overlappingGroups];
+    
+    // Sort by group code for consistent display order
+    allGroups.sort((a, b) => a.groupCode.localeCompare(b.groupCode));
+    
+    const index = allGroups.findIndex(g => g.groupCode === group.groupCode);
+    const count = allGroups.length;
+    
+    // Calculate width and left position based on number of overlapping courses
+    const width = count > 1 ? `${95 / count}%` : '95%';
+    const left = count > 1 ? `${(95 / count) * index + 2.5}%` : '2.5%';
+    
+    // Get the course color - Fix for undefined courseColor
+    const defaultColor = { bg: 'rgba(156, 163, 175, 1)', bgLight: 'rgba(156, 163, 175, 0.2)', text: 'rgb(156, 163, 175)' };
+    const courseColor = courseColors.get(course.courseCode) || defaultColor;
+    
+    // Determine if it's a lecture or practice
+    const isLecture = group.lectureType === 0;
+    
+    // Create an opacity effect for lectures vs practices
+    const bgOpacity = isLecture ? 0.9 : 0.7;
+    
+    // Set colors based on course, type, and selection state
+    const bgColor = isSelected
+      ? isLecture 
+        ? courseColor.bg.replace('1)', `${bgOpacity})`) // Darker for lecture
+        : courseColor.bg.replace('1)', `${bgOpacity})`) // Slightly lighter for practice
+      : courseColor.bgLight; // Even lighter for unselected
+    
+    const textColor = isSelected ? 'white' : courseColor.text;
+    
+    return {
+      position: 'absolute' as const,
+      top: `${startMinutes}px`,
+      height: `${height}px`,
+      width,
+      left,
+      backgroundColor: bgColor,
+      borderRadius: '0.5rem',
+      padding: '0.5rem',
+      color: textColor,
+      fontSize: '0.875rem',
+      overflow: 'hidden',
+      transition: 'all 0.2s ease-in-out',
+      cursor: 'pointer',
+      zIndex: hoveredGroup === group.groupCode ? 30 : (isSelected ? 20 : 10),
+      border: hoveredGroup === group.groupCode 
+        ? `2px solid ${courseColor.text}` 
+        : '1px solid transparent',
+      boxShadow: isSelected ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none',
+      // Add a subtle pattern for practice sessions
+      backgroundImage: !isLecture ? 'repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.1) 5px, rgba(255,255,255,0.1) 10px)' : 'none',
+    };
+  };
+
+  const courseBlocks = getCourseBlocks();
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 overflow-auto">
@@ -114,43 +260,114 @@ export default function WeeklySchedule({
               <div className="h-8 text-sm font-medium text-gray-700 text-center sticky top-0 bg-white">
                 {day}
               </div>
-              <div className="relative h-[840px]"> {/* 15 hours * 60px */}
+              <div className="relative h-[960px]"> {/* 16 hours * 60px */}
                 {hours.map(hour => (
                   <div
                     key={hour}
                     className="h-[60px] border-t border-gray-100"
                   />
                 ))}
-                {selectedCourses.map(course => 
-                  course.groups.map(group => {
-                    if (group.dayOfWeek !== dayIndex) return null;
-                    
-                    const conflictingGroups = getConflictingGroups(dayIndex, group.startTime, group.endTime, course.courseCode);
-                    const conflictIndex = conflictingGroups.findIndex(g => g.groupCode === group.groupCode);
-                    const isSelected = isGroupSelected(group, course.courseCode);
-                    
-                    return (
-                      <div
-                        key={`${course.courseCode}-${group.groupCode}`}
-                        style={getGroupStyle(group, course.courseCode, isSelected, conflictingGroups.length, conflictIndex)}
-                        onClick={() => onGroupSelect(group, course.courseCode)}
-                        className="hover:shadow-lg"
-                      >
+                
+                {/* Render all course blocks for this day */}
+                {courseBlocks
+                  .filter(block => block.group.dayOfWeek === dayIndex)
+                  .map(({ course, group, isSelected }) => (
+                    <div
+                      key={`${course.courseCode}-${group.groupCode}`}
+                      style={getGroupStyle(course, group, isSelected)}
+                      onClick={() => handleGroupSelect(group, course.courseCode)}
+                      onMouseEnter={() => setHoveredGroup(group.groupCode)}
+                      onMouseLeave={() => setHoveredGroup(null)}
+                      className="hover:shadow-lg relative group"
+                    >
+                      {/* Course information from old code */}
+                      <div className="font-medium truncate">{course.courseName}</div>
+                      <div className="text-xs truncate">
+                        {group.groupCode} - {group.lectureType === 0 ? "Lecture" : "Practice"}
+                      </div>
+                      <div className="text-xs truncate">{group.lecturer}</div>
+                      <div className="text-xs truncate">{group.room}</div>
+                      <div className="text-xs truncate">{group.startTime} - {group.endTime}</div>
+
+                      {/* Fixed hover information panel */}   {/* still cant see? */}
+
+                      <div 
+                         className="absolute z-40 w-64 bg-white shadow-lg p-3 rounded-lg border border-gray-200"
+                         style={{ 
+                           display: hoveredGroup === group.groupCode ? 'block' : 'none',
+                           left: dayIndex < 3 ? '100%' : 'auto',
+                           right: dayIndex >= 3 ? '100%' : 'auto',
+                           marginLeft: dayIndex < 3 ? '2px' : '0',
+                           marginRight: dayIndex >= 3 ? '2px' : '0',
+                            top: '0'
+                           }}
+                        >
                         <div className="font-medium">{course.courseName}</div>
-                        <div className="text-xs">{group.groupCode} - {group.lectureType == 0 ? "Lecture" : "Practice"}</div>
-                        <div className="text-xs">{group.lecturer}</div>
-                        <div className="text-xs">
-                          {group.room}
+                        <div className="text-xs text-gray-600 mt-1">Code: {course.courseCode}</div>
+                        <div className="text-xs text-gray-600 mt-2">Group: {group.groupCode}</div>
+                        <div className="text-xs text-gray-600">Lecturer: {group.lecturer}</div>
+                        <div className="text-xs text-gray-600">Room: {group.room}</div>
+                        <div className="text-xs text-gray-600">
+                          Time: {group.startTime} - {group.endTime}
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Type: {group.lectureType === 0 ? "Lecture" : "Practice"}
+                        </div>
+                        <div className="text-xs italic text-gray-500 mt-2">
+                          {isSelected ? "Click to remove from schedule" : "Click to add to schedule"}
                         </div>
                       </div>
-                    );
-                  })
-                )}
+                    </div>
+                  ))
+                }
               </div>
             </div>
           ))}
         </div>
       </div>
+      
+      {/* Course color legend */}
+      <div className="mt-4 flex flex-wrap gap-4 justify-start text-sm">
+        <div className="mr-4 font-medium">Courses:</div>
+        {selectedCourses.map(course => {
+          // Fix for undefined courseColor
+          const defaultColor = { bg: 'rgba(156, 163, 175, 1)', bgLight: 'rgba(156, 163, 175, 0.2)', text: 'rgb(156, 163, 175)' };
+          const courseColor = courseColors.get(course.courseCode) || defaultColor;
+          
+          return (
+            <div key={course.courseCode} className="flex items-center">
+              <div className="flex space-x-1 mr-2">
+                <div className="w-4 h-4 rounded" style={{ backgroundColor: courseColor.bg }}></div>
+                <div className="w-4 h-4 rounded" style={{ 
+                  backgroundColor: courseColor.bg.replace('1)', '0.7)'),
+                  backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.1) 5px, rgba(255,255,255,0.1) 10px)'
+                }}></div>
+              </div>
+              <span className="truncate max-w-40">{course.courseName}</span>
+            </div>
+          );
+        })}
+      </div>
+      <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
+        <div className="flex items-center">
+          <div className="w-4 h-4 bg-gray-600 rounded mr-1"></div>
+          <span>Lecture</span>
+        </div>
+        <div className="flex items-center">
+          <div className="w-4 h-4 bg-gray-600 rounded mr-1" style={{ 
+            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.1) 5px, rgba(255,255,255,0.1) 10px)'
+          }}></div>
+          <span>Practice</span>
+        </div>
+        <div className="flex items-center ml-4">
+          <span>Solid color = Selected</span>
+        </div>
+        <div className="flex items-center">
+          <span>Transparent = Available</span>
+        </div>
+      </div>
     </div>
   );
 }
+
+
