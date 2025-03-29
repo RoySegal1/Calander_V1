@@ -198,6 +198,18 @@ const courseColors = useMemo(() => {
 
 
 
+
+
+const handleClearSchedule = () => {
+  setSelectedCourses([]);
+  setSelectedGroups([]);
+};
+
+
+
+
+
+
   const handleCourseSelect = (course: Course) => {
     if (selectedCourses.includes(course.courseCode)) {
       // If course is already selected, remove it and its groups
@@ -311,6 +323,7 @@ return (
           selectedGroups={selectedGroups}
           onGroupSelect={handleGroupSelect}
           courseColors={courseColors} // Pass the color mapping to WeeklySchedule
+          onClearSchedule={handleClearSchedule}
         />
         <ProgressTracker />
       </div>
