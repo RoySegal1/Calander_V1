@@ -1,6 +1,8 @@
 import { Course, CourseGroup } from '../types';
 import { useState, useMemo } from 'react';
 
+
+
 interface WeeklyScheduleProps {
   selectedCourses: Course[];
   selectedGroups: {
@@ -8,7 +10,9 @@ interface WeeklyScheduleProps {
     groups: CourseGroup[];
   }[];
   onGroupSelect: (group: CourseGroup, courseId: string) => void;
+  courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
 }
+
 
 export default function WeeklySchedule({ 
   selectedCourses,
@@ -24,7 +28,6 @@ export default function WeeklySchedule({
     // Base colors for different courses
     const baseColors = [
       { name: 'indigo', bg: 'rgba(79, 70, 229, 1)', bgLight: 'rgba(79, 70, 229, 0.2)', text: 'rgb(79, 70, 229)' },
-      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
       { name: 'amber', bg: 'rgba(245, 158, 11, 1)', bgLight: 'rgba(245, 158, 11, 0.2)', text: 'rgb(245, 158, 11)' },
       { name: 'rose', bg: 'rgba(225, 29, 72, 1)', bgLight: 'rgba(225, 29, 72, 0.2)', text: 'rgb(225, 29, 72)' },
       { name: 'emerald', bg: 'rgba(16, 185, 129, 1)', bgLight: 'rgba(16, 185, 129, 0.2)', text: 'rgb(16, 185, 129)' },
@@ -33,6 +36,7 @@ export default function WeeklySchedule({
       { name: 'fuchsia', bg: 'rgba(192, 38, 211, 1)', bgLight: 'rgba(192, 38, 211, 0.2)', text: 'rgb(192, 38, 211)' },
       { name: 'lime', bg: 'rgba(132, 204, 22, 1)', bgLight: 'rgba(132, 204, 22, 0.2)', text: 'rgb(132, 204, 22)' },
       { name: 'sky', bg: 'rgba(14, 165, 233, 1)', bgLight: 'rgba(14, 165, 233, 0.2)', text: 'rgb(14, 165, 233)' },
+      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
     ];
     
     // Assign a color to each course
