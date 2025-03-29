@@ -10,8 +10,10 @@ interface WeeklyScheduleProps {
   }[];
   onGroupSelect: (group: CourseGroup, courseId: string) => void;
   courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
-  onClearSchedule?: () => void; // New prop for clearing the schedule
+  onClearSchedule?: () => void;
+  onScheduleChosen?: () => void; 
 }
+
 
 
 export default function WeeklySchedule({ 
@@ -20,6 +22,7 @@ export default function WeeklySchedule({
   onGroupSelect,
   courseColors: propsCourseColors, // Renamed to avoid confusion
   onClearSchedule,
+  onScheduleChosen, 
 }: WeeklyScheduleProps) {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const hours = Array.from({ length: 16 }, (_, i) => i + 8); // 8:00 to 22:00
@@ -193,7 +196,6 @@ export default function WeeklySchedule({
     }
   };
 
-  
 
   // Get style for a course group block
   const getGroupStyle = (course: Course, group: CourseGroup, isSelected: boolean) => {
@@ -266,19 +268,28 @@ export default function WeeklySchedule({
     <div className="bg-white rounded-lg shadow-lg p-4 overflow-auto">
       {/* Add toggle and clear buttons at the top */}
       <div className="flex justify-end mb-4 gap-2">
-        <button 
-          onClick={handleClearSchedule}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
-        >
-          Clear Schedule
-        </button>
-        <button 
-          onClick={() => setShowSelectedOnly(!showSelectedOnly)}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          {showSelectedOnly ? "Show All Courses" : "Show Selected Only"}
-        </button>
-      </div>
+  <button 
+    onClick={handleClearSchedule}
+    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+  >
+    Clear Schedule
+  </button>
+
+  <button 
+    onClick={() => setShowSelectedOnly(!showSelectedOnly)}
+    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+  >
+    {showSelectedOnly ? "Show All Courses" : "Show Selected Only"}
+  </button>
+
+  <button 
+    onClick={() => onScheduleChosen?.()}
+    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+  >
+    Choose Schedule
+  </button>
+</div>
+
       
       <div className="flex">
         <div className="w-20 shrink-0">
@@ -324,6 +335,7 @@ export default function WeeklySchedule({
                       <div className="text-xs truncate">{group.lecturer}</div>
                       <div className="text-xs truncate">{group.room}</div>
                       <div className="text-xs truncate">{group.startTime} - {group.endTime}</div>
+                      
 
                       {/* Fixed hover information panel */}
                       <div 
@@ -404,3 +416,6 @@ export default function WeeklySchedule({
     </div>
   );
 }
+
+
+
