@@ -1,3 +1,4 @@
+
 import { Course, CourseGroup } from '../types';
 import { useState, useMemo } from 'react';
 
@@ -8,23 +9,32 @@ interface WeeklyScheduleProps {
     groups: CourseGroup[];
   }[];
   onGroupSelect: (group: CourseGroup, courseId: string) => void;
+  courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
+  onClearSchedule?: () => void;
+  onScheduleChosen?: () => void; 
 }
+
+
 
 export default function WeeklySchedule({ 
   selectedCourses,
   selectedGroups,
   onGroupSelect,
+  courseColors: propsCourseColors, // Renamed to avoid confusion
+  onClearSchedule,
+  onScheduleChosen, 
 }: WeeklyScheduleProps) {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const hours = Array.from({ length: 16 }, (_, i) => i + 8); // 8:00 to 22:00
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
+  // State for toggling visibility of unselected courses
+  const [showSelectedOnly, setShowSelectedOnly] = useState<boolean>(false);
 
   // Define a set of distinct colors for courses
   const courseColors = useMemo(() => {
     // Base colors for different courses
     const baseColors = [
       { name: 'indigo', bg: 'rgba(79, 70, 229, 1)', bgLight: 'rgba(79, 70, 229, 0.2)', text: 'rgb(79, 70, 229)' },
-      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
       { name: 'amber', bg: 'rgba(245, 158, 11, 1)', bgLight: 'rgba(245, 158, 11, 0.2)', text: 'rgb(245, 158, 11)' },
       { name: 'rose', bg: 'rgba(225, 29, 72, 1)', bgLight: 'rgba(225, 29, 72, 0.2)', text: 'rgb(225, 29, 72)' },
       { name: 'emerald', bg: 'rgba(16, 185, 129, 1)', bgLight: 'rgba(16, 185, 129, 0.2)', text: 'rgb(16, 185, 129)' },
@@ -33,6 +43,7 @@ export default function WeeklySchedule({
       { name: 'fuchsia', bg: 'rgba(192, 38, 211, 1)', bgLight: 'rgba(192, 38, 211, 0.2)', text: 'rgb(192, 38, 211)' },
       { name: 'lime', bg: 'rgba(132, 204, 22, 1)', bgLight: 'rgba(132, 204, 22, 0.2)', text: 'rgb(132, 204, 22)' },
       { name: 'sky', bg: 'rgba(14, 165, 233, 1)', bgLight: 'rgba(14, 165, 233, 0.2)', text: 'rgb(14, 165, 233)' },
+      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
     ];
     
     // Assign a color to each course
@@ -86,20 +97,23 @@ export default function WeeklySchedule({
     });
 
     // Add all available groups from selected courses that aren't already selected
-    selectedCourses.forEach(course => {
-      const selectedCourseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode)?.groups || [];
-      const selectedGroupCodes = new Set(selectedCourseGroups.map(g => g.groupCode));
+    // Only add them if we're not in "selected only" mode
+    if (!showSelectedOnly) {
+      selectedCourses.forEach(course => {
+        const selectedCourseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode)?.groups || [];
+        const selectedGroupCodes = new Set(selectedCourseGroups.map(g => g.groupCode));
 
-      course.groups.forEach(group => {
-        if (!selectedGroupCodes.has(group.groupCode)) {
-          blocks.push({
-            course,
-            group,
-            isSelected: false
-          });
-        }
+        course.groups.forEach(group => {
+          if (!selectedGroupCodes.has(group.groupCode)) {
+            blocks.push({
+              course,
+              group,
+              isSelected: false
+            });
+          }
+        });
       });
-    });
+    }
 
     return blocks;
   };
@@ -175,6 +189,14 @@ export default function WeeklySchedule({
     }
   };
 
+  // Handle clearing the schedule
+  const handleClearSchedule = () => {
+    if (onClearSchedule) {
+      onClearSchedule();
+    }
+  };
+
+
   // Get style for a course group block
   const getGroupStyle = (course: Course, group: CourseGroup, isSelected: boolean) => {
     const startMinutes = parseTimeToMinutes(group.startTime) - 8 * 60; // Offset by 8 hours (schedule start)
@@ -197,7 +219,7 @@ export default function WeeklySchedule({
     const width = count > 1 ? `${95 / count}%` : '95%';
     const left = count > 1 ? `${(95 / count) * index + 2.5}%` : '2.5%';
     
-    // Get the course color - Fix for undefined courseColor
+    // Get the course color from our internal color generator
     const defaultColor = { bg: 'rgba(156, 163, 175, 1)', bgLight: 'rgba(156, 163, 175, 0.2)', text: 'rgb(156, 163, 175)' };
     const courseColor = courseColors.get(course.courseCode) || defaultColor;
     
@@ -244,6 +266,31 @@ export default function WeeklySchedule({
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 overflow-auto">
+      {/* Add toggle and clear buttons at the top */}
+      <div className="flex justify-end mb-4 gap-2">
+  <button 
+    onClick={handleClearSchedule}
+    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+  >
+    Clear Schedule
+  </button>
+
+  <button 
+    onClick={() => setShowSelectedOnly(!showSelectedOnly)}
+    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+  >
+    {showSelectedOnly ? "Show All Courses" : "Show Selected Only"}
+  </button>
+
+  <button 
+    onClick={() => onScheduleChosen?.()}
+    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+  >
+    Choose Schedule
+  </button>
+</div>
+
+      
       <div className="flex">
         <div className="w-20 shrink-0">
           <div className="h-8" /> {/* Header spacer */}
@@ -288,9 +335,9 @@ export default function WeeklySchedule({
                       <div className="text-xs truncate">{group.lecturer}</div>
                       <div className="text-xs truncate">{group.room}</div>
                       <div className="text-xs truncate">{group.startTime} - {group.endTime}</div>
+                      
 
-                      {/* Fixed hover information panel */}   {/* still cant see? */}
-
+                      {/* Fixed hover information panel */}
                       <div 
                          className="absolute z-40 w-64 bg-white shadow-lg p-3 rounded-lg border border-gray-200"
                          style={{ 
@@ -330,7 +377,7 @@ export default function WeeklySchedule({
       <div className="mt-4 flex flex-wrap gap-4 justify-start text-sm">
         <div className="mr-4 font-medium">Courses:</div>
         {selectedCourses.map(course => {
-          // Fix for undefined courseColor
+          // Get color from our internal color generator
           const defaultColor = { bg: 'rgba(156, 163, 175, 1)', bgLight: 'rgba(156, 163, 175, 0.2)', text: 'rgb(156, 163, 175)' };
           const courseColor = courseColors.get(course.courseCode) || defaultColor;
           
@@ -369,5 +416,6 @@ export default function WeeklySchedule({
     </div>
   );
 }
+
 
 
