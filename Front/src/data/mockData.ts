@@ -1,5 +1,5 @@
 import { User } from '../types';
-import mockCoursesData from '../data/coursesWorked_transformed3.json';
+import mockCoursesData from './coursesWorked_transformed3.json';
 import { Course } from '../types';
 
 const mockCourses: Course[] = mockCoursesData.map((course: any) => ({
