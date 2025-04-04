@@ -11,7 +11,8 @@ function App() {
     isAuthenticated: false,
   });
 
-  const handleLogin = (username: string, password: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleLogin = (_: string, __: string) => {         //WHAT IS HERE?
     // Mock authentication - in a real app, this would make an API call
     setAuth({
       user: mockUser,
