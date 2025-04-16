@@ -1,5 +1,5 @@
 // Sidebar.tsx modifications
-import { Course, CourseType } from '../types';
+import { Course } from '../types';
 import { Filter, BookOpen } from 'lucide-react';
 // Add useMemo to import
 import { useMemo } from 'react';
@@ -19,8 +19,9 @@ interface SidebarProps {
 }
 
 
-const courseTypes: CourseType[] = ["קורסי חובה שנה א" ,"קורסי חובה שנה ב","קורסי חובה שנה ג", 'קורסי בחירה' , 'קורסי חובה לימודי אנגלית' , 'סמינר חובה'  , 'קורסי יחידה ללימודי חברה ורוח' , 'קורסי בחירה נוספים'];
-const departments = ['מדעי המחשב', 'Mathematics', 'English'];
+//const courseTypes: CourseType[] = ["קורסי חובה שנה א" ,"קורסי חובה שנה ב","קורסי חובה שנה ג", 'קורסי בחירה' , 'קורסי חובה לימודי אנגלית' , 'סמינר חובה'  , 'קורסי יחידה ללימודי חברה ורוח' , 'קורסי בחירה נוספים'];
+// , 'הנדסת תוכנה' 'הנדסה ביורפואית', 'הנדסה מכנית', 
+const departments = ['מדעי המחשב', 'הנדסת חשמל', 'הנדסה תעשייה וניהול','מדעי הנתונים'];
 const semesters = ["א","ב","קיץ"];
 
 export default function Sidebar({
@@ -54,6 +55,11 @@ export default function Sidebar({
     
     return colorMap;
   }, [selectedCourses]);
+
+  // Dynamically extract unique course types from the courses array
+  const uniqueCourseTypes = useMemo(() => {
+    return Array.from(new Set(courses.map(course => course.courseType)));
+  }, [courses]);
 
   // Helper function to get course background color
   const getCourseBgColor = (courseCode: string) => {
@@ -97,7 +103,6 @@ export default function Sidebar({
               onChange={(e) => onFilterChange({ ...filters, department: e.target.value })}
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
-              <option value="">All Departments</option>
               {departments.map(dept => (
                 <option key={dept} value={dept}>{dept}</option>
               ))}
@@ -129,7 +134,7 @@ export default function Sidebar({
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
               <option value="">כל סוגי הקורסים</option>
-              {courseTypes.map(type => (
+              {uniqueCourseTypes.map(type => (
                 <option key={type} value={type}>{type}</option>
               ))}
             </select>

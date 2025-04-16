@@ -27,13 +27,17 @@ export default function MainLayout() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const frontendToBackendMap: Record<string, string> = {
-          'מדעי המחשב': 'CS',
-          'Mathematics': 'Math',
-          'English': 'English'
-        };
+      const frontendToBackendMap: Record<string, string> = {
+        'מדעי המחשב': 'מדעי המחשב',
+        'הנדסת חשמל': 'הנדסת חשמל',
+        'הנדסה תעשייה וניהול': 'הנדסת תעשיה וניהול',
+       // 'הנדסה מכנית': 'הנדסה מכנית',
+       // 'הנדסה ביורפואית': 'הנדסה ביורפואית',
+        //'הנדסת תוכנה': 'הנדסת תוכנה',
+        'מדעי הנתונים': 'מדעי הנתונים',
+      };
 
-        const backendDept = frontendToBackendMap[filters.department] || 'CS';
+        const backendDept = frontendToBackendMap[filters.department];
         const response = await axios.get<Course[]>(
           `http://localhost:8000/courses?department=${backendDept}`
         );
