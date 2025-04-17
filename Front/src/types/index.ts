@@ -1,4 +1,4 @@
-export type CourseType = string; // e.g. "קורסי חובה שנה א", "קורסי בחירה", etc.
+export type CourseType = "קורסי חובה שנה א" | 'קורסי בחירה' | 'קורסי חובה לימודי אנגלית' | 'קורסי חובה שנה ג' | 'סמינר חובה' | "קורסי חובה שנה ב" | 'קורסי יחידה ללימודי חברה ורוח' | 'קורסי בחירה נוספים';
 export type LectureType =  1 | 0; // 1 for practice 0 for lecture
 
 export interface CourseGroup {
@@ -43,8 +43,20 @@ export interface User {
   };
 }
 
+// export interface AuthState {
+//   user: User | null;
+//   isGuest: boolean;
+//   isAuthenticated: boolean;
+// }
+
 export interface AuthState {
-  user: User | null;
+  user: {
+    username?: string;
+    is_guest?: boolean;
+    department?: string;
+    saved_courses?: string[];
+    progress?: Record<string, any>;
+  } | null;
   isGuest: boolean;
   isAuthenticated: boolean;
 }
