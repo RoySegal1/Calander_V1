@@ -39,7 +39,7 @@ export default function MainLayout() {
 
         const backendDept = frontendToBackendMap[filters.department];
         const response = await axios.get<Course[]>(
-          `http://localhost:8000/courses?department=${backendDept}`
+          `http://localhost:8000/courses?department=${backendDept}&generalcourses=false`
         );
 
         setAllCourses(response.data);
