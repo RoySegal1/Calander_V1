@@ -273,7 +273,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
         const backendDept = frontendToBackendMap[filters.department];
         const response = await axios.get<Course[]>(
-          `http://localhost:8000/courses?department=${backendDept}`
+          `http://localhost:8000/courses?department=${backendDept}&generalcourses=true`
         );
 
         setAllCourses(response.data);
@@ -417,7 +417,9 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
       setSelectedGroups([...selectedGroups, { courseId, groups: [group] }]);
     }
   };
-
+  const uniqueCourseTypes = useMemo(() => {
+    return Array.from(new Set(allCourses.map(course => course.courseType)));
+  }, [allCourses]);
   return (
     <div className="min-h-screen bg-gray-100 flex">
       <Sidebar
@@ -427,6 +429,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
         filters={filters}
         onFilterChange={setFilters}
         courseColors={courseColors}
+        uniqueCourseTypes={uniqueCourseTypes} // Pass unique course types to Sidebar
       />
 
       <div className="flex-1 p-6 overflow-auto">
