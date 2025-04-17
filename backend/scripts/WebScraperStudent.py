@@ -182,7 +182,7 @@ def scrape_student_grades(username, password):
                 print(f"Error processing details element {index + 1}: {e}")
 
         # Save results to a JSON file
-        print("\nSaving results to JSON...")
+        print("Scraped Grades")
         return results
         # with open("courses_results_gilad.json", "w", encoding="utf-8") as json_file:
         #     json.dump(results, json_file, ensure_ascii=False, indent=4)
