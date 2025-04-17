@@ -604,60 +604,6 @@
                 "room": "ז'2 קריה - עגלת תחשבים",
                 "lecturer": "ד\"ר ערמון דגנית",
                 "dayOfWeek": 0
-            },
-            {
-                "groupCode": "251020605_2",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "ז'2 קריה - עגלת תחשבים",
-                "lecturer": "ד\"ר ערמון דגנית",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "251020605/2",
-                "lectureType": 1,
-                "startTime": "11:00",
-                "endTime": "11:50",
-                "room": "ז'2 קריה - עגלת תחשבים",
-                "lecturer": "ד\"ר ערמון דגנית",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "251020605_3",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "ז'2 קריה - עגלת תחשבים",
-                "lecturer": "ד\"ר ערמון דגנית",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "251020605/3",
-                "lectureType": 1,
-                "startTime": "11:00",
-                "endTime": "11:50",
-                "room": "ז'2 קריה - עגלת תחשבים",
-                "lecturer": "ד\"ר ערמון דגנית",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "251020605_4",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "ז'2 קריה - עגלת תחשבים",
-                "lecturer": "ד\"ר ערמון דגנית",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "251020605/4",
-                "lectureType": 1,
-                "startTime": "11:00",
-                "endTime": "11:50",
-                "room": "ז'2 קריה - עגלת תחשבים",
-                "lecturer": "ד\"ר ערמון דגנית",
-                "dayOfWeek": 0
             }
         ]
     },
@@ -787,96 +733,6 @@
                 "room": "קריה ה'11 מעב דואלי",
                 "lecturer": "ד''ר הוכמן מיכל",
                 "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902_2",
-                "lectureType": 0,
-                "startTime": "13:00",
-                "endTime": "14:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902/2",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902_3",
-                "lectureType": 0,
-                "startTime": "13:00",
-                "endTime": "14:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902/3",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902_4",
-                "lectureType": 0,
-                "startTime": "13:00",
-                "endTime": "14:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902/4",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902_5",
-                "lectureType": 0,
-                "startTime": "13:00",
-                "endTime": "14:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902/5",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902_6",
-                "lectureType": 0,
-                "startTime": "13:00",
-                "endTime": "14:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035902/6",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "קריה ה'11 מעב דואלי",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
             }
         ]
     },
@@ -908,96 +764,6 @@
             },
             {
                 "groupCode": "251035901/1",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901_2",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901/2",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901_3",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901/3",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901_4",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901/4",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901_5",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901/5",
-                "lectureType": 1,
-                "startTime": "15:00",
-                "endTime": "15:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901_6",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד''ר הוכמן מיכל",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "251035901/6",
                 "lectureType": 1,
                 "startTime": "15:00",
                 "endTime": "15:50",
@@ -1039,96 +805,6 @@
                 "room": "200 פיקוס",
                 "lecturer": "מר הרמן דן",
                 "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701/2",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701/3",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701_4",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701/4",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701_5",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701/5",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701_6",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035701/6",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "200 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
             }
         ]
     },
@@ -1159,96 +835,6 @@
             },
             {
                 "groupCode": "253035801/1",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801/2",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801/3",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801_4",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801/4",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801_5",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801/5",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801_6",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "115 פיקוס",
-                "lecturer": "מר הרמן דן",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "253035801/6",
                 "lectureType": 1,
                 "startTime": "19:00",
                 "endTime": "19:50",
@@ -1346,33 +932,6 @@
                 "room": "קריה ה'13",
                 "lecturer": "ד\"ר פפר אהרונה",
                 "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254021701_2",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "קריה ה'13",
-                "lecturer": "ד\"ר פפר אהרונה",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254021701_3",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "קריה ה'13",
-                "lecturer": "ד\"ר פפר אהרונה",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254021701_4",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "קריה ה'13",
-                "lecturer": "ד\"ר פפר אהרונה",
-                "dayOfWeek": 4
             }
         ]
     },
@@ -1397,69 +956,6 @@
                 "lectureType": 0,
                 "startTime": "10:00",
                 "endTime": "11:50",
-                "room": "204 פיקוס",
-                "lecturer": "גב' פרנקל (בן חנוך) רחל",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254021801/1",
-                "lectureType": 1,
-                "startTime": "12:00",
-                "endTime": "12:50",
-                "room": "204 פיקוס",
-                "lecturer": "גב' פרנקל (בן חנוך) רחל",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254021801_2",
-                "lectureType": 0,
-                "startTime": "10:00",
-                "endTime": "11:50",
-                "room": "204 פיקוס",
-                "lecturer": "גב' פרנקל (בן חנוך) רחל",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254021801/2",
-                "lectureType": 1,
-                "startTime": "12:00",
-                "endTime": "12:50",
-                "room": "204 פיקוס",
-                "lecturer": "גב' פרנקל (בן חנוך) רחל",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254021801_3",
-                "lectureType": 0,
-                "startTime": "10:00",
-                "endTime": "11:50",
-                "room": "204 פיקוס",
-                "lecturer": "גב' פרנקל (בן חנוך) רחל",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254021801/3",
-                "lectureType": 1,
-                "startTime": "12:00",
-                "endTime": "12:50",
-                "room": "204 פיקוס",
-                "lecturer": "גב' פרנקל (בן חנוך) רחל",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254021801_4",
-                "lectureType": 0,
-                "startTime": "10:00",
-                "endTime": "11:50",
-                "room": "204 פיקוס",
-                "lecturer": "גב' פרנקל (בן חנוך) רחל",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254021801/4",
-                "lectureType": 1,
-                "startTime": "12:00",
-                "endTime": "12:50",
                 "room": "204 פיקוס",
                 "lecturer": "גב' פרנקל (בן חנוך) רחל",
                 "dayOfWeek": 5
@@ -1488,69 +984,6 @@
                 "room": "101 פיקוס",
                 "lecturer": "גב' אשכנזי בתיה",
                 "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254021902/1",
-                "lectureType": 1,
-                "startTime": "14:00",
-                "endTime": "15:50",
-                "room": "101 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254021902_2",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "13:50",
-                "room": "101 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254021902/2",
-                "lectureType": 1,
-                "startTime": "14:00",
-                "endTime": "15:50",
-                "room": "101 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254021902_3",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "13:50",
-                "room": "101 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254021902/3",
-                "lectureType": 1,
-                "startTime": "14:00",
-                "endTime": "15:50",
-                "room": "101 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254021902_4",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "13:50",
-                "room": "101 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254021902/4",
-                "lectureType": 1,
-                "startTime": "14:00",
-                "endTime": "15:50",
-                "room": "101 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 2
             }
         ]
     },
@@ -1573,69 +1006,6 @@
                 "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "18:50",
-                "room": "102 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254021901/1",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "20:50",
-                "room": "102 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254021901_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "102 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254021901/2",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "20:50",
-                "room": "102 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254021901_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "102 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254021901/3",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "20:50",
-                "room": "102 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254021901_4",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "102 פיקוס",
-                "lecturer": "גב' אשכנזי בתיה",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254021901/4",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "20:50",
                 "room": "102 פיקוס",
                 "lecturer": "גב' אשכנזי בתיה",
                 "dayOfWeek": 1
@@ -1725,60 +1095,6 @@
                 "room": "מפ\"ט תאנה",
                 "lecturer": "מר אלסדווי אסף",
                 "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254022201_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "מפ\"ט זית",
-                "lecturer": "גב' שליט משעל גילי",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254022201/2",
-                "lectureType": 1,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "מפ\"ט תאנה",
-                "lecturer": "מר אלסדווי אסף",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254022201_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "מפ\"ט זית",
-                "lecturer": "גב' שליט משעל גילי",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254022201/3",
-                "lectureType": 1,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "מפ\"ט תאנה",
-                "lecturer": "מר אלסדווי אסף",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254022201_4",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "מפ\"ט זית",
-                "lecturer": "גב' שליט משעל גילי",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254022201/4",
-                "lectureType": 1,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "מפ\"ט תאנה",
-                "lecturer": "מר אלסדווי אסף",
-                "dayOfWeek": 0
             }
         ]
     },
@@ -1796,33 +1112,6 @@
         "groups": [
             {
                 "groupCode": "254024603",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "20:50",
-                "room": "205 פיקוס",
-                "lecturer": "מר קוך גדעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254024603_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "20:50",
-                "room": "205 פיקוס",
-                "lecturer": "מר קוך גדעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254024603_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "20:50",
-                "room": "205 פיקוס",
-                "lecturer": "מר קוך גדעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254024603_4",
                 "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "20:50",
@@ -1914,186 +1203,6 @@
                 "room": "202 פיקוס",
                 "lecturer": "מר גולומב שחר",
                 "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802_2",
-                "lectureType": 0,
-                "startTime": "08:00",
-                "endTime": "09:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802/2",
-                "lectureType": 1,
-                "startTime": "10:00",
-                "endTime": "10:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803/2",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802_3",
-                "lectureType": 0,
-                "startTime": "08:00",
-                "endTime": "09:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802/3",
-                "lectureType": 1,
-                "startTime": "10:00",
-                "endTime": "10:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803/3",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802_4",
-                "lectureType": 0,
-                "startTime": "08:00",
-                "endTime": "09:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803_4",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802/4",
-                "lectureType": 1,
-                "startTime": "10:00",
-                "endTime": "10:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803/4",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802_5",
-                "lectureType": 0,
-                "startTime": "08:00",
-                "endTime": "09:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803_5",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802/5",
-                "lectureType": 1,
-                "startTime": "10:00",
-                "endTime": "10:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803/5",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802_6",
-                "lectureType": 0,
-                "startTime": "08:00",
-                "endTime": "09:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803_6",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254024802/6",
-                "lectureType": 1,
-                "startTime": "10:00",
-                "endTime": "10:50",
-                "room": "201 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 5
-            },
-            {
-                "groupCode": "254024803/6",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 0
             }
         ]
     },
@@ -2126,96 +1235,6 @@
                 "room": "103 מעב' דואלי פיקוס",
                 "lecturer": "מר גולומב שחר",
                 "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801/2",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801/3",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801_4",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801/4",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801_5",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801/5",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801_6",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "18:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254024801/6",
-                "lectureType": 1,
-                "startTime": "19:00",
-                "endTime": "19:50",
-                "room": "103 מעב' דואלי פיקוס",
-                "lecturer": "מר גולומב שחר",
-                "dayOfWeek": 1
             }
         ]
     },
@@ -2236,33 +1255,6 @@
         "groups": [
             {
                 "groupCode": "254024901",
-                "lectureType": 0,
-                "startTime": "18:00",
-                "endTime": "20:50",
-                "room": "מעבדת תעשיה 4 (056)",
-                "lecturer": "פרופ' כהן יובל",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254024901_2",
-                "lectureType": 0,
-                "startTime": "18:00",
-                "endTime": "20:50",
-                "room": "מעבדת תעשיה 4 (056)",
-                "lecturer": "פרופ' כהן יובל",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254024901_3",
-                "lectureType": 0,
-                "startTime": "18:00",
-                "endTime": "20:50",
-                "room": "מעבדת תעשיה 4 (056)",
-                "lecturer": "פרופ' כהן יובל",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254024901_4",
                 "lectureType": 0,
                 "startTime": "18:00",
                 "endTime": "20:50",
@@ -2296,60 +1288,6 @@
             },
             {
                 "groupCode": "254025601/1",
-                "lectureType": 1,
-                "startTime": "20:00",
-                "endTime": "20:50",
-                "room": "054 פרונטלי בנין מעבדות",
-                "lecturer": "מר גולדמן דני",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254025601_2",
-                "lectureType": 0,
-                "startTime": "18:00",
-                "endTime": "19:50",
-                "room": "054 פרונטלי בנין מעבדות",
-                "lecturer": "מר גולדמן דני",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254025601/2",
-                "lectureType": 1,
-                "startTime": "20:00",
-                "endTime": "20:50",
-                "room": "054 פרונטלי בנין מעבדות",
-                "lecturer": "מר גולדמן דני",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254025601_3",
-                "lectureType": 0,
-                "startTime": "18:00",
-                "endTime": "19:50",
-                "room": "054 פרונטלי בנין מעבדות",
-                "lecturer": "מר גולדמן דני",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254025601/3",
-                "lectureType": 1,
-                "startTime": "20:00",
-                "endTime": "20:50",
-                "room": "054 פרונטלי בנין מעבדות",
-                "lecturer": "מר גולדמן דני",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254025601_4",
-                "lectureType": 0,
-                "startTime": "18:00",
-                "endTime": "19:50",
-                "room": "054 פרונטלי בנין מעבדות",
-                "lecturer": "מר גולדמן דני",
-                "dayOfWeek": 0
-            },
-            {
-                "groupCode": "254025601/4",
                 "lectureType": 1,
                 "startTime": "20:00",
                 "endTime": "20:50",
@@ -2432,33 +1370,6 @@
                 "room": "202 פיקוס",
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254025902_2",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר וולף רון",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254025902_3",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר וולף רון",
-                "dayOfWeek": 1
-            },
-            {
-                "groupCode": "254025902_4",
-                "lectureType": 0,
-                "startTime": "09:00",
-                "endTime": "10:50",
-                "room": "202 פיקוס",
-                "lecturer": "מר וולף רון",
-                "dayOfWeek": 1
             }
         ]
     },
@@ -2482,33 +1393,6 @@
         "groups": [
             {
                 "groupCode": "254026104",
-                "lectureType": 0,
-                "startTime": "11:00",
-                "endTime": "13:50",
-                "room": "קריה ה'7",
-                "lecturer": "מר פרי עומר",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254026104_2",
-                "lectureType": 0,
-                "startTime": "11:00",
-                "endTime": "13:50",
-                "room": "קריה ה'7",
-                "lecturer": "מר פרי עומר",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254026104_3",
-                "lectureType": 0,
-                "startTime": "11:00",
-                "endTime": "13:50",
-                "room": "קריה ה'7",
-                "lecturer": "מר פרי עומר",
-                "dayOfWeek": 4
-            },
-            {
-                "groupCode": "254026104_4",
                 "lectureType": 0,
                 "startTime": "11:00",
                 "endTime": "13:50",
@@ -2594,51 +1478,6 @@
                 "room": "115 פיקוס",
                 "lecturer": "ד\"ר זילברשלג שמעון",
                 "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026501_2",
-                "lectureType": 0,
-                "startTime": "20:00",
-                "endTime": "22:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026501_3",
-                "lectureType": 0,
-                "startTime": "20:00",
-                "endTime": "22:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026501_4",
-                "lectureType": 0,
-                "startTime": "20:00",
-                "endTime": "22:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026501_5",
-                "lectureType": 0,
-                "startTime": "20:00",
-                "endTime": "22:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026501_6",
-                "lectureType": 0,
-                "startTime": "20:00",
-                "endTime": "22:50",
-                "room": "115 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
             }
         ]
     },
@@ -2659,51 +1498,6 @@
         "groups": [
             {
                 "groupCode": "254026601",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "19:50",
-                "room": "208 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026601_2",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "19:50",
-                "room": "208 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026601_3",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "19:50",
-                "room": "208 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026601_4",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "19:50",
-                "room": "208 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026601_5",
-                "lectureType": 0,
-                "startTime": "17:00",
-                "endTime": "19:50",
-                "room": "208 פיקוס",
-                "lecturer": "ד\"ר זילברשלג שמעון",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254026601_6",
                 "lectureType": 0,
                 "startTime": "17:00",
                 "endTime": "19:50",
@@ -2908,33 +1702,6 @@
         "groups": [
             {
                 "groupCode": "254024502",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "203 פיקוס",
-                "lecturer": "ד\"ר איזנהנדלר אוהד",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254024502_2",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "203 פיקוס",
-                "lecturer": "ד\"ר איזנהנדלר אוהד",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254024502_3",
-                "lectureType": 0,
-                "startTime": "12:00",
-                "endTime": "14:50",
-                "room": "203 פיקוס",
-                "lecturer": "ד\"ר איזנהנדלר אוהד",
-                "dayOfWeek": 2
-            },
-            {
-                "groupCode": "254024502_4",
                 "lectureType": 0,
                 "startTime": "12:00",
                 "endTime": "14:50",

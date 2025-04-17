@@ -1,10 +1,10 @@
 [
     {
-        "courseType": "אשכול עיבוד אות-תמונה-דיבור",
+        "courseType": "אשכול עיבוד אות תמונה דיבור",
         "courseName": "מבוא לראייה ממוחשבת",
         "courseCode": "10224-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " למידת מכונה",
@@ -12,7 +12,6 @@
         ],
         "prerequisitesAlt": [
             " מבוא לעיבוד תמונה",
-            " למידה חישובית",
             " למידה חישובית"
         ],
         "groups": [
@@ -37,11 +36,11 @@
         ]
     },
     {
-        "courseType": "אשכול עיבוד אות-תמונה-דיבור",
+        "courseType": "אשכול עיבוד אות תמונה דיבור",
         "courseName": "עיבוד שפה טבעית",
         "courseCode": "10247-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " למידת מכונה",
@@ -92,7 +91,7 @@
         "courseName": "ניתוח רשתות חברתיות",
         "courseCode": "10237-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -129,7 +128,7 @@
         "courseName": "ניתוח רשתות חברתיות",
         "courseCode": "10237-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -166,7 +165,7 @@
         "courseName": "מבוא למודלים ניהוליים מבוססי נתונים",
         "courseCode": "40243-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " מודלים סטוכסטיים",
@@ -204,7 +203,7 @@
         "courseName": "יישומי בינה מלאכותית בהנדסת מערכות",
         "courseCode": "40261-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא לתכנות פיתון",
@@ -233,7 +232,7 @@
         "courseName": "שיווק מבוסס נתונים ברשתות חברתיות",
         "courseCode": "40268-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.00",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -256,7 +255,7 @@
         "courseName": "מבוא למדעי המחשב",
         "courseCode": "10016-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "4.50",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -421,7 +420,7 @@
         "courseName": "מבוא למדעי המחשב",
         "courseCode": "10016-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "4.50",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -469,7 +468,7 @@
         "courseName": "מבני נתונים",
         "courseCode": "10117-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבוא למדעי המחשב"
@@ -648,7 +647,7 @@
         "courseName": "מבני נתונים",
         "courseCode": "10117-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבוא למדעי המחשב"
@@ -710,7 +709,7 @@
         "courseName": "מבני נתונים",
         "courseCode": "10117-3",
         "semester": "קיץ",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבוא למדעי המחשב"
@@ -754,7 +753,7 @@
         "courseName": "מבוא למערכות מידע",
         "courseCode": "40006-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -820,7 +819,7 @@
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
         "courseCode": "90901-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " קורס הכנה מתמטיקה"
@@ -1576,7 +1575,7 @@
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
         "courseCode": "90901-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " קורס הכנה מתמטיקה"
@@ -1702,7 +1701,7 @@
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
         "courseCode": "90902-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -1753,7 +1752,7 @@
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
         "courseCode": "90902-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -2524,7 +2523,7 @@
         "courseName": "אלגברה ליניארית",
         "courseCode": "90905-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -3247,7 +3246,7 @@
         "courseName": "אלגברה ליניארית",
         "courseCode": "90905-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -3358,7 +3357,7 @@
         "courseName": "מבוא להסתברות",
         "courseCode": "90911-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -3498,7 +3497,7 @@
         "courseName": "מבוא להסתברות",
         "courseCode": "90911-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -3746,7 +3745,7 @@
         "courseName": "מבוא להסתברות",
         "courseCode": "90911-3",
         "semester": "קיץ",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -3814,7 +3813,7 @@
         "courseName": "משוואות דיפ' רגילות",
         "courseCode": "90914-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -3938,7 +3937,7 @@
         "courseName": "משוואות דיפ' רגילות",
         "courseCode": "90914-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4134,7 +4133,7 @@
         "courseName": "משוואות דיפ' רגילות",
         "courseCode": "90914-3",
         "semester": "קיץ",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4186,7 +4185,7 @@
         "courseName": "תכנון וניתוח אלגוריתמים",
         "courseCode": "10120-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבני נתונים"
@@ -4362,7 +4361,7 @@
         "courseName": "תכנון וניתוח אלגוריתמים",
         "courseCode": "10120-3",
         "semester": "קיץ",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבני נתונים"
@@ -4403,7 +4402,7 @@
         "courseName": "הסקה סטטיסטית",
         "courseCode": "40005-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "4.00",
         "prerequisites": [
             " סטטיסטיקה",
@@ -4490,7 +4489,7 @@
         "courseName": "הסקה סטטיסטית",
         "courseCode": "40005-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "4.00",
         "prerequisites": [
             " סטטיסטיקה",
@@ -4523,7 +4522,7 @@
         "courseName": "בסיסי נתונים",
         "courseCode": "40102-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.50",
         "prerequisites": [
             " מבוא לתכנות פיתון",
@@ -4614,7 +4613,7 @@
         "courseName": "בסיסי נתונים",
         "courseCode": "40102-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.50",
         "prerequisites": [
             " מבוא לתכנות פיתון",
@@ -4651,7 +4650,7 @@
         "courseName": "מבוא לחקר ביצועים",
         "courseCode": "40112-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4738,7 +4737,7 @@
         "courseName": "מבוא לחקר ביצועים",
         "courseCode": "40112-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4771,7 +4770,7 @@
         "courseName": "בינה עסקית",
         "courseCode": "40205-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע"
@@ -4824,7 +4823,7 @@
         "courseName": "אלגוריתם מתקדם וסיבוכיות",
         "courseCode": "10121-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "4.00",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -4895,7 +4894,7 @@
         "courseName": "אלגוריתם מתקדם וסיבוכיות",
         "courseCode": "10121-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "4.00",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -4984,7 +4983,7 @@
         "courseName": "רשתות נוירונים ולמידה עמוקה",
         "courseCode": "10240-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " למידת מכונה",
@@ -5035,7 +5034,7 @@
         "courseName": "ניתוח נתוני עתק",
         "courseCode": "10351-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " בסיסי נתונים",
@@ -5071,7 +5070,7 @@
         "courseName": "פרויקט גמר למדעים1",
         "courseCode": "11402-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "4.00",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים"
@@ -5123,7 +5122,7 @@
         "courseName": "פרויקט גמר למדעים2",
         "courseCode": "11403-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "-1",
         "prerequisites": [
             " פרויקט גמר למדעים1"
@@ -5173,7 +5172,7 @@
         "courseName": "שיטות אופטימיזציה",
         "courseCode": "40123-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " מתמטיקה בדידה",
@@ -5208,7 +5207,7 @@
         "courseName": "שיטות אופטימיזציה",
         "courseCode": "40123-2",
         "semester": "ב",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "3.00",
         "prerequisites": [
             " מתמטיקה בדידה",
@@ -5279,7 +5278,7 @@
         "courseName": "שיטות סטטיסטיות בניתוח נתונים",
         "courseCode": "40229-1",
         "semester": "א",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -5350,7 +5349,7 @@
         "courseName": "שיטות סטטיסטיות בניתוח נתונים",
         "courseCode": "40229-3",
         "semester": "קיץ",
-        "department": "datasc",
+        "department": "med",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
