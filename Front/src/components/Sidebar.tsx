@@ -16,6 +16,7 @@ interface SidebarProps {
   };
   onFilterChange: (filters: any) => void;
   courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
+  uniqueCourseTypes: string[];
 }
 
 
@@ -30,7 +31,9 @@ export default function Sidebar({
   onCourseSelect,
   filters,
   onFilterChange,
+  uniqueCourseTypes,
 }: SidebarProps) {
+  
   // Define the same color mapping as in WeeklySchedule
   const courseColors = useMemo(() => {
     // Base colors for different courses - same as in WeeklySchedule
@@ -55,11 +58,6 @@ export default function Sidebar({
     
     return colorMap;
   }, [selectedCourses]);
-
-  // Dynamically extract unique course types from the courses array
-  const uniqueCourseTypes = useMemo(() => {
-    return Array.from(new Set(courses.map(course => course.courseType)));
-  }, [courses]);
 
   // Helper function to get course background color
   const getCourseBgColor = (courseCode: string) => {
