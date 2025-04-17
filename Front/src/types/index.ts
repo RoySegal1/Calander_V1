@@ -13,6 +13,7 @@ export interface CourseGroup {
 
 export interface Course {
   courseCode: string;
+  realCourseCode: string;
   courseName: string;
   semester: string;
   courseType : CourseType;

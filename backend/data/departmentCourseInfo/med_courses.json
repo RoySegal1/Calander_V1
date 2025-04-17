@@ -2,7 +2,7 @@
     {
         "courseType": "חטיבת הנדסה קלינית",
         "courseName": "הנדסה קלינית וניהול מערכות טכנו' רפואיות",
-        "courseCode": "50501-1",
+        "courseCode": "476",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.00",
@@ -20,12 +20,13 @@
                 "lecturer": "ד\"ר שפר נדב",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "50501"
     },
     {
         "courseType": "חטיבת הנדסה קלינית",
         "courseName": "תכנון ובקרה של ניסויים קליניים",
-        "courseCode": "50502-2",
+        "courseCode": "477",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -53,12 +54,13 @@
                 "lecturer": "ד\"ר שפר נדב",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50502"
     },
     {
         "courseType": "חטיבת הנדסה קלינית",
         "courseName": "אתיקה רפואית",
-        "courseCode": "50507-2",
+        "courseCode": "478",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.00",
@@ -74,12 +76,13 @@
                 "lecturer": "פרופ' בלכמן זהבה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50507"
     },
     {
         "courseType": "פרויקט גמר",
         "courseName": "פרויקט גמר חלק א'",
-        "courseCode": "50411-2",
+        "courseCode": "479",
         "semester": "ב",
         "department": "med",
         "courseCredit": "1.00",
@@ -105,12 +108,13 @@
                 "lecturer": "ד\"ר שפר נדב",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "50411"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "מבוא לרובוטיקה",
-        "courseCode": "30237-1",
+        "courseCode": "480",
         "semester": "א",
         "department": "med",
         "courseCredit": "1.50",
@@ -137,12 +141,13 @@
                 "lecturer": "מר מסאס רם",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "30237"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "פתולוגיה כללית ומערכתית",
-        "courseCode": "50109-1",
+        "courseCode": "481",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.00",
@@ -164,12 +169,13 @@
                 "lecturer": "ד\"ר מילין אבירם",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50109"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "חשיפה לתעשייה ולמרכזים הרפואיים",
-        "courseCode": "50506-1",
+        "courseCode": "482",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.00",
@@ -189,12 +195,13 @@
                 "lecturer": "פרופ' בלכמן זהבה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "50506"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לתכנות פיתון",
-        "courseCode": "10812-1",
+        "courseCode": "483",
         "semester": "א",
         "department": "med",
         "courseCredit": "4.50",
@@ -293,12 +300,13 @@
                 "lecturer": "מר שאולוב גריגורי",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10812"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לתכנות פיתון",
-        "courseCode": "10812-2",
+        "courseCode": "484",
         "semester": "ב",
         "department": "med",
         "courseCredit": "4.50",
@@ -379,12 +387,13 @@
                 "lecturer": "מר שאולוב גריגורי",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10812"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לתכנות פיתון",
-        "courseCode": "10812-3",
+        "courseCode": "485",
         "semester": "קיץ",
         "department": "med",
         "courseCredit": "4.50",
@@ -411,12 +420,13 @@
                 "lecturer": "מר קרני ירדן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10812"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "כימיה להנדסה רפואית",
-        "courseCode": "50001-1",
+        "courseCode": "486",
         "semester": "א",
         "department": "med",
         "courseCredit": "4.50",
@@ -477,12 +487,13 @@
                 "lecturer": "ד\"ר מילין אבירם",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50001"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "ביולוגיה של תא",
-        "courseCode": "50009-2",
+        "courseCode": "487",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -525,12 +536,13 @@
                 "lecturer": "ד\"ר מילין אבירם",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50009"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "גרפיקה הנדסית להנדסה רפואית",
-        "courseCode": "50110-2",
+        "courseCode": "488",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -573,12 +585,13 @@
                 "lecturer": "מר רחמים עופר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "50110"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לטכנולוגיה רפואית",
-        "courseCode": "50126-1",
+        "courseCode": "489",
         "semester": "א",
         "department": "med",
         "courseCredit": "0.50",
@@ -603,12 +616,13 @@
                 "lecturer": "פרופ' בלכמן זהבה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50126"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-1",
+        "courseCode": "490",
         "semester": "א",
         "department": "med",
         "courseCredit": "5.00",
@@ -1359,12 +1373,13 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-2",
+        "courseCode": "491",
         "semester": "ב",
         "department": "med",
         "courseCredit": "5.00",
@@ -1485,12 +1500,13 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-1",
+        "courseCode": "492",
         "semester": "א",
         "department": "med",
         "courseCredit": "5.00",
@@ -1536,12 +1552,13 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-2",
+        "courseCode": "493",
         "semester": "ב",
         "department": "med",
         "courseCredit": "5.00",
@@ -2307,12 +2324,13 @@
                 "lecturer": "מר פרס חוזה אנטוניו",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "פיזיקה-מכניקה",
-        "courseCode": "90903-1",
+        "courseCode": "494",
         "semester": "א",
         "department": "med",
         "courseCredit": "5.00",
@@ -2431,12 +2449,13 @@
                 "lecturer": "גב' בלובשטיין הראל אילנה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90903"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "פיזיקה-מכניקה",
-        "courseCode": "90903-2",
+        "courseCode": "495",
         "semester": "ב",
         "department": "med",
         "courseCredit": "5.00",
@@ -2726,12 +2745,13 @@
                 "lecturer": "גב' בלובשטיין הראל אילנה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90903"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "פיזיקה-מכניקה",
-        "courseCode": "90903-3",
+        "courseCode": "496",
         "semester": "קיץ",
         "department": "med",
         "courseCredit": "5.00",
@@ -2796,12 +2816,13 @@
                 "lecturer": "מר אולבינסקי אלכסנדר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90903"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-1",
+        "courseCode": "497",
         "semester": "א",
         "department": "med",
         "courseCredit": "5.00",
@@ -3519,12 +3540,13 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-2",
+        "courseCode": "498",
         "semester": "ב",
         "department": "med",
         "courseCredit": "5.00",
@@ -3630,12 +3652,13 @@
                 "lecturer": "מר כהן יונתן",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-1",
+        "courseCode": "499",
         "semester": "א",
         "department": "med",
         "courseCredit": "3.50",
@@ -3770,12 +3793,13 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-2",
+        "courseCode": "500",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.50",
@@ -4018,12 +4042,13 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-3",
+        "courseCode": "501",
         "semester": "קיץ",
         "department": "med",
         "courseCredit": "3.50",
@@ -4086,12 +4111,13 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-1",
+        "courseCode": "502",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -4210,12 +4236,13 @@
                 "lecturer": "מר ריקס חיים",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-2",
+        "courseCode": "503",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -4406,12 +4433,13 @@
                 "lecturer": "מר מינקין אלכסנדר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-3",
+        "courseCode": "504",
         "semester": "קיץ",
         "department": "med",
         "courseCredit": "2.50",
@@ -4458,12 +4486,13 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא להנדסת חשמל ואלקטרוניקה",
-        "courseCode": "20816-1",
+        "courseCode": "505",
         "semester": "א",
         "department": "med",
         "courseCredit": "3.00",
@@ -4527,12 +4556,13 @@
                 "lecturer": "ד\"ר שפר נדב",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "20816"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא להנדסת חשמל ואלקטרוניקה",
-        "courseCode": "20816-2",
+        "courseCode": "506",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.00",
@@ -4596,12 +4626,13 @@
                 "lecturer": "מר נמני יגאל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "20816"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "פיזיולוגיה להנדסה רפואית",
-        "courseCode": "50103-1",
+        "courseCode": "507",
         "semester": "א",
         "department": "med",
         "courseCredit": "3.00",
@@ -4644,12 +4675,13 @@
                 "lecturer": "פרופ' בלכמן זהבה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50103"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מכניקת המוצקים1",
-        "courseCode": "50114-1",
+        "courseCode": "508",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -4697,12 +4729,13 @@
                 "lecturer": "פרופ' רטנובסקי ענת",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50114"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "תרמודינמיקה",
-        "courseCode": "50129-1",
+        "courseCode": "509",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -4747,12 +4780,13 @@
                 "lecturer": "ד\"ר נפתלי שרה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50129"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "כלים ואלגוריתם חישוביים בהנדסה רפואית",
-        "courseCode": "50133-2",
+        "courseCode": "510",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -4795,12 +4829,13 @@
                 "lecturer": "ד\"ר יניב שרית",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "50133"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מכניקת המוצקים2",
-        "courseCode": "50134-2",
+        "courseCode": "511",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -4845,12 +4880,13 @@
                 "lecturer": "ד\"ר חמיסה מילאד",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "50134"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אלקטרוניקה",
-        "courseCode": "50136-2",
+        "courseCode": "512",
         "semester": "ב",
         "department": "med",
         "courseCredit": "4.00",
@@ -4897,12 +4933,13 @@
                 "lecturer": "גב' קסנר דיקלה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "50136"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "בקרת תהליכים במערכות ממוחשבות",
-        "courseCode": "50113-2",
+        "courseCode": "513",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -4968,12 +5005,13 @@
                 "lecturer": "ד\"ר יניב שרית",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50113"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "עיבוד וזיהוי תמונה",
-        "courseCode": "50120-2",
+        "courseCode": "514",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -5020,12 +5058,13 @@
                 "lecturer": "ד\"ר צימר יאיר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50120"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מכניקה פיזיולוגית של מערכת השלד והשרירים",
-        "courseCode": "50121-1",
+        "courseCode": "515",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -5054,12 +5093,13 @@
                 "lecturer": "פרופ' רטנובסקי ענת",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "50121"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "עיבוד סיפרתי של אותות",
-        "courseCode": "50124-1",
+        "courseCode": "516",
         "semester": "א",
         "department": "med",
         "courseCredit": "4.00",
@@ -5100,12 +5140,13 @@
                 "lecturer": "ד\"ר צימר יאיר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50124"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "קרינה ברפואה-דימות וטיפול",
-        "courseCode": "50127-1",
+        "courseCode": "517",
         "semester": "א",
         "department": "med",
         "courseCredit": "3.00",
@@ -5136,12 +5177,13 @@
                 "lecturer": "ד\"ר צימר יאיר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50127"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "קרינה ברפואה-דימות וטיפול",
-        "courseCode": "50127-3",
+        "courseCode": "518",
         "semester": "קיץ",
         "department": "med",
         "courseCredit": "3.00",
@@ -5172,12 +5214,13 @@
                 "lecturer": "ד\"ר צימר יאיר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50127"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מעברי חום ומסה במערכות ביולוגיות",
-        "courseCode": "50130-2",
+        "courseCode": "519",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.50",
@@ -5217,12 +5260,13 @@
                 "lecturer": "ד\"ר נפתלי שרה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50130"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "פיזיולוגיה ובקרת מערכות בגוף האדם",
-        "courseCode": "50132-2",
+        "courseCode": "520",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.50",
@@ -5285,12 +5329,13 @@
                 "lecturer": "ד\"ר מילין אבירם",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "50132"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "סמינר בשיטות מחקר באותות פיזיולוגיים",
-        "courseCode": "50135-1",
+        "courseCode": "521",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -5359,12 +5404,13 @@
                 "lecturer": "ד\"ר נפתלי שרה",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "50135"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "בקרה וחיישנים רפואיים",
-        "courseCode": "50137-1",
+        "courseCode": "522",
         "semester": "א",
         "department": "med",
         "courseCredit": "4.00",
@@ -5395,12 +5441,13 @@
                 "lecturer": "ד\"ר שפר נדב",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "50137"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות חישוביות בהנדסה",
-        "courseCode": "50314-2",
+        "courseCode": "523",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.00",
@@ -5451,12 +5498,13 @@
                 "lecturer": "ד\"ר גורדון זויה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50314"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "עיבוד אות מתקדם ויישומיו הרפואיים",
-        "courseCode": "50503-2",
+        "courseCode": "524",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -5484,12 +5532,13 @@
                 "lecturer": "ד\"ר שפר נדב",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "50503"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "אנליזה נומרית",
-        "courseCode": "90925-1",
+        "courseCode": "525",
         "semester": "א",
         "department": "med",
         "courseCredit": "3.50",
@@ -5590,12 +5639,13 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90925"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "אנליזה נומרית",
-        "courseCode": "90925-2",
+        "courseCode": "526",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.50",
@@ -5768,12 +5818,13 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90925"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "אנליזה נומרית",
-        "courseCode": "90925-3",
+        "courseCode": "527",
         "semester": "קיץ",
         "department": "med",
         "courseCredit": "3.50",
@@ -5820,12 +5871,13 @@
                 "lecturer": "מר ריקס חיים",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90925"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "זרימה מתקדמת ויישומיה הרפואיים",
-        "courseCode": "50308-1",
+        "courseCode": "528",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -5874,12 +5926,13 @@
                 "lecturer": "ד\"ר גורדון זויה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50308"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "סמינריון בהנדסה רפואית",
-        "courseCode": "50309-2",
+        "courseCode": "529",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.00",
@@ -5922,12 +5975,13 @@
                 "lecturer": "פרופ' בלכמן זהבה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "50309"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "עיבוד תמונה מתקדם ויישומיו הרפואיים",
-        "courseCode": "50504-1",
+        "courseCode": "530",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -5975,12 +6029,13 @@
                 "lecturer": "ד\"ר צימר יאיר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50504"
     },
     {
         "courseType": "התמחות מערכות מידע רפואית בחירה",
         "courseName": "ניתוח ותכנון מערכות מידע",
-        "courseCode": "40138-1",
+        "courseCode": "531",
         "semester": "א",
         "department": "med",
         "courseCredit": "3.00",
@@ -6047,12 +6102,13 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40138"
     },
     {
         "courseType": "התמחות מערכות מידע רפואית בחירה",
         "courseName": "ניתוח ותכנון מערכות מידע",
-        "courseCode": "40138-2",
+        "courseCode": "532",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.00",
@@ -6083,12 +6139,13 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40138"
     },
     {
         "courseType": "התמחות מערכות מידע רפואית חובה",
         "courseName": "בסיסי נתונים",
-        "courseCode": "40102-1",
+        "courseCode": "533",
         "semester": "א",
         "department": "med",
         "courseCredit": "3.50",
@@ -6174,12 +6231,13 @@
                 "lecturer": "ד\"ר קריב גליה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40102"
     },
     {
         "courseType": "התמחות מערכות מידע רפואית חובה",
         "courseName": "בסיסי נתונים",
-        "courseCode": "40102-2",
+        "courseCode": "534",
         "semester": "ב",
         "department": "med",
         "courseCredit": "3.50",
@@ -6211,12 +6269,13 @@
                 "lecturer": "גב' וינברג אפרת",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40102"
     },
     {
         "courseType": "התמחות מערכות מידע רפואית חובה",
         "courseName": "כריית מידע",
-        "courseCode": "40225-1",
+        "courseCode": "535",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -6282,12 +6341,13 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40225"
     },
     {
         "courseType": "התמחות מערכות מידע רפואית חובה",
         "courseName": "כריית מידע",
-        "courseCode": "40225-2",
+        "courseCode": "536",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -6335,12 +6395,13 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40225"
     },
     {
         "courseType": "התמחות מערכות מידע רפואית חובה",
         "courseName": "למידה חישובית במערכות רפואיות",
-        "courseCode": "50317-1",
+        "courseCode": "537",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -6370,12 +6431,13 @@
                 "lecturer": "ד''ר האופטמן עמי (עמיקם)",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "50317"
     },
- {
+    {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-בחירה",
         "courseName": "הדפסה תלת ממדית",
-        "courseCode": "30245-1",
+        "courseCode": "538",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -6408,12 +6470,13 @@
                 "lecturer": "מר זילברמן אילן",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "30245"
     },
     {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-בחירה",
         "courseName": "הדפסה תלת ממדית",
-        "courseCode": "30245-2",
+        "courseCode": "539",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -6446,12 +6509,13 @@
                 "lecturer": "מר זילברמן אילן",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "30245"
     },
     {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-בחירה",
         "courseName": "נושאים מתקדמים בביו חומרים",
-        "courseCode": "50215-1",
+        "courseCode": "540",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -6478,12 +6542,13 @@
                 "lecturer": "ד\"ר אביב מורן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "50215"
     },
     {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-בחירה",
         "courseName": "למידה חישובית במערכות רפואיות",
-        "courseCode": "50317-1",
+        "courseCode": "541",
         "semester": "א",
         "department": "med",
         "courseCredit": "2.50",
@@ -6513,12 +6578,13 @@
                 "lecturer": "ד''ר האופטמן עמי (עמיקם)",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "50317"
     },
     {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-חובה",
         "courseName": "מבוא להנדסת תאים ורקמות",
-        "courseCode": "50107-2",
+        "courseCode": "542",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.00",
@@ -6538,12 +6604,13 @@
                 "lecturer": "ד\"ר מילין אבירם",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "50107"
     },
     {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-חובה",
         "courseName": "חומרים בהנדסה רפואית ומשתלים",
-        "courseCode": "50303-2",
+        "courseCode": "543",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.50",
@@ -6573,12 +6640,13 @@
                 "lecturer": "ד\"ר אביב מורן",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "50303"
     },
     {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-חובה",
         "courseName": "מעבדה במכניקה רפואית",
-        "courseCode": "50306-2",
+        "courseCode": "544",
         "semester": "ב",
         "department": "med",
         "courseCredit": "1.50",
@@ -6610,12 +6678,13 @@
                 "lecturer": "ד\"ר גורדון זויה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "50306"
     },
     {
         "courseType": "התמחות מכניקה של מערכות פיזיולוגיות-חובה",
         "courseName": "תכן מכני להנדסה רפואית",
-        "courseCode": "50315-2",
+        "courseCode": "545",
         "semester": "ב",
         "department": "med",
         "courseCredit": "2.00",
@@ -6635,6 +6704,7 @@
                 "lecturer": "ד\"ר חמיסה מילאד",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "50315"
     }
 ]

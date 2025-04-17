@@ -2,9 +2,9 @@
     {
         "courseType": "אשכול עיבוד אות תמונה דיבור",
         "courseName": "מבוא לראייה ממוחשבת",
-        "courseCode": "10224-2",
+        "courseCode": "101",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " למידת מכונה",
@@ -33,14 +33,15 @@
                 "lecturer": "מר נח יואב",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10224"
     },
     {
         "courseType": "אשכול עיבוד אות תמונה דיבור",
         "courseName": "עיבוד שפה טבעית",
-        "courseCode": "10247-2",
+        "courseCode": "102",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " למידת מכונה",
@@ -84,14 +85,15 @@
                 "lecturer": "ד\"ר אבן זהר יאיר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10247"
     },
     {
         "courseType": "אשכול רשתות ואנליטיקה עסקית",
         "courseName": "ניתוח רשתות חברתיות",
-        "courseCode": "10237-1",
+        "courseCode": "103",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -121,14 +123,15 @@
                 "lecturer": "ד\"ר מן מיכאל",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10237"
     },
     {
         "courseType": "אשכול רשתות ואנליטיקה עסקית",
         "courseName": "ניתוח רשתות חברתיות",
-        "courseCode": "10237-2",
+        "courseCode": "104",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -158,14 +161,15 @@
                 "lecturer": "ד\"ר מן מיכאל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10237"
     },
     {
         "courseType": "אשכול רשתות ואנליטיקה עסקית",
         "courseName": "מבוא למודלים ניהוליים מבוססי נתונים",
-        "courseCode": "40243-2",
+        "courseCode": "105",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " מודלים סטוכסטיים",
@@ -196,14 +200,15 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40243"
     },
     {
         "courseType": "אשכול רשתות ואנליטיקה עסקית",
         "courseName": "יישומי בינה מלאכותית בהנדסת מערכות",
-        "courseCode": "40261-1",
+        "courseCode": "106",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא לתכנות פיתון",
@@ -225,14 +230,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40261"
     },
     {
         "courseType": "אשכול רשתות ואנליטיקה עסקית",
         "courseName": "שיווק מבוסס נתונים ברשתות חברתיות",
-        "courseCode": "40268-1",
+        "courseCode": "107",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.00",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -248,14 +254,15 @@
                 "lecturer": "מר ברטאש אדם",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "40268"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא למדעי המחשב",
-        "courseCode": "10016-1",
+        "courseCode": "108",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "4.50",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -413,14 +420,15 @@
                 "lecturer": "מר רוטברג ליאור",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10016"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא למדעי המחשב",
-        "courseCode": "10016-2",
+        "courseCode": "109",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "4.50",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -461,14 +469,15 @@
                 "lecturer": "מר שלומי פיני",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10016"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבני נתונים",
-        "courseCode": "10117-1",
+        "courseCode": "110",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבוא למדעי המחשב"
@@ -640,14 +649,15 @@
                 "lecturer": "ד\"ר חוטובלי ראובן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10117"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבני נתונים",
-        "courseCode": "10117-2",
+        "courseCode": "111",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבוא למדעי המחשב"
@@ -702,14 +712,15 @@
                 "lecturer": "מר גנוט יצחק",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10117"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבני נתונים",
-        "courseCode": "10117-3",
+        "courseCode": "112",
         "semester": "קיץ",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבוא למדעי המחשב"
@@ -746,14 +757,15 @@
                 "lecturer": "ד\"ר בינסקי הדר",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10117"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא למערכות מידע",
-        "courseCode": "40006-1",
+        "courseCode": "113",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -812,14 +824,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40006"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-1",
+        "courseCode": "114",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " קורס הכנה מתמטיקה"
@@ -1568,14 +1581,15 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-2",
+        "courseCode": "115",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " קורס הכנה מתמטיקה"
@@ -1694,14 +1708,15 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-1",
+        "courseCode": "116",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -1745,14 +1760,15 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-2",
+        "courseCode": "117",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -2516,14 +2532,15 @@
                 "lecturer": "מר פרס חוזה אנטוניו",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-1",
+        "courseCode": "118",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -3239,14 +3256,15 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-2",
+        "courseCode": "119",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -3350,14 +3368,15 @@
                 "lecturer": "מר כהן יונתן",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-1",
+        "courseCode": "120",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -3490,14 +3509,15 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-2",
+        "courseCode": "121",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -3738,14 +3758,15 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-3",
+        "courseCode": "122",
         "semester": "קיץ",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -3806,14 +3827,15 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-1",
+        "courseCode": "123",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -3930,14 +3952,15 @@
                 "lecturer": "מר ריקס חיים",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-2",
+        "courseCode": "124",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4126,14 +4149,15 @@
                 "lecturer": "מר מינקין אלכסנדר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-3",
+        "courseCode": "125",
         "semester": "קיץ",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4178,14 +4202,15 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "תכנון וניתוח אלגוריתמים",
-        "courseCode": "10120-2",
+        "courseCode": "126",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבני נתונים"
@@ -4354,14 +4379,15 @@
                 "lecturer": "ד\"ר חוטובלי ראובן",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10120"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "תכנון וניתוח אלגוריתמים",
-        "courseCode": "10120-3",
+        "courseCode": "127",
         "semester": "קיץ",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "5.00",
         "prerequisites": [
             " מבני נתונים"
@@ -4395,14 +4421,15 @@
                 "lecturer": "מר גנוט יצחק",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10120"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "הסקה סטטיסטית",
-        "courseCode": "40005-1",
+        "courseCode": "128",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "4.00",
         "prerequisites": [
             " סטטיסטיקה",
@@ -4482,14 +4509,15 @@
                 "lecturer": "גב' כהנא דפנה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40005"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "הסקה סטטיסטית",
-        "courseCode": "40005-2",
+        "courseCode": "129",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "4.00",
         "prerequisites": [
             " סטטיסטיקה",
@@ -4515,14 +4543,15 @@
                 "lecturer": "ד\"ר פרל ניר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40005"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "בסיסי נתונים",
-        "courseCode": "40102-1",
+        "courseCode": "130",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.50",
         "prerequisites": [
             " מבוא לתכנות פיתון",
@@ -4606,14 +4635,15 @@
                 "lecturer": "ד\"ר קריב גליה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40102"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "בסיסי נתונים",
-        "courseCode": "40102-2",
+        "courseCode": "131",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.50",
         "prerequisites": [
             " מבוא לתכנות פיתון",
@@ -4643,14 +4673,15 @@
                 "lecturer": "גב' וינברג אפרת",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40102"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לחקר ביצועים",
-        "courseCode": "40112-1",
+        "courseCode": "132",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4730,14 +4761,15 @@
                 "lecturer": "גב' שרון אילת לאה",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40112"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לחקר ביצועים",
-        "courseCode": "40112-2",
+        "courseCode": "133",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4763,14 +4795,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40112"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "בינה עסקית",
-        "courseCode": "40205-2",
+        "courseCode": "134",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע"
@@ -4816,14 +4849,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40205"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "אלגוריתם מתקדם וסיבוכיות",
-        "courseCode": "10121-1",
+        "courseCode": "135",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "4.00",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -4887,14 +4921,15 @@
                 "lecturer": "ד\"ר ארטישצ'ב מריה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10121"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "אלגוריתם מתקדם וסיבוכיות",
-        "courseCode": "10121-2",
+        "courseCode": "136",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "4.00",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -4976,14 +5011,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10121"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "רשתות נוירונים ולמידה עמוקה",
-        "courseCode": "10240-1",
+        "courseCode": "137",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " למידת מכונה",
@@ -5027,14 +5063,15 @@
                 "lecturer": "מר קרני ירדן",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10240"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "ניתוח נתוני עתק",
-        "courseCode": "10351-1",
+        "courseCode": "138",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " בסיסי נתונים",
@@ -5063,14 +5100,15 @@
                 "lecturer": "ד\"ר מורוז בוריס",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10351"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "פרויקט גמר למדעים1",
-        "courseCode": "11402-1",
+        "courseCode": "139",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "4.00",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים"
@@ -5115,14 +5153,15 @@
                 "lecturer": "מר שטקל עמית",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "11402"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "פרויקט גמר למדעים2",
-        "courseCode": "11403-2",
+        "courseCode": "140",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "-1",
         "prerequisites": [
             " פרויקט גמר למדעים1"
@@ -5165,14 +5204,15 @@
                 "lecturer": "מר שטקל עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "11403"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות אופטימיזציה",
-        "courseCode": "40123-1",
+        "courseCode": "141",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " מתמטיקה בדידה",
@@ -5200,14 +5240,15 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40123"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות אופטימיזציה",
-        "courseCode": "40123-2",
+        "courseCode": "142",
         "semester": "ב",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "3.00",
         "prerequisites": [
             " מתמטיקה בדידה",
@@ -5271,14 +5312,15 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40123"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות סטטיסטיות בניתוח נתונים",
-        "courseCode": "40229-1",
+        "courseCode": "143",
         "semester": "א",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -5342,14 +5384,15 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40229"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות סטטיסטיות בניתוח נתונים",
-        "courseCode": "40229-3",
+        "courseCode": "144",
         "semester": "קיץ",
-        "department": "med",
+        "department": "datacs",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -5377,6 +5420,7 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40229"
     }
 ]

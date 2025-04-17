@@ -1,10 +1,10 @@
 [
-   {
+    {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "מבוא לפילוסופיה",
-        "courseCode": "80834-1",
+        "courseCode": "276",
         "semester": "א",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -18,14 +18,15 @@
                 "lecturer": "ד\"ר שהם יקותיאל",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "80834"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "מבוא לפילוסופיה",
-        "courseCode": "80834-2",
+        "courseCode": "277",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -39,14 +40,15 @@
                 "lecturer": "ד\"ר שהם יקותיאל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80834"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "היסטוריה כלכלית של העולם",
-        "courseCode": "80899-2",
+        "courseCode": "278",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -60,14 +62,15 @@
                 "lecturer": "ד\"ר כהן צמח ירון",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "80899"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "היזמים ששינו את העולם",
-        "courseCode": "80906-3",
+        "courseCode": "279",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -81,14 +84,15 @@
                 "lecturer": "ד\"ר כהן צמח ירון",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "80906"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "כתיבה עסקית בסביבה טכנולוגית",
-        "courseCode": "80909-3",
+        "courseCode": "280",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -111,14 +115,15 @@
                 "lecturer": "מר כהן רן",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "80909"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "סוגיות נבחרות באתיקה למהנדסים",
-        "courseCode": "80912-3",
+        "courseCode": "281",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -132,14 +137,15 @@
                 "lecturer": "ד\"ר שהם יקותיאל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80912"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "בין תיאוריה של אישיות ליחסי אנוש",
-        "courseCode": "80917-2",
+        "courseCode": "282",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -153,14 +159,15 @@
                 "lecturer": "גב' איתני חסון יעל",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "80917"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
-        "courseName": "Ethics in Engineering",
-        "courseCode": "80919-1",
+        "courseName": "Ethiklali in Engineering",
+        "courseCode": "283",
         "semester": "א",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [
             " אתיקה בהנדסה"
@@ -176,14 +183,15 @@
                 "lecturer": "ד''ר עבד אלחלים הישאם",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "80919"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "מבוא לרטוריקה",
-        "courseCode": "80920-1",
+        "courseCode": "284",
         "semester": "א",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -197,14 +205,15 @@
                 "lecturer": "ד\"ר כהן צמח ירון",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "80920"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "Gender Sexuality & Desire in Cyberspace",
-        "courseCode": "80926-3",
+        "courseCode": "285",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -218,14 +227,15 @@
                 "lecturer": "ד\"ר נור עופר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "80926"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "Introduction To Aviation",
-        "courseCode": "80931-1",
+        "courseCode": "286",
         "semester": "א",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -239,14 +249,15 @@
                 "lecturer": "מר שטיין יובל",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "80931"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "מאמרי דעה - מתיאוריה לפרקטיקה",
-        "courseCode": "80932-1",
+        "courseCode": "287",
         "semester": "א",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -260,14 +271,15 @@
                 "lecturer": "ד\"ר שהם יקותיאל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "80932"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "מאמרי דעה - מתיאוריה לפרקטיקה",
-        "courseCode": "80932-2",
+        "courseCode": "288",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -281,14 +293,15 @@
                 "lecturer": "ד\"ר שהם יקותיאל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80932"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "אקזיסטנציאליזם: קריאה מודרכת",
-        "courseCode": "80935-3",
+        "courseCode": "289",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -302,14 +315,15 @@
                 "lecturer": "ד\"ר שהם יקותיאל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80935"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "Wonders of Human Language",
-        "courseCode": "80940-3",
+        "courseCode": "290",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [
             " אנגלית מתקדמים א' (בינוניים)"
@@ -325,14 +339,15 @@
                 "lecturer": "ד\"ר שוורץ בריגיטה רחל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80940"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "Circular Engineering And Economy",
-        "courseCode": "80944-2",
+        "courseCode": "291",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -346,14 +361,15 @@
                 "lecturer": "מר בלאו אבי",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80944"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "מבוא לשיטות מחקר",
-        "courseCode": "80947-3",
+        "courseCode": "292",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -367,14 +383,15 @@
                 "lecturer": "ד\"ר רוס גיא משה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "80947"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "סוגיות למחשב פוליטית",
-        "courseCode": "80948-3",
+        "courseCode": "293",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -388,14 +405,15 @@
                 "lecturer": "ד\"ר אלבז שגיא",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "80948"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "Black Belt Engineer",
-        "courseCode": "80950-1",
+        "courseCode": "294",
         "semester": "א",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -409,14 +427,15 @@
                 "lecturer": "מר ניר אייל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "80950"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "From Atomic Bomb to Green Nuclear Energy",
-        "courseCode": "80951-2",
+        "courseCode": "295",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -430,14 +449,15 @@
                 "lecturer": "ד\"ר לוי אורי ניסים",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "80951"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "Philosophy of Immersive Technology",
-        "courseCode": "80952-2",
+        "courseCode": "296",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -451,14 +471,15 @@
                 "lecturer": "ד''ר עבד אלחלים הישאם",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "80952"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "עקרונות ניהול מוצר",
-        "courseCode": "80953-3",
+        "courseCode": "297",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -472,14 +493,15 @@
                 "lecturer": "ד''ר עבד אלחלים הישאם",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "80953"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "סדנה בכתיבה יצירתית",
-        "courseCode": "80954-1",
+        "courseCode": "298",
         "semester": "א",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -493,14 +515,15 @@
                 "lecturer": "ד\"ר גרפינקל אבי",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80954"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "ארכיאולוגיה מהי",
-        "courseCode": "80958-2",
+        "courseCode": "299",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -514,14 +537,15 @@
                 "lecturer": "מר חורש ינון",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "80958"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "היסטוריה של עם ישראל:רוח וחומר",
-        "courseCode": "80959-3",
+        "courseCode": "300",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -535,14 +559,15 @@
                 "lecturer": "מר רימר יואב",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "80959"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "מבוא לפכ\"מ",
-        "courseCode": "80960-3",
+        "courseCode": "301",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -556,14 +581,15 @@
                 "lecturer": "עו\"ד ליואי עדי",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "80960"
     },
     {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "קולנוע ופילוסופיה",
-        "courseCode": "80963-2",
+        "courseCode": "302",
         "semester": "ב",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -577,14 +603,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "80963"
     },
-   {
+    {
         "courseType": "קורסי יחידה ללימודי חברה ורוח",
         "courseName": "פילוסופיה ומודיעין",
-        "courseCode": "80964-3",
+        "courseCode": "303",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "klali",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -598,6 +625,7 @@
                 "lecturer": "ד\"ר כהן צמח ירון",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "80964"
     }
 ]

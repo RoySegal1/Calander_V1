@@ -2,9 +2,9 @@
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "ניתוח רשתות חברתיות",
-        "courseCode": "10237-1",
+        "courseCode": "714",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " מבוא להסתברות",
@@ -52,14 +52,15 @@
                 "lecturer": "ד\"ר מן מיכאל",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10237"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "ניתוח רשתות חברתיות",
-        "courseCode": "10237-2",
+        "courseCode": "715",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " מבוא להסתברות",
@@ -107,14 +108,15 @@
                 "lecturer": "ד\"ר מן מיכאל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10237"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "בינה עסקית",
-        "courseCode": "40205-2",
+        "courseCode": "716",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע"
@@ -196,14 +198,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40205"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "ניתוח נתונים בשפת R",
-        "courseCode": "40235-3",
+        "courseCode": "717",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " שיטות סטטיסטיות בניתוח נתונים",
@@ -252,14 +255,15 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40235"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "למידה עמוקה",
-        "courseCode": "40240-2",
+        "courseCode": "718",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " כריית מידע"
@@ -304,14 +308,15 @@
                 "lecturer": "ד\"ר פקר אלי",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40240"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "הבטים סטטיסטיים בלמידת מכונה",
-        "courseCode": "40242-2",
+        "courseCode": "719",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -357,14 +362,15 @@
                 "lecturer": "ד\"ר פרל ניר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40242"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "מבוא למודלים ניהוליים מבוססי נתונים",
-        "courseCode": "40243-2",
+        "courseCode": "720",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " שיטות סטטיסטיות בניתוח נתונים",
@@ -413,14 +419,15 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40243"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "מבוא למערכות המלצה",
-        "courseCode": "40251-3",
+        "courseCode": "721",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע",
@@ -448,14 +455,15 @@
                 "lecturer": "ד''ר כספי עומר",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40251"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "למידת מכונה ואנליטיקה עסקית",
-        "courseCode": "40252-2",
+        "courseCode": "722",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " כריית מידע"
@@ -498,14 +506,15 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40252"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית בחירה",
         "courseName": "שיווק מבוסס נתונים ברשתות חברתיות",
-        "courseCode": "40268-1",
+        "courseCode": "723",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -530,14 +539,15 @@
                 "lecturer": "מר ברטאש אדם",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "40268"
     },
     {
         "courseType": "אנליטיקה עסקית וניתוח נתונים-ראשית חובה",
         "courseName": "סמינר באנליטיקה עסקית וניתוח נתונים",
-        "courseCode": "40003-2",
+        "courseCode": "724",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " כריית מידע"
@@ -571,14 +581,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40003"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "תורת המידע",
-        "courseCode": "10206-1",
+        "courseCode": "725",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " מבוא להסתברות",
@@ -605,14 +616,15 @@
                 "lecturer": "ד\"ר ערמון דגנית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10206"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "שיטות באופטימיזציה וייצור מבוזר",
-        "courseCode": "10246-2",
+        "courseCode": "726",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " תכנון וניתוח אלגוריתמים",
@@ -697,14 +709,15 @@
                 "lecturer": "ד\"ר מן מיכאל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10246"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "רכבים אוטונומיים והנדסת אנוש בעולמות הAI",
-        "courseCode": "10359-2",
+        "courseCode": "727",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " סטטיסטיקה",
@@ -734,14 +747,15 @@
                 "lecturer": "ד''ר הוכמן מיכל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10359"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "רכבים אוטונומיים והנדסת אנוש בעולמות הAI",
-        "courseCode": "10359-3",
+        "courseCode": "728",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " סטטיסטיקה",
@@ -771,14 +785,15 @@
                 "lecturer": "ד''ר הוכמן מיכל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10359"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "פיתוח רכב1",
-        "courseCode": "30357-1",
+        "courseCode": "729",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " פיזיקה-מכניקה",
@@ -806,14 +821,15 @@
                 "lecturer": "מר הרמן דן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "30357"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "פיתוח רכב2",
-        "courseCode": "30358-2",
+        "courseCode": "730",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " פיזיקה-מכניקה",
@@ -842,14 +858,15 @@
                 "lecturer": "מר הרמן דן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "30358"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "ניהול ידע",
-        "courseCode": "40125-1",
+        "courseCode": "731",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " בסיסי נתונים"
@@ -876,14 +893,15 @@
                 "lecturer": "מר נמיר עידו נפתלי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40125"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "תכנון מערכות ניתוח וקבלת החלטות בארגון",
-        "courseCode": "40211-2",
+        "courseCode": "732",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע"
@@ -910,14 +928,15 @@
                 "lecturer": "ד\"ר פוקס עדי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40211"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "בינה מלאכותית - ההיבטים האתיים",
-        "courseCode": "40217-1",
+        "courseCode": "733",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -933,14 +952,15 @@
                 "lecturer": "ד\"ר פפר אהרונה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40217"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "ניהול המוצר",
-        "courseCode": "40218-2",
+        "courseCode": "734",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " בסיסי נתונים",
@@ -960,14 +980,15 @@
                 "lecturer": "גב' פרנקל (בן חנוך) רחל",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "40218"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "מערכות מידע ארגוניות - ERP",
-        "courseCode": "40219-1",
+        "courseCode": "735",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " בסיסי נתונים"
@@ -985,14 +1006,15 @@
                 "lecturer": "גב' אשכנזי בתיה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40219"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "מערכות מידע ארגוניות - ERP",
-        "courseCode": "40219-2",
+        "courseCode": "736",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " בסיסי נתונים"
@@ -1010,14 +1032,15 @@
                 "lecturer": "גב' אשכנזי בתיה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40219"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "ממשקי אדם מחשב",
-        "courseCode": "40220-2",
+        "courseCode": "737",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " בסיסי נתונים"
@@ -1062,14 +1085,15 @@
                 "lecturer": "גב' מתתיהו לימור",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40220"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "מערכות ניהול קשרי לקוחות",
-        "courseCode": "40222-2",
+        "courseCode": "738",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " בסיסי נתונים"
@@ -1096,14 +1120,15 @@
                 "lecturer": "מר אלסדווי אסף",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40222"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "הנדסת נתונים מבוססי ענן",
-        "courseCode": "40246-3",
+        "courseCode": "739",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " טכנולוגיות אינטרנט למערכות מידע"
@@ -1119,14 +1144,15 @@
                 "lecturer": "מר קוך גדעון",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40246"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "ניהול רשתות תקשורת נתונים",
-        "courseCode": "40247-1",
+        "courseCode": "740",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " בסיסי נתונים",
@@ -1154,14 +1180,15 @@
                 "lecturer": "מר פוקס אסף",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40247"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "שוק ההון - יישומים טכנולוגיים מבוססי נתו",
-        "courseCode": "40248-1",
+        "courseCode": "741",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " כלכלה הנדסית"
@@ -1204,14 +1231,15 @@
                 "lecturer": "מר גולומב שחר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40248"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "שוק ההון - יישומים טכנולוגיים מבוססי נתו",
-        "courseCode": "40248-2",
+        "courseCode": "742",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " כלכלה הנדסית"
@@ -1236,14 +1264,15 @@
                 "lecturer": "מר גולומב שחר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40248"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "תעשייה 4.0 וייצור מתקדם",
-        "courseCode": "40249-3",
+        "courseCode": "743",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע",
@@ -1262,14 +1291,15 @@
                 "lecturer": "פרופ' כהן יובל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40249"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "מבוא להנדסת מערכות ותעשייה 4.0",
-        "courseCode": "40256-1",
+        "courseCode": "744",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " אבטחת איכות",
@@ -1295,14 +1325,15 @@
                 "lecturer": "מר גולדמן דני",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40256"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "ניהול אג'יל של פרויקט סייבר",
-        "courseCode": "40258-1",
+        "courseCode": "745",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " טכנולוגיות אינטרנט למערכות מידע"
@@ -1347,14 +1378,15 @@
                 "lecturer": "מר קוך גדעון",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40258"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "ניהול שרשראות אספקה",
-        "courseCode": "40259-2",
+        "courseCode": "746",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ניהול התפעול1",
@@ -1371,14 +1403,15 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40259"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "יישומי בינה מלאכותית בהנדסת מערכות",
-        "courseCode": "40261-1",
+        "courseCode": "747",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא לתכנות פיתון",
@@ -1400,14 +1433,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40261"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "ניהול סיכונים בטכנולוגיות מידע",
-        "courseCode": "40263-1",
+        "courseCode": "748",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " בסיסי נתונים"
@@ -1452,14 +1486,15 @@
                 "lecturer": "מר גבלינגר אוהד",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40263"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "סוגיות אתיות במערכות מידע",
-        "courseCode": "40265-3",
+        "courseCode": "749",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ארגונים בעידן הדיגיטלי",
@@ -1479,14 +1514,15 @@
                 "lecturer": "ד\"ר זילברשלג שמעון",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40265"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית בחירה",
         "courseName": "כלכלת מערכות מידע",
-        "courseCode": "40266-3",
+        "courseCode": "750",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " כלכלה הנדסית",
@@ -1505,14 +1541,15 @@
                 "lecturer": "ד\"ר זילברשלג שמעון",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40266"
     },
     {
         "courseType": "מערכות מידע ותעשייה חכמה-ראשית חובה",
         "courseName": "סמינר במערכות מידע ותעשייה חכמה",
-        "courseCode": "40001-2",
+        "courseCode": "751",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע"
@@ -1548,14 +1585,15 @@
                 "lecturer": "ד\"ר פוקס עדי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40001"
     },
     {
         "courseType": "ניהול מערכות וקבלת החלטות-ראשית בחירה",
         "courseName": "מבוא לשיווק",
-        "courseCode": "40109-2",
+        "courseCode": "752",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ארגונים בעידן הדיגיטלי"
@@ -1582,14 +1620,15 @@
                 "lecturer": "גב' מתתיהו לימור",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40109"
     },
     {
         "courseType": "ניהול מערכות וקבלת החלטות-ראשית בחירה",
         "courseName": "תורת המשחקים",
-        "courseCode": "40215-2",
+        "courseCode": "753",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -1633,14 +1672,15 @@
                 "lecturer": "ד\"ר איזנהנדלר אוהד",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40215"
     },
     {
         "courseType": "ניהול מערכות וקבלת החלטות-ראשית בחירה",
         "courseName": "ניהול משאבי אנוש HRM",
-        "courseCode": "40237-2",
+        "courseCode": "754",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " מבוא לפסיכולוגיה ניסויית ותעשייתית"
@@ -1685,14 +1725,15 @@
                 "lecturer": "גב' ברו ויבל אילנה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40237"
     },
     {
         "courseType": "ניהול מערכות וקבלת החלטות-ראשית בחירה",
         "courseName": "ניהול ותפעול מערכות שירות",
-        "courseCode": "40245-2",
+        "courseCode": "755",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מודלים סטוכסטיים",
@@ -1709,14 +1750,15 @@
                 "lecturer": "ד\"ר איזנהנדלר אוהד",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40245"
     },
     {
         "courseType": "ניהול מערכות וקבלת החלטות-ראשית בחירה",
         "courseName": "מבוא לקבלת החלטות",
-        "courseCode": "40267-2",
+        "courseCode": "756",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " מבוא לפסיכולוגיה ניסויית ותעשייתית",
@@ -1760,14 +1802,15 @@
                 "lecturer": "ד''ר הוכמן מיכל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40267"
     },
     {
         "courseType": "ניהול מערכות וקבלת החלטות-ראשית חובה",
         "courseName": "סמינר בניהול מערכות וקבלת החלטות",
-        "courseCode": "40002-2",
+        "courseCode": "757",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ניהול התפעול2"
@@ -1783,14 +1826,15 @@
                 "lecturer": "ד\"ר גולן מיה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40002"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לתכנות פיתון",
-        "courseCode": "10812-1",
+        "courseCode": "758",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "4.50",
         "prerequisites": [
             " מבוא לתכנות פיתון"
@@ -1887,14 +1931,15 @@
                 "lecturer": "מר שאולוב גריגורי",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10812"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לתכנות פיתון",
-        "courseCode": "10812-2",
+        "courseCode": "759",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "4.50",
         "prerequisites": [
             " מבוא לתכנות פיתון"
@@ -1973,14 +2018,15 @@
                 "lecturer": "מר שאולוב גריגורי",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10812"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לתכנות פיתון",
-        "courseCode": "10812-3",
+        "courseCode": "760",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "4.50",
         "prerequisites": [
             " מבוא לתכנות פיתון"
@@ -2005,14 +2051,15 @@
                 "lecturer": "מר קרני ירדן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10812"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא למערכות מידע",
-        "courseCode": "40006-1",
+        "courseCode": "761",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -2071,14 +2118,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40006"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לכלכלה",
-        "courseCode": "40007-1",
+        "courseCode": "762",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -2173,14 +2221,15 @@
                 "lecturer": "מר גולומב שחר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40007"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא לעיבוד נתונים",
-        "courseCode": "40009-2",
+        "courseCode": "763",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "1.00",
         "prerequisites": [
             " עיבוד נתונים"
@@ -2232,14 +2281,15 @@
                 "lecturer": "גב' שליט משעל גילי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40009"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "ארגונים בעידן הדיגיטלי",
-        "courseCode": "40010-1",
+        "courseCode": "764",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -2289,14 +2339,15 @@
                 "lecturer": "גב' שליט משעל גילי",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40010"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "ייצור ממוחשב",
-        "courseCode": "40114-1",
+        "courseCode": "765",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "1.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -2373,14 +2424,15 @@
                 "lecturer": "מר רוש גרגורי",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40114"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "ייצור ממוחשב",
-        "courseCode": "40114-3",
+        "courseCode": "766",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "1.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -2394,14 +2446,15 @@
                 "lecturer": "מר רוש גרגורי",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40114"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להנדסת תעשייה",
-        "courseCode": "40137-1",
+        "courseCode": "767",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -2478,14 +2531,15 @@
                 "lecturer": "ד\"ר איזנהנדלר אוהד",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40137"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להנדסת תעשייה",
-        "courseCode": "40137-2",
+        "courseCode": "768",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -2508,14 +2562,15 @@
                 "lecturer": "ד\"ר איזנהנדלר אוהד",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40137"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-1",
+        "courseCode": "769",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [
             " קורס הכנה מתמטיקה"
@@ -3264,14 +3319,15 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-2",
+        "courseCode": "770",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [
             " קורס הכנה מתמטיקה"
@@ -3390,14 +3446,15 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-1",
+        "courseCode": "771",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -3441,14 +3498,15 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-2",
+        "courseCode": "772",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -4212,14 +4270,15 @@
                 "lecturer": "מר פרס חוזה אנטוניו",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-1",
+        "courseCode": "773",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -4935,14 +4994,15 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-2",
+        "courseCode": "774",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -5046,14 +5106,15 @@
                 "lecturer": "מר כהן יונתן",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-1",
+        "courseCode": "775",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -5186,14 +5247,15 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-2",
+        "courseCode": "776",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -5434,14 +5496,15 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-3",
+        "courseCode": "777",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " חשבון דיפרנציאלי אינטגרלי1"
@@ -5502,14 +5565,15 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מתמטיקה בדידה",
-        "courseCode": "90926-1",
+        "courseCode": "778",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -5676,14 +5740,15 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "90926"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מתמטיקה בדידה",
-        "courseCode": "90926-2",
+        "courseCode": "779",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -5859,14 +5924,15 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90926"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מתמטיקה בדידה",
-        "courseCode": "90926-3",
+        "courseCode": "780",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "5.00",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -5898,14 +5964,15 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90926"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "פיזיקה1 לתעו\"נ",
-        "courseCode": "90937-2",
+        "courseCode": "781",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " קורס הכנה פיזיקה"
@@ -6013,14 +6080,15 @@
                 "lecturer": "ד\"ר דרורי אלון",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90937"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "פיזיקה1 לתעו\"נ",
-        "courseCode": "90937-3",
+        "courseCode": "782",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " קורס הכנה פיזיקה"
@@ -6056,14 +6124,15 @@
                 "lecturer": "ד\"ר רויטברג ולדיסלב",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90937"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אלגוריתמים ומבנה נתונים להנדסת תעו\"נ",
-        "courseCode": "10805-1",
+        "courseCode": "783",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " תכנות ותיכון מונחה עצמים"
@@ -6088,14 +6157,15 @@
                 "lecturer": "מר קרני ירדן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10805"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אלגוריתמים ומבנה נתונים להנדסת תעו\"נ",
-        "courseCode": "10805-2",
+        "courseCode": "784",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " תכנות ותיכון מונחה עצמים"
@@ -6156,14 +6226,15 @@
                 "lecturer": "מר קרני ירדן",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10805"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "הסקה סטטיסטית",
-        "courseCode": "40005-1",
+        "courseCode": "785",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "4.00",
         "prerequisites": [
             " סטטיסטיקה",
@@ -6243,14 +6314,15 @@
                 "lecturer": "גב' כהנא דפנה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40005"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "הסקה סטטיסטית",
-        "courseCode": "40005-2",
+        "courseCode": "786",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "4.00",
         "prerequisites": [
             " סטטיסטיקה",
@@ -6276,14 +6348,15 @@
                 "lecturer": "ד\"ר פרל ניר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40005"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "בסיסי נתונים",
-        "courseCode": "40102-1",
+        "courseCode": "787",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " מבוא למערכות מידע",
@@ -6367,14 +6440,15 @@
                 "lecturer": "ד\"ר קריב גליה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40102"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "בסיסי נתונים",
-        "courseCode": "40102-2",
+        "courseCode": "788",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " מבוא למערכות מידע",
@@ -6404,14 +6478,15 @@
                 "lecturer": "גב' וינברג אפרת",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40102"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "הנדסת שיטות",
-        "courseCode": "40104-2",
+        "courseCode": "789",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "4.00",
         "prerequisites": [
             " הסקה סטטיסטית",
@@ -6476,14 +6551,15 @@
                 "lecturer": "מר פוקס אסף",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40104"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "הנדסת שיטות",
-        "courseCode": "40104-3",
+        "courseCode": "790",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "4.00",
         "prerequisites": [
             " הסקה סטטיסטית",
@@ -6512,14 +6588,15 @@
                 "lecturer": "מר פוקס אסף",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40104"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לחקר ביצועים",
-        "courseCode": "40112-1",
+        "courseCode": "791",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -6599,14 +6676,15 @@
                 "lecturer": "גב' שרון אילת לאה",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40112"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לחקר ביצועים",
-        "courseCode": "40112-2",
+        "courseCode": "792",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -6632,14 +6710,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40112"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לפסיכולוגיה ניסויית ותעשייתית",
-        "courseCode": "40113-1",
+        "courseCode": "793",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -6667,14 +6746,15 @@
                 "lecturer": "ד\"ר גולן מיה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40113"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לפסיכולוגיה ניסויית ותעשייתית",
-        "courseCode": "40113-2",
+        "courseCode": "794",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -6738,14 +6818,15 @@
                 "lecturer": "ד\"ר גולן מיה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40113"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "כלכלה הנדסית",
-        "courseCode": "40129-1",
+        "courseCode": "795",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " מבוא לכלכלה",
@@ -6809,14 +6890,15 @@
                 "lecturer": "עו\"ד בן חיים קרן",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40129"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "כלכלה הנדסית",
-        "courseCode": "40129-2",
+        "courseCode": "796",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " מבוא לכלכלה",
@@ -6844,14 +6926,15 @@
                 "lecturer": "מר גולומב שחר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40129"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אבטחת איכות",
-        "courseCode": "40130-2",
+        "courseCode": "797",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -6915,14 +6998,15 @@
                 "lecturer": "גב' כהנא דפנה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40130"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אבטחת איכות",
-        "courseCode": "40130-3",
+        "courseCode": "798",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -6950,14 +7034,15 @@
                 "lecturer": "גב' כהנא דפנה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40130"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "ניהול התפעול1",
-        "courseCode": "40132-1",
+        "courseCode": "799",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " הסקה סטטיסטית",
@@ -6986,14 +7071,15 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40132"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "ניהול התפעול1",
-        "courseCode": "40132-2",
+        "courseCode": "800",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " הסקה סטטיסטית",
@@ -7058,14 +7144,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40132"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-1",
+        "courseCode": "801",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -7182,14 +7269,15 @@
                 "lecturer": "מר ריקס חיים",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-2",
+        "courseCode": "802",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -7378,14 +7466,15 @@
                 "lecturer": "מר מינקין אלכסנדר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "משוואות דיפ' רגילות",
-        "courseCode": "90914-3",
+        "courseCode": "803",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -7430,14 +7519,15 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90914"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אנליזה נומרית",
-        "courseCode": "90925-1",
+        "courseCode": "804",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -7536,14 +7626,15 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90925"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אנליזה נומרית",
-        "courseCode": "90925-2",
+        "courseCode": "805",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -7714,14 +7805,15 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90925"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אנליזה נומרית",
-        "courseCode": "90925-3",
+        "courseCode": "806",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " אלגברה ליניארית",
@@ -7766,14 +7858,15 @@
                 "lecturer": "מר ריקס חיים",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90925"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "פיזיקה2 לתעו\"נ",
-        "courseCode": "90939-1",
+        "courseCode": "807",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " פיזיקה1 לתעו\"נ"
@@ -7836,14 +7929,15 @@
                 "lecturer": "ד\"ר רויטברג ולדיסלב",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90939"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "פיזיקה2 לתעו\"נ",
-        "courseCode": "90939-3",
+        "courseCode": "808",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.50",
         "prerequisites": [
             " פיזיקה1 לתעו\"נ"
@@ -7870,14 +7964,15 @@
                 "lecturer": "ד\"ר עצמון ישעיהו",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90939"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מעבדת פיזיקה לתעו\"נ",
-        "courseCode": "90947-1",
+        "courseCode": "809",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "1.00",
         "prerequisites": [
             " פיזיקה1 לתעו\"נ",
@@ -7932,14 +8027,15 @@
                 "lecturer": "מר אמבר עמית אדם",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90947"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מעבדת פיזיקה לתעו\"נ",
-        "courseCode": "90947-3",
+        "courseCode": "810",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "1.00",
         "prerequisites": [
             " פיזיקה1 לתעו\"נ",
@@ -7958,14 +8054,15 @@
                 "lecturer": "מר אולבינסקי אלכסנדר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90947"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "חשבונאות ותמחיר",
-        "courseCode": "40106-2",
+        "courseCode": "811",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " כלכלה הנדסית",
@@ -8047,14 +8144,15 @@
                 "lecturer": "עו\"ד בן חיים קרן",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40106"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "ניהול פרויקטים",
-        "courseCode": "40108-1",
+        "courseCode": "812",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " כלכלה הנדסית",
@@ -8120,14 +8218,15 @@
                 "lecturer": "גב' שליט משעל גילי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40108"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "ניהול פרויקטים",
-        "courseCode": "40108-2",
+        "courseCode": "813",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " כלכלה הנדסית",
@@ -8157,14 +8256,15 @@
                 "lecturer": "מר אלסדווי אסף",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40108"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "סימולציה",
-        "courseCode": "40118-1",
+        "courseCode": "814",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -8192,14 +8292,15 @@
                 "lecturer": "ד\"ר פורמה איריס",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40118"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "סימולציה",
-        "courseCode": "40118-2",
+        "courseCode": "815",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -8263,14 +8364,15 @@
                 "lecturer": "ד\"ר פורמה איריס",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40118"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מודלים סטוכסטיים",
-        "courseCode": "40120-1",
+        "courseCode": "816",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא להסתברות",
@@ -8332,14 +8434,15 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40120"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מודלים סטוכסטיים",
-        "courseCode": "40120-2",
+        "courseCode": "817",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא להסתברות",
@@ -8365,14 +8468,15 @@
                 "lecturer": "ד\"ר פרל אפרת",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40120"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות אופטימיזציה",
-        "courseCode": "40123-1",
+        "courseCode": "818",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מתמטיקה בדידה",
@@ -8400,14 +8504,15 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40123"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות אופטימיזציה",
-        "courseCode": "40123-2",
+        "courseCode": "819",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מתמטיקה בדידה",
@@ -8471,14 +8576,15 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40123"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "ניהול התפעול2",
-        "courseCode": "40133-1",
+        "courseCode": "820",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " ניהול התפעול1",
@@ -8540,14 +8646,15 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40133"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "ניהול התפעול2",
-        "courseCode": "40133-3",
+        "courseCode": "821",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " ניהול התפעול1",
@@ -8573,14 +8680,15 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40133"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "ניתוח ותכנון מערכות מידע",
-        "courseCode": "40138-1",
+        "courseCode": "822",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא למערכות מידע",
@@ -8645,14 +8753,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40138"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "ניתוח ותכנון מערכות מידע",
-        "courseCode": "40138-2",
+        "courseCode": "823",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא למערכות מידע",
@@ -8681,14 +8790,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40138"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "טכנולוגיות אינטרנט למערכות מידע",
-        "courseCode": "40142-1",
+        "courseCode": "824",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע"
@@ -8715,14 +8825,15 @@
                 "lecturer": "מר קוך גדעון",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40142"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "טכנולוגיות אינטרנט למערכות מידע",
-        "courseCode": "40142-2",
+        "courseCode": "825",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " ניתוח ותכנון מערכות מידע"
@@ -8803,14 +8914,15 @@
                 "lecturer": "מר קוך גדעון",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40142"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "כריית מידע",
-        "courseCode": "40225-1",
+        "courseCode": "826",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " בסיסי נתונים",
@@ -8874,14 +8986,15 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40225"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "כריית מידע",
-        "courseCode": "40225-2",
+        "courseCode": "827",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " בסיסי נתונים",
@@ -8927,14 +9040,15 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40225"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות סטטיסטיות בניתוח נתונים",
-        "courseCode": "40229-1",
+        "courseCode": "828",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -8998,14 +9112,15 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40229"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "שיטות סטטיסטיות בניתוח נתונים",
-        "courseCode": "40229-3",
+        "courseCode": "829",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " הסקה סטטיסטית"
@@ -9033,14 +9148,15 @@
                 "lecturer": "מר וולף רון",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40229"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "נושאים מתקדמים בבסיסי נתונים",
-        "courseCode": "40257-2",
+        "courseCode": "830",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " בסיסי נתונים"
@@ -9074,14 +9190,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40257"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "נושאים מתקדמים בבסיסי נתונים",
-        "courseCode": "40257-3",
+        "courseCode": "831",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " בסיסי נתונים"
@@ -9097,14 +9214,15 @@
                 "lecturer": "מר פרי עומר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40257"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "תכן מערך מפעלים",
-        "courseCode": "40124-2",
+        "courseCode": "832",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ניהול התפעול2"
@@ -9138,14 +9256,15 @@
                 "lecturer": "פרופ' כהן יובל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40124"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "תכן מערך מפעלים",
-        "courseCode": "40124-3",
+        "courseCode": "833",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.00",
         "prerequisites": [
             " ניהול התפעול2"
@@ -9161,14 +9280,15 @@
                 "lecturer": "פרופ' כהן יובל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "40124"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "מבוא לתעשייה4.0",
-        "courseCode": "40134-1",
+        "courseCode": "834",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא לתכנות פיתון"
@@ -9214,14 +9334,15 @@
                 "lecturer": "ד\"ר יניב שרית",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40134"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "מבוא לתעשייה4.0",
-        "courseCode": "40134-3",
+        "courseCode": "835",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " מבוא לתכנות פיתון"
@@ -9249,14 +9370,15 @@
                 "lecturer": "ד\"ר יניב שרית",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "40134"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "ארגונומיה: מערכות אדם מכונה",
-        "courseCode": "40139-1",
+        "courseCode": "836",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "2.50",
         "prerequisites": [
             " הנדסת שיטות"
@@ -9335,14 +9457,15 @@
                 "lecturer": "ד\"ר גולן מיה",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "40139"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "ניהול ואסטרטגיה",
-        "courseCode": "40140-1",
+        "courseCode": "837",
         "semester": "א",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " כלכלה הנדסית",
@@ -9377,14 +9500,15 @@
                 "lecturer": "ד\"ר ברוש גיל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40140"
     },
     {
         "courseType": "קורסי חובה שנה ד",
         "courseName": "ניהול ואסטרטגיה",
-        "courseCode": "40140-2",
+        "courseCode": "838",
         "semester": "ב",
-        "department": "cs",
+        "department": "tiol",
         "courseCredit": "3.00",
         "prerequisites": [
             " כלכלה הנדסית",
@@ -9401,6 +9525,7 @@
                 "lecturer": "ד\"ר ברוש גיל",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40140"
     }
 ]

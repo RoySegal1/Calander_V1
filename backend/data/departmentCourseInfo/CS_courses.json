@@ -2,7 +2,7 @@
     {
         "courseType": "סמינר חובה",
         "courseName": "סמינר מתקדם בטכנולוגיות סלולריות",
-        "courseCode": "10221-1",
+        "courseCode": "1",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -50,12 +50,13 @@
                 "lecturer": "מר כהן תום",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10221"
     },
     {
         "courseType": "סמינר חובה",
         "courseName": "סמינר מתקדם בטכנולוגיות סלולריות",
-        "courseCode": "10221-2",
+        "courseCode": "2",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -85,12 +86,13 @@
                 "lecturer": "מר איסקוב גיא",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10221"
     },
     {
         "courseType": "סמינר חובה",
         "courseName": "סמינר ניהול מוצר AI",
-        "courseCode": "10238-2",
+        "courseCode": "3",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -115,12 +117,13 @@
                 "lecturer": "ד''ר עבד אלחלים הישאם",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10238"
     },
     {
         "courseType": "סמינר חובה",
         "courseName": "סמינר בסייבר",
-        "courseCode": "10352-2",
+        "courseCode": "4",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -149,12 +152,13 @@
                 "lecturer": "ד\"ר אנדלמן ניר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10352"
     },
     {
         "courseType": "סמינר חובה",
         "courseName": "סמינר בשפות תכנות",
-        "courseCode": "10356-1",
+        "courseCode": "5",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -183,12 +187,13 @@
                 "lecturer": "ד''ר האופטמן עמי (עמיקם)",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10356"
     },
     {
         "courseType": "סמינר חובה",
         "courseName": "סמינר מדעי מחשב",
-        "courseCode": "11015-1",
+        "courseCode": "6",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -217,12 +222,13 @@
                 "lecturer": "ד\"ר אבן זהר יאיר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "11015"
     },
     {
         "courseType": "סמינר חובה",
         "courseName": "סמינר מדעי מחשב",
-        "courseCode": "11015-2",
+        "courseCode": "7",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -251,12 +257,13 @@
                 "lecturer": "ד\"ר ריקה הוואנה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "11015"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "סטטיסטיקה",
-        "courseCode": "10015-1",
+        "courseCode": "8",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.00",
@@ -284,12 +291,13 @@
                 "lecturer": "ד\"ר פרידין מאשה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10015"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "סטטיסטיקה",
-        "courseCode": "10015-2",
+        "courseCode": "9",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -335,12 +343,13 @@
                 "lecturer": "ד\"ר לפיד הדס",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10015"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "מערכות משובצות מחשב",
-        "courseCode": "10110-1",
+        "courseCode": "10",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -389,12 +398,13 @@
                 "lecturer": "מר אפשטיין מנחם",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10110"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "מערכות משובצות מחשב",
-        "courseCode": "10110-2",
+        "courseCode": "11",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -425,12 +435,13 @@
                 "lecturer": "מר אפשטיין מנחם",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10110"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "בסיסי נתונים",
-        "courseCode": "10127-2",
+        "courseCode": "12",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -496,12 +507,13 @@
                 "lecturer": "ד\"ר ערמון דגנית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10127"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "כלי פיתוח",
-        "courseCode": "10142-1",
+        "courseCode": "13",
         "semester": "א",
         "department": "cs",
         "courseCredit": "1.00",
@@ -517,12 +529,13 @@
                 "lecturer": "מר כהן תום",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10142"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "כלי פיתוח",
-        "courseCode": "10142-2",
+        "courseCode": "14",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "1.00",
@@ -556,12 +569,13 @@
                 "lecturer": "מר כהן תום",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10142"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "תורת המידע",
-        "courseCode": "10206-1",
+        "courseCode": "15",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -590,12 +604,13 @@
                 "lecturer": "ד\"ר ערמון דגנית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10206"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "בינה מלאכותית לפיתוח משחקים",
-        "courseCode": "10207-1",
+        "courseCode": "16",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -626,12 +641,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "10207"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "בינה מלאכותית לפיתוח משחקים",
-        "courseCode": "10207-2",
+        "courseCode": "17",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -662,12 +678,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10207"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "בינה מלאכותית לפיתוח משחקים",
-        "courseCode": "10207-3",
+        "courseCode": "18",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "2.50",
@@ -716,12 +733,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10207"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "תכנות בפלטפורמת Dot Net",
-        "courseCode": "10212-2",
+        "courseCode": "19",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "4.00",
@@ -750,12 +768,13 @@
                 "lecturer": "מר ברקת ארנון",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10212"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "סדנא בתכנות מונחה עצמים עם C++",
-        "courseCode": "10216-2",
+        "courseCode": "20",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -785,12 +804,13 @@
                 "lecturer": "גב' כליף קרן",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10216"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "סדנא בתכנות מונחה עצמים עם C++",
-        "courseCode": "10216-3",
+        "courseCode": "21",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "3.00",
@@ -820,12 +840,13 @@
                 "lecturer": "מר רוזנברג טוביה דב",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10216"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "פיתוח בסביבת IOS",
-        "courseCode": "10219-2",
+        "courseCode": "22",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -855,12 +876,13 @@
                 "lecturer": "מר איסקוב גיא",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10219"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "פיתוח משחקים",
-        "courseCode": "10220-1",
+        "courseCode": "23",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -889,12 +911,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10220"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "פיתוח משחקים",
-        "courseCode": "10220-2",
+        "courseCode": "24",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -923,12 +946,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10220"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "פיתוח משחקים",
-        "courseCode": "10220-3",
+        "courseCode": "25",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "2.50",
@@ -957,12 +981,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10220"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "מבוא לראייה ממוחשבת",
-        "courseCode": "10224-2",
+        "courseCode": "26",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -993,12 +1018,13 @@
                 "lecturer": "מר נח יואב",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10224"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "אבטחת סייבר",
-        "courseCode": "10227-1",
+        "courseCode": "27",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1026,12 +1052,13 @@
                 "lecturer": "מר זימון רועי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10227"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "סייבר-אבטחת רשתות תקשורת",
-        "courseCode": "10228-2",
+        "courseCode": "28",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1061,12 +1088,13 @@
                 "lecturer": "מר זימון רועי",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10228"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "פיתוח מאובטח",
-        "courseCode": "10233-2",
+        "courseCode": "29",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1095,12 +1123,13 @@
                 "lecturer": "גב' סהר אור",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10233"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "אבטחת מובייל",
-        "courseCode": "10234-1",
+        "courseCode": "30",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1131,12 +1160,13 @@
                 "lecturer": "מר איסקוב גיא",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10234"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "אבטחת מובייל",
-        "courseCode": "10234-2",
+        "courseCode": "31",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1167,12 +1197,13 @@
                 "lecturer": "מר איסקוב גיא",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10234"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "ניתוח רשתות חברתיות",
-        "courseCode": "10237-1",
+        "courseCode": "32",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1204,12 +1235,13 @@
                 "lecturer": "ד\"ר מן מיכאל",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10237"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "ניתוח רשתות חברתיות",
-        "courseCode": "10237-2",
+        "courseCode": "33",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1241,12 +1273,13 @@
                 "lecturer": "ד\"ר מן מיכאל",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10237"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "רשתות נוירונים ולמידה עמוקה",
-        "courseCode": "10240-1",
+        "courseCode": "34",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.00",
@@ -1292,12 +1325,13 @@
                 "lecturer": "מר קרני ירדן",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10240"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "עיבוד שפה טבעית",
-        "courseCode": "10247-2",
+        "courseCode": "35",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1343,12 +1377,13 @@
                 "lecturer": "ד\"ר אבן זהר יאיר",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10247"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "פיתוח בפלטפורמות WEB",
-        "courseCode": "10266-2",
+        "courseCode": "36",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -1396,12 +1431,13 @@
                 "lecturer": "מר ברשפ מיכה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10266"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "סדנא בנושא עיצוב ופיתוח משחקי מחשב",
-        "courseCode": "10267-2",
+        "courseCode": "37",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1428,12 +1464,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10267"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "אבטחת מידע",
-        "courseCode": "10313-1",
+        "courseCode": "38",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1483,12 +1520,13 @@
                 "lecturer": "ד\"ר אנדלמן ניר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10313"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "אבטחת מידע",
-        "courseCode": "10313-3",
+        "courseCode": "39",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1520,12 +1558,13 @@
                 "lecturer": "ד\"ר סופרמן זיו",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10313"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "גרפיקה ממוחשבת",
-        "courseCode": "10342-1",
+        "courseCode": "40",
         "semester": "א",
         "department": "cs",
         "courseCredit": "4.00",
@@ -1570,12 +1609,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "10342"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "גרפיקה ממוחשבת",
-        "courseCode": "10342-2",
+        "courseCode": "41",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "4.00",
@@ -1602,12 +1642,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10342"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "גרפיקה ממוחשבת",
-        "courseCode": "10342-3",
+        "courseCode": "42",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "4.00",
@@ -1634,12 +1675,13 @@
                 "lecturer": "מר טאובקין ויקטור",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10342"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "מתודולוגיות תכנות Agile",
-        "courseCode": "10346-1",
+        "courseCode": "43",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1667,12 +1709,13 @@
                 "lecturer": "ד\"ר גולדין לאה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10346"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "מתודולוגיות תכנות Agile",
-        "courseCode": "10346-2",
+        "courseCode": "44",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1700,12 +1743,13 @@
                 "lecturer": "ד\"ר גולדין לאה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10346"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "ניתוח נתוני עתק",
-        "courseCode": "10351-1",
+        "courseCode": "45",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1736,12 +1780,13 @@
                 "lecturer": "ד\"ר מורוז בוריס",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10351"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "בלוקצ'יין חזון ופרקטיקה",
-        "courseCode": "10354-2",
+        "courseCode": "46",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1770,12 +1815,13 @@
                 "lecturer": "מר ברשפ מיכה",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "10354"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "רכבים אוטונומיים והנדסת אנוש בעולמות הAI",
-        "courseCode": "10359-2",
+        "courseCode": "47",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1807,12 +1853,13 @@
                 "lecturer": "ד''ר הוכמן מיכל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10359"
     },
     {
         "courseType": "קורסי בחירה",
         "courseName": "רכבים אוטונומיים והנדסת אנוש בעולמות הAI",
-        "courseCode": "10359-3",
+        "courseCode": "48",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "2.50",
@@ -1844,12 +1891,13 @@
                 "lecturer": "ד''ר הוכמן מיכל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10359"
     },
     {
         "courseType": "קורסי בחירה נוספים",
         "courseName": "מבוא לחקר ביצועים",
-        "courseCode": "40112-1",
+        "courseCode": "49",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.00",
@@ -1931,12 +1979,13 @@
                 "lecturer": "גב' שרון אילת לאה",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "40112"
     },
     {
         "courseType": "קורסי בחירה נוספים",
         "courseName": "מבוא לחקר ביצועים",
-        "courseCode": "40112-2",
+        "courseCode": "50",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -1964,12 +2013,13 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40112"
     },
     {
         "courseType": "קורסי בחירה נוספים",
         "courseName": "מודלים סטוכסטיים",
-        "courseCode": "40120-1",
+        "courseCode": "51",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.00",
@@ -2033,12 +2083,13 @@
                 "lecturer": "ד\"ר לוזון יוסף",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40120"
     },
     {
         "courseType": "קורסי בחירה נוספים",
         "courseName": "מודלים סטוכסטיים",
-        "courseCode": "40120-2",
+        "courseCode": "52",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -2066,12 +2117,13 @@
                 "lecturer": "ד\"ר פרל אפרת",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "40120"
     },
     {
         "courseType": "קורסי בחירה נוספים",
         "courseName": "תורת המשחקים",
-        "courseCode": "40215-2",
+        "courseCode": "53",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -2099,12 +2151,13 @@
                 "lecturer": "ד\"ר איזנהנדלר אוהד",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40215"
     },
     {
         "courseType": "קורסי בחירה נוספים",
         "courseName": "כריית מידע",
-        "courseCode": "40225-1",
+        "courseCode": "54",
         "semester": "א",
         "department": "cs",
         "courseCredit": "2.50",
@@ -2170,12 +2223,13 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "40225"
     },
     {
         "courseType": "קורסי בחירה נוספים",
         "courseName": "כריית מידע",
-        "courseCode": "40225-2",
+        "courseCode": "55",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "2.50",
@@ -2223,12 +2277,13 @@
                 "lecturer": "מר שמטניק פבל",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "40225"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא למדעי המחשב",
-        "courseCode": "10016-1",
+        "courseCode": "56",
         "semester": "א",
         "department": "cs",
         "courseCredit": "4.50",
@@ -2388,12 +2443,13 @@
                 "lecturer": "מר רוטברג ליאור",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10016"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא למדעי המחשב",
-        "courseCode": "10016-2",
+        "courseCode": "57",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "4.50",
@@ -2436,12 +2492,13 @@
                 "lecturer": "מר שלומי פיני",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10016"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "תכנות מונחה עצמים",
-        "courseCode": "10128-1",
+        "courseCode": "58",
         "semester": "א",
         "department": "cs",
         "courseCredit": "4.50",
@@ -2470,12 +2527,13 @@
                 "lecturer": "מר איזנשטיין איל",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10128"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "תכנות מונחה עצמים",
-        "courseCode": "10128-2",
+        "courseCode": "59",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "4.50",
@@ -2576,12 +2634,13 @@
                 "lecturer": "מר שאולוב גריגורי",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10128"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "תכנות מונחה עצמים",
-        "courseCode": "10128-3",
+        "courseCode": "60",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "4.50",
@@ -2619,12 +2678,13 @@
                 "lecturer": "מר שלומי פיני",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10128"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "ארגון המחשב ושפת סף",
-        "courseCode": "10145-1",
+        "courseCode": "61",
         "semester": "א",
         "department": "cs",
         "courseCredit": "5.00",
@@ -2663,12 +2723,13 @@
                 "lecturer": "מר אש רועי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10145"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "ארגון המחשב ושפת סף",
-        "courseCode": "10145-2",
+        "courseCode": "62",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -2788,12 +2849,13 @@
                 "lecturer": "ד\"ר בוסני רם",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10145"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "ארגון המחשב ושפת סף",
-        "courseCode": "10145-3",
+        "courseCode": "63",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "5.00",
@@ -2832,12 +2894,13 @@
                 "lecturer": "מר שלומי פיני",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10145"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-1",
+        "courseCode": "64",
         "semester": "א",
         "department": "cs",
         "courseCredit": "5.00",
@@ -3588,12 +3651,13 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי1",
-        "courseCode": "90901-2",
+        "courseCode": "65",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -3714,12 +3778,13 @@
                 "lecturer": "גב' קנדליס אלינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90901"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-1",
+        "courseCode": "66",
         "semester": "א",
         "department": "cs",
         "courseCredit": "5.00",
@@ -3765,12 +3830,13 @@
                 "lecturer": "גב' נמירובסקי אירינה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "חשבון דיפרנציאלי אינטגרלי2",
-        "courseCode": "90902-2",
+        "courseCode": "67",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -4536,12 +4602,13 @@
                 "lecturer": "מר פרס חוזה אנטוניו",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "90902"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-1",
+        "courseCode": "68",
         "semester": "א",
         "department": "cs",
         "courseCredit": "5.00",
@@ -5259,12 +5326,13 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "אלגברה ליניארית",
-        "courseCode": "90905-2",
+        "courseCode": "69",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -5370,12 +5438,13 @@
                 "lecturer": "מר כהן יונתן",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90905"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-1",
+        "courseCode": "70",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.50",
@@ -5510,12 +5579,13 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-2",
+        "courseCode": "71",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.50",
@@ -5758,12 +5828,13 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מבוא להסתברות",
-        "courseCode": "90911-3",
+        "courseCode": "72",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "3.50",
@@ -5826,12 +5897,13 @@
                 "lecturer": "גב' יעקובוב רבקה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90911"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מתמטיקה בדידה",
-        "courseCode": "90926-1",
+        "courseCode": "73",
         "semester": "א",
         "department": "cs",
         "courseCredit": "5.00",
@@ -6000,12 +6072,13 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "90926"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מתמטיקה בדידה",
-        "courseCode": "90926-2",
+        "courseCode": "74",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -6183,12 +6256,13 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "90926"
     },
     {
         "courseType": "קורסי חובה שנה א",
         "courseName": "מתמטיקה בדידה",
-        "courseCode": "90926-3",
+        "courseCode": "75",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "5.00",
@@ -6222,12 +6296,13 @@
                 "lecturer": "מר בנגיאט עמית",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "90926"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לתכנות מערכות",
-        "courseCode": "10010-1",
+        "courseCode": "76",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.00",
@@ -6348,12 +6423,13 @@
                 "lecturer": "גב' הרצברג מורג אפרת",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10010"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבוא לתכנות מערכות",
-        "courseCode": "10010-2",
+        "courseCode": "77",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.00",
@@ -6384,12 +6460,13 @@
                 "lecturer": "מר ברקת ארנון",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10010"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "תקשורת מחשבים לתוכנה",
-        "courseCode": "10013-2",
+        "courseCode": "78",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.50",
@@ -6635,12 +6712,13 @@
                 "lecturer": "ד\"ר בינסקי הדר",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10013"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבני נתונים",
-        "courseCode": "10117-1",
+        "courseCode": "79",
         "semester": "א",
         "department": "cs",
         "courseCredit": "5.00",
@@ -6814,12 +6892,13 @@
                 "lecturer": "ד\"ר חוטובלי ראובן",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10117"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבני נתונים",
-        "courseCode": "10117-2",
+        "courseCode": "80",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -6876,12 +6955,13 @@
                 "lecturer": "מר גנוט יצחק",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10117"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מבני נתונים",
-        "courseCode": "10117-3",
+        "courseCode": "81",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "5.00",
@@ -6920,12 +7000,13 @@
                 "lecturer": "ד\"ר בינסקי הדר",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10117"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "תכנון וניתוח אלגוריתמים",
-        "courseCode": "10120-2",
+        "courseCode": "82",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -7096,12 +7177,13 @@
                 "lecturer": "ד\"ר חוטובלי ראובן",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10120"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "תכנון וניתוח אלגוריתמים",
-        "courseCode": "10120-3",
+        "courseCode": "83",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "5.00",
@@ -7137,12 +7219,13 @@
                 "lecturer": "מר גנוט יצחק",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10120"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מערכות הפעלה",
-        "courseCode": "10303-1",
+        "courseCode": "84",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.50",
@@ -7169,12 +7252,13 @@
                 "lecturer": "ד\"ר בינסקי הדר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10303"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מערכות הפעלה",
-        "courseCode": "10303-2",
+        "courseCode": "85",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.50",
@@ -7273,12 +7357,13 @@
                 "lecturer": "ד\"ר בינסקי הדר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10303"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "מערכות הפעלה",
-        "courseCode": "10303-3",
+        "courseCode": "86",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "3.50",
@@ -7305,12 +7390,13 @@
                 "lecturer": "ד\"ר בינסקי הדר",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10303"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אלגברה ליניארית2",
-        "courseCode": "90954-1",
+        "courseCode": "87",
         "semester": "א",
         "department": "cs",
         "courseCredit": "5.00",
@@ -7490,12 +7576,13 @@
                 "lecturer": "גב' זלקמן סמירין אולגה",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "90954"
     },
     {
         "courseType": "קורסי חובה שנה ב",
         "courseName": "אלגברה ליניארית2",
-        "courseCode": "90954-2",
+        "courseCode": "88",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "5.00",
@@ -7558,12 +7645,13 @@
                 "lecturer": "גב' זלקמן סמירין אולגה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "90954"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מבוא להנדסת תוכנה",
-        "courseCode": "10014-1",
+        "courseCode": "89",
         "semester": "א",
         "department": "cs",
         "courseCredit": "4.00",
@@ -7628,12 +7716,13 @@
                 "lecturer": "פרופ' טושברוביץ שמואל",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10014"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מבוא להנדסת תוכנה",
-        "courseCode": "10014-2",
+        "courseCode": "90",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "4.00",
@@ -7662,12 +7751,13 @@
                 "lecturer": "מר גנוט יצחק",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10014"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "אלגוריתם מתקדם וסיבוכיות",
-        "courseCode": "10121-1",
+        "courseCode": "91",
         "semester": "א",
         "department": "cs",
         "courseCredit": "4.00",
@@ -7733,12 +7823,13 @@
                 "lecturer": "ד\"ר ארטישצ'ב מריה",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10121"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "אלגוריתם מתקדם וסיבוכיות",
-        "courseCode": "10121-2",
+        "courseCode": "92",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "4.00",
@@ -7822,12 +7913,13 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10121"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מחשוב מקבילי ומבוזר",
-        "courseCode": "10324-1",
+        "courseCode": "93",
         "semester": "א",
         "department": "cs",
         "courseCredit": "4.00",
@@ -7910,12 +8002,13 @@
                 "lecturer": "ד\"ר מורוז בוריס",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "10324"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מחשוב מקבילי ומבוזר",
-        "courseCode": "10324-2",
+        "courseCode": "94",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "4.00",
@@ -7962,12 +8055,13 @@
                 "lecturer": "ד\"ר מורוז בוריס",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10324"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "מחשוב מקבילי ומבוזר",
-        "courseCode": "10324-3",
+        "courseCode": "95",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "4.00",
@@ -7996,12 +8090,13 @@
                 "lecturer": "מר פסח גדי",
                 "dayOfWeek": 2
             }
-        ]
+        ],
+        "realCourseCode": "10324"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "קומפילציה",
-        "courseCode": "10334-1",
+        "courseCode": "96",
         "semester": "א",
         "department": "cs",
         "courseCredit": "3.50",
@@ -8064,12 +8159,13 @@
                 "lecturer": "מר פסח גדי",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "10334"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "קומפילציה",
-        "courseCode": "10334-2",
+        "courseCode": "97",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "3.50",
@@ -8132,12 +8228,13 @@
                 "lecturer": "מר פסח גדי",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "10334"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "קומפילציה",
-        "courseCode": "10334-3",
+        "courseCode": "98",
         "semester": "קיץ",
         "department": "cs",
         "courseCredit": "3.50",
@@ -8164,12 +8261,13 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "10334"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "פרויקט גמר למדעים1",
-        "courseCode": "11402-1",
+        "courseCode": "99",
         "semester": "א",
         "department": "cs",
         "courseCredit": "4.00",
@@ -8216,12 +8314,13 @@
                 "lecturer": "מר שטקל עמית",
                 "dayOfWeek": 1
             }
-        ]
+        ],
+        "realCourseCode": "11402"
     },
     {
         "courseType": "קורסי חובה שנה ג",
         "courseName": "פרויקט גמר למדעים2",
-        "courseCode": "11403-2",
+        "courseCode": "100",
         "semester": "ב",
         "department": "cs",
         "courseCredit": "Didnt Find Credits",
@@ -8266,6 +8365,7 @@
                 "lecturer": "מר שטקל עמית",
                 "dayOfWeek": 0
             }
-        ]
+        ],
+        "realCourseCode": "11403"
     }
 ]

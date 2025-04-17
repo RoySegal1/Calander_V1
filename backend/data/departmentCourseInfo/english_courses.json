@@ -2,9 +2,9 @@
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית טרום בסיסי (מכינה)",
-        "courseCode": "6000-3",
+        "courseCode": "266",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [],
         "prerequisitesAlt": [],
@@ -27,14 +27,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "6000"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית בסיסי (מתחילים)",
-        "courseCode": "6001-1",
+        "courseCode": "267",
         "semester": "א",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית טרום בסיסי (מכינה)"
@@ -80,14 +81,15 @@
                 "lecturer": "מר קרמה אלכסנדר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "6001"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית בסיסי (מתחילים)",
-        "courseCode": "6001-2",
+        "courseCode": "268",
         "semester": "ב",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית טרום בסיסי (מכינה)"
@@ -115,14 +117,15 @@
                 "lecturer": "מר קרמה אלכסנדר",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "6001"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית בסיסי (מתחילים)",
-        "courseCode": "6001-3",
+        "courseCode": "269",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית טרום בסיסי (מכינה)"
@@ -168,14 +171,15 @@
                 "lecturer": "מר קרמה אלכסנדר",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "6001"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית מתקדמים א' (בינוניים)",
-        "courseCode": "6002-1",
+        "courseCode": "270",
         "semester": "א",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית בסיסי (מתחילים)"
@@ -209,14 +213,15 @@
                 "lecturer": "גב' גרוסו פאולה",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "6002"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית מתקדמים א' (בינוניים)",
-        "courseCode": "6002-2",
+        "courseCode": "271",
         "semester": "ב",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית בסיסי (מתחילים)"
@@ -268,14 +273,15 @@
                 "lecturer": "גב' וולפרט רחל",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "6002"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית מתקדמים א' (בינוניים)",
-        "courseCode": "6002-3",
+        "courseCode": "272",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית בסיסי (מתחילים)"
@@ -354,14 +360,15 @@
                 "lecturer": "No Lecturer Yet",
                 "dayOfWeek": 5
             }
-        ]
+        ],
+        "realCourseCode": "6002"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית מתקדמים ב' (מתקדמים)",
-        "courseCode": "6003-1",
+        "courseCode": "273",
         "semester": "א",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית מתקדמים א' (בינוניים)"
@@ -422,14 +429,15 @@
                 "lecturer": "גב' בללוב נינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "6003"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית מתקדמים ב' (מתקדמים)",
-        "courseCode": "6003-2",
+        "courseCode": "274",
         "semester": "ב",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית מתקדמים א' (בינוניים)"
@@ -490,14 +498,15 @@
                 "lecturer": "גב' בללוב נינה",
                 "dayOfWeek": 3
             }
-        ]
+        ],
+        "realCourseCode": "6003"
     },
     {
         "courseType": "קורסי חובה לימודי אנגלית",
         "courseName": "אנגלית מתקדמים ב' (מתקדמים)",
-        "courseCode": "6003-3",
+        "courseCode": "275",
         "semester": "קיץ",
-        "department": "cs",
+        "department": "english",
         "courseCredit": "Didnt Find Credits",
         "prerequisites": [
             " אנגלית מתקדמים א' (בינוניים)"
@@ -648,6 +657,7 @@
                 "lecturer": "ד\"ר גפנר מריה",
                 "dayOfWeek": 4
             }
-        ]
+        ],
+        "realCourseCode": "6003"
     }
 ]

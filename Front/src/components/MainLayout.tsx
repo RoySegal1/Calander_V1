@@ -269,6 +269,9 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
           'הנדסת חשמל': 'הנדסת חשמל',
           'הנדסה תעשייה וניהול': 'הנדסת תעשיה וניהול',
           'מדעי הנתונים': 'מדעי הנתונים',
+          'הנדסת תוכנה': 'הנדסת תוכנה',
+          'הנדסה מכנית': 'הנדסה מכנית',
+          'הנדסה ביורפואית': 'הנדסה ביורפואית',
         };
 
         const backendDept = frontendToBackendMap[filters.department];
