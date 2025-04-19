@@ -44,12 +44,6 @@ export interface User {
   };
 }
 
-// export interface AuthState {
-//   user: User | null;
-//   isGuest: boolean;
-//   isAuthenticated: boolean;
-// }
-
 export interface AuthState {
   user: {
     username?: string;
