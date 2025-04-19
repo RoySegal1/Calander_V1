@@ -105,6 +105,7 @@ function App() {
     }
   };
 
+
   const handleSignup = async (username: string, password: string) => {
     setLoading(true);
     setError(null);
