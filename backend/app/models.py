@@ -1,8 +1,9 @@
 # backend/models.py
 
-from sqlalchemy import Column, Integer, String, ForeignKey, Float, PrimaryKeyConstraint,CheckConstraint
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, PrimaryKeyConstraint, CheckConstraint, JSON, Boolean, TIMESTAMP, func
 from sqlalchemy.orm import relationship
 from .db import Base
+
 
 class Student(Base):
     __tablename__ = "students"
@@ -31,3 +32,15 @@ class StudentCourse(Base):
         PrimaryKeyConstraint("student_id", "group_code"),
         CheckConstraint("grade IS NULL OR (grade >= 0 AND grade <= 100)", name="grade_between_0_100"),
     )
+
+
+class DepartmentCourses(Base):
+    __tablename__ = "department_courses"
+
+    id = Column(Integer, primary_key=True, index=True)
+    department_name = Column(String, unique=True, nullable=False)  # works fine with Hebrew
+    is_general = Column(Boolean, default=False)
+    data = Column(JSON, nullable=False)  # SQLAlchemy will use JSONB if PostgreSQL is detected
+    updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
+
+

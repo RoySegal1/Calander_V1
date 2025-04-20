@@ -116,9 +116,6 @@ def scrape_student_grades(username, password):
         # Store extracted data
         results = {}
 
-        # Assuming username will be retrieved via some method (hardcoded for now)
-        username = "Roei.Segal"
-
         # Initialize the results for the user
         results["UserName"] = username
         results["Courses"] = []
@@ -184,8 +181,6 @@ def scrape_student_grades(username, password):
         # Save results to a JSON file
         print("Scraped Grades")
         return results
-        # with open("courses_results_gilad.json", "w", encoding="utf-8") as json_file:
-        #     json.dump(results, json_file, ensure_ascii=False, indent=4)
 
     finally:
         # Close the browser
@@ -198,7 +193,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         username = sys.argv[1]
         password = sys.argv[2]
-        scrape_student_grades(username, password)
-
+        results = scrape_student_grades(username, password)
     else:
         print("Usage: python script_name.py username password")
