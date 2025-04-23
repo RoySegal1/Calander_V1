@@ -27,14 +27,11 @@ export function validateUsername(
       setError?.('Password cannot be empty.');
       return false;
     }
-    if (
-        !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
-      ) {
-        setError?.(
-          'Password must include uppercase, lowercase, number, , special character and at least 8 characters.'
-        );
-        return false;
-      }
+    if (value.length < 6) {
+      setError?.('Password must be at least 6 characters long.');
+      return false;
+    }
+
     setError?.(null);
     return true;
   }
