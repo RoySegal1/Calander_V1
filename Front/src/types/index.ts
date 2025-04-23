@@ -1,4 +1,4 @@
-export type CourseType = "קורסי חובה שנה א" | 'קורסי בחירה' | 'קורסי חובה לימודי אנגלית' | 'קורסי חובה שנה ג' | 'סמינר חובה' | "קורסי חובה שנה ב" | 'קורסי יחידה ללימודי חברה ורוח' | 'קורסי בחירה נוספים';
+export type CourseType = string;
 export type LectureType =  1 | 0; // 1 for practice 0 for lecture
 
 export interface CourseGroup {
