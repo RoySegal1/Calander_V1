@@ -1,8 +1,14 @@
 from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel
 import json
-import os
 from typing import Optional
+import os
+import importlib.util
+from sqlalchemy.exc import IntegrityError
+from backend.app.db import SessionLocal
+from backend.app.models import Student, StudentCourse
+from backend.scripts.WebScraperStudent import scrape_student_grades
+
 
 router = APIRouter()
 
@@ -17,12 +23,26 @@ class User(BaseModel):
     username: str
     password: str  # In a real app, this should be hashed
     department: Optional[str] = "מדעי המחשב"  # Default department
-    saved_courses: Optional[list] = []
-    progress: Optional[dict] = {}
+    saved_courses: Optional[list] = []    # ?
+    progress: Optional[dict] = {}         # ?
 
 
 # Path to users database file
-USER_INFO_DIR = os.path.join("data", "userInfo")
+USER_INFO_DIR = os.path.join("backend", "data", "userInfo")
+
+
+@router.get("/guest")
+def guest_login():
+    """Guest login with limited permissions"""
+    return {
+        "status": "success",
+        "user": {
+            "is_guest": True,
+            "department": "מדעי המחשב",  # Default department
+        },
+        "message": "Logged in as guest. Some features are limited."
+    }
+
 
 def load_user(username: str):
     """Load a specific user file"""
@@ -36,7 +56,6 @@ def load_user(username: str):
         return None
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="Corrupted user data")
-
 
 
 @router.post("/login")
@@ -56,149 +75,158 @@ def login(data: LoginRequest):
     }
 
 
-
-
-def save_user(user: dict):
-    """Save a single user's data to a JSON file"""
-    filename = f"{user['username']}.json"
-    user_path = os.path.join(USER_INFO_DIR, filename)
-
-    os.makedirs(USER_INFO_DIR, exist_ok=True)
-
-    with open(user_path, "w", encoding="utf-8") as f:
-        json.dump(user, f, ensure_ascii=False, indent=2)
-
-
-
-
-
 @router.post("/signup")
 def signup(user: User):
-    existing_user = load_user(user.username)
-
-    if existing_user is not None:
-        raise HTTPException(status_code=400, detail="Username already exists")
 
     # Create new user object
     new_user = {
         "username": user.username,
-        "password": user.password,  # Hashing recommended
+        "password": user.password,  # Hashing recommended in production
         "department": user.department,
         "saved_courses": [],
         "progress": {}
     }
 
-    save_user(new_user)
+    # Save user and run the WebScraperStudent script
+    save_result = save_user(new_user)
 
-    # Return user data without password
-    user_data = {k: v for k, v in new_user.items() if k != "password"}
+    if not save_result["success"]:
+        # If script fails, tell user there was an issue
+        return {
+            "status": "error",
+            "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
+        }
 
-    return {
-        "status": "success",
-        "user": user_data,
-        "message": f"Account created successfully for {user.username}!"
-    }
+    # If script succeeds, proceed with login #connect to what Eylon did
+    try:
+        # Create login request object
+        login_request = LoginRequest(username=user.username, password=user.password)
+        login_result = login(login_request)
+        return login_result
 
-
-
-
-
-@router.get("/guest")
-def guest_login():
-    """Guest login with limited permissions"""
-    return {
-        "status": "success",
-        "user": {
-            "is_guest": True,
-            "department": "מדעי המחשב",  # Default department
-        },
-        "message": "Logged in as guest. Some features are limited."
-    }
+    except HTTPException as e:
+        # If login fails for some reason
+        return {
+            "status": "partial",
+            "message": "Account created, but automatic login failed. Please log in manually."
+        }
 
 
+def save_user(user: dict):
+    """
+    Save a single user's data by running WebScraperStudent script and saving to DB
+    Returns success/failure status
+    ,this func is in charge of safety and uniqueness (check if user already exists) of user info - name & password
+     OR  BEFORE ALL IN VALIDATIN.TSX ??
+    """
+    # Check if user already exists
+    if check_user_exists(user['username']):
+        return {"success": False, "error": "Username already exists"}
+
+    # Run web scraper to get course data
+    scraper_clean_result = run_web_scraper(user['username'], user['password'])
+
+    if not scraper_clean_result["success"]:
+        return scraper_clean_result
+
+    # Save user and scraped data to database
+    db_result = save_user_to_db(user, scraper_clean_result.get("data"))
+
+    return db_result
 
 
-
-#
-# USERS_DB_PATH = os.path.join("data", "userInfo",) # i need to add the path  and for to correct file , "Roei.Segal"
-
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-
-#
-# # Helper functions
-# def load_users():
-#     """Load users from JSON file"""
-#     try:
-#         with open(USERS_DB_PATH, "r", encoding="utf-8") as f:
-#             return json.load(f)
-#     except (FileNotFoundError, json.JSONDecodeError):
-#         # Return empty dict if file doesn't exist or is invalid # add a message "file not found sign in"
-#         return {}
-#
-#
-#
-#
-# @router.post("/login")
-# def login(data: LoginRequest):
-#     users = load_users()
-#
-#     if data.username not in users:
-#         raise HTTPException(status_code=401, detail="Invalid username or password")
-#
-#     user = users[data.username]
-#     if user["password"] != data.password:
-#         raise HTTPException(status_code=401, detail="Invalid username or password")
-#
-#     # Remove password from response
-#     user_data = {k: v for k, v in user.items() if k != "password"}
-#
-#     return {
-#         "status": "success",
-#         "user": user_data,
-#         "message": f"Welcome back, {data.username}!"
-#     }
+def check_user_exists(username):
+    """
+    Check if a user already exists in the database
+    """
+    db = SessionLocal()
+    try:
+        user = db.query(Student).filter(Student.username == username).first()
+        return user is not None
+    finally:
+        db.close()
 
 
+def run_web_scraper(username, password):
+    """
+    Run the WebScraperStudent script with user credentials and return the scraped data
+    """
+    try:
 
-#
-# def save_users(users_data): # to DB?
-#     """Save users to JSON file"""
-#     # Ensure directory exists
-#     os.makedirs(os.path.dirname(USERS_DB_PATH), exist_ok=True)
-#
-#     with open(USERS_DB_PATH, "w", encoding="utf-8") as f:
-#         json.dump(users_data, f, ensure_ascii=False, indent=2)
-#
-#
-#
-# @router.post("/signup")
-# def signup(user: User):
-#     users = load_users()
-#
-#     if user.username in users:
-#         raise HTTPException(status_code=400, detail="Username already exists")
-#
-#     # Create new user
-#     users[user.username] = {
-#         "username": user.username,
-#         "password": user.password,  # In a real app, this should be hashed
-#         "department": user.department,
-#         "saved_courses": [],
-#         "progress": {}
-#     }
-#
-#     # Save updated users
-#     save_users(users)
-#
-#     # Return user data without password
-#     user_data = {k: v for k, v in users[user.username].items() if k != "password"}
-#
-#     return {
-#         "status": "success",
-#         "user": user_data,
-#         "message": f"Account created successfully for {user.username}!"
-#     }
+        scraped_data = scrape_student_grades(username, password) ## MAYBE RUN ON ANOTHER THREAD
+        scraped_data = clean_courses(scraped_data)
 
+        # Return the Python object directly
+        return {"success": True, "data": scraped_data}
+
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+def clean_courses(scraped_data):
+    cleaned_courses = {}
+
+    for course_entry in scraped_data.get("Courses", []):
+        for course_code, details in course_entry.items():
+            grade = details[0]
+            if grade != "N/A":
+                # Always overwrite to ensure the last one is kept
+                cleaned_courses[course_code] = details
+
+    # Convert back to the original format
+    scraped_data["Courses"] = [{code: details} for code, details in cleaned_courses.items()]
+    return scraped_data
+
+
+def save_user_to_db(user_data, scraped_data=None):
+    """
+    Save user data to the database
+    """
+    db = SessionLocal()
+    try:
+        # Create new student object
+        new_student = Student(
+            username=user_data["username"],
+            password=user_data["password"],  # Note: Should be hashed in production
+            name=user_data.get("name", user_data["username"]),  # Default to username if name not provided
+            department=user_data.get("department")
+        )
+
+        # Add student to session
+        db.add(new_student)
+        db.flush()  # Flush to get the ID without committing
+
+        # If we have scraped course data, add them
+        if scraped_data and "Courses" in scraped_data:
+            for course_entry in scraped_data["Courses"]:
+                for course_code, details in course_entry.items():
+                    # Parse grade, handling "N/A" case
+                    grade = None if details[0] == "N/A" else float(details[0])
+
+                    # Add student course
+                    new_course = StudentCourse(
+                        student_id=new_student.id,
+                        course_code=course_code,
+                        group_code=f"AUTO-{course_code}",  # Generate a default group code
+                        lecture_type=1,  # Default lecture type
+                        grade=grade
+                    )
+                    db.add(new_course)
+
+        # Commit the transaction
+        db.commit()
+        return {"success": True, "user_id": new_student.id}
+
+    except IntegrityError as e:
+        db.rollback()
+        if "unique constraint" in str(e).lower() and "username" in str(e).lower():
+            return {"success": False, "error": "Username already exists"}
+        return {"success": False, "error": f"Database integrity error: {str(e)}"}
+
+    except Exception as e:
+        db.rollback()
+        return {"success": False, "error": str(e)}
+
+    finally:
+        db.close()
 
