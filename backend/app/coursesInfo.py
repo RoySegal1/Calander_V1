@@ -15,9 +15,9 @@ def get_courses(department: str, generalcourses: bool = True):
     if not department_file_name:
         raise HTTPException(status_code=404, detail="Department not found")
 
-    file_path_department_courses = os.path.join("data", "departmentCourseInfo", department_file_name)
-    file_path_english_courses = os.path.join("data", "departmentCourseInfo", english_file_name)
-    file_path_klali_courses = os.path.join("data", "departmentCourseInfo", klali_file_name)
+    file_path_department_courses = os.path.join("backend", "data", "departmentCourseInfo", department_file_name)
+    file_path_english_courses = os.path.join("backend", "data", "departmentCourseInfo", english_file_name)
+    file_path_klali_courses = os.path.join("backend", "data", "departmentCourseInfo", klali_file_name)
 
     try:
         with open(file_path_department_courses, encoding="utf-8") as f:

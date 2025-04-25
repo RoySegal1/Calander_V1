@@ -93,6 +93,9 @@ def signup(user: User):
     if not save_result["success"]:
         # If script fails, tell user there was an issue
         return {
+            # HTTPException(status_code=401,
+            #               detail="There was an issue with your Afeka credentials. Please try again or enter as guest.")
+
             "status": "error",
             "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
         }
@@ -107,6 +110,9 @@ def signup(user: User):
     except HTTPException as e:
         # If login fails for some reason
         return {
+            # HTTPException(status_code=401,
+            #               detail="Account created, but automatic login failed. Please log in manually.")
+
             "status": "partial",
             "message": "Account created, but automatic login failed. Please log in manually."
         }
@@ -163,19 +169,21 @@ def run_web_scraper(username, password):
         return {"success": False, "error": str(e)}
 
 
+
 def clean_courses(scraped_data):
     cleaned_courses = {}
 
     for course_entry in scraped_data.get("Courses", []):
         for course_code, details in course_entry.items():
-            grade = details[0]
-            if grade != "N/A":
+            grade, credits = details
+            if credits.strip():  # Only keep entries with valid credits
                 # Always overwrite to ensure the last one is kept
                 cleaned_courses[course_code] = details
 
     # Convert back to the original format
     scraped_data["Courses"] = [{code: details} for code, details in cleaned_courses.items()]
     return scraped_data
+
 
 
 def save_user_to_db(user_data, scraped_data=None):
