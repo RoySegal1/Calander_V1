@@ -1,5 +1,7 @@
 db_keys.env
 venv/
 .idea/
+backend/.idea
+backend/.venv
 backend/data/userInfo/Gilad.Tsfaty.json
 __pycache__/
