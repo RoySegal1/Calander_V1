@@ -49,7 +49,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">Mandatory</span>
           </div>
           <div className="text-xl font-bold text-red-600">
-            {user.remainingRequirements.mandatory}
+            {user.remainingRequirements?.mandatory}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>
@@ -60,7 +60,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">English</span>
           </div>
           <div className="text-xl font-bold text-blue-600">
-            {user.remainingRequirements.english}
+            {user.remainingRequirements?.english}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>
@@ -71,7 +71,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">Elective</span>
           </div>
           <div className="text-xl font-bold text-blue-600">
-            {user.remainingRequirements.elective}
+            {user.remainingRequirements?.elective}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>
@@ -82,7 +82,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">General</span>
           </div>
           <div className="text-xl font-bold text-green-600">
-            {user.remainingRequirements.general}
+            {user.remainingRequirements?.general}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>

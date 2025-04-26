@@ -1,13 +1,11 @@
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-import json
-from typing import Optional
-import os
 from sqlalchemy.exc import IntegrityError
 from backend.app.db import SessionLocal
 from backend.app.models import Student, StudentCourse, DepartmentCourses
 from backend.scripts.WebScraperStudent import scrape_student_grades
+from backend.data.consts import  DEPARTMENT_CREDITS
 
 
 router = APIRouter()
@@ -68,17 +66,12 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
         all_data_json.extend(gen.data)
 
     # Step 4: Find matching courses by group_code
-    def match_course(course_code):  # Search for course_code
-        for course in all_data_json:
-            if course.get("realCourseCode") == course_code:
-                return course
-        return None
-    
     completed_courses = []
     enrolled_courses = []
 
     for sc in student_courses:
-            matched = match_course(sc.group_code)
+            matched = match_course(sc.course_code, all_data_json)
+
             if matched:
                 matched["grade"] = sc.grade
                 if sc.grade is not None:
@@ -96,11 +89,21 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
             "completed_courses": completed_courses,
             "enrolled_courses": enrolled_courses,
             "gpa": student.gpa,
-            "completedCredits": student.completedCredits
+            "credits": {
+                "completed": student.completedCredits,
+                "required": DEPARTMENT_CREDITS[student.department]
+                }
+
         },
         "message": f"Welcome back, {student.name}!"
     }
 
+
+def match_course(course_code, all_data):  # Search for course_code
+    for course in all_data:
+        if course.get("realCourseCode") == course_code:
+            return course
+    return None
 
 @router.post("/signup")
 def signup(data: SignupRequest):
