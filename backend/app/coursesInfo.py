@@ -48,8 +48,6 @@ from sqlalchemy.orm import Session
 from .db import SessionLocal
 from .models import DepartmentCourses
 import json
-import os
-from data.consts import DEPARTMENT_FILES
 from typing import Dict
 
 # Initialize the APIRouter for courses info
