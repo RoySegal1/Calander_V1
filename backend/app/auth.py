@@ -63,18 +63,50 @@ def save_users(users_data): # to DB?
 
 
 @router.post("/login")
-def login(data: LoginRequest):
-    users = load_users()
+@router.post("/login")
+def login(data: LoginRequest, db: Session = Depends(get_db)):
+     # Step 1: Authenticate user
+    student = db.query(Student).filter(Student.username == data.username).first()
 
-    if data.username not in users:
+    if not student or student.password != data.password:
         raise HTTPException(status_code=401, detail="Invalid username or password")
+    
+    # Step 2: Fetch student courses
+    student_courses = db.query(StudentCourse).filter_by(student_id=student.id).all()
 
-    user = users[data.username]
-    if user["password"] != data.password:
-        raise HTTPException(status_code=401, detail="Invalid username or password")
+    # Step 3: Fetch department course data (from department_courses table)
+    department_name = student.department
+    department_data = db.query(DepartmentCourses).filter_by(department_name=department_name).first()
+    general_data = db.query(DepartmentCourses).filter_by(is_general=True).all()
 
-    # Remove password from response
-    user_data = {k: v for k, v in user.items() if k != "password"}
+    all_data_json = []
+    if department_data:
+        all_data_json.extend(department_data.data)
+    for gen in general_data:
+        all_data_json.extend(gen.data)
+
+    # Step 4: Find matching courses by group_code
+    def match_course(group_code):#serch for realCourseCode
+        for course in all_data_json:
+            for group in course.get("groups", []):
+                if group["groupCode"] == group_code:
+                    return {
+                        **course,
+                        "group": group  # Add the specific group info
+                    }
+        return None
+    
+    completed_courses = []
+    enrolled_courses = []
+
+    for sc in student_courses:
+            matched = match_course(sc.group_code)
+            if matched:
+                matched["grade"] = sc.grade
+                if sc.grade is not None:
+                    completed_courses.append(matched)
+                else:
+                    enrolled_courses.append(matched)
 
     return {
         "status": "success",
@@ -148,41 +180,165 @@ def save_user(user: dict):
 
 @router.post("/signup")
 def signup(user: User):
-    users = load_users()
 
-    if user.username in users:
-        raise HTTPException(status_code=400, detail="Username already exists")
 
-    # Create new user
-    users[user.username] = {
+ # Create new user object
+    new_user = {
         "username": user.username,
-        "password": user.password,  # In a real app, this should be hashed
+        "password": user.password,  # Hashing recommended in production
         "department": user.department,
         "saved_courses": [],
         "progress": {}
     }
 
-    # Save updated users
-    save_users(users)
+    # Save user and run the WebScraperStudent script
+    save_result = save_user(new_user)
 
-    # Return user data without password
-    user_data = {k: v for k, v in users[user.username].items() if k != "password"}
+    if not save_result["success"]:
+        # If script fails, tell user there was an issue
+        return {
+            # HTTPException(status_code=401,
+            #               detail="There was an issue with your Afeka credentials. Please try again or enter as guest.")
 
-    return {
-        "status": "success",
-        "user": user_data,
-        "message": f"Account created successfully for {user.username}!"
-    }
+            "status": "error",
+            "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
+        }
+
+    # If script succeeds, proceed with login #connect to what Eylon did
+    try:
+        # Create login request object
+        login_request = LoginRequest(username=user.username, password=user.password)
+        login_result = login(login_request)
+        return login_result
+
+    except HTTPException as e:
+        # If login fails for some reason
+        return {
+            # HTTPException(status_code=401,
+            #               detail="Account created, but automatic login failed. Please log in manually.")
+
+            "status": "partial",
+            "message": "Account created, but automatic login failed. Please log in manually."
+        }
 
 
-@router.get("/guest")
-def guest_login():
-    """Guest login with limited permissions"""
-    return {
-        "status": "success",
-        "user": {
-            "is_guest": True,
-            "department": "מדעי המחשב",  # Default department
-        },
-        "message": "Logged in as guest. Some features are limited."
-    }
+def save_user(user: dict):
+    """
+    Save a single user's data by running WebScraperStudent script and saving to DB
+    Returns success/failure status
+    ,this func is in charge of safety and uniqueness (check if user already exists) of user info - name & password
+     OR  BEFORE ALL IN VALIDATIN.TSX ??
+    """
+    # Check if user already exists  # allow name duplicates? better password - PK # if exists login ?
+    if check_user_exists(user['username']):
+        return {"success": False, "error": "Username already exists"}
+
+    # Run web scraper to get course data
+    scraper_clean_result = run_web_scraper(user['username'], user['password'])
+
+    if not scraper_clean_result["success"]:
+        return scraper_clean_result
+
+    # Save user and scraped data to database
+    db_result = save_user_to_db(user, scraper_clean_result.get("data"))
+
+    return db_result
+
+
+def check_user_exists(username):
+    """
+    Check if a user already exists in the database
+    """
+    db = SessionLocal()
+    try:
+        user = db.query(Student).filter(Student.username == username).first()
+        return user is not None
+    finally:
+        db.close()
+
+
+def run_web_scraper(username, password):
+    """
+    Run the WebScraperStudent script with user credentials and return the scraped data
+    """
+    try:
+
+        scraped_data = scrape_student_grades(username, password) ## MAYBE RUN ON ANOTHER THREAD
+        scraped_data = clean_courses(scraped_data)
+
+        # Return the Python object directly
+        return {"success": True, "data": scraped_data}
+
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+
+def clean_courses(scraped_data):
+    cleaned_courses = {}
+
+    for course_entry in scraped_data.get("Courses", []):
+        for course_code, details in course_entry.items():
+            grade, credits = details
+            if credits.strip():  # Only keep entries with valid credits
+                # Always overwrite to ensure the last one is kept
+                cleaned_courses[course_code] = details
+
+    # Convert back to the original format
+    scraped_data["Courses"] = [{code: details} for code, details in cleaned_courses.items()]
+    return scraped_data
+
+
+
+def save_user_to_db(user_data, scraped_data=None):
+    """
+    Save user data to the database
+    """
+    db = SessionLocal()
+    try:
+        # Create new student object
+        new_student = Student(
+            username=user_data["username"],
+            password=user_data["password"],  # Note: Should be hashed in production
+            name=user_data.get("name", user_data["username"]),  # Default to username if name not provided
+            department=user_data.get("department")
+        )
+
+        # Add student to session
+        db.add(new_student)
+        db.flush()  # Flush to get the ID without committing
+
+        # If we have scraped course data, add them
+        if scraped_data and "Courses" in scraped_data:
+            for course_entry in scraped_data["Courses"]:
+                for course_code, details in course_entry.items():
+                    # Parse grade, handling "N/A" case
+                    grade = None if details[0] == "N/A" else float(details[0])
+
+                    # Add student course
+                    new_course = StudentCourse(
+                        student_id=new_student.id,
+                        course_code=course_code,
+                        group_code=f"AUTO-{course_code}",  # Generate a default group code
+                        lecture_type=1,  # Default lecture type
+                        grade=grade
+                    )
+                    db.add(new_course)
+
+        # Commit the transaction
+        db.commit()
+        return {"success": True, "user_id": new_student.id}
+
+    except IntegrityError as e:
+        db.rollback()
+        if "unique constraint" in str(e).lower() and "username" in str(e).lower():
+            return {"success": False, "error": "Username already exists"}
+        return {"success": False, "error": f"Database integrity error: {str(e)}"}
+
+    except Exception as e:
+        db.rollback()
+        return {"success": False, "error": str(e)}
+
+    finally:
+        db.close()
+

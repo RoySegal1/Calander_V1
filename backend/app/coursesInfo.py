@@ -49,7 +49,8 @@ from .db import SessionLocal
 from .models import DepartmentCourses
 import json
 import os
-from backend.data.consts import DEPARTMENT_FILES
+from data.consts import DEPARTMENT_FILES
+from typing import Dict
 
 # Initialize the APIRouter for courses info
 router = APIRouter()
