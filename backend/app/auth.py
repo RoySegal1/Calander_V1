@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from .db import SessionLocal
-from .models import Student, StudentCourse
+from .models import Student, StudentCourse, DepartmentCourses
 import json
 from typing import Optional
 import os
@@ -63,7 +63,6 @@ def save_users(users_data): # to DB?
 
 
 @router.post("/login")
-@router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
      # Step 1: Authenticate user
     student = db.query(Student).filter(Student.username == data.username).first()
@@ -86,14 +85,10 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
         all_data_json.extend(gen.data)
 
     # Step 4: Find matching courses by group_code
-    def match_course(group_code):#serch for realCourseCode
+    def match_course(course_code):  # Search for course_code
         for course in all_data_json:
-            for group in course.get("groups", []):
-                if group["groupCode"] == group_code:
-                    return {
-                        **course,
-                        "group": group  # Add the specific group info
-                    }
+            if course.get("realCourseCode") == course_code:
+                return course
         return None
     
     completed_courses = []
@@ -116,7 +111,9 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
             "name": student.name,
             "department": student.department,
             "completed_courses": completed_courses,
-            "enrolled_courses": enrolled_courses
+            "enrolled_courses": enrolled_courses,
+            "gpa": student.gpa,
+            "completedCredits": student.completedCredits
         },
         "message": f"Welcome back, {student.name}!"
     }
