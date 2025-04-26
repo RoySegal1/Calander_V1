@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 import json
 import os
-from backend.data.consts import DEPARTMENT_FILES
+from data.consts import DEPARTMENT_FILES
 
 router = APIRouter()
 
