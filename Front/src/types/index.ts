@@ -26,6 +26,7 @@ export interface User {
   id: string;
   username: string;
   department: string;
+  saved_courses?: string[];
   completedCourses: {
     courseId: string;
     grade: number;
@@ -45,13 +46,7 @@ export interface User {
 }
 
 export interface AuthState {
-  user: {
-    username?: string;
-    is_guest?: boolean;
-    department?: string;
-    saved_courses?: string[];
-    progress?: Record<string, any>;
-  } | null;
+  user: User | null;
   isGuest: boolean;
   isAuthenticated: boolean;
 }

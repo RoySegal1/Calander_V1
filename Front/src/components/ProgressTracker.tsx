@@ -1,31 +1,13 @@
+
 import { GraduationCap, Book, BookOpen, Award } from 'lucide-react';
-
-interface User {
-  username?: string;
-  is_guest?: boolean;
-  department?: string;
-  saved_courses?: string[];
-  progress?: Record<string, any>;
-}
-
+import { User } from '../types'
 interface ProgressTrackerProps {
   user: User;
 }
 
 export default function ProgressTracker({ user }: ProgressTrackerProps) {
-  const progress = user.progress || {
-    totalCredits: 0,
-    requiredCredits: 160,
-    completedRequirements: {
-      mandatory: 0,
-      english: 0,
-      elective: 0,
-      general: 0,
-    },
-    gpa: 0,
-  };
 
-  const progressPercentage = (progress.totalCredits / progress.requiredCredits) * 100;
+  const progressPercentage = (user.credits.completed / user.credits.required) * 100;
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 space-y-6">
@@ -39,7 +21,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
         <div className="flex justify-between mb-2">
           <span className="text-sm font-medium text-gray-700">Credit Points Progress</span>
           <span className="text-sm text-gray-500">
-            {progress.totalCredits} / {progress.requiredCredits} credits
+            {user.credits.completed} / {user.credits.required} credits
           </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -55,7 +37,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
         <Award size={24} className="text-indigo-600" />
         <div>
           <div className="text-sm font-medium text-gray-700">Current GPA</div>
-          <div className="text-2xl font-bold text-indigo-600">{progress.gpa}</div>
+          <div className="text-2xl font-bold text-indigo-600">{user.gpa}</div>
         </div>
       </div>
 
@@ -67,7 +49,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">Mandatory</span>
           </div>
           <div className="text-xl font-bold text-red-600">
-            {progress.completedRequirements.mandatory}
+            {user.remainingRequirements.mandatory}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>
@@ -78,7 +60,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">English</span>
           </div>
           <div className="text-xl font-bold text-blue-600">
-            {progress.completedRequirements.english}
+            {user.remainingRequirements.english}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>
@@ -89,7 +71,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">Elective</span>
           </div>
           <div className="text-xl font-bold text-blue-600">
-            {progress.completedRequirements.elective}
+            {user.remainingRequirements.elective}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>
@@ -100,7 +82,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
             <span className="text-sm font-medium text-gray-700">General</span>
           </div>
           <div className="text-xl font-bold text-green-600">
-            {progress.completedRequirements.general}
+            {user.remainingRequirements.general}
           </div>
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>

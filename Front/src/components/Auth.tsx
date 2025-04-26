@@ -1,16 +1,10 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import axios from "axios";
-import { AuthState } from "../types";
+import { AuthState, User} from "../types";
 
 interface AuthResponse {
   status: string;
-  user: {
-    username?: string;
-    is_guest?: boolean;
-    department: string;
-    saved_courses?: string[];
-    progress?: Record<string, any>;
-  };
+  user: User
   message: string;
 }
 

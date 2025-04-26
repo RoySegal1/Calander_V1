@@ -13,7 +13,8 @@ class Student(Base):
     password = Column(String, nullable=False)
     name = Column(String, nullable=False)
     department = Column(String)
-
+    gpa = Column(Float, nullable=True)
+    completedCredits = Column(Float, nullable=True)
     courses = relationship("StudentCourse", back_populates="student", cascade="all, delete")
 
 
@@ -25,7 +26,6 @@ class StudentCourse(Base):
     group_code = Column(String, primary_key=True)
     lecture_type = Column(Integer, nullable=False)
     grade = Column(Float, nullable=True)
-
     student = relationship("Student", back_populates="courses")
 
     __table_args__ = (
