@@ -1,4 +1,4 @@
-export type CourseType = "קורסי חובה שנה א" | 'קורסי בחירה' | 'קורסי חובה לימודי אנגלית' | 'קורסי חובה שנה ג' | 'סמינר חובה' | "קורסי חובה שנה ב" | 'קורסי יחידה ללימודי חברה ורוח' | 'קורסי בחירה נוספים';
+export type CourseType = string;
 export type LectureType =  1 | 0; // 1 for practice 0 for lecture
 
 export interface CourseGroup {
@@ -26,6 +26,7 @@ export interface User {
   id: string;
   username: string;
   department: string;
+  saved_courses?: string[];
   completedCourses: {
     courseId: string;
     grade: number;
@@ -45,13 +46,7 @@ export interface User {
 }
 
 export interface AuthState {
-  user: {
-    username?: string;
-    is_guest?: boolean;
-    department?: string;
-    saved_courses?: string[];
-    progress?: Record<string, any>;
-  } | null;
+  user: User | null;
   isGuest: boolean;
   isAuthenticated: boolean;
 }

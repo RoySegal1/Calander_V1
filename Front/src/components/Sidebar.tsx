@@ -59,27 +59,6 @@ export default function Sidebar({
     return colorMap;
   }, [selectedCourses]);
 
-  // Helper function to get course background color
-  const getCourseBgColor = (courseCode: string) => {
-    if (selectedCourses.includes(courseCode)) {
-      const colorObj = courseColors.get(courseCode);
-      // If course is selected, use its designated color
-      return colorObj ? colorObj.bgLight : 'bg-indigo-50';
-    }
-    // Default background for non-selected courses
-    return '';
-  };
-
-  // Helper function to get course border color
-  const getCourseBorderColor = (courseCode: string) => {
-    if (selectedCourses.includes(courseCode)) {
-      const colorObj = courseColors.get(courseCode);
-      // If course is selected, use its designated color for border
-      return colorObj ? `border-2 border-[${colorObj.text}]` : 'border border-indigo-300';
-    }
-    // Default border for non-selected courses
-    return 'border border-transparent';
-  };
 
   return (
     <div className="w-full bg-white border-r border-gray-200 flex flex-col h-screen max-w-xs">
