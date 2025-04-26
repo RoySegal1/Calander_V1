@@ -125,7 +125,7 @@ def save_user(user: dict):
     ,this func is in charge of safety and uniqueness (check if user already exists) of user info - name & password
      OR  BEFORE ALL IN VALIDATIN.TSX ??
     """
-    # Check if user already exists
+    # Check if user already exists  # allow name duplicates? better password - PK # if exists login ?
     if check_user_exists(user['username']):
         return {"success": False, "error": "Username already exists"}
 
