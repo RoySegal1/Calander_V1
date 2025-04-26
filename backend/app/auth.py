@@ -28,12 +28,8 @@ class LoginRequest(BaseModel):
     password: str
 
 
-class User(BaseModel):
-    username: str
-    password: str  # In a real app, this should be hashed
-    department: Optional[str] = "מדעי המחשב"  # Default department
-    saved_courses: Optional[list] = []    # ?
-    progress: Optional[dict] = {}         # ?
+class SignupRequest(LoginRequest):
+    department: str
 
 
 @router.get("/guest")
@@ -107,15 +103,13 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 
 
 @router.post("/signup")
-def signup(user: User):
+def signup(data: SignupRequest):
+    # Create new user object with just the necessary fields
 
- # Create new user object
     new_user = {
-        "username": user.username,
-        "password": user.password,  # Hashing recommended in production
-        "department": user.department,
-        "saved_courses": [],
-        "progress": {}
+        "username": data.username,
+        "password": data.password,
+        "department": data.department,
     }
 
     # Save user and run the WebScraperStudent script
@@ -124,26 +118,20 @@ def signup(user: User):
     if not save_result["success"]:
         # If script fails, tell user there was an issue
         return {
-            # HTTPException(status_code=401,
-            #               detail="There was an issue with your Afeka credentials. Please try again or enter as guest.")
-
             "status": "error",
             "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
         }
 
-    # If script succeeds, proceed with login #connect to what Eylon did
+    # If script succeeds, proceed with login
     try:
         # Create login request object
-        login_request = LoginRequest(username=user.username, password=user.password)
+        login_request = LoginRequest(username=data.username, password=data.password)
         login_result = login(login_request)
         return login_result
 
     except HTTPException as e:
         # If login fails for some reason
         return {
-            # HTTPException(status_code=401,
-            #               detail="Account created, but automatic login failed. Please log in manually.")
-
             "status": "partial",
             "message": "Account created, but automatic login failed. Please log in manually."
         }
@@ -153,10 +141,8 @@ def save_user(user: dict):
     """
     Save a single user's data by running WebScraperStudent script and saving to DB
     Returns success/failure status
-    ,this func is in charge of safety and uniqueness (check if user already exists) of user info - name & password
-     OR  BEFORE ALL IN VALIDATIN.TSX ??
     """
-    # Check if user already exists  # allow name duplicates? better password - PK # if exists login ?
+    # Check if user already exists
     if check_user_exists(user['username']):
         return {"success": False, "error": "Username already exists"}
 
@@ -189,8 +175,7 @@ def run_web_scraper(username, password):
     Run the WebScraperStudent script with user credentials and return the scraped data
     """
     try:
-
-        scraped_data = scrape_student_grades(username, password) ## MAYBE RUN ON ANOTHER THREAD
+        scraped_data = scrape_student_grades(username, password)
         scraped_data = clean_courses(scraped_data)
 
         # Return the Python object directly
@@ -201,17 +186,65 @@ def run_web_scraper(username, password):
 
 
 def clean_courses(scraped_data):
+    """
+    Clean the course data and calculate GPA and completed credits.
+    Only counts courses with grades of 60 or above for both GPA and completed credits.
+    """
     cleaned_courses = {}
+    total_grade_points = 0
+    total_credits = 0
+    completed_credits = 0
 
+    # First pass: clean the data and store in a dictionary
     for course_entry in scraped_data.get("Courses", []):
         for course_code, details in course_entry.items():
-            grade, credits = details
-            if credits.strip():  # Only keep entries with valid credits
-                # Always overwrite to ensure the last one is kept
+            grade_str, credits_str = details
+
+            # Only keep entries with valid credits
+            if credits_str and credits_str.strip():
+                # Always overwrite to ensure the latest attempt is kept
                 cleaned_courses[course_code] = details
+
+    # Second pass: calculate GPA and credits based on cleaned data
+    for course_code, details in cleaned_courses.items():
+        grade_str, credits_str = details
+
+        try:
+            credits = float(credits_str)
+
+            # Check if grade is valid and 60 or above
+            if grade_str != "N/A" and grade_str.strip():
+                try:
+                    grade = float(grade_str)
+                    if grade >= 60:  # Only count grades 60 or above
+                        total_grade_points += grade * credits
+                        completed_credits += credits
+                        total_credits += credits
+                    else:
+                        # Failed course - count in total but not in completed
+                        total_credits += credits
+                except ValueError:
+                    # Skip if grade can't be converted to float
+                    pass
+            else:
+                # No grade yet, still count in total credits
+                total_credits += credits
+
+        except ValueError:
+            # Skip if credits can't be converted to float
+            pass
+
+    # Calculate GPA only if there are completed credits
+    gpa = round(total_grade_points / completed_credits, 2) if completed_credits > 0 else 0
 
     # Convert back to the original format
     scraped_data["Courses"] = [{code: details} for code, details in cleaned_courses.items()]
+
+    # Add GPA and completed credits to scraped data
+    scraped_data["GPA"] = gpa
+    scraped_data["CompletedCredits"] = completed_credits
+    scraped_data["TotalCredits"] = total_credits
+
     return scraped_data
 
 
@@ -226,7 +259,9 @@ def save_user_to_db(user_data, scraped_data=None):
             username=user_data["username"],
             password=user_data["password"],  # Note: Should be hashed in production
             name=user_data.get("name", user_data["username"]),  # Default to username if name not provided
-            department=user_data.get("department")
+            department=user_data["department"],
+            gpa=scraped_data.get("GPA") if scraped_data else None,
+            completedCredits=scraped_data.get("CompletedCredits") if scraped_data else None
         )
 
         # Add student to session
@@ -266,4 +301,6 @@ def save_user_to_db(user_data, scraped_data=None):
 
     finally:
         db.close()
+
+
 
