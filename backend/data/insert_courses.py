@@ -1,10 +1,9 @@
 # backend/insert_courses.py
-
 import json
 import os
 from sqlalchemy.orm import Session
-from models import DepartmentCourses
-from db import SessionLocal, Base, engine
+from backend.app.models import DepartmentCourses
+from backend.app.db import SessionLocal, Base, engine
 
 
 def insert_department_course(json_path: str, department_name: str, is_general: bool = False):

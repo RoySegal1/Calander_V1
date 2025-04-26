@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 # Import our new auth router
-from .auth import router as auth_router
-from .coursesInfo import router as courses_info_router
+from backend.app.auth import router as auth_router
+from backend.app.coursesInfo import router as courses_info_router
 
 app = FastAPI()
 
