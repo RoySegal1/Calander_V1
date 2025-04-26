@@ -1,16 +1,25 @@
-from fastapi import APIRouter, HTTPException, Body
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
 import json
 from typing import Optional
 import os
-import importlib.util
 from sqlalchemy.exc import IntegrityError
 from backend.app.db import SessionLocal
-from backend.app.models import Student, StudentCourse
+from backend.app.models import Student, StudentCourse, DepartmentCourses
 from backend.scripts.WebScraperStudent import scrape_student_grades
 
 
 router = APIRouter()
+
+
+# Dependency to get DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 # Define models for request data
@@ -23,57 +32,80 @@ class SignupRequest(LoginRequest):
     department: str
 
 
-# Path to users database file
-USER_INFO_DIR = os.path.join("backend", "data", "userInfo")
-
-
 @router.get("/guest")
 def guest_login():
-    """Guest login with limited permissions"""
-    return {
-        "status": "success",
-        "user": {
-            "is_guest": True,
-            "department": "מדעי המחשב",  # Default department
-        },
-        "message": "Logged in as guest. Some features are limited."
-    }
-
-
-def load_user(username: str):
-    """Load a specific user file"""
-    filename = f"{username}.json"
-    user_path = os.path.join(USER_INFO_DIR, filename)
-
-    try:
-        with open(user_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return None
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=500, detail="Corrupted user data")
+     """Guest login with limited permissions"""
+     return {
+         "status": "success",
+         "user": {
+             "is_guest": True,
+             "department": "מדעי המחשב",  # Default department
+         },
+         "message": "Logged in as guest. Some features are limited."
+     }
 
 
 @router.post("/login")
-def login(data: LoginRequest):
-    user = load_user(data.username)
+def login(data: LoginRequest, db: Session = Depends(get_db)):
+     # Step 1: Authenticate user
+    student = db.query(Student).filter(Student.username == data.username).first()
 
-    if user is None or user.get("UserName") != data.username:
+    if not student or student.password != data.password:
         raise HTTPException(status_code=401, detail="Invalid username or password")
+    
+    # Step 2: Fetch student courses
+    student_courses = db.query(StudentCourse).filter_by(student_id=student.id).all()
 
-    # Remove password before returning user data
-    user_data = {k: v for k, v in user.items() if k != "password"}
+    # Step 3: Fetch department course data (from department_courses table)
+    department_name = student.department
+    department_data = db.query(DepartmentCourses).filter_by(department_name=department_name).first()
+    general_data = db.query(DepartmentCourses).filter_by(is_general=True).all()
+
+    all_data_json = []
+    if department_data:
+        all_data_json.extend(department_data.data)
+    for gen in general_data:
+        all_data_json.extend(gen.data)
+
+    # Step 4: Find matching courses by group_code
+    def match_course(course_code):  # Search for course_code
+        for course in all_data_json:
+            if course.get("realCourseCode") == course_code:
+                return course
+        return None
+    
+    completed_courses = []
+    enrolled_courses = []
+
+    for sc in student_courses:
+            matched = match_course(sc.group_code)
+            if matched:
+                matched["grade"] = sc.grade
+                if sc.grade is not None:
+                    completed_courses.append(matched)
+                else:
+                    enrolled_courses.append(matched)
 
     return {
         "status": "success",
-        "user": user_data,
-        "message": f"Welcome back, {data.username}!"
+        "user": {
+            "id": student.id,
+            "username": student.username,
+            "name": student.name,
+            "department": student.department,
+            "completed_courses": completed_courses,
+            "enrolled_courses": enrolled_courses,
+            "gpa": student.gpa,
+            "completedCredits": student.completedCredits
+        },
+        "message": f"Welcome back, {student.name}!"
     }
 
 
 @router.post("/signup")
 def signup(data: SignupRequest):
     # Create new user object with just the necessary fields
+
     new_user = {
         "username": data.username,
         "password": data.password,
@@ -214,7 +246,6 @@ def clean_courses(scraped_data):
     scraped_data["TotalCredits"] = total_credits
 
     return scraped_data
-
 
 
 def save_user_to_db(user_data, scraped_data=None):
