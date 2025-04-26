@@ -36,6 +36,19 @@ class User(BaseModel):
     progress: Optional[dict] = {}         # ?
 
 
+@router.get("/guest")
+def guest_login():
+     """Guest login with limited permissions"""
+     return {
+         "status": "success",
+         "user": {
+             "is_guest": True,
+             "department": "מדעי המחשב",  # Default department
+         },
+         "message": "Logged in as guest. Some features are limited."
+     }
+
+
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
      # Step 1: Authenticate user
