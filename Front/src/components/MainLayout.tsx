@@ -276,7 +276,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
         const backendDept = frontendToBackendMap[filters.department];
         const response = await axios.get<Course[]>(
-          `http://localhost:8000/courses?department=${backendDept}&generalcourses=true`
+          `http://localhost:8000/courses?department=${backendDept}&generalcourses=false`
 
         );
 
@@ -402,23 +402,40 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   };
 
   const addGroupToCourse = (group: CourseGroup, courseId: string) => {
+    // Find all related groups (e.g., groups with IDs like "12345" and "12345_2")
+    const relatedGroups = allCourses
+      .find(course => course.courseCode === courseId)
+      ?.groups.filter(g => g.lectureType === group.lectureType) || [];
+  
+    // Combine the selected group with its related groups
+    const groupsToAdd = relatedGroups.filter(g => 
+      g.groupCode.startsWith(group.groupCode.split('_')[0])
+    );
+  
     const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
-
+  
     const isDuplicateType = courseGroups?.groups.some(g => g.lectureType === group.lectureType);
-
+  
     if (isDuplicateType) {
       setSelectedGroups(selectedGroups.map(sg =>
-        sg.courseId === courseId ? {
-          ...sg,
-          groups: [...sg.groups.filter(g => g.lectureType !== group.lectureType), group]
-        } : sg
+        sg.courseId === courseId
+          ? {
+              ...sg,
+              groups: [
+                ...sg.groups.filter(g => g.lectureType !== group.lectureType),
+                ...groupsToAdd,
+              ],
+            }
+          : sg
       ));
     } else if (courseGroups) {
       setSelectedGroups(selectedGroups.map(sg =>
-        sg.courseId === courseId ? { ...sg, groups: [...sg.groups, group] } : sg
+        sg.courseId === courseId
+          ? { ...sg, groups: [...sg.groups, ...groupsToAdd] }
+          : sg
       ));
     } else {
-      setSelectedGroups([...selectedGroups, { courseId, groups: [group] }]);
+      setSelectedGroups([...selectedGroups, { courseId, groups: groupsToAdd }]);
     }
   };
   const uniqueCourseTypes = useMemo(() => {
