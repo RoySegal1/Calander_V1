@@ -13,7 +13,7 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
     <div className="bg-white rounded-lg shadow-lg p-6 space-y-6">
       <div className="flex items-center gap-2 mb-4">
         <GraduationCap size={24} className="text-indigo-600" />
-        <h2 className="text-xl font-semibold text-gray-800">Academic Progress</h2>
+        <h2 className="text-xl font-semibold text-gray-800">Academic Progress For {user.name}</h2>
       </div>
 
       {/* Credits Progress */}
@@ -54,16 +54,16 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
           <div className="text-xs text-gray-500">Credits Completed</div>
         </div>
 
-        <div className="p-4 bg-blue-50 rounded-lg">
-          <div className="flex items-center gap-2 mb-2">
-            <BookOpen size={16} className="text-blue-600" />
-            <span className="text-sm font-medium text-gray-700">English</span>
-          </div>
-          <div className="text-xl font-bold text-blue-600">
-            {user.remainingRequirements?.english}
-          </div>
-          <div className="text-xs text-gray-500">Credits Completed</div>
-        </div>
+        {/*<div className="p-4 bg-blue-50 rounded-lg">*/}
+        {/*  <div className="flex items-center gap-2 mb-2">*/}
+        {/*    <BookOpen size={16} className="text-blue-600" />*/}
+        {/*    <span className="text-sm font-medium text-gray-700">English</span>*/}
+        {/*  </div>*/}
+        {/*  <div className="text-xl font-bold text-blue-600">*/}
+        {/*    {user.remainingRequirements?.english}*/}
+        {/*  </div>*/}
+        {/*  <div className="text-xs text-gray-500">Credits Completed</div>*/}
+        {/*</div>*/}
 
         <div className="p-4 bg-yellow-50 rounded-lg">
           <div className="flex items-center gap-2 mb-2">

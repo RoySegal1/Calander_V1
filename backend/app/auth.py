@@ -68,7 +68,9 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
     # Step 4: Find matching courses by group_code
     completed_courses = []
     enrolled_courses = []
-
+    credits_mandatory = 0
+    credits_elective = 0
+    credits_general = 0
     for sc in student_courses:
             matched = match_course(sc.course_code, all_data_json)
 
@@ -76,6 +78,12 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
                 matched["grade"] = sc.grade
                 if sc.grade is not None:
                     completed_courses.append(matched)
+                    if 'בחירה' in matched["courseType"]:
+                        credits_elective += float(matched["courseCredit"])
+                    if 'חובה' in matched["courseType"]:
+                        credits_mandatory += float(matched["courseCredit"])
+                    if 'רוח' in matched["courseType"]:
+                        credits_general += float(matched["courseCredit"])
                 else:
                     enrolled_courses.append(matched)
 
@@ -92,7 +100,12 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
             "credits": {
                 "completed": student.completedCredits,
                 "required": DEPARTMENT_CREDITS[student.department]
-                }
+                },
+            "remainingRequirements": {
+                "general": credits_general,
+                "elective": credits_elective,
+                "mandatory": credits_mandatory
+            }
 
         },
         "message": f"Welcome back, {student.name}!"
@@ -102,8 +115,11 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 def match_course(course_code, all_data):  # Search for course_code
     for course in all_data:
         if course.get("realCourseCode") == course_code:
-            return course
+            course_without_groups = course.copy()
+            course_without_groups.pop("groups", None)  # Remove 'groups' if it exists
+            return course_without_groups
     return None
+
 
 @router.post("/signup")
 def signup(data: SignupRequest):

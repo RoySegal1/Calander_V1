@@ -25,6 +25,7 @@ export interface Course {
 export interface User {
   id: string;
   username: string;
+  name: string;
   department: string;
   saved_courses?: string[];
   completedCourses: {
@@ -38,7 +39,6 @@ export interface User {
   };
   gpa: number;
   remainingRequirements: {
-    english: number;
     general: number;
     elective: number;
     mandatory: number;
