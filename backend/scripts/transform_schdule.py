@@ -41,8 +41,8 @@ def transform_schedule1(input_file, output_file, department):
             courses_dict[course_key] = {
                 "courseType": clean_course_subject(entry["Course Subject"]),
                 "courseName": entry["Course Name"],
-                "realCourseCode": unique_course_code,
-                "courseCode": entry["Course Code"],
+                "realCourseCode": entry["Course Code"],
+                "courseCode": unique_course_code,
                 "semester": entry["Semester"],
                 "department": department,
                 "courseCredit": entry["Course Credit"],
