@@ -208,13 +208,12 @@ export default function WeeklySchedule({
     // Set colors based on course, type, and selection state
 
     const isHovered = hoveredGroup === group.groupCode;
-    const textColor = (isSelected || (isHovered && count>1)) ? 'white' : courseColor.text;
-    const bgColor = (isSelected || (isHovered && count>1))
+    const textColor = isSelected ? 'white' : courseColor.text;
+    const bgColor = isSelected
       ? isLecture 
         ? courseColor.bg.replace('1)', `${bgOpacity})`) // Darker for lecture
         : courseColor.bg.replace('1)', `${bgOpacity})`) // Slightly lighter for practice
       : courseColor.bgLight; // Even lighter for unselected
-    
     
     return {
       position: 'absolute' as const,
@@ -234,7 +233,7 @@ export default function WeeklySchedule({
       border: isHovered 
         ? `2px solid ${courseColor.text}` 
         : '1px solid transparent',
-      boxShadow: isSelected ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none',
+      boxShadow: (isSelected || isHovered) ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none',
       // Add a subtle pattern for practice sessions
       backgroundImage: !isLecture ? 'repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.1) 5px, rgba(255,255,255,0.1) 10px)' : 'none',
     };
