@@ -177,7 +177,7 @@ export default function WeeklySchedule({
   const getGroupStyle = (course: Course, group: CourseGroup, isSelected: boolean) => {
     const startMinutes = parseTimeToMinutes(group.startTime) - 8 * 60; // Offset by 8 hours (schedule start)
     const endMinutes = parseTimeToMinutes(group.endTime) - 8 * 60;
-    const height = endMinutes - startMinutes;
+    let height = endMinutes - startMinutes;
 
     // Find all groups that overlap with this one at the same time
     const overlappingGroups = getOverlappingGroups(group.dayOfWeek, group);
@@ -208,13 +208,14 @@ export default function WeeklySchedule({
     // Set colors based on course, type, and selection state
 
     const isHovered = hoveredGroup === group.groupCode;
-    const textColor = isSelected ? 'white' : courseColor.text;
-    const bgColor = isSelected
+    const textColor =  ( (isHovered && count>1) || isSelected) ? 'white' : courseColor.text;
+    const bgColor = ( (isHovered && count>1) || isSelected)
       ? isLecture 
         ? courseColor.bg.replace('1)', `${bgOpacity})`) // Darker for lecture
         : courseColor.bg.replace('1)', `${bgOpacity})`) // Slightly lighter for practice
       : courseColor.bgLight; // Even lighter for unselected
-    
+    if(height == 50 && isHovered)
+        height = 100;
     return {
       position: 'absolute' as const,
       top: `${startMinutes}px`,

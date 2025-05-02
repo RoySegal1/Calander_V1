@@ -3,6 +3,7 @@ import { User } from '../types';
 
 export const mockUser: User = {
   id: '1',
+  name: "Roy",
   username: 'student1',
   department: 'Computer Science',
   completedCourses: [
@@ -14,10 +15,9 @@ export const mockUser: User = {
     required: 120,
   },
   gpa: 85,
-  completedRequirements: { // change to completed credits
-    english: 2,
-    general: 4,
-    elective: 6,
-    mandatory: 8,
-  },
+  remainingRequirements: {
+    general: 2,
+    elective: 3,
+    mandatory: 5
+  }
 };

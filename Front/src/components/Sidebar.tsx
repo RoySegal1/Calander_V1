@@ -1,8 +1,6 @@
 // Sidebar.tsx modifications
 import { Course } from '../types';
 import { Filter, BookOpen } from 'lucide-react';
-// Add useMemo to import
-import { useMemo } from 'react';
 
 
 interface SidebarProps {
@@ -30,34 +28,10 @@ export default function Sidebar({
   selectedCourses,
   onCourseSelect,
   filters,
+    courseColors,
   onFilterChange,
   uniqueCourseTypes,
 }: SidebarProps) {
-  
-  // Define the same color mapping as in WeeklySchedule
-  const courseColors = useMemo(() => {
-    // Base colors for different courses - same as in WeeklySchedule
-    const baseColors = [
-      { name: 'indigo', bg: 'rgba(79, 70, 229, 1)', bgLight: 'rgba(79, 70, 229, 0.2)', text: 'rgb(79, 70, 229)' },
-      { name: 'amber', bg: 'rgba(245, 158, 11, 1)', bgLight: 'rgba(245, 158, 11, 0.2)', text: 'rgb(245, 158, 11)' },
-      { name: 'rose', bg: 'rgba(225, 29, 72, 1)', bgLight: 'rgba(225, 29, 72, 0.2)', text: 'rgb(225, 29, 72)' },
-      { name: 'emerald', bg: 'rgba(16, 185, 129, 1)', bgLight: 'rgba(16, 185, 129, 0.2)', text: 'rgb(16, 185, 129)' },
-      { name: 'violet', bg: 'rgba(139, 92, 246, 1)', bgLight: 'rgba(139, 92, 246, 0.2)', text: 'rgb(139, 92, 246)' },
-      { name: 'cyan', bg: 'rgba(6, 182, 212, 1)', bgLight: 'rgba(6, 182, 212, 0.2)', text: 'rgb(6, 182, 212)' },
-      { name: 'fuchsia', bg: 'rgba(192, 38, 211, 1)', bgLight: 'rgba(192, 38, 211, 0.2)', text: 'rgb(192, 38, 211)' },
-      { name: 'lime', bg: 'rgba(132, 204, 22, 1)', bgLight: 'rgba(132, 204, 22, 0.2)', text: 'rgb(132, 204, 22)' },
-      { name: 'sky', bg: 'rgba(14, 165, 233, 1)', bgLight: 'rgba(14, 165, 233, 0.2)', text: 'rgb(14, 165, 233)' },
-      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
-    ];
-    
-    // Assign a color to each course
-    const colorMap = new Map<string, typeof baseColors[0]>();
-    selectedCourses.forEach((courseId, index) => {
-      colorMap.set(courseId, baseColors[index % baseColors.length]);
-    });
-    
-    return colorMap;
-  }, [selectedCourses]);
 
 
   return (
