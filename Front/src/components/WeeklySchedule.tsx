@@ -1,6 +1,6 @@
 
 import { Course, CourseGroup } from '../types';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 
 interface WeeklyScheduleProps {
   selectedCourses: Course[];
@@ -20,7 +20,7 @@ export default function WeeklySchedule({
   selectedCourses,
   selectedGroups,
   onGroupSelect,
-  courseColors: propsCourseColors, // Renamed to avoid confusion
+    courseColors,
   onClearSchedule,
   onScheduleChosen, 
 }: WeeklyScheduleProps) {
@@ -30,30 +30,6 @@ export default function WeeklySchedule({
   // State for toggling visibility of unselected courses
   const [showSelectedOnly, setShowSelectedOnly] = useState<boolean>(false);
 
-  // Define a set of distinct colors for courses
-  const courseColors = useMemo(() => {
-    // Base colors for different courses
-    const baseColors = [
-      { name: 'indigo', bg: 'rgba(79, 70, 229, 1)', bgLight: 'rgba(79, 70, 229, 0.2)', text: 'rgb(79, 70, 229)' },
-      { name: 'amber', bg: 'rgba(245, 158, 11, 1)', bgLight: 'rgba(245, 158, 11, 0.2)', text: 'rgb(245, 158, 11)' },
-      { name: 'rose', bg: 'rgba(225, 29, 72, 1)', bgLight: 'rgba(225, 29, 72, 0.2)', text: 'rgb(225, 29, 72)' },
-      { name: 'emerald', bg: 'rgba(16, 185, 129, 1)', bgLight: 'rgba(16, 185, 129, 0.2)', text: 'rgb(16, 185, 129)' },
-      { name: 'violet', bg: 'rgba(139, 92, 246, 1)', bgLight: 'rgba(139, 92, 246, 0.2)', text: 'rgb(139, 92, 246)' },
-      { name: 'cyan', bg: 'rgba(6, 182, 212, 1)', bgLight: 'rgba(6, 182, 212, 0.2)', text: 'rgb(6, 182, 212)' },
-      { name: 'fuchsia', bg: 'rgba(192, 38, 211, 1)', bgLight: 'rgba(192, 38, 211, 0.2)', text: 'rgb(192, 38, 211)' },
-      { name: 'lime', bg: 'rgba(132, 204, 22, 1)', bgLight: 'rgba(132, 204, 22, 0.2)', text: 'rgb(132, 204, 22)' },
-      { name: 'sky', bg: 'rgba(14, 165, 233, 1)', bgLight: 'rgba(14, 165, 233, 0.2)', text: 'rgb(14, 165, 233)' },
-      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
-    ];
-    
-    // Assign a color to each course
-    const colorMap = new Map<string, typeof baseColors[0]>();
-    selectedCourses.forEach((course, index) => {
-      colorMap.set(course.courseCode, baseColors[index % baseColors.length]);
-    });
-    
-    return colorMap;
-  }, [selectedCourses]);
 
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
 
@@ -230,19 +206,20 @@ export default function WeeklySchedule({
     const bgOpacity = isLecture ? 0.9 : 0.7;
     
     // Set colors based on course, type, and selection state
+
+    const isHovered = hoveredGroup === group.groupCode;
+    const textColor = isSelected ? 'white' : courseColor.text;
     const bgColor = isSelected
       ? isLecture 
         ? courseColor.bg.replace('1)', `${bgOpacity})`) // Darker for lecture
         : courseColor.bg.replace('1)', `${bgOpacity})`) // Slightly lighter for practice
       : courseColor.bgLight; // Even lighter for unselected
     
-    const textColor = isSelected ? 'white' : courseColor.text;
-    
     return {
       position: 'absolute' as const,
       top: `${startMinutes}px`,
       height: `${height}px`,
-      width,
+      width: isHovered ? '95%' : width,
       left,
       backgroundColor: bgColor,
       borderRadius: '0.5rem',
@@ -252,11 +229,11 @@ export default function WeeklySchedule({
       overflow: 'hidden',
       transition: 'all 0.2s ease-in-out',
       cursor: 'pointer',
-      zIndex: hoveredGroup === group.groupCode ? 30 : (isSelected ? 20 : 10),
-      border: hoveredGroup === group.groupCode 
+      zIndex: isHovered ? 30 : (isSelected ? 20 : 10),
+      border: isHovered 
         ? `2px solid ${courseColor.text}` 
         : '1px solid transparent',
-      boxShadow: isSelected ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none',
+      boxShadow: (isSelected || isHovered) ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none',
       // Add a subtle pattern for practice sessions
       backgroundImage: !isLecture ? 'repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.1) 5px, rgba(255,255,255,0.1) 10px)' : 'none',
     };

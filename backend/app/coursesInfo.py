@@ -42,55 +42,29 @@
 
 
 
-## FROM DB
-from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
-from .db import SessionLocal
-from .models import DepartmentCourses
-import json
-from typing import Dict
-
+## FROM CACHE
+from fastapi import APIRouter, HTTPException
+from backend.app.cache import global_courses_cache
 # Initialize the APIRouter for courses info
 router = APIRouter()
 
-# In-memory cache dictionary to store course data (you can adjust it based on department and other params)
-courses_cache: Dict[str, str] = {}
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# # In-memory cache dictionary to store course data (you can adjust it based on department and other params)
+# courses_cache: Dict[str, str] = {}
 
 
 @router.get("")
-def get_courses(department: str, generalcourses: bool = True, db: Session = Depends(get_db)):
-    # Check if the data is cached
-    cache_key = f"courses_{department}_{generalcourses}"
-
-    # If data exists in cache, return it
-    if cache_key in courses_cache:
-        cached_data = courses_cache[cache_key]
-        return json.loads(cached_data)  # Return the cached data
-
-    # Get the main department
-    dept_entry = db.query(DepartmentCourses).filter_by(department_name=department).first()
-    if not dept_entry:
+def get_courses(department: str, generalcourses: bool = True):
+    # Validate department in cache
+    if department not in global_courses_cache:
         raise HTTPException(status_code=404, detail="Department not found")
 
-    all_courses = list(dept_entry.data)  # Make a copy
+    # Copy department courses
+    combined_courses = list(global_courses_cache[department])  # shallow copy
 
+    # Optionally add "כללי" and "אנגלית"
     if generalcourses:
-        # Add general departments: אנגלית and כללי
-        for general_dept in ["אנגלית", "כללי"]:
-            general_entry = db.query(DepartmentCourses).filter_by(department_name=general_dept).first()
-            if general_entry:
-                all_courses.extend(general_entry.data)
+        for gen_dept in ["אנגלית", "כללי"]:
+            if gen_dept in global_courses_cache:
+                combined_courses.extend(global_courses_cache[gen_dept])
 
-    # Cache the response data for the given department and generalcourses flag
-    courses_cache[cache_key] = json.dumps(all_courses)
-
-    return all_courses
-
+    return combined_courses

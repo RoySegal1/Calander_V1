@@ -350,20 +350,21 @@ def main():
     transform_schedule(raw_path, transformed_path, selected_program_name)
 
     # If specialization, append to base
-    if selected_specialization_code:
-        base_path = os.path.join("transformed_data", f"courses_{selected_program_code}_base.json")
-        final_path = os.path.join("combined_data", f"courses_{selected_program_code}_final.json")
+    final_path = os.path.join("combined_data", f"courses_{selected_program_code}_final.json")
 
-        # Load base + specialization
-        with open(base_path, "r", encoding="utf-8") as f:
-            base_courses = json.load(f)
-        with open(transformed_path, "r", encoding="utf-8") as f:
-            spec_courses = json.load(f)
+    with open(transformed_path, "r", encoding="utf-8") as f:
+        spec_courses = json.load(f)
 
-        # Combine and save
-        combined_courses = base_courses + spec_courses
-        with open(final_path, "w", encoding="utf-8") as f:
-            json.dump(combined_courses, f, indent=4, ensure_ascii=False)
+    if os.path.exists(final_path):
+        with open(final_path, "r", encoding="utf-8") as f:
+            existing_courses = json.load(f)
+    else:
+        existing_courses = []
+
+    # Combine previously saved courses with the new ones
+    combined_courses = existing_courses + spec_courses
+    with open(final_path, "w", encoding="utf-8") as f:
+        json.dump(combined_courses, f, indent=4, ensure_ascii=False)
 
     print("Scraping Ran Successfully")
 
