@@ -395,9 +395,8 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
             <div className="bg-white p-6 rounded-lg max-w-md w-full">
               <h3 className="text-lg font-medium text-gray-900 mb-3">Sign Up Information</h3>
               <p className="text-gray-600 mb-6">
-                Enter Your Afeka Username & Password. By signing up, you agree to provide your information. Your data will be securely stored in our system.
-                 Enter Your Afeka Username & Password. By signing up, you agree to provide your information. Your data will be securely stored in our system.
-                {/* Add your specific signup information here */}
+                Enter Your Afeka Username & Password and authorize it. By signing up, you agree to provide your information. Your data will be securely stored in our system.
+                                {/* Add your specific signup information here */}
               </p>
               <div className="flex justify-end space-x-3">
                 <button

@@ -122,9 +122,8 @@ def match_course(course_code, all_data):  # Search for course_code
 
 
 @router.post("/signup")
-def signup(data: SignupRequest):
+def signup(data: SignupRequest, db: Session = Depends(get_db)):
     # Create new user object with just the necessary fields
-
     new_user = {
         "username": data.username,
         "password": data.password,
@@ -145,7 +144,7 @@ def signup(data: SignupRequest):
     try:
         # Create login request object
         login_request = LoginRequest(username=data.username, password=data.password)
-        login_result = login(login_request)
+        login_result = login(login_request, db)  # Pass the db session here
         return login_result
 
     except HTTPException as e:
@@ -154,6 +153,40 @@ def signup(data: SignupRequest):
             "status": "partial",
             "message": "Account created, but automatic login failed. Please log in manually."
         }
+
+# @router.post("/signup")
+# def signup(data: SignupRequest):
+#     # Create new user object with just the necessary fields
+#
+#     new_user = {
+#         "username": data.username,
+#         "password": data.password,
+#         "department": data.department,
+#     }
+#
+#     # Save user and run the WebScraperStudent script
+#     save_result = save_user(new_user)
+#
+#     if not save_result["success"]:
+#         # If script fails, tell user there was an issue
+#         return {
+#             "status": "error",
+#             "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
+#         }
+#
+#     # If script succeeds, proceed with login
+#     try:
+#         # Create login request object
+#         login_request = LoginRequest(username=data.username, password=data.password)
+#         login_result = login(login_request)
+#         return login_result
+#
+#     except HTTPException as e:
+#         # If login fails for some reason
+#         return {
+#             "status": "partial",
+#             "message": "Account created, but automatic login failed. Please log in manually."
+#         }
 
 
 def save_user(user: dict):
