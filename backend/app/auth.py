@@ -273,7 +273,7 @@ def save_user_to_db(user_data, scraped_data=None):
         new_student = Student(
             username=user_data["username"],
             password=user_data["password"],  # Note: Should be hashed in production
-            name=user_data.get("name", user_data["username"]),  # Default to username if name not provided
+            name=user_data.get("name", user_data["username"].split(".")[0]),  # name till dot
             department=user_data["department"],
             gpa=scraped_data.get("GPA") if scraped_data else None,
             completedCredits=scraped_data.get("CompletedCredits") if scraped_data else None
@@ -295,8 +295,10 @@ def save_user_to_db(user_data, scraped_data=None):
                         student_id=new_student.id,
                         course_code=course_code,
                         group_code=f"AUTO-{course_code}",  # Generate a default group code
-                        lecture_type=1,  # Default lecture type
-                        grade=grade
+                        lecture_type=1,  # Default lecture type. TODO: fix or cut group_code &  lecture_type
+                        grade=grade,
+                        credits=float(details[1])
+
                     )
                     db.add(new_course)
 

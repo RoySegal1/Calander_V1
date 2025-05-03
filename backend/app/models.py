@@ -26,6 +26,7 @@ class StudentCourse(Base):
     group_code = Column(String, primary_key=True)
     lecture_type = Column(Integer, nullable=False)
     grade = Column(Float, nullable=True)
+    credits = Column(Float, nullable=True)  # added course credits for courses that are no longer running
     student = relationship("Student", back_populates="courses")
 
     __table_args__ = (
