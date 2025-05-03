@@ -1,4 +1,3 @@
-
 import { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
 import { Course, CourseGroup, AuthState } from '../types';

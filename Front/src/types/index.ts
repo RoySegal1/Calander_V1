@@ -19,6 +19,7 @@ export interface Course {
   courseType : CourseType;
   department: string;
   prerequisites: string[];
+  prerequisitesAlt: string[];
   groups: CourseGroup[];
 }
 
@@ -32,10 +33,10 @@ export interface User {
     courseId: string;
     grade: number;
   }[];
-  enrolledCourses: string[];
   credits: {
     completed: number;
     required: number;
+    enrolled: number;
   };
   gpa: number;
   remainingRequirements: {
@@ -43,10 +44,50 @@ export interface User {
     elective: number;
     mandatory: number;
   };
+  enrolledCourses: {
+    courseName: string;
+    courseCredit: string;
+    courseType: string;
+    courseCode: string;
+    semester: string;
+  }[];
 }
+
+// API response type that matches the updated login function
+export interface ApiResponse {
+  status: string;
+  user: User;
+  message: string;
+}
+
 
 export interface AuthState {
   user: User | null;
   isGuest: boolean;
   isAuthenticated: boolean;
 }
+
+
+
+// export interface User {
+//   id: string;
+//   username: string;
+//   name: string;
+//   department: string;
+//   saved_courses?: string[];
+//   completedCourses: {
+//     courseId: string;
+//     grade: number;
+//   }[];
+//   enrolledCourses: string[];
+//   credits: {
+//     completed: number;
+//     required: number;
+//   };
+//   gpa: number;
+//   remainingRequirements: {
+//     general: number;
+//     elective: number;
+//     mandatory: number;
+//   };
+// }

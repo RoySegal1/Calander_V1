@@ -43,10 +43,72 @@ def guest_login():
          "message": "Logged in as guest. Some features are limited."
      }
 
+#
+# @router.post("/login")
+# def login(data: LoginRequest, db: Session = Depends(get_db)):
+#      # Step 1: Authenticate user
+#     if not validate_username(data.username):
+#         raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
+#
+#     student = db.query(Student).filter(Student.username == data.username).first()
+#
+#     if not student or student.password != data.password:
+#         raise HTTPException(status_code=401, detail="Invalid username or password")
+#
+#     # Step 2: Fetch student courses
+#     student_courses = db.query(StudentCourse).filter_by(student_id=student.id).all()
+#
+#     # Step 3: Fetch department course data (from coursesInfo.py)
+#     all_data_json = get_courses(student.department)
+#
+#     # Step 4: Find matching courses by group_code
+#     completed_courses = []
+#     enrolled_courses = []
+#     credits_mandatory = 0
+#     credits_elective = 0
+#     credits_general = 0
+#     for sc in student_courses:
+#         matched = match_course(sc.course_code, all_data_json)
+#         if matched:
+#             matched["grade"] = sc.grade
+#             if sc.grade is not None:
+#                 completed_courses.append(matched)
+#                 if 'בחירה' in matched["courseType"]:
+#                     credits_elective += float(matched["courseCredit"])
+#                 if 'חובה' in matched["courseType"]:
+#                     credits_mandatory += float(matched["courseCredit"])
+#                 if 'רוח' in matched["courseType"]:
+#                     credits_general += float(matched["courseCredit"])
+#             else:
+#                 enrolled_courses.append(matched)
+#
+#     return {
+#         "status": "success",
+#         "user": {
+#             "id": student.id,
+#             "username": student.username,
+#             "name": student.name,
+#             "department": student.department,
+#             "completed_courses": completed_courses,
+#             "enrolled_courses": enrolled_courses,
+#             "gpa": student.gpa,
+#             "credits": {
+#                 "completed": student.completedCredits,
+#                 "required": DEPARTMENT_CREDITS[student.department]
+#                 },
+#             "remainingRequirements": {
+#                 "general": credits_general,
+#                 "elective": credits_elective,
+#                 "mandatory": credits_mandatory
+#             }
+#
+#         },
+#         "message": f"Welcome back, {student.name}!"
+#     }
 
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
-     # Step 1: Authenticate user
+    # Step 1: Authenticate user
     if not validate_username(data.username):
         raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
 
@@ -54,7 +116,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 
     if not student or student.password != data.password:
         raise HTTPException(status_code=401, detail="Invalid username or password")
-    
+
     # Step 2: Fetch student courses
     student_courses = db.query(StudentCourse).filter_by(student_id=student.id).all()
 
@@ -67,45 +129,67 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
     credits_mandatory = 0
     credits_elective = 0
     credits_general = 0
+    enrolled_credits_total = 0
+
     for sc in student_courses:
         matched = match_course(sc.course_code, all_data_json)
         if matched:
-            matched["grade"] = sc.grade
+            course_credit = float(matched["courseCredit"]) if matched.get("courseCredit") else 0
+
             if sc.grade is not None:
-                completed_courses.append(matched)
+                # Completed course
+                completed_courses.append({
+                    "courseId":  matched.get("realCourseCode", "") or sc.course_code,
+                    "grade": sc.grade
+                })
+
+                # Add to appropriate category totals
                 if 'בחירה' in matched["courseType"]:
-                    credits_elective += float(matched["courseCredit"])
+                    credits_elective += course_credit
                 if 'חובה' in matched["courseType"]:
-                    credits_mandatory += float(matched["courseCredit"])
+                    credits_mandatory += course_credit
                 if 'רוח' in matched["courseType"]:
-                    credits_general += float(matched["courseCredit"])
+                    credits_general += course_credit
             else:
-                enrolled_courses.append(matched)
+                # Enrolled course
+                course_id = matched.get("courseCode", "") or matched.get("realCourseCode", "") or sc.course_code
+
+
+                # Store detailed info
+                enrolled_courses.append({
+                    "courseName": matched.get("courseName", "Unknown Course"),
+                    "courseCredit": course_credit,
+                    "courseType": matched.get("courseType", "Unknown"),
+                    "courseCode": course_id,
+                    "semester": matched.get("semester", "")
+                })
+
+                # Add to enrolled credits total
+                enrolled_credits_total += course_credit
 
     return {
         "status": "success",
         "user": {
-            "id": student.id,
+            "id": str(student.id),
             "username": student.username,
             "name": student.name,
             "department": student.department,
-            "completed_courses": completed_courses,
-            "enrolled_courses": enrolled_courses,
-            "gpa": student.gpa,
+            "completedCourses": completed_courses,
+            "enrolledCourses": enrolled_courses,
             "credits": {
                 "completed": student.completedCredits,
-                "required": DEPARTMENT_CREDITS[student.department]
-                },
+                "required": DEPARTMENT_CREDITS[student.department],
+                "enrolled": enrolled_credits_total
+            },
+            "gpa": student.gpa,
             "remainingRequirements": {
                 "general": credits_general,
                 "elective": credits_elective,
                 "mandatory": credits_mandatory
             }
-
         },
         "message": f"Welcome back, {student.name}!"
     }
-
 
 def match_course(course_code, all_data):  # Search for course_code
     for course in all_data:
