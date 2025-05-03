@@ -3,10 +3,11 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from backend.app.db import SessionLocal
-from backend.app.models import Student, StudentCourse, DepartmentCourses
+from backend.app.models import Student, StudentCourse
 from backend.scripts.WebScraperStudent import scrape_student_grades
-from backend.data.consts import  DEPARTMENT_CREDITS
-
+from backend.data.consts import DEPARTMENT_CREDITS, COURSES_FROM_DIFFERENT_YEARS
+from backend.utils.validation import validate_username
+from backend.app.coursesInfo import get_courses
 
 router = APIRouter()
 
@@ -46,6 +47,9 @@ def guest_login():
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
      # Step 1: Authenticate user
+    if not validate_username(data.username):
+        raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
+
     student = db.query(Student).filter(Student.username == data.username).first()
 
     if not student or student.password != data.password:
@@ -54,16 +58,8 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
     # Step 2: Fetch student courses
     student_courses = db.query(StudentCourse).filter_by(student_id=student.id).all()
 
-    # Step 3: Fetch department course data (from department_courses table)
-    department_name = student.department
-    department_data = db.query(DepartmentCourses).filter_by(department_name=department_name).first()
-    general_data = db.query(DepartmentCourses).filter_by(is_general=True).all()
-
-    all_data_json = []
-    if department_data:
-        all_data_json.extend(department_data.data)
-    for gen in general_data:
-        all_data_json.extend(gen.data)
+    # Step 3: Fetch department course data (from coursesInfo.py)
+    all_data_json = get_courses(student.department)
 
     # Step 4: Find matching courses by group_code
     completed_courses = []
@@ -72,20 +68,19 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
     credits_elective = 0
     credits_general = 0
     for sc in student_courses:
-            matched = match_course(sc.course_code, all_data_json)
-
-            if matched:
-                matched["grade"] = sc.grade
-                if sc.grade is not None:
-                    completed_courses.append(matched)
-                    if 'בחירה' in matched["courseType"]:
-                        credits_elective += float(matched["courseCredit"])
-                    if 'חובה' in matched["courseType"]:
-                        credits_mandatory += float(matched["courseCredit"])
-                    if 'רוח' in matched["courseType"]:
-                        credits_general += float(matched["courseCredit"])
-                else:
-                    enrolled_courses.append(matched)
+        matched = match_course(sc.course_code, all_data_json)
+        if matched:
+            matched["grade"] = sc.grade
+            if sc.grade is not None:
+                completed_courses.append(matched)
+                if 'בחירה' in matched["courseType"]:
+                    credits_elective += float(matched["courseCredit"])
+                if 'חובה' in matched["courseType"]:
+                    credits_mandatory += float(matched["courseCredit"])
+                if 'רוח' in matched["courseType"]:
+                    credits_general += float(matched["courseCredit"])
+            else:
+                enrolled_courses.append(matched)
 
     return {
         "status": "success",
@@ -118,6 +113,8 @@ def match_course(course_code, all_data):  # Search for course_code
             course_without_groups = course.copy()
             course_without_groups.pop("groups", None)  # Remove 'groups' if it exists
             return course_without_groups
+    if course_code in COURSES_FROM_DIFFERENT_YEARS:
+        return COURSES_FROM_DIFFERENT_YEARS[course_code]
     return None
 
 
@@ -153,40 +150,6 @@ def signup(data: SignupRequest, db: Session = Depends(get_db)):
             "status": "partial",
             "message": "Account created, but automatic login failed. Please log in manually."
         }
-
-# @router.post("/signup")
-# def signup(data: SignupRequest):
-#     # Create new user object with just the necessary fields
-#
-#     new_user = {
-#         "username": data.username,
-#         "password": data.password,
-#         "department": data.department,
-#     }
-#
-#     # Save user and run the WebScraperStudent script
-#     save_result = save_user(new_user)
-#
-#     if not save_result["success"]:
-#         # If script fails, tell user there was an issue
-#         return {
-#             "status": "error",
-#             "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
-#         }
-#
-#     # If script succeeds, proceed with login
-#     try:
-#         # Create login request object
-#         login_request = LoginRequest(username=data.username, password=data.password)
-#         login_result = login(login_request)
-#         return login_result
-#
-#     except HTTPException as e:
-#         # If login fails for some reason
-#         return {
-#             "status": "partial",
-#             "message": "Account created, but automatic login failed. Please log in manually."
-#         }
 
 
 def save_user(user: dict):
