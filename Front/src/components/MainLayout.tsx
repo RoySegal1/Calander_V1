@@ -238,7 +238,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
       <div className="flex-1 p-6 overflow-auto">
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-semibold text-gray-800">Weekly Schedule</h2>
+            <h2 className="text-2xl font-semibold text-gray-800">מערכת שבועית אפקה</h2>
             {auth.isAuthenticated && auth.user && (
               <div className="text-sm text-gray-600">
                 Logged in as: <span className="font-semibold">{auth.user.username}</span>
