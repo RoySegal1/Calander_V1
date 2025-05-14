@@ -83,7 +83,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   const courseColors = useMemo(() => {
     const baseColors = [
       { name: 'indigo', bg: 'rgba(79, 70, 229, 1)', bgLight: 'rgba(79, 70, 229, 0.2)', text: 'rgb(79, 70, 229)' },
-      { name: 'teal', bg: 'rgba(20, 184, 166, 1)', bgLight: 'rgba(20, 184, 166, 0.2)', text: 'rgb(20, 184, 166)' },
+      { name: 'blue', bg: 'rgba(37, 99, 235, 1)', bgLight: 'rgba(37, 99, 235, 0.2)', text: 'rgb(37, 99, 235)' }, // replaced teal
       { name: 'amber', bg: 'rgba(245, 158, 11, 1)', bgLight: 'rgba(245, 158, 11, 0.2)', text: 'rgb(245, 158, 11)' },
       { name: 'rose', bg: 'rgba(225, 29, 72, 1)', bgLight: 'rgba(225, 29, 72, 0.2)', text: 'rgb(225, 29, 72)' },
       { name: 'emerald', bg: 'rgba(16, 185, 129, 1)', bgLight: 'rgba(16, 185, 129, 0.2)', text: 'rgb(16, 185, 129)' },
@@ -224,54 +224,56 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     return Array.from(new Set(allCourses.map(course => course.courseType)));
   }, [allCourses]);
   return (
-    <div className="min-h-screen bg-gray-100 flex">
-      <Sidebar
-        courses={filteredCourses}
-        selectedCourses={selectedCourses}
-        onCourseSelect={handleCourseSelect}
-        filters={filters}
-        onFilterChange={setFilters}
-        courseColors={courseColors}
-        uniqueCourseTypes={uniqueCourseTypes} // Pass unique course types to Sidebar
-      />
-
-      <div className="flex-1 p-6 overflow-auto">
-        <div className="max-w-5xl mx-auto space-y-6">
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-semibold text-gray-800">מערכת שבועית אפקה</h2>
+    <div className="h-screen w-full flex flex-col md:flex-row overflow-hidden bg-gray-100">
+      {/* Main content - LEFT */}
+      <div className="flex-1 p-2 md:p-4 overflow-auto">
+        <div className="h-full flex flex-col">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 md:mb-4">
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-800 text-center w-full">
+            מערכת שבועית
+            </h2>
             {auth.isAuthenticated && auth.user && (
-              <div className="text-sm text-gray-600">
-                Logged in as: <span className="font-semibold">{auth.user.username}</span>
-                <button
-                  onClick={onLogout}
-                  className="ml-4 text-red-600 hover:text-red-800"
-                >
-                  Logout
-                </button>
+              <div className="text-sm text-gray-600 mt-2 sm:mt-0 flex items-center ">
+              <span className="italic whitespace-nowrap">Logged in as: {auth.user.username}</span>
+              <button onClick={onLogout} className="ml-4 text-red-600 hover:text-red-800">Logout</button>
               </div>
             )}
             {auth.isGuest && (
-              <div className="text-sm text-gray-600">
-                <span className="italic">Guest Mode</span>
+              <div className="text-sm text-gray-600 mt-2 sm:mt-0 flex items-center">
+                <span className="italic whitespace-nowrap">Guest Mode</span>
               </div>
             )}
           </div>
-
-          <WeeklySchedule
-            selectedCourses={selectedCourseObjects}
-            selectedGroups={selectedGroups}
-            onGroupSelect={handleGroupSelect}
-            courseColors={courseColors}
-            onClearSchedule={handleClearSchedule}
-            onScheduleChosen={handleScheduleChosen}
-          />
-
-          {/* Only show ProgressTracker for non-guest users */}
+  
+          <div className="flex-grow">
+            <WeeklySchedule
+              selectedCourses={selectedCourseObjects}
+              selectedGroups={selectedGroups}
+              onGroupSelect={handleGroupSelect}
+              courseColors={courseColors}
+              onClearSchedule={handleClearSchedule}
+              onScheduleChosen={handleScheduleChosen}
+            />
+          </div>
+  
           {auth.isAuthenticated && auth.user && !auth.isGuest && (
-            <ProgressTracker user={auth.user} />
+            <div className="mt-4 p-4 bg-white rounded-lg shadow-md">
+              <ProgressTracker user={auth.user} />
+            </div>
           )}
         </div>
       </div>
-    </div>
+  
+      {/* Sidebar - RIGHT */}
+        <Sidebar
+          courses={filteredCourses}
+          selectedCourses={selectedCourses}
+          onCourseSelect={handleCourseSelect}
+          filters={filters}
+          onFilterChange={setFilters}
+          courseColors={courseColors}
+          uniqueCourseTypes={uniqueCourseTypes}
+        />
+      </div>
   );
 }
