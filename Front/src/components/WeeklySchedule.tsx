@@ -12,6 +12,7 @@ interface WeeklyScheduleProps {
   courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
   onClearSchedule?: () => void;
   onScheduleChosen?: () => void; 
+  handleImportSchedule: (schedule: string) => void; // Optional prop for importing schedule
 }
 
 
@@ -23,6 +24,7 @@ export default function WeeklySchedule({
     courseColors,
   onClearSchedule,
   onScheduleChosen, 
+  handleImportSchedule,
 }: WeeklyScheduleProps) {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const hours = Array.from({ length: 16 }, (_, i) => i + 8); // 8:00 to 22:00
@@ -264,7 +266,19 @@ export default function WeeklySchedule({
     onClick={() => onScheduleChosen?.()}
     className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
   >
-    Choose Schedule
+    Copy Schedule
+  </button>
+  
+  <button 
+      onClick={() => {
+        const importedData = prompt("Paste the schedule data here:");
+        if (importedData) {
+          handleImportSchedule(importedData);
+        }
+      }}
+    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+  >
+    Import Schedule
   </button>
 </div>
 

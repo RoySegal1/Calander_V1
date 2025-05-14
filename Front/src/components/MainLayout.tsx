@@ -107,33 +107,73 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     setSelectedGroups([]);
   };
 
+  // const handleScheduleChosen = () => {
+  //   // Save schedule for logged-in users
+  //   if (auth.isAuthenticated && auth.user) {
+  //     // Here you would implement saving to backend
+  //     console.log("Saving schedule for user:", auth.user.username);
+  //   }
+
+  //   const schedule = selectedGroups.map(sg => {
+  //     const course = allCourses.find(c => c.courseCode === sg.courseId);
+  //     return {
+  //       courseName: course?.courseName,
+  //       courseCode: sg.courseId,
+  //       semester: course?.semester,
+  //       groups: sg.groups.map(g => ({
+  //         groupCode: g.groupCode,
+  //         lecturer: g.lecturer,
+  //         room: g.room,
+  //         dayOfWeek: g.dayOfWeek,
+  //         startTime: g.startTime,
+  //         endTime: g.endTime,
+  //         lectureType: g.lectureType,
+  //       }))
+  //     };
+  //   });
+
+  //   console.log("Selected Schedule:", schedule);
+  //   alert("Schedule chosen! Check console for details.");
+  // };
+
   const handleScheduleChosen = () => {
-    // Save schedule for logged-in users
-    if (auth.isAuthenticated && auth.user) {
-      // Here you would implement saving to backend
-      console.log("Saving schedule for user:", auth.user.username);
+    // Generate the exportable schedule data
+    const scheduleData = selectedGroups.map(sg => ({
+      courseCode: sg.courseId,
+      groups: sg.groups.map(g => g.groupCode),
+    }));
+  
+    // Copy the schedule data to the clipboard
+    const scheduleString = JSON.stringify(scheduleData, null, 2);
+    navigator.clipboard.writeText(scheduleString)
+      .then(() => {
+        alert("Schedule copied to clipboard! You can now paste it to import.");
+      })
+      .catch(err => {
+        console.error("Failed to copy schedule:", err);
+        alert("Failed to copy schedule. Please try again.");
+      });
+  };
+
+  const handleImportSchedule = (importedData: string) => {
+    try {
+      const parsedData = JSON.parse(importedData);
+  
+      const importedCourses = parsedData.map((item: { courseCode: string }) => item.courseCode);
+      const importedGroups = parsedData.map((item: { courseCode: string; groups: string[] }) => ({
+        courseId: item.courseCode,
+        groups: item.groups.map(groupCode => {
+          const course = allCourses.find(c => c.courseCode === item.courseCode);
+          return course?.groups.find(g => g.groupCode === groupCode);
+        }).filter(Boolean) as CourseGroup[],
+      }));
+  
+      setSelectedCourses(importedCourses);
+      setSelectedGroups(importedGroups);
+    } catch (error) {
+      console.error("Failed to import schedule:", error);
+      alert("Invalid schedule data. Please check the format and try again.");
     }
-
-    const schedule = selectedGroups.map(sg => {
-      const course = allCourses.find(c => c.courseCode === sg.courseId);
-      return {
-        courseName: course?.courseName,
-        courseCode: sg.courseId,
-        semester: course?.semester,
-        groups: sg.groups.map(g => ({
-          groupCode: g.groupCode,
-          lecturer: g.lecturer,
-          room: g.room,
-          dayOfWeek: g.dayOfWeek,
-          startTime: g.startTime,
-          endTime: g.endTime,
-          lectureType: g.lectureType,
-        }))
-      };
-    });
-
-    console.log("Selected Schedule:", schedule);
-    alert("Schedule chosen! Check console for details.");
   };
 
   const handleCourseSelect = (course: Course) => {
@@ -264,6 +304,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
             courseColors={courseColors}
             onClearSchedule={handleClearSchedule}
             onScheduleChosen={handleScheduleChosen}
+            handleImportSchedule={handleImportSchedule} // Pass the import function to WeeklySchedule
           />
 
           {/* Only show ProgressTracker for non-guest users */}
