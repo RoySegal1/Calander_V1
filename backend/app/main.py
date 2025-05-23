@@ -1,18 +1,19 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from backend.app.db import SessionLocal
-from backend.app.cache import global_courses_cache
-from backend.app.models import DepartmentCourses
-from backend.app.auth import router as auth_router
-from backend.app.coursesInfo import router as courses_info_router
+from backend.app.db.db import SessionLocal
+from backend.app.core.cache import global_courses_cache
+from backend.app.db.models import DepartmentCourses
+from backend.app.api.auth import router as auth_router
+from backend.app.api.coursesInfo import router as courses_info_router
+from backend.app.core.logger import logger
 import json
 
-app = FastAPI()
 
-
-@app.on_event("startup")
-def load_courses_into_cache():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # --- Startup code here ---
     db: Session = SessionLocal()
     try:
         departments = db.query(DepartmentCourses).all()
@@ -20,14 +21,20 @@ def load_courses_into_cache():
             if isinstance(dept.data, str):
                 course_data = json.loads(dept.data)
             else:
-                course_data = dept.data  # in case it's already a dict/list
+                course_data = dept.data
 
             global_courses_cache[dept.department_name] = course_data
 
-        print(f"Cached {len(global_courses_cache)} departments at startup.")
+        logger.info("Cached %d departments at startup", len(global_courses_cache))
     finally:
         db.close()
 
+    yield  # Application runs here
+
+    # --- Shutdown code here (if needed) ---
+    # e.g., cleanup logic, closing connections, etc.
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,

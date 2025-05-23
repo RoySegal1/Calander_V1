@@ -2,12 +2,13 @@ from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from backend.app.db import SessionLocal
-from backend.app.models import Student, StudentCourse
+from backend.app.db.db import SessionLocal
+from backend.app.db.models import Student, StudentCourse
 from backend.scripts.WebScraperStudent import scrape_student_grades
 from backend.data.consts import DEPARTMENT_CREDITS, COURSES_FROM_DIFFERENT_YEARS
 from backend.utils.validation import validate_username
-from backend.app.coursesInfo import get_courses
+from backend.app.api.coursesInfo import get_courses
+from passlib.hash import bcrypt
 
 router = APIRouter()
 
@@ -43,68 +44,6 @@ def guest_login():
          "message": "Logged in as guest. Some features are limited."
      }
 
-#
-# @router.post("/login")
-# def login(data: LoginRequest, db: Session = Depends(get_db)):
-#      # Step 1: Authenticate user
-#     if not validate_username(data.username):
-#         raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
-#
-#     student = db.query(Student).filter(Student.username == data.username).first()
-#
-#     if not student or student.password != data.password:
-#         raise HTTPException(status_code=401, detail="Invalid username or password")
-#
-#     # Step 2: Fetch student courses
-#     student_courses = db.query(StudentCourse).filter_by(student_id=student.id).all()
-#
-#     # Step 3: Fetch department course data (from coursesInfo.py)
-#     all_data_json = get_courses(student.department)
-#
-#     # Step 4: Find matching courses by group_code
-#     completed_courses = []
-#     enrolled_courses = []
-#     credits_mandatory = 0
-#     credits_elective = 0
-#     credits_general = 0
-#     for sc in student_courses:
-#         matched = match_course(sc.course_code, all_data_json)
-#         if matched:
-#             matched["grade"] = sc.grade
-#             if sc.grade is not None:
-#                 completed_courses.append(matched)
-#                 if 'בחירה' in matched["courseType"]:
-#                     credits_elective += float(matched["courseCredit"])
-#                 if 'חובה' in matched["courseType"]:
-#                     credits_mandatory += float(matched["courseCredit"])
-#                 if 'רוח' in matched["courseType"]:
-#                     credits_general += float(matched["courseCredit"])
-#             else:
-#                 enrolled_courses.append(matched)
-#
-#     return {
-#         "status": "success",
-#         "user": {
-#             "id": student.id,
-#             "username": student.username,
-#             "name": student.name,
-#             "department": student.department,
-#             "completed_courses": completed_courses,
-#             "enrolled_courses": enrolled_courses,
-#             "gpa": student.gpa,
-#             "credits": {
-#                 "completed": student.completedCredits,
-#                 "required": DEPARTMENT_CREDITS[student.department]
-#                 },
-#             "remainingRequirements": {
-#                 "general": credits_general,
-#                 "elective": credits_elective,
-#                 "mandatory": credits_mandatory
-#             }
-#
-#         },
-#         "message": f"Welcome back, {student.name}!"
-#     }
 
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
@@ -114,7 +53,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 
     student = db.query(Student).filter(Student.username == data.username).first()
 
-    if not student or student.password != data.password:
+    if not student or not bcrypt.verify(data.password, student.password):
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
     # Step 2: Fetch student courses
@@ -356,7 +295,7 @@ def save_user_to_db(user_data, scraped_data=None):
         # Create new student object
         new_student = Student(
             username=user_data["username"],
-            password=user_data["password"],  # Note: Should be hashed in production
+            password=bcrypt.hash(user_data["password"]),  # Note: Should be hashed in production
             name=user_data.get("name", user_data["username"].split(".")[0]),  # name till dot
             department=user_data["department"],
             gpa=scraped_data.get("GPA") if scraped_data else None,

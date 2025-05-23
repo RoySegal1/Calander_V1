@@ -2,7 +2,7 @@
 
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, PrimaryKeyConstraint, CheckConstraint, JSON, Boolean, TIMESTAMP, func
 from sqlalchemy.orm import relationship
-from .db import Base
+from backend.app.db.db import Base
 
 
 class Student(Base):

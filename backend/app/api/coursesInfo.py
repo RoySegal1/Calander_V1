@@ -44,7 +44,7 @@
 
 ## FROM CACHE
 from fastapi import APIRouter, HTTPException
-from backend.app.cache import global_courses_cache
+from backend.app.core.cache import global_courses_cache
 # Initialize the APIRouter for courses info
 router = APIRouter()
 

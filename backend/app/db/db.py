@@ -13,17 +13,17 @@ if not os.path.exists(ENV_PATH):
 
 # Load environment variables
 load_dotenv(ENV_PATH)
-print("Environment variables loaded.")
+# print("Environment variables loaded.")
 
 # Fetch environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")  # Not needed here but good to keep
 SUPABASE_DB_URL = os.getenv("SUPABASE_DB_URL")
 
-# Debug prints to verify variables
-print(f"SUPABASE_URL: {SUPABASE_URL}")
-print(f"SUPABASE_ANON_KEY: {SUPABASE_ANON_KEY}")
-print(f"DATABASE_URL: {SUPABASE_DB_URL}")
+# # Debug prints to verify variables
+# print(f"SUPABASE_URL: {SUPABASE_URL}")
+# print(f"SUPABASE_ANON_KEY: {SUPABASE_ANON_KEY}")
+# print(f"DATABASE_URL: {SUPABASE_DB_URL}")
 
 # Raise an error if DATABASE_URL is not set
 if not SUPABASE_DB_URL:
