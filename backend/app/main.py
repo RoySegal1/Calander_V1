@@ -5,7 +5,6 @@ from backend.app.api.auth import router as auth_router
 from backend.app.api.coursesInfo import router as courses_info_router
 from backend.app.core.logger import logger
 from backend.app.core.cache import load_courses_to_mem
-import json
 
 
 @asynccontextmanager

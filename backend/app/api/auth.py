@@ -6,8 +6,9 @@ from backend.app.db.db import SessionLocal
 from backend.app.db.models import Student, StudentCourse
 from backend.scripts.WebScraperStudent import scrape_student_grades
 from backend.data.consts import DEPARTMENT_CREDITS, COURSES_FROM_DIFFERENT_YEARS
-from backend.utils.validation import validate_username
+from backend.app.core.validation import validate_username
 from backend.app.api.coursesInfo import get_courses
+from backend.app.core.logger import logger
 from passlib.hash import bcrypt
 
 router = APIRouter()
@@ -49,11 +50,13 @@ def guest_login():
 def login(data: LoginRequest, db: Session = Depends(get_db)):
     # Step 1: Authenticate user
     if not validate_username(data.username):
+        logger.error(f"Username not in correct format, Somehow bypassed our frontend!!  Username::{data.username}")
         raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
 
     student = db.query(Student).filter(Student.username == data.username).first()
 
     if not student or not bcrypt.verify(data.password, student.password):
+        logger.error("Username not valid or Password incorrect")
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
     # Step 2: Fetch student courses
@@ -105,7 +108,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 
                 # Add to enrolled credits total
                 enrolled_credits_total += course_credit
-
+    logger.info(f"Successfully logged username {data.username}")
     return {
         "status": "success",
         "user": {
@@ -129,6 +132,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
         },
         "message": f"Welcome back, {student.name}!"
     }
+
 
 def match_course(course_code, all_data):  # Search for course_code
     for course in all_data:
@@ -155,6 +159,7 @@ def signup(data: SignupRequest, db: Session = Depends(get_db)):
 
     if not save_result["success"]:
         # If script fails, tell user there was an issue
+        logger.error("Script Fails")
         return {
             "status": "error",
             "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
@@ -327,6 +332,7 @@ def save_user_to_db(user_data, scraped_data=None):
 
         # Commit the transaction
         db.commit()
+        logger.info("User saved in DB")
         return {"success": True, "user_id": new_student.id}
 
     except IntegrityError as e:
