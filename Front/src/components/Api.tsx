@@ -9,9 +9,8 @@ export class ApiService {
    */
   static async fetchStudentSchedules(studentId: string): Promise<SavedSchedule[]> {
     try {
-      const response = await fetch(`${BASE_URL}/schedule/student/${studentId}`);
-      if (!response.ok) throw new Error("Failed to fetch schedules");
-      return await response.json();
+    const response = await axios.get<SavedSchedule[]>(`${BASE_URL}/schedule/student/${studentId}`);
+      return response.data;
     } catch (error) {
       console.error("Error fetching student schedules:", error);
       throw error;
