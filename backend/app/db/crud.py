@@ -5,7 +5,8 @@ from backend.app.db import models
 def create_saved_schedule(db: Session, schedule):
     saved = models.SavedSchedule(
         student_id=schedule.student_id,
-        schedule_data=[group.dict() for group in schedule.schedule_data]
+        schedule_data=[group.dict() for group in schedule.schedule_data],
+        schedule_name=schedule.schedule_name
     )
     db.add(saved)
     db.commit()

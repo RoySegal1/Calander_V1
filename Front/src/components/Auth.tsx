@@ -1,12 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-import axios from "axios";
-import { AuthState, User} from "../types";
-
-interface AuthResponse {
-  status: string;
-  user: User
-  message: string;
-}
+import { ApiService } from "./Api";
+import { AuthState } from "../types";
 
 interface AuthContextType {
   auth: AuthState;
@@ -33,24 +27,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post<AuthResponse>("http://localhost:8000/auth/login", {
-        username,
-        password,
-      });
-      if (response.data.status === "success") {
-        setAuth({
-          user: response.data.user,
-          isGuest: false,
-          isAuthenticated: true,
-        });
-      }
-    } catch (err) {
-      const error = err as { response?: { data?: { detail?: string } } };
-      if (error.response?.data?.detail) {
-        setError(error.response.data.detail || "Login failed");
-      } else {
-        setError("Network error. Please try again later.");
-      }
+      const { user } = await ApiService.login(username, password);
+      setAuth({ user, isGuest: false, isAuthenticated: true });
+    } catch (err: any) {
+      setError(err.response?.data?.detail || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -60,25 +40,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post<AuthResponse>("http://localhost:8000/auth/signup", {
-        username,
-        password,
-        department,
-      });
-      if (response.data.status === "success") {
-        setAuth({
-          user: response.data.user,
-          isGuest: false,
-          isAuthenticated: true,
-        });
-      }
-    } catch (err) {
-      const error = err as { response?: { data?: { detail?: string } } };
-      if (error.response?.data?.detail) {
-        setError(error.response.data.detail || "Signup failed");
-      } else {
-        setError("Network error. Please try again later.");
-      }
+      const { user } = await ApiService.signup(username, password, department);
+      setAuth({ user, isGuest: false, isAuthenticated: true });
+    } catch (err: any) {
+      setError(err.response?.data?.detail || "Signup failed");
     } finally {
       setLoading(false);
     }
@@ -88,33 +53,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get<AuthResponse>("http://localhost:8000/auth/guest");
-      if (response.data.status === "success") {
-        setAuth({
-          user: response.data.user,
-          isGuest: true,
-          isAuthenticated: false,
-        });
-      }
-    } catch (err) {
-      setError("Failed to login as guest. Please try again.");
+      const { user } = await ApiService.guestLogin();
+      setAuth({ user, isGuest: true, isAuthenticated: false });
+    } catch {
+      setError("Failed to login as guest.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleLogout = () => {
-    setAuth({
-      user: null,
-      isGuest: false,
-      isAuthenticated: false,
-    });
+    setAuth({ user: null, isGuest: false, isAuthenticated: false });
+    ApiService.logout(); // optional
   };
 
   return (
-    <AuthContext.Provider
-      value={{ auth, loading, error, handleLogin, handleSignup, handleGuestLogin, handleLogout }}
-    >
+    <AuthContext.Provider value={{ auth, loading, error, handleLogin, handleSignup, handleGuestLogin, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -122,8 +76,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
+  if (!context) throw new Error("useAuth must be used within an AuthProvider");
   return context;
 };

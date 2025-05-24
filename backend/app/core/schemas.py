@@ -13,12 +13,14 @@ class GroupSelection(BaseModel):
 class SavedScheduleCreate(BaseModel):
     student_id: int
     schedule_data: conlist(GroupSelection, min_length=1)
+    schedule_name: str
 
 
 # Output schema returned to the client
 class SavedScheduleOut(BaseModel):
     id: int
     student_id: int
+    schedule_name: str
     schedule_data: List[GroupSelection]
     share_code: str
     created_at: datetime
