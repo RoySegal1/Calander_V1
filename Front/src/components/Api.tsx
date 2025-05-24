@@ -1,9 +1,28 @@
 import axios from 'axios';
-import { Course, SavedSchedule } from '../types';
+import { Course, SavedSchedule, User } from '../types';
 
 const BASE_URL = 'http://localhost:8000';
 
 export class ApiService {
+    static async login(username: string, password: string): Promise<{ status: string; user: User }> {
+    const response = await axios.post(`${BASE_URL}/auth/login`, { username, password });
+    return response.data;
+  }
+
+  static async signup(username: string, password: string, department: string): Promise<{ status: string; user: User }> {
+    const response = await axios.post(`${BASE_URL}/auth/signup`, { username, password, department });
+    return response.data;
+  }
+
+  static async guestLogin(): Promise<{ status: string; user: User }> {
+    const response = await axios.get(`${BASE_URL}/auth/guest`);
+    return response.data;
+  }
+
+  static logout() {
+    // optionally notify backend or just clear frontend state
+    return;
+  }
   /**
    * Fetch all schedules for a specific student
    */
@@ -49,12 +68,14 @@ export class ApiService {
    */
   static async saveSchedule(
     studentId: string,
-    scheduleData: Array<{ courseCode: string; groups: string[] }>
+    scheduleData: Array<{ courseCode: string; groups: string[] }>,
+    scheduleName: string
   ): Promise<void> {
     try {
       await axios.post(`${BASE_URL}/schedule`, {
         student_id: studentId,
         schedule_data: scheduleData,
+        schedule_name: scheduleName,
       });
     } catch (error) {
       console.error("Failed to save schedule:", error);
@@ -94,9 +115,10 @@ export const useApiService = () => {
 
   const saveSchedule = async (
     studentId: string,
-    scheduleData: Array<{ courseCode: string; groups: string[] }>
+    scheduleData: Array<{ courseCode: string; groups: string[] }>,
+    scheduleName: string
   ) => {
-    return ApiService.saveSchedule(studentId, scheduleData);
+    return ApiService.saveSchedule(studentId, scheduleData,scheduleName);
   };
 
   const importScheduleById = async (scheduleId: string) => {

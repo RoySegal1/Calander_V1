@@ -1,144 +1,146 @@
-import { GraduationCap, Book, BookOpen, Award, Bookmark } from 'lucide-react';
+import { GraduationCap, Book, BookOpen, Award, Bookmark, CheckCircle, Calendar } from 'lucide-react';
 import {SavedSchedule, User} from '../types'
 interface ProgressTrackerProps {
   user: User;
   savedSchedules: SavedSchedule[];
   onSelectSchedule: (schedule: SavedSchedule) => void;
 }
-
+ 
 export default function ProgressTracker({ user,savedSchedules,onSelectSchedule }: ProgressTrackerProps) {
   // Calculate total credits including enrolled courses
   const enrolledCredits = user.enrolledCourses ?
     user.enrolledCourses.reduce((sum, course) => sum + (Number(course.courseCredit) || 0), 0) : 0;
-
+ 
   const progressPercentage = (user.credits.completed / user.credits.required) * 100;
   const enrolledPercentage = (enrolledCredits / user.credits.required) * 100;
-  //const totalProgress = Math.min(100, progressPercentage + enrolledPercentage);
-
+ 
   return (
-<div className="bg-white rounded-lg shadow-lg p-6 space-y-6">
-  <div className="flex items-center gap-2 mb-4 justify-end">
-    <h2 className="text-xl font-semibold text-gray-800"> הנה ההתקדמות האקדמית שלך במחלקת {user.department}  {user.name} שלום</h2>
-    <GraduationCap size={24} className="text-indigo-600" />
-  </div>
-
-  {/* Credits Progress */}
-  <div>
-    <div className="flex justify-between mb-2">
-      <span className="text-sm text-gray-500 order-2">
-        {user.credits.completed} / {user.credits.required} נקודות זכות
-        {enrolledCredits > 0 && ` (הסמסטר ${enrolledCredits}+)`}
-      </span>
-      <span className="text-sm font-medium text-gray-700 order-1">נקודות זכות שצברת</span>
-    </div>
-    <div className="w-full bg-gray-200 rounded-full h-2.5">
-      {/* Completed credits */}
-      <div className="flex h-2.5">
-        <div
-          className="bg-indigo-600 h-2.5 rounded-full"
-          style={{ width: `${Math.min(100, progressPercentage)}%` }}
-        />
-        {/* Enrolled credits (shown in a different color) */}
-        <div
-          className="bg-indigo-300 h-2.5 rounded-r-full"
-          style={{ width: `${Math.min(enrolledPercentage, 100 - progressPercentage)}%` }}
-        />
-      </div>
-    </div>
-  </div>
-
-  {/* GPA */}
-  <div className="flex items-center gap-4 p-4 bg-indigo-50 rounded-lg justify-end">
-    <div className="text-right">
-      <div className="text-sm font-medium text-gray-700">ממוצע ציונים נוכחי</div>
-      <div className="text-2xl font-bold text-indigo-600">{user.gpa}</div>
-    </div>
-    <Award size={24} className="text-indigo-600" />
-  </div>
-
-  {/* Completed Requirements */}
-  <div className="grid grid-cols-4 gap-4">
-    <div className="p-4 bg-red-100 rounded-lg">
-      <div className="flex items-center gap-2 mb-2 justify-end">
-        <span className="text-sm font-medium text-gray-700">חובה</span>
-        <Book size={16} className="text-red-600" />
-      </div>
-      <div className="text-xl font-bold text-red-600 text-right">
-        {user.remainingRequirements?.mandatory}
-      </div>
-      <div className="text-xs text-gray-500 text-right">נקודות זכות שהושלמו</div>
-    </div>
-
-    <div className="p-4 bg-blue-100 rounded-lg">
-      <div className="flex items-center gap-2 mb-2 justify-end">
-        <span className="text-sm font-medium text-gray-700">בחירה</span>
-        <BookOpen size={16} className="text-blue-600" />
-      </div>
-      <div className="text-xl font-bold text-blue-600 text-right">
-        {user.remainingRequirements?.elective}
-      </div>
-      <div className="text-xs text-gray-500 text-right">נקודות זכות שהושלמו</div>
-    </div>
-
-    <div className="p-4 bg-green-100 rounded-lg">
-      <div className="flex items-center gap-2 mb-2 justify-end">
-        <span className="text-sm font-medium text-gray-700">כללי</span>
-        <Book size={16} className="text-green-600" />
-      </div>
-      <div className="text-xl font-bold text-green-600 text-right">
-        {user.remainingRequirements?.general}
-      </div>
-      <div className="text-xs text-gray-500 text-right">נקודות זכות שהושלמו</div>
-    </div>
-  </div>
-
-       {/* Enrolled Courses + Saved Schedules Section */}
-  {user.enrolledCourses && user.enrolledCourses.length > 0 && (
-    <div className="mt-6">
+    <div className="bg-white rounded-lg shadow-lg p-1 space-y-1">
+      {/* Header */}
       <div className="flex items-center gap-2 mb-4 justify-end">
-        <Bookmark size={20} className="text-indigo-600" />
-        <h3 className="text-lg font-semibold text-gray-800">קורסים רשומים כעת</h3>
+        <h2 className="text-xl font-semibold text-gray-800">
+          הנה ההתקדמות האקדמית שלך במחלקת {user.department}  {user.name} שלום
+        </h2>
+        <GraduationCap size={24} className="text-indigo-600" />
       </div>
 
-      <div className="flex gap-4">
-        {/* Enrolled Courses */}
-        <div className="w-1/2 bg-indigo-50 rounded-lg p-4">
-          <ul className="space-y-2">
-            {user.enrolledCourses.map((course, index) => (
-              <li key={index} className="flex items-center gap-2 justify-end">
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-600"></div>
-                <span className="text-gray-700">{course.courseName} ({course.courseCredit} נק"ז)</span>
-              </li>
-            ))}
-          </ul>
+      {/* Credits Progress */}
+      <div>
+        <div className="flex justify-between mb-2">
+          <span className="text-sm text-gray-500 order-2">
+            {user.credits.completed} / {user.credits.required} נקודות זכות
+            {enrolledCredits > 0 && ` (הסמסטר ${enrolledCredits}+)`}
+          </span>
+          <span className="text-sm font-medium text-gray-700 order-1">נקודות זכות שצברת</span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-2.5">
+          <div className="flex h-2.5">
+            <div
+              className="bg-indigo-600 h-2.5 rounded-full"
+              style={{ width: `${Math.min(100, progressPercentage)}%` }}
+            />
+            <div
+              className="bg-indigo-300 h-2.5 rounded-r-full"
+              style={{ width: `${Math.min(enrolledPercentage, 100 - progressPercentage)}%` }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* GPA */}
+      <div className="flex items-center gap-4 p-4 bg-indigo-50 rounded-lg justify-end">
+        <div className="text-right">
+          <div className="text-sm font-medium text-gray-700">ממוצע ציונים נוכחי</div>
+          <div className="text-2xl font-bold text-indigo-600">{user.gpa}</div>
+        </div>
+        <Award size={24} className="text-indigo-600" />
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-2 gap-6">
+        {/* Left Column */}
+        <div className="flex flex-col gap-4">
+          {/* Completed Requirements */}
+          <div className="bg-emerald-50 rounded-lg p-3">
+            <div className="flex items-center gap-2 mb-2 justify-end">
+              <h3 className="text-base font-semibold text-emerald-800">דרישות שהושלמו</h3>
+              <CheckCircle size={18} className="text-emerald-600" />
+            </div>
+            <div className="grid grid-cols-3 gap-2 text-center">
+              <div className="bg-red-100 rounded p-2">
+                <Book size={14} className="mx-auto text-red-600 mb-1" />
+                <div className="text-xs text-gray-700">חובה</div>
+                <div className="text-base font-bold text-red-600">{user.remainingRequirements?.mandatory}</div>
+              </div>
+              <div className="bg-blue-100 rounded p-2">
+                <BookOpen size={14} className="mx-auto text-blue-600 mb-1" />
+                <div className="text-xs text-gray-700">בחירה</div>
+                <div className="text-base font-bold text-blue-600">{user.remainingRequirements?.elective}</div>
+              </div>
+              <div className="bg-yellow-100 rounded p-2">
+                <Book size={14} className="mx-auto text-yellow-500 mb-1" />
+                <div className="text-xs text-gray-700">כללי</div>
+                <div className="text-base font-bold text-yellow-600">{user.remainingRequirements?.general}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Enrolled Courses */}
+          <div className="bg-indigo-50 rounded-lg p-3">
+            <div className="flex items-center gap-2 mb-2 justify-end">
+              <h3 className="text-base font-semibold text-indigo-800">קורסים רשומים</h3>
+              <Bookmark size={18} className="text-indigo-600" />
+            </div>
+            {user.enrolledCourses && user.enrolledCourses.length > 0 ? (
+              <ul className="space-y-6">
+                {user.enrolledCourses.map((course, idx) => (
+                  <li key={idx} className="flex items-center gap-2 justify-end text-sm text-right">
+                    <span>{course.courseName}</span>
+                    <span className="text-indigo-600">({course.courseCredit} נק"ז)</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="text-center text-gray-400 py-4 text-xs">
+                <Bookmark size={18} className="mx-auto mb-1" />
+                אין קורסים רשומים
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Saved Schedules */}
-        <div className="w-1/2 bg-white rounded-lg shadow p-4">
-          <h4 className="text-right font-semibold mb-2">מערכות שנשמרו</h4>
+        {/* Right Column */}
+        <div className="bg-gradient-to-br from-white via-cream-100 to-white rounded-lg p-4 h-fit flex flex-col">
+          <div className="flex items-center gap-2 mb-4 justify-end">
+            <h3 className="text-lg font-semibold text-purple-800">מערכות שמורות</h3>
+            <Calendar size={20} className="text-purple-600" />
+          </div>
           {savedSchedules.length === 0 ? (
-            <div className="text-sm text-gray-500 text-right">אין מערכות שמורות</div>
+            <div className="text-center text-gray-500 py-12">
+              <Calendar size={32} className="mx-auto mb-3 text-gray-400" />
+              <p>אין מערכות שמורות</p>
+            </div>
           ) : (
-            <ul className="space-y-2">
+            <div className="bg-gradient-to-br from-purple-100 to-indigo-50 rounded-xl p-4 shadow-md">
+              <ul className="space-y-2">
               {savedSchedules.map((schedule) => (
                 <li
-                  key={schedule.id}
-                  onClick={() => onSelectSchedule(schedule)}
-                  className="cursor-pointer text-right text-sm bg-gray-100 hover:bg-indigo-100 p-2 rounded"
+                key={schedule.id}
+                onClick={() => onSelectSchedule(schedule)}
+                className="cursor-pointer text-right p-4 bg-white/70 hover:bg-indigo-100 rounded-lg transition-colors border border-transparent hover:border-indigo-300 shadow-sm"
                 >
-                  מזהה: {schedule.share_code} <br />
-                  נשמר בתאריך: {new Date(schedule.created_at).toLocaleDateString()}
+                <div className="font-semibold text-indigo-800">{schedule.schedule_name || 'ללא שם'}</div>
+                <div className="text-xs text-indigo-500 mt-1">{schedule.share_code} :מזהה</div>
+                <div className="text-xs text-gray-500 mt-1">
+                  נשמר: {new Date(schedule.created_at).toLocaleDateString()}
+                </div>
                 </li>
               ))}
-            </ul>
+              </ul>
+            </div>
           )}
         </div>
       </div>
     </div>
-  )}
-    </div>
   );
 }
-
-
-

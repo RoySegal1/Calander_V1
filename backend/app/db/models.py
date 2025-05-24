@@ -54,5 +54,6 @@ class SavedSchedule(Base):
     schedule_data = Column(JSON, nullable=False)  # Uses JSONB in PostgreSQL
     created_at = Column(TIMESTAMP, server_default=func.now())
     share_code = Column(String, unique=True, index=True, nullable=False, default=lambda: uuid4().hex[:8])
+    schedule_name = Column(String, nullable=False, default="Unnamed Schedule")
 
     student = relationship("Student", backref="saved_schedules")

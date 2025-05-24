@@ -72,7 +72,7 @@ export interface SavedSchedule {
   student_id: number;
   share_code: string;
   created_at: string; // ISO string
-
+  schedule_name: string;
   schedule_data: {
     courseCode: string;
     groups: string[];

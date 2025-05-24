@@ -101,7 +101,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     setSelectedGroups([]);
   };
 
-  const handleScheduleChosen = async () => {
+  const handleScheduleChosen = async (scheduleName: string) => {
     if (!auth.user?.id) {
       alert("User not authenticated");
       return;
@@ -113,7 +113,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     }));
 
     try {
-      await ApiService.saveSchedule(auth.user.id, scheduleData);
+      await ApiService.saveSchedule(auth.user.id, scheduleData,scheduleName);
       alert("Schedule saved to backend!");
       setRefreshTrigger(prev => prev + 1);
     } catch (error) {

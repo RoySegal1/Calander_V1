@@ -2,6 +2,7 @@ import { Course, CourseGroup } from '../types';
 import { useState } from 'react';
 import {ImportScheduleModal} from "./ImportScheduleModal.tsx";
 import { Trash2, Eye, EyeOff, Save, Download } from 'lucide-react';
+import { NameScheduleModal } from "./NameScheduleModal.tsx";
 
 interface WeeklyScheduleProps {
   selectedCourses: Course[];
@@ -12,7 +13,7 @@ interface WeeklyScheduleProps {
   onGroupSelect: (group: CourseGroup, courseId: string) => void;
   courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
   onClearSchedule?: () => void;
-  onScheduleChosen?: () => void;
+  onScheduleChosen?: (scheduleName: string) => void;
   handleImportSchedule: (scheduleId: string) => void;
 }
 
@@ -31,6 +32,7 @@ export default function WeeklySchedule({
   // State for toggling visibility of unselected courses
   const [showSelectedOnly, setShowSelectedOnly] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showNameModal, setShowNameModal] = useState(false);
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
 
   // Get all courses with their groups that are currently selected in selectedGroups
@@ -272,7 +274,7 @@ export default function WeeklySchedule({
         </button>
 
         <button
-            onClick={() => onScheduleChosen?.()}
+            onClick={() => setShowNameModal(true)}
             className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
         >
           <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
@@ -292,6 +294,15 @@ export default function WeeklySchedule({
                 onClose={() => setShowModal(false)}
             />
         )}
+          {showNameModal && (
+        <NameScheduleModal
+          onSave={(name) => {
+            onScheduleChosen?.(name);  // You can now accept the name
+            setShowNameModal(false);
+          }}
+          onClose={() => setShowNameModal(false)}
+        />
+      )}
       </div>
 
       <div className="flex">
