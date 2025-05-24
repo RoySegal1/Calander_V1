@@ -1,10 +1,12 @@
 import { GraduationCap, Book, BookOpen, Award, Bookmark } from 'lucide-react';
-import { User } from '../types'
+import {SavedSchedule, User} from '../types'
 interface ProgressTrackerProps {
   user: User;
+  savedSchedules: SavedSchedule[];
+  onSelectSchedule: (schedule: SavedSchedule) => void;
 }
 
-export default function ProgressTracker({ user }: ProgressTrackerProps) {
+export default function ProgressTracker({ user,savedSchedules,onSelectSchedule }: ProgressTrackerProps) {
   // Calculate total credits including enrolled courses
   const enrolledCredits = user.enrolledCourses ?
     user.enrolledCourses.reduce((sum, course) => sum + (Number(course.courseCredit) || 0), 0) : 0;
@@ -90,25 +92,50 @@ export default function ProgressTracker({ user }: ProgressTrackerProps) {
     </div>
   </div>
 
-      {/* Enrolled Courses Section */}
-      {user.enrolledCourses && user.enrolledCourses.length > 0 && (
-        <div className="mt-6">
-          <div className="flex items-center gap-2 mb-4 justify-end">
-            <Bookmark size={20} className="text-indigo-600" />
-            <h3 className="text-lg font-semibold text-gray-800">קורסים רשומים כעת</h3>
-          </div>
-          <div className="bg-indigo-50 rounded-lg p-4">
+       {/* Enrolled Courses + Saved Schedules Section */}
+  {user.enrolledCourses && user.enrolledCourses.length > 0 && (
+    <div className="mt-6">
+      <div className="flex items-center gap-2 mb-4 justify-end">
+        <Bookmark size={20} className="text-indigo-600" />
+        <h3 className="text-lg font-semibold text-gray-800">קורסים רשומים כעת</h3>
+      </div>
+
+      <div className="flex gap-4">
+        {/* Enrolled Courses */}
+        <div className="w-1/2 bg-indigo-50 rounded-lg p-4">
+          <ul className="space-y-2">
+            {user.enrolledCourses.map((course, index) => (
+              <li key={index} className="flex items-center gap-2 justify-end">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-600"></div>
+                <span className="text-gray-700">{course.courseName} ({course.courseCredit} נק"ז)</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Saved Schedules */}
+        <div className="w-1/2 bg-white rounded-lg shadow p-4">
+          <h4 className="text-right font-semibold mb-2">מערכות שנשמרו</h4>
+          {savedSchedules.length === 0 ? (
+            <div className="text-sm text-gray-500 text-right">אין מערכות שמורות</div>
+          ) : (
             <ul className="space-y-2">
-              {user.enrolledCourses.map((course, index) => (
-                <li key={index} className="flex items-center gap-2 justify-end">
-                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-600"></div>
-                  <span className="text-gray-700">{course.courseName} ({course.courseCredit} נק"ז)</span>
+              {savedSchedules.map((schedule) => (
+                <li
+                  key={schedule.id}
+                  onClick={() => onSelectSchedule(schedule)}
+                  className="cursor-pointer text-right text-sm bg-gray-100 hover:bg-indigo-100 p-2 rounded"
+                >
+                  מזהה: {schedule.share_code} <br />
+                  נשמר בתאריך: {new Date(schedule.created_at).toLocaleDateString()}
                 </li>
               ))}
             </ul>
-          </div>
+          )}
         </div>
-      )}
+      </div>
+    </div>
+  )}
     </div>
   );
 }

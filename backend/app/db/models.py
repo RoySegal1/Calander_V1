@@ -3,6 +3,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, PrimaryKeyConstraint, CheckConstraint, JSON, Boolean, TIMESTAMP, func
 from sqlalchemy.orm import relationship
 from backend.app.db.db import Base
+from uuid import uuid4
 
 
 class Student(Base):
@@ -45,3 +46,13 @@ class DepartmentCourses(Base):
     updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
 
 
+class SavedSchedule(Base):
+    __tablename__ = "student_schedules"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    student_id = Column(Integer, ForeignKey("students.id", ondelete="CASCADE"), nullable=False)
+    schedule_data = Column(JSON, nullable=False)  # Uses JSONB in PostgreSQL
+    created_at = Column(TIMESTAMP, server_default=func.now())
+    share_code = Column(String, unique=True, index=True, nullable=False, default=lambda: uuid4().hex[:8])
+
+    student = relationship("Student", backref="saved_schedules")

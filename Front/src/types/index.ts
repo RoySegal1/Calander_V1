@@ -67,6 +67,17 @@ export interface AuthState {
   isAuthenticated: boolean;
 }
 
+export interface SavedSchedule {
+  id: number;
+  student_id: number;
+  share_code: string;
+  created_at: string; // ISO string
+
+  schedule_data: {
+    courseCode: string;
+    groups: string[];
+  }[];
+}
 
 
 // export interface User {
