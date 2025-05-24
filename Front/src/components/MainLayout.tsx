@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
-import axios from 'axios';
-import { Course, CourseGroup, AuthState } from '../types';
+import { Course, CourseGroup, AuthState, SavedSchedule } from '../types';
+import { ApiService } from './Api';
 import WeeklySchedule from './WeeklySchedule';
 import Sidebar from './Sidebar';
 import ProgressTracker from './ProgressTracker';
@@ -23,18 +23,27 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     type: '',
     semester: 'א',
   });
-
+  const [allStudentSchedule, setAllStudentSchedule] = useState<SavedSchedule[]>([]);
   const [allCourses, setAllCourses] = useState<Course[]>([]);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  // Fetch student schedules
+  useEffect(() => {
+    const fetchStudentSchedules = async () => {
+      if (auth.user?.id) {
+        try {
+          const data = await ApiService.fetchStudentSchedules(auth.user.id);
+          setAllStudentSchedule(data);
+        } catch (error) {
+          console.error("Error fetching student schedules:", error);
+        }
+      }
+    };
+    fetchStudentSchedules();
+  }, [auth.user?.id,refreshTrigger]);
 
   // Update filters when user changes
   useEffect(() => {
-    // if (auth.user?.department) {
-    //   setFilters(prev => ({
-    //     ...prev,
-    //     department: auth.user.department
-    //   }));
-    // }
-
     // Load saved courses for logged-in users
     if (auth.isAuthenticated && auth.user?.saved_courses && auth.user.saved_courses.length > 0) {
       setSelectedCourses(auth.user.saved_courses);
@@ -45,23 +54,8 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const frontendToBackendMap: Record<string, string> = {
-          'מדעי המחשב': 'מדעי המחשב',
-          'הנדסת חשמל': 'הנדסת חשמל',
-          'הנדסה תעשייה וניהול': 'הנדסת תעשיה וניהול',
-          'מדעי הנתונים': 'מדעי הנתונים',
-          'הנדסת תוכנה': 'הנדסת תוכנה',
-          'הנדסה מכנית': 'הנדסה מכנית',
-          'הנדסה ביורפואית': 'הנדסה ביורפואית',
-        };
-
-        const backendDept = frontendToBackendMap[filters.department];
-        const response = await axios.get<Course[]>(
-          `http://localhost:8000/courses?department=${backendDept}&generalcourses=true`
-
-        );
-
-        setAllCourses(response.data);
+        const courses = await ApiService.fetchCourses(filters.department);
+        setAllCourses(courses);
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
@@ -72,8 +66,8 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
   const filteredCourses = allCourses.filter(course => {
     if (filters.type && course.courseType !== filters.type) return false;
-    if (filters.semester && course.semester !== filters.semester) return false;
-    return true;
+    return !(filters.semester && course.semester !== filters.semester);
+
   });
 
   const selectedCourseObjects = selectedCourses
@@ -83,7 +77,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   const courseColors = useMemo(() => {
     const baseColors = [
       { name: 'indigo', bg: 'rgba(79, 70, 229, 1)', bgLight: 'rgba(79, 70, 229, 0.2)', text: 'rgb(79, 70, 229)' },
-      { name: 'blue', bg: 'rgba(37, 99, 235, 1)', bgLight: 'rgba(37, 99, 235, 0.2)', text: 'rgb(37, 99, 235)' }, // replaced teal
+      { name: 'blue', bg: 'rgba(37, 99, 235, 1)', bgLight: 'rgba(37, 99, 235, 0.2)', text: 'rgb(37, 99, 235)' },
       { name: 'amber', bg: 'rgba(245, 158, 11, 1)', bgLight: 'rgba(245, 158, 11, 0.2)', text: 'rgb(245, 158, 11)' },
       { name: 'rose', bg: 'rgba(225, 29, 72, 1)', bgLight: 'rgba(225, 29, 72, 0.2)', text: 'rgb(225, 29, 72)' },
       { name: 'emerald', bg: 'rgba(16, 185, 129, 1)', bgLight: 'rgba(16, 185, 129, 0.2)', text: 'rgb(16, 185, 129)' },
@@ -107,33 +101,49 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     setSelectedGroups([]);
   };
 
-  const handleScheduleChosen = () => {
-    // Save schedule for logged-in users
-    if (auth.isAuthenticated && auth.user) {
-      // Here you would implement saving to backend
-      console.log("Saving schedule for user:", auth.user.username);
+  const handleScheduleChosen = async () => {
+    if (!auth.user?.id) {
+      alert("User not authenticated");
+      return;
     }
 
-    const schedule = selectedGroups.map(sg => {
-      const course = allCourses.find(c => c.courseCode === sg.courseId);
-      return {
-        courseName: course?.courseName,
-        courseCode: sg.courseId,
-        semester: course?.semester,
-        groups: sg.groups.map(g => ({
-          groupCode: g.groupCode,
-          lecturer: g.lecturer,
-          room: g.room,
-          dayOfWeek: g.dayOfWeek,
-          startTime: g.startTime,
-          endTime: g.endTime,
-          lectureType: g.lectureType,
-        }))
-      };
-    });
+    const scheduleData = selectedGroups.map(sg => ({
+      courseCode: sg.courseId,
+      groups: sg.groups.map(g => g.groupCode),
+    }));
 
-    console.log("Selected Schedule:", schedule);
-    alert("Schedule chosen! Check console for details.");
+    try {
+      await ApiService.saveSchedule(auth.user.id, scheduleData);
+      alert("Schedule saved to backend!");
+      setRefreshTrigger(prev => prev + 1);
+    } catch (error) {
+      console.error("Failed to save schedule:", error);
+      alert("Failed to save schedule. Please try again.");
+    }
+  };
+
+  const handleImportScheduleFromId = async (scheduleId: string) => {
+    try {
+      const data = await ApiService.importScheduleById(scheduleId);
+      const parsedData = data.schedule_data;
+
+      const importedCourses = parsedData.map((item: { courseCode: string }) => item.courseCode);
+
+      const importedGroups = parsedData.map((item: { courseCode: string; groups: string[] }) => ({
+        courseId: item.courseCode,
+        groups: item.groups.map(groupCode => {
+          const course = allCourses.find(c => c.courseCode === item.courseCode);
+          return course?.groups.find(g => g.groupCode === groupCode);
+        }).filter(Boolean) as CourseGroup[],
+      }));
+
+      setSelectedCourses(importedCourses);
+      setSelectedGroups(importedGroups);
+
+    } catch (error) {
+      console.error("Failed to load schedule by ID:", error);
+      alert("Could not load schedule. Check the ID and try again.");
+    }
   };
 
   const handleCourseSelect = (course: Course) => {
@@ -184,20 +194,18 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   };
 
   const addGroupToCourse = (group: CourseGroup, courseId: string) => {
-    // Find all related groups (e.g., groups with IDs like "12345" and "12345_2")
     const relatedGroups = allCourses
       .find(course => course.courseCode === courseId)
       ?.groups.filter(g => g.lectureType === group.lectureType) || [];
-  
-    // Combine the selected group with its related groups
-    const groupsToAdd = relatedGroups.filter(g => 
+
+    const groupsToAdd = relatedGroups.filter(g =>
       g.groupCode.startsWith(group.groupCode.split('_')[0])
     );
-  
+
     const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
-  
+
     const isDuplicateType = courseGroups?.groups.some(g => g.lectureType === group.lectureType);
-  
+
     if (isDuplicateType) {
       setSelectedGroups(selectedGroups.map(sg =>
         sg.courseId === courseId
@@ -220,9 +228,11 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
       setSelectedGroups([...selectedGroups, { courseId, groups: groupsToAdd }]);
     }
   };
+
   const uniqueCourseTypes = useMemo(() => {
     return Array.from(new Set(allCourses.map(course => course.courseType)));
   }, [allCourses]);
+
   return (
     <div className="h-screen w-full flex flex-col md:flex-row overflow-hidden bg-gray-100">
       {/* Main content - LEFT */}
@@ -244,7 +254,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
               </div>
             )}
           </div>
-  
+
           <div className="flex-grow">
             <WeeklySchedule
               selectedCourses={selectedCourseObjects}
@@ -253,12 +263,13 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
               courseColors={courseColors}
               onClearSchedule={handleClearSchedule}
               onScheduleChosen={handleScheduleChosen}
+              handleImportSchedule={handleImportScheduleFromId}
             />
           </div>
-  
+
           {auth.isAuthenticated && auth.user && !auth.isGuest && (
             <div className="mt-4 p-4 bg-white rounded-lg shadow-md">
-              <ProgressTracker user={auth.user} />
+              <ProgressTracker user={auth.user} savedSchedules={allStudentSchedule} onSelectSchedule={(s) => handleImportScheduleFromId(s.share_code)} />
             </div>
           )}
         </div>

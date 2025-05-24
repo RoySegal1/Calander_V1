@@ -1,5 +1,7 @@
 import { Course, CourseGroup } from '../types';
 import { useState } from 'react';
+import {ImportScheduleModal} from "./ImportScheduleModal.tsx";
+import { Trash2, Eye, EyeOff, Save, Download } from 'lucide-react';
 
 interface WeeklyScheduleProps {
   selectedCourses: Course[];
@@ -11,6 +13,7 @@ interface WeeklyScheduleProps {
   courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
   onClearSchedule?: () => void;
   onScheduleChosen?: () => void;
+  handleImportSchedule: (scheduleId: string) => void;
 }
 
 export default function WeeklySchedule({
@@ -20,13 +23,14 @@ export default function WeeklySchedule({
   courseColors,
   onClearSchedule,
   onScheduleChosen,
+  handleImportSchedule,
 }: WeeklyScheduleProps) {
   const days = ['יום ראשון', 'יום שני', 'יום שלישי', 'יום רביעי', 'יום חמישי', 'יום שישי'];
   const hours = Array.from({ length: 16 }, (_, i) => i + 8); // 8:00 to 22:00
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
   // State for toggling visibility of unselected courses
   const [showSelectedOnly, setShowSelectedOnly] = useState<boolean>(false);
-
+  const [showModal, setShowModal] = useState<boolean>(false);
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
 
   // Get all courses with their groups that are currently selected in selectedGroups
@@ -243,35 +247,62 @@ export default function WeeklySchedule({
       {/* Add toggle and clear buttons at the top */}
       <div className="flex justify-start mb-4 gap-2">
         <button
-          onClick={handleClearSchedule}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+            onClick={handleClearSchedule}
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-red-600 border border-red-200/50 rounded-xl font-medium hover:bg-red-50/50 hover:border-red-300/70 active:scale-95 transition-all duration-200"
         >
+          <Trash2 size={18} className="group-hover:rotate-12 transition-transform duration-200"/>
           נקה מערכת
         </button>
 
         <button
-          onClick={() => setShowSelectedOnly(!showSelectedOnly)}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            onClick={() => setShowSelectedOnly(!showSelectedOnly)}
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-blue-600 border border-blue-200/50 rounded-xl font-medium hover:bg-blue-50/50 hover:border-blue-300/70 active:scale-95 transition-all duration-200"
         >
-          {showSelectedOnly ? "הצג את כל הקורסים" : "הצג רק נבחרים"}
+          {showSelectedOnly ? (
+              <>
+                <Eye size={18} className="group-hover:scale-110 transition-transform duration-200"/>
+                הצג את כל הקורסים
+              </>
+          ) : (
+              <>
+                <EyeOff size={18} className="group-hover:scale-110 transition-transform duration-200"/>
+                הצג רק נבחרים
+              </>
+          )}
         </button>
 
         <button
-          onClick={() => onScheduleChosen?.()}
-          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+            onClick={() => onScheduleChosen?.()}
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
         >
+          <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
           בחר מערכת
         </button>
+
+        <button
+            onClick={() => setShowModal(true)}
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-emerald-600 border border-emerald-200/50 rounded-xl font-medium hover:bg-emerald-50/50 hover:border-emerald-300/70 active:scale-95 transition-all duration-200"
+        >
+          <Download size={18} className="group-hover:scale-110 transition-transform duration-200"/>
+          בחר מערכת לפי מזהה
+        </button>
+        {showModal && (
+            <ImportScheduleModal
+                onImport={handleImportSchedule}
+                onClose={() => setShowModal(false)}
+            />
+        )}
       </div>
 
       <div className="flex">
         {/* Time bar on the left side */}
         <div className="w-20 shrink-0">
-          <div className="h-8" /> {/* Header spacer */}
+          <div className="h-8"/>
+          {/* Header spacer */}
           {hours.map(hour => (
-            <div key={hour} className="h-[60px] text-sm text-gray-500 relative -top-3 text-right">
-              {getTimeString(hour)}
-            </div>
+              <div key={hour} className="h-[60px] text-sm text-gray-500 relative -top-3 text-right">
+                {getTimeString(hour)}
+              </div>
           ))}
         </div>
 
@@ -279,33 +310,33 @@ export default function WeeklySchedule({
         <div className="flex-1 grid grid-cols-6 gap-2">
           {/* Display days in original order, so Sunday (index 0) is rightmost */}
           {days.map((day, dayIndex) => (
-            <div key={day} className="relative">
-              <div className="h-8 text-sm font-medium text-gray-700 text-center sticky top-0 bg-white">
-                {day}
-              </div>
-              <div className="relative h-[960px]"> {/* 16 hours * 60px */}
-                {hours.map(hour => (
-                  <div
-                    key={hour}
-                    className="h-[60px] border-t border-gray-100"
-                  />
-                ))}
+              <div key={day} className="relative">
+                <div className="h-8 text-sm font-medium text-gray-700 text-center sticky top-0 bg-white">
+                  {day}
+                </div>
+                <div className="relative h-[960px]"> {/* 16 hours * 60px */}
+                  {hours.map(hour => (
+                      <div
+                          key={hour}
+                          className="h-[60px] border-t border-gray-100"
+                      />
+                  ))}
 
-                {/* Render all course blocks for this day */}
-                {courseBlocks
-                  .filter(block => block.group.dayOfWeek === dayIndex)
-                  .map(({ course, group, isSelected }) => (
-                    <div
-                      key={`${course.courseCode}-${group.groupCode}`}
-                      style={getGroupStyle(course, group, isSelected)}
-                      onClick={() => handleGroupSelect(group, course.courseCode)}
-                      onMouseEnter={() => setHoveredGroup(group.groupCode)}
-                      onMouseLeave={() => setHoveredGroup(null)}
-                      className="hover:shadow-lg relative group"
-                    >
-                      {/* Course information from old code */}
-                      <div className="font-medium truncate">{course.courseName}</div>
-                      <div className="text-xs truncate">
+                  {/* Render all course blocks for this day */}
+                  {courseBlocks
+                      .filter(block => block.group.dayOfWeek === dayIndex)
+                      .map(({course, group, isSelected}) => (
+                          <div
+                              key={`${course.courseCode}-${group.groupCode}`}
+                              style={getGroupStyle(course, group, isSelected)}
+                              onClick={() => handleGroupSelect(group, course.courseCode)}
+                              onMouseEnter={() => setHoveredGroup(group.groupCode)}
+                              onMouseLeave={() => setHoveredGroup(null)}
+                              className="hover:shadow-lg relative group"
+                          >
+                            {/* Course information from old code */}
+                            <div className="font-medium truncate">{course.courseName}</div>
+                            <div className="text-xs truncate">
                         {group.groupCode} - {group.lectureType === 0 ? "הרצאה" : "תרגול"}
                       </div>
                       <div className="text-xs truncate">{group.lecturer}</div>
