@@ -130,7 +130,16 @@ export default function ProgressTracker({ user,savedSchedules,onSelectSchedule }
                 className="cursor-pointer text-right p-4 bg-white/70 hover:bg-indigo-100 rounded-lg transition-colors border border-transparent hover:border-indigo-300 shadow-sm"
                 >
                 <div className="font-semibold text-indigo-800">{schedule.schedule_name || 'ללא שם'}</div>
-                <div className="text-xs text-indigo-500 mt-1">{schedule.share_code} :מזהה</div>
+                <div
+                  className="text-xs text-indigo-500 mt-1 cursor-pointer hover:underline"
+                  title="העתק מזהה"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(schedule.share_code);
+                  }}
+                >
+                  {schedule.share_code} :מזהה
+                </div>
                 <div className="text-xs text-gray-500 mt-1">
                   נשמר: {new Date(schedule.created_at).toLocaleDateString()}
                 </div>
