@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {ImportScheduleModal} from "./ImportScheduleModal.tsx";
 import { Trash2, Eye, EyeOff, Save, Download } from 'lucide-react';
 import { NameScheduleModal } from "./NameScheduleModal.tsx";
+import { useAuth } from './Auth.tsx';
 
 interface WeeklyScheduleProps {
   selectedCourses: Course[];
@@ -33,6 +34,7 @@ export default function WeeklySchedule({
   const [showSelectedOnly, setShowSelectedOnly] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNameModal, setShowNameModal] = useState(false);
+  const { auth } = useAuth();
   const getTimeString = (hour: number) => `${hour.toString().padStart(2, '0')}:00`;
 
   // Get all courses with their groups that are currently selected in selectedGroups
@@ -272,14 +274,14 @@ export default function WeeklySchedule({
               </>
           )}
         </button>
-
+        {auth.isAuthenticated && auth.user && !auth.isGuest && (
         <button
             onClick={() => setShowNameModal(true)}
             className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
         >
           <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
           בחר מערכת
-        </button>
+        </button>)}
 
         <button
             onClick={() => setShowModal(true)}
@@ -294,7 +296,7 @@ export default function WeeklySchedule({
                 onClose={() => setShowModal(false)}
             />
         )}
-          {showNameModal && (
+          {showNameModal &&  (
         <NameScheduleModal
           onSave={(name) => {
             onScheduleChosen?.(name);  // You can now accept the name
