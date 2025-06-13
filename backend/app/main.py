@@ -1,17 +1,17 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# from backend.app.api.auth import router as auth_router
-# from backend.app.api.coursesInfo import router as courses_info_router
-# from backend.app.api.schedule import router as student_schedule_router
-# from backend.app.core.logger import logger
-# from backend.app.core.cache import load_courses_to_mem
+from backend.app.api.auth import router as auth_router
+from backend.app.api.coursesInfo import router as courses_info_router
+from backend.app.api.schedule import router as student_schedule_router
+from backend.app.core.logger import logger
+from backend.app.core.cache import load_courses_to_mem
 
-from app.api.auth import router as auth_router
-from app.api.coursesInfo import router as courses_info_router
-from app.api.schedule import router as student_schedule_router
-from app.core.logger import logger
-from app.core.cache import load_courses_to_mem
+# from app.api.auth import router as auth_router
+# from app.api.coursesInfo import router as courses_info_router
+# from app.api.schedule import router as student_schedule_router
+# from app.core.logger import logger
+# from app.core.cache import load_courses_to_mem
 
 
 @asynccontextmanager
