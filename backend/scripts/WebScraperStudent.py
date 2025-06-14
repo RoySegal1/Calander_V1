@@ -33,12 +33,12 @@ def scrape_student_grades(username, password):
 
     try:
         # Navigate to the login page
-        logger.debug("Opening login page...")
+        logger.info("Opening login page...")
         driver.get("https://sso.afeka.ac.il/my.policy")
         time.sleep(2)  # Wait for the page to load
 
         # Find and fill the username/email field
-        logger.debug("Filling username...")
+        logger.info("Filling username...")
         username_field = driver.find_element(By.NAME, "username")
         username_field.send_keys(username)
 
@@ -97,7 +97,7 @@ def scrape_student_grades(username, password):
         button.click()
 
         # Wait for the main container div
-        logger.debug("Waiting for the main container div...")
+        logger.info("Waiting for the main container div...")
         try:
             main_container = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.XPATH,

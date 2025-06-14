@@ -187,6 +187,7 @@ def save_user(user: dict):
     """
     # Check if user already exists
     if check_user_exists(user['username']):
+        logger.error("User already exists")
         return {"success": False, "error": "Username already exists"}
 
     # Run web scraper to get course data
@@ -218,6 +219,7 @@ def run_web_scraper(username, password):
     Run the WebScraperStudent script with user credentials and return the scraped data
     """
     try:
+        logger.info("Trying to run scraper")
         scraped_data = scrape_student_grades(username, password)
         scraped_data = clean_courses(scraped_data)
 
