@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Course, SavedSchedule, User } from '../types';
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://calanderv1-production.up.railway.app';
 
 export class ApiService {
     static async login(username: string, password: string): Promise<{ status: string; user: User }> {
