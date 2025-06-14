@@ -194,7 +194,7 @@ def save_user(user: dict):
     scraper_clean_result = run_web_scraper(user['username'], user['password'])
 
     if not scraper_clean_result["success"]:
-        return {"success": False, "error": "Registration Failed Please Try Again Later"}
+        return scraper_clean_result
 
     # Save user and scraped data to database
     db_result = save_user_to_db(user, scraper_clean_result.get("data"))

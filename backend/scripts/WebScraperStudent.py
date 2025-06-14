@@ -35,7 +35,11 @@ def scrape_student_grades(username, password):
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Chrome(options=options)
+    try:
+        driver = webdriver.Chrome(options=options)
+    except Exception as e:
+        logger.error(f"Failed to initialize WebDriver: {e}")
+        raise
 
     try:
         # Navigate to the login page
@@ -193,7 +197,6 @@ def scrape_student_grades(username, password):
         # Close the browser
         logger.debug("Closing browser...")
         driver.quit()
-
 
 if __name__ == "__main__":
     # Check if credentials are provided as command-line arguments
