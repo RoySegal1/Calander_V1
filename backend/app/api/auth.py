@@ -160,10 +160,10 @@ def signup(data: SignupRequest, db: Session = Depends(get_db)):
     if not save_result["success"]:
         # If script fails, tell user there was an issue
         logger.error("Script Fails")
-        return {
-            "status": "error",
-            "message": "There was an issue with your Afeka credentials. Please try again or enter as guest."
-        }
+        raise HTTPException(
+            status_code=401,
+            detail="There was an issue with your Afeka credentials. Please try again or enter as guest."
+        )
 
     # If script succeeds, proceed with login
     try:
@@ -194,7 +194,7 @@ def save_user(user: dict):
     scraper_clean_result = run_web_scraper(user['username'], user['password'])
 
     if not scraper_clean_result["success"]:
-        return scraper_clean_result
+        return {"success": False, "error": "Registration Failed Please Try Again Later"}
 
     # Save user and scraped data to database
     db_result = save_user_to_db(user, scraper_clean_result.get("data"))
