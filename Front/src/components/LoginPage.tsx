@@ -102,7 +102,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 justify-end text-right">
                 שם משתמש
               </label>
               <input
@@ -119,7 +119,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 justify-end text-right">
                 סיסמה
               </label>
               <input
@@ -137,7 +137,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
 
             {mode === 'signup' && (
               <div>
-                <label htmlFor="department" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="department" className="block text-sm font-medium text-gray-700 justify-end text-right">
                   מחלקה
                 </label>
                 <select
@@ -194,8 +194,8 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
         {showSignupInfo && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg max-w-md w-full">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">מידע הרשמה</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-3 justify-end text-right">מידע על ההרשמה</h3>
+              <p className="text-gray-600 mb-6 justify-end text-right">
                 הזן את שם המשתמש והסיסמה של אפקה ואשר אותם. ע"י המשך הרשמה, אתה מסכים לספק לנו את המידע שלך
               </p>
               <div className="flex justify-end space-x-3">
