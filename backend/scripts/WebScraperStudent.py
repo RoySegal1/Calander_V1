@@ -31,11 +31,9 @@ def clean_code(code_text_in):
 def scrape_student_grades(username, password):
     options = Options()
     options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
 
     try:
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome()
     except Exception as e:
         logger.error(f"Failed to initialize WebDriver: {e}")
         raise
