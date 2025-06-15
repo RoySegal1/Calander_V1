@@ -29,7 +29,6 @@ def clean_code(code_text_in):
 
 
 def scrape_student_grades(username, password):
-    # Set up the WebDriver
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
@@ -45,7 +44,7 @@ def scrape_student_grades(username, password):
         # Navigate to the login page
         logger.info("Opening login page...")
         driver.get("https://sso.afeka.ac.il/my.policy")
-        time.sleep(2)  # Wait for the page to load
+        time.sleep(4)  # Wait for the page to load
 
         # Find and fill the username/email field
         logger.info("Filling username...")
@@ -53,34 +52,34 @@ def scrape_student_grades(username, password):
         username_field.send_keys(username)
 
         # Find and fill the password field
-        logger.debug("Filling password...")
+        logger.info("Filling password...")
         password_field = driver.find_element(By.NAME, "password")  # Replace with actual ID or selector
         password_field.send_keys(password)
 
         # Submit the form (click the login button or press Enter)
-        logger.debug("Clicking login button...")
+        logger.info("Clicking login button...")
         submit_button = driver.find_element(By.XPATH, "//input[@value='כניסה']")
         submit_button.click()
 
         # Wait for login to complete and the next page to load
-        time.sleep(5)
-        logger.debug("Logged in successfully!")
+        time.sleep(10)
+        logger.info("Logged in successfully!")
 
-        logger.debug("Clicking Afeka-Net button...")
+        logger.info("Clicking Afeka-Net button...")
         afeka_net_button = driver.find_element(By.XPATH, "//span[@id='/Common/Yedion']")
         afeka_net_button.click()
 
         driver.switch_to.window(driver.window_handles[-1])  # Switch to the most recent tab
 
         # Perform actions on the website after login
-        logger.debug("Clicking menu button...")
+        logger.info("Clicking menu button...")
         # Wait for the element to be visible
-        main_button = WebDriverWait(driver, 10).until(
+        main_button = WebDriverWait(driver, 100).until(
             EC.element_to_be_clickable((By.XPATH, '//a[div/div[contains(text(), "רשימת ציונים")]]'))
         )
         main_button.click()
         # Wait for the dropdown to be present
-        first_dropdown = WebDriverWait(driver, 10).until(
+        first_dropdown = WebDriverWait(driver, 100).until(
             EC.presence_of_element_located((By.ID, "R1C1"))
         )
 
@@ -90,7 +89,7 @@ def scrape_student_grades(username, password):
         # Select the option with value "-1" כל השנים
         select.select_by_value("-1")
 
-        second_dropdown = WebDriverWait(driver, 10).until(
+        second_dropdown = WebDriverWait(driver, 100).until(
             EC.presence_of_element_located((By.ID, "R1C2"))
         )
 
@@ -101,7 +100,7 @@ def scrape_student_grades(username, password):
         select.select_by_value("0")
 
         # Wait for the button and click it
-        button = WebDriverWait(driver, 10).until(
+        button = WebDriverWait(driver, 100).until(
             EC.element_to_be_clickable((By.XPATH, "//a[contains(@onclick, \"SubmitForm\")]"))
         )
         button.click()
@@ -109,19 +108,19 @@ def scrape_student_grades(username, password):
         # Wait for the main container div
         logger.info("Waiting for the main container div...")
         try:
-            main_container = WebDriverWait(driver, 10).until(
+            main_container = WebDriverWait(driver, 100).until(
                 EC.presence_of_element_located((By.XPATH,
                                                 "//div[contains(@class, 'col-md-12') and contains(@class, 'row') and contains(@class, 'NoPadding') and contains(@class, 'NoMarging')]"))
             )
-            logger.debug("Main container found!")
+            logger.info("Main container found!")
         except Exception as e:
-            logger.debug(f"Error: Failed to locate the main container - {e}")
+            logger.info(f"Error: Failed to locate the main container - {e}")
             driver.quit()
 
         # Find all <details> elements inside the main container
         logger.debug("Finding all <details> elements inside the main container...")
         details_list = main_container.find_elements(By.TAG_NAME, "details")
-        logger.debug(f"Found {len(details_list)} <details> elements.")
+        logger.info(f"Found {len(details_list)} <details> elements.")
 
         # Store extracted data
         # Store extracted data
@@ -178,7 +177,7 @@ def scrape_student_grades(username, password):
 
                                 # Append to results
                                 results["Courses"].append({code: [grade, nz_grade]})
-                                logger.debug(f"      Extracted course: {code} | Grade: {grade}")
+                                logger.info(f"      Extracted course: {code} | Grade: {grade}")
                             except Exception as e:
                                 logger.debug(f"      Warning: <strong> element not found - {e}")
                             continue
