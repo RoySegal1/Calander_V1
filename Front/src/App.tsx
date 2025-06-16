@@ -3,7 +3,7 @@ import MainLayout from './components/MainLayout';
 import { useAuth } from './components/Auth';
 
 function App() {
-  const { auth, loading, error, handleLogin, handleGuestLogin, handleSignup, handleLogout } = useAuth();
+  const { auth, loading, error, handleLogin, handleGuestLogin, handleSignup, handleLogout,handleSignupLight } = useAuth();
 
   if (!auth.isAuthenticated && !auth.isGuest) {
     return (
@@ -17,6 +17,7 @@ function App() {
           onLogin={handleLogin}
           onGuestLogin={handleGuestLogin}
           onSignup={handleSignup}
+          onSignupLight={handleSignupLight}
         />
         {loading && (
           <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">

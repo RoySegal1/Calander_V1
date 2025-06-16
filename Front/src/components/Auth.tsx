@@ -8,6 +8,7 @@ interface AuthContextType {
   error: string | null;
   handleLogin: (username: string, password: string) => Promise<void>;
   handleSignup: (username: string, password: string, department: string) => Promise<void>;
+  handleSignupLight: (username: string, password: string, department: string) => Promise<void>;
   handleGuestLogin: () => Promise<void>;
   handleLogout: () => void;
 }
@@ -49,6 +50,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+   const handleSignupLight = async (username: string, password: string, department: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const { user } = await ApiService.signuplight(username, password, department);
+      setAuth({ user, isGuest: false, isAuthenticated: true });
+    } catch (err: any) {
+      setError(err.response?.data?.detail || "Signup failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleGuestLogin = async () => {
     setLoading(true);
     setError(null);
@@ -68,7 +82,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ auth, loading, error, handleLogin, handleSignup, handleGuestLogin, handleLogout }}>
+    <AuthContext.Provider value={{ auth, loading, error, handleLogin, handleSignup, handleGuestLogin, handleLogout,handleSignupLight }}>
       {children}
     </AuthContext.Provider>
   );

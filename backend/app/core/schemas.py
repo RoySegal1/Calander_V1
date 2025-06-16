@@ -27,3 +27,15 @@ class SavedScheduleOut(BaseModel):
 
     class Config:
         orm_mode = True  # Enables interaction with SQLAlchemy models
+
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+class SignupRequest(LoginRequest):
+    department: str
+    username: str
+    password: str
+

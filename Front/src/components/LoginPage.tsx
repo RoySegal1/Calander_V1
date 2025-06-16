@@ -6,15 +6,16 @@ interface LoginPageProps {
   onLogin: (username: string, password: string) => void;
   onGuestLogin: () => void;
   onSignup: (username: string, password: string, department: string) => void;
+  onSignupLight: (username: string, password: string, department: string) => void;
 }
 
-export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPageProps) {
+export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLight }: LoginPageProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [department, setDepartment] = useState('מדעי המחשב');
   const [usernameErrorMessage, setusernameErrorMessage] = useState<string | null>(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState<string | null>(null);
-  const [mode, setMode] = useState<'select' | 'login' | 'signup'>('select');
+  const [mode, setMode] = useState<'select' | 'login' | 'signup'| 'signupLight'>('select');
   const [showSignupInfo, setShowSignupInfo] = useState(false);
 
   const departments = [
@@ -54,12 +55,19 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
       } else if (mode === 'signup') {
         onSignup(username, password, department);
       }
+      else if (mode === 'signupLight') {
+        onSignupLight(username, password, department);
+      }
     }
   };
 
   const handleSignupClick = () => {
     setShowSignupInfo(true);
   };
+  const handleSignupLightClick = () => {
+    setMode('signupLight');
+  };
+
 
   const handleSignupConfirm = () => {
     setShowSignupInfo(false);
@@ -88,8 +96,18 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
               className="w-full flex justify-center items-center gap-2 bg-emerald-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
             >
               <UserPlus size={18} />
-              הרשמה
+              הרשמה דרך אפקה
             </button>
+
+            
+            <button
+              onClick={handleSignupLightClick}
+              className="w-full flex justify-center items-center gap-2 bg-white py-2 px-4 border border-emerald-600 rounded-md shadow-sm text-sm font-medium text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400 transition-colors"
+            >
+              <UserPlus size={18} />
+              הרשמה מהירה
+            </button>
+
 
             <button
               onClick={onGuestLogin}
@@ -135,7 +153,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
               {passwordErrorMessage && <p className="text-red-500 text-sm mt-1">{passwordErrorMessage}</p>}
             </div>
 
-            {mode === 'signup' && (
+            {mode === 'signup' || mode === 'signupLight'  && (
               <div>
                 <label htmlFor="department" className="block text-sm font-medium text-gray-700 justify-end text-right">
                   מחלקה
@@ -189,7 +207,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup }: LoginPage
             </div>
           </form>
         )}
-
+      
         {/* Signup Information Modal */}
         {showSignupInfo && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

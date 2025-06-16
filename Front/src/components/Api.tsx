@@ -15,6 +15,11 @@ export class ApiService {
     return response.data;
   }
 
+  static async signuplight(username: string, password: string, department: string): Promise<{ status: string; user: User }> {
+    const response = await axios.post(`${BASE_URL}/auth/signuplight`, { username, password, department });
+    return response.data;
+  }
+
   static async guestLogin(): Promise<{ status: string; user: User }> {
     const response = await axios.get(`${BASE_URL}/auth/guest`);
     return response.data;
