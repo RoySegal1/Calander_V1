@@ -61,7 +61,7 @@ def scrape_student_grades(username, password):
         submit_button.click()
 
         # Wait for login to complete and the next page to load
-        time.sleep(10)
+        time.sleep(4)
         logger.info("Logged in successfully!")
 
         logger.info("Clicking Afeka-Net button...")
@@ -73,12 +73,12 @@ def scrape_student_grades(username, password):
         # Perform actions on the website after login
         logger.info("Clicking menu button...")
         # Wait for the element to be visible
-        main_button = WebDriverWait(driver, 100).until(
+        main_button = WebDriverWait(driver, 30).until(
             EC.element_to_be_clickable((By.XPATH, '//a[div/div[contains(text(), "רשימת ציונים")]]'))
         )
         main_button.click()
         # Wait for the dropdown to be present
-        first_dropdown = WebDriverWait(driver, 100).until(
+        first_dropdown = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.ID, "R1C1"))
         )
 
@@ -88,7 +88,7 @@ def scrape_student_grades(username, password):
         # Select the option with value "-1" כל השנים
         select.select_by_value("-1")
 
-        second_dropdown = WebDriverWait(driver, 100).until(
+        second_dropdown = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.ID, "R1C2"))
         )
 
@@ -99,7 +99,7 @@ def scrape_student_grades(username, password):
         select.select_by_value("0")
 
         # Wait for the button and click it
-        button = WebDriverWait(driver, 100).until(
+        button = WebDriverWait(driver, 30).until(
             EC.element_to_be_clickable((By.XPATH, "//a[contains(@onclick, \"SubmitForm\")]"))
         )
         button.click()
@@ -107,7 +107,7 @@ def scrape_student_grades(username, password):
         # Wait for the main container div
         logger.info("Waiting for the main container div...")
         try:
-            main_container = WebDriverWait(driver, 100).until(
+            main_container = WebDriverWait(driver, 30).until(
                 EC.presence_of_element_located((By.XPATH,
                                                 "//div[contains(@class, 'col-md-12') and contains(@class, 'row') and contains(@class, 'NoPadding') and contains(@class, 'NoMarging')]"))
             )
