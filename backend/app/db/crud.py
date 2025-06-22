@@ -25,3 +25,13 @@ def count_schedules_for_student(db: Session, student_id: int):
 def get_schedules_for_student(db: Session, student_id: int):
     return db.query(models.SavedSchedule).filter_by(student_id=student_id).all()
 
+
+def delete_schedule_by_id(db: Session, schedule_id: str):
+    schedule = db.query(models.SavedSchedule).filter_by(share_code=schedule_id).first()
+    if schedule:
+        db.delete(schedule)
+        db.commit()
+        return True
+    return False
+
+

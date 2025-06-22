@@ -36,6 +36,14 @@ def load_schedule(schedule_id: str, db: Session = Depends(get_db)):
     return db_schedule
 
 
+@router.delete("/{schedule_id}")
+def delete_schedule(schedule_id: str, db: Session = Depends(get_db)):
+    success = crud.delete_schedule_by_id(db, schedule_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Schedule not found")
+    return {"detail": "Schedule deleted successfully"}
+
+
 @router.get("/student/{student_id}")
 def get_student_schedules(student_id: int, db: Session = Depends(get_db)):
     schedules = crud.get_schedules_for_student(db, student_id)

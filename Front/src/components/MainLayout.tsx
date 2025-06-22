@@ -269,7 +269,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
           {auth.isAuthenticated && auth.user && !auth.isGuest && (
             <div className="mt-4 p-4 bg-white rounded-lg shadow-md">
-              <ProgressTracker user={auth.user} savedSchedules={allStudentSchedule} onSelectSchedule={(s) => handleImportScheduleFromId(s.share_code)} />
+              <ProgressTracker user={auth.user} savedSchedules={allStudentSchedule} onSelectSchedule={(s) => handleImportScheduleFromId(s.share_code) } setSchdule={setAllStudentSchedule} />
             </div>
           )}
         </div>

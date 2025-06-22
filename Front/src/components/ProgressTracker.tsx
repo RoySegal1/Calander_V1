@@ -1,13 +1,26 @@
 import { GraduationCap, Book, BookOpen, Award, Bookmark, CheckCircle, Calendar } from 'lucide-react';
 import {SavedSchedule, User} from '../types'
+import { X } from 'lucide-react';
+import { ApiService } from './Api';
 interface ProgressTrackerProps {
   user: User;
   savedSchedules: SavedSchedule[];
   onSelectSchedule: (schedule: SavedSchedule) => void;
+  setSchdule: (schedules: SavedSchedule[]) => void;
 }
- 
-export default function ProgressTracker({ user,savedSchedules,onSelectSchedule }: ProgressTrackerProps) {
+
+
+export default function ProgressTracker({ user,savedSchedules,onSelectSchedule,setSchdule }: ProgressTrackerProps) {
   // Calculate total credits including enrolled courses
+  const handleDeleteSchedule = async (scheduleId: string) => {
+    try {
+      await ApiService.handleDeleteSchedule(scheduleId);
+      const updatedSchedules = savedSchedules.filter(s => s.share_code !== scheduleId);
+      setSchdule(updatedSchedules);
+    } catch (error) {
+      alert('מחיקה נכשלה');
+    }
+  };
   const enrolledCredits = user.enrolledCourses ?
     user.enrolledCourses.reduce((sum, course) => sum + (Number(course.courseCredit) || 0), 0) : 0;
  
@@ -124,26 +137,36 @@ export default function ProgressTracker({ user,savedSchedules,onSelectSchedule }
             <div className="bg-gradient-to-br from-purple-100 to-indigo-50 rounded-xl p-4 shadow-md">
               <ul className="space-y-2">
               {savedSchedules.map((schedule) => (
-                <li
-                key={schedule.id}
-                onClick={() => onSelectSchedule(schedule)}
-                className="cursor-pointer text-right p-4 bg-white/70 hover:bg-indigo-100 rounded-lg transition-colors border border-transparent hover:border-indigo-300 shadow-sm"
-                >
-                <div className="font-semibold text-indigo-800">{schedule.schedule_name || 'ללא שם'}</div>
-                <div
-                  className="text-xs text-indigo-500 mt-1 cursor-pointer hover:underline"
-                  title="העתק מזהה"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(schedule.share_code);
-                  }}
-                >
-                  {schedule.share_code} :מזהה
-                </div>
-                <div className="text-xs text-gray-500 mt-1">
-                  נשמר: {new Date(schedule.created_at).toLocaleDateString()}
-                </div>
-                </li>
+            <li
+              key={schedule.id}
+              onClick={() => onSelectSchedule(schedule)}
+              className="relative cursor-pointer text-right p-4 bg-white/70 hover:bg-indigo-100 rounded-lg transition-colors border border-transparent hover:border-indigo-300 shadow-sm"
+            >
+              <button
+                className="absolute left-2 top-2 text-gray-400 hover:text-red-500 transition-colors"
+                title="מחק מערכת"
+                onClick={e => {
+                  e.stopPropagation();
+                  handleDeleteSchedule(schedule.share_code);
+                }}
+              >
+                <X size={18} />
+              </button>
+              <div className="font-semibold text-indigo-800">{schedule.schedule_name || 'ללא שם'}</div>
+              <div
+                className="text-xs text-indigo-500 mt-1 cursor-pointer hover:underline"
+                title="העתק מזהה"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(schedule.share_code);
+                }}
+              >
+                {schedule.share_code} :מזהה
+              </div>
+              <div className="text-xs text-gray-500 mt-1">
+                נשמר: {new Date(schedule.created_at).toLocaleDateString()}
+              </div>
+            </li>
               ))}
               </ul>
             </div>

@@ -42,6 +42,16 @@ export class ApiService {
     }
   }
 
+static async handleDeleteSchedule(scheduleId: string): Promise<void> {
+  try {
+    await axios.delete(`${BASE_URL}/schedule/${scheduleId}`);
+    // Optionally: return a value or update state in the calling component
+  } catch (error) {
+    console.error('מחיקה נכשלה', error);
+    throw error;
+  }
+}
+
   /**
    * Fetch courses based on department
    */
