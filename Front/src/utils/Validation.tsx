@@ -17,7 +17,7 @@ export function validateUsername(
         return false;
       }
     }
-    if(mode === 'signupLight')
+    if(mode === 'signupLight' || mode === 'login')
     {
       if (value.trim() === '') {
         setError?.('שם משתמש לא יכול להיות ריק');
