@@ -1,5 +1,6 @@
 // components/NameScheduleModal.tsx
 import React, { useState } from "react";
+import toast from 'react-hot-toast';
 
 interface NameScheduleModalProps {
   onSave: (name: string) => void;
@@ -12,7 +13,7 @@ export const NameScheduleModal: React.FC<NameScheduleModalProps> = ({ onSave, on
   const handleSubmit = () => {
     const trimmed = name.trim();
     if (!trimmed) {
-      alert("יש להזין שם חוקי למערכת");
+       toast.error("יש להזין שם חוקי למערכת");
       return;
     }
     onSave(trimmed);

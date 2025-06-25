@@ -2,23 +2,26 @@ import { GraduationCap, Book, BookOpen, Award, Bookmark, CheckCircle, Calendar }
 import {SavedSchedule, User} from '../types'
 import { X } from 'lucide-react';
 import { ApiService } from './Api';
+import toast from 'react-hot-toast';
+
 interface ProgressTrackerProps {
   user: User;
   savedSchedules: SavedSchedule[];
   onSelectSchedule: (schedule: SavedSchedule) => void;
-  setSchdule: (schedules: SavedSchedule[]) => void;
+  setSchedule: (schedules: SavedSchedule[]) => void;
 }
 
 
-export default function ProgressTracker({ user,savedSchedules,onSelectSchedule,setSchdule }: ProgressTrackerProps) {
+export default function ProgressTracker({ user,savedSchedules,onSelectSchedule,setSchedule }: ProgressTrackerProps) {
   // Calculate total credits including enrolled courses
   const handleDeleteSchedule = async (scheduleId: string) => {
     try {
       await ApiService.handleDeleteSchedule(scheduleId);
       const updatedSchedules = savedSchedules.filter(s => s.share_code !== scheduleId);
-      setSchdule(updatedSchedules);
+      setSchedule(updatedSchedules);
+       toast.success('המערכת נמחקה בהצלחה');
     } catch (error) {
-      alert('מחיקה נכשלה');
+       toast.error('מחיקה נכשלה');
     }
   };
   const enrolledCredits = user.enrolledCourses ?

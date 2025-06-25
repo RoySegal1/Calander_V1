@@ -1,5 +1,6 @@
 // components/ImportScheduleModal.tsx
 import React, { useState } from "react";
+import toast from 'react-hot-toast';
 
 interface ImportScheduleModalProps {
   onImport: (code: string) => void;
@@ -12,7 +13,7 @@ export const ImportScheduleModal: React.FC<ImportScheduleModalProps> = ({ onImpo
   const handleSubmit = () => {
     const trimmed = code.trim();
     if (!trimmed) {
-      alert("הוזן מזהה לא חוקי");
+      toast.error("הוזן מזהה לא חוקי");
       return;
     }
     onImport(trimmed);

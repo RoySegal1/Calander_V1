@@ -4,6 +4,9 @@ import { ApiService } from './Api';
 import WeeklySchedule from './WeeklySchedule';
 import Sidebar from './Sidebar';
 import ProgressTracker from './ProgressTracker';
+import toast from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
+
 
 interface SelectedCourseGroups {
   courseId: string;
@@ -19,7 +22,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
   const [selectedGroups, setSelectedGroups] = useState<SelectedCourseGroups[]>([]);
   const [filters, setFilters] = useState({
-    department: 'מדעי המחשב', // default to CS
+    department: auth.isAuthenticated && auth.user?.department ? auth.user.department : 'מדעי המחשב', // default to CS
     type: '',
     semester: 'א',
   });
@@ -103,7 +106,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
   const handleScheduleChosen = async (scheduleName: string) => {
     if (!auth.user?.id) {
-      alert("User not authenticated");
+      toast.error("User not authenticated");
       return;
     }
 
@@ -114,11 +117,11 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
     try {
       await ApiService.saveSchedule(auth.user.id, scheduleData,scheduleName);
-      alert("Schedule saved to backend!");
+      toast.success("Schedule saved to backend!");
       setRefreshTrigger(prev => prev + 1);
     } catch (error) {
       console.error("Failed to save schedule:", error);
-      alert("Failed to save schedule. Please try again.");
+      toast.error("Failed to save schedule. Please try again.");
     }
   };
 
@@ -142,7 +145,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
     } catch (error) {
       console.error("Failed to load schedule by ID:", error);
-      alert("Could not load schedule. Check the ID and try again.");
+       toast.error("Could not load schedule. Check the ID and try again.");
     }
   };
 
@@ -235,6 +238,22 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
   return (
     <div className="h-screen w-full flex flex-col md:flex-row overflow-hidden bg-gray-100">
+       <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 4000,
+          },
+        }}
+      />
       {/* Main content - LEFT */}
       <div className="flex-1 p-2 md:p-4 overflow-auto">
         <div className="h-full flex flex-col">
@@ -269,7 +288,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
 
           {auth.isAuthenticated && auth.user && !auth.isGuest && (
             <div className="mt-4 p-4 bg-white rounded-lg shadow-md">
-              <ProgressTracker user={auth.user} savedSchedules={allStudentSchedule} onSelectSchedule={(s) => handleImportScheduleFromId(s.share_code) } setSchdule={setAllStudentSchedule} />
+              <ProgressTracker user={auth.user} savedSchedules={allStudentSchedule} onSelectSchedule={(s) => handleImportScheduleFromId(s.share_code) } setSchedule={setAllStudentSchedule} />
             </div>
           )}
         </div>
