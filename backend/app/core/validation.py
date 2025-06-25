@@ -13,6 +13,6 @@ def validate_username_for_light(username: str):
     if len(username) < 3:
         return False, 'Username must be at least 3 characters long.'
 
-    if not re.match(r'^[a-zA-Z0-9_]+$', username):
+    if not re.match(r'^[a-zA-Z0-9_.]+$', username):
         return False, 'Username can only contain letters, numbers, dots, hyphens, and underscores.'
     return True

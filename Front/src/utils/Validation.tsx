@@ -27,7 +27,7 @@ export function validateUsername(
         setError?.('שם םשתמש חייב להיות להיוך באורך של לפחות 3 תווים');
         return false;
       }
-      if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+      if (!/^[a-zA-Z0-9_.]+$/.test(value)) {
         setError?.('שם םשתמש יכול להכיל אותיות באנגלית, מספרים וקו תחתון בלבד');
         return false;
       }
