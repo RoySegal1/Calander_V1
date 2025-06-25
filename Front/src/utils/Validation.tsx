@@ -1,18 +1,36 @@
 export function validateUsername(
     value: string,
-    setError?: (msg: string | null) => void
+    mode: string,
+    setError?: (msg: string | null) => void,
   ): boolean {
-    if (value.trim() === '') {
-      setError?.('Username cannot be empty.');
-      return false;
+    if(mode === 'signup') {
+      if (value.trim() === '') {
+        setError?.('שם משתמש לא יכול להיות ריק');
+        return false;
+      }
+      if (!/^[A-Z][a-z]+\.[A-Z][a-z]+$/.test(value)) {
+        setError?.('שם המשתמש צריך להיות בפורמט: שם פרטי.שם משפחה (עם אות גדולה בתחילת כל מילה');
+        return false;
+      }
+      if (value.length < 3) {
+        setError?.('שם םשתמש חייב להיות להיוך באורך של לפחות 3 תווים');
+        return false;
+      }
     }
-    if (!/^[A-Z][a-z]+\.[A-Z][a-z]+$/.test(value)) {
-      setError?.('Username must be in the format Firstname.Lastname');
-      return false;
-    }
-    if (value.length < 3) {
-      setError?.('Username must be at least 3 characters long.');
-      return false;
+    if(mode === 'signupLight')
+    {
+      if (value.trim() === '') {
+        setError?.('שם משתמש לא יכול להיות ריק');
+        return false;
+      }
+      if (value.length < 3) {
+        setError?.('שם םשתמש חייב להיות להיוך באורך של לפחות 3 תווים');
+        return false;
+      }
+      if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+        setError?.('שם םשתמש יכול להכיל אותיות באנגלית, מספרים וקו תחתון בלבד');
+        return false;
+      }
     }
   
     setError?.(null);
@@ -24,11 +42,11 @@ export function validateUsername(
     setError?: (msg: string | null) => void
   ): boolean {
     if (value.trim() === '') {
-      setError?.('Password cannot be empty.');
+      setError?.('סיסמה לא יכולה להיות ריקה');
       return false;
     }
     if (value.length < 6) {
-      setError?.('Password must be at least 6 characters long.');
+      setError?.('סיסמה חייבת להיות באורך של לפחות 6 תווים');
       return false;
     }
 

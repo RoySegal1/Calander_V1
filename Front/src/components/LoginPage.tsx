@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LogIn, User, UserPlus } from 'lucide-react';
-import { validateUsername, validatePassword } from '../utils/Validation';
+import {validateUsername, validatePassword} from '../utils/Validation';
 
 interface LoginPageProps {
   onLogin: (username: string, password: string) => void;
@@ -31,7 +31,8 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setUsername(value);
-    validateUsername(value, setusernameErrorMessage)
+    validateUsername(value,mode,setusernameErrorMessage)
+
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +47,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const isUsernameValid = validateUsername(username, setusernameErrorMessage);
+    const isUsernameValid = validateUsername(username,mode, setusernameErrorMessage);
     const isPasswordValid = validatePassword(password, setPasswordErrorMessage);
 
     if (isUsernameValid && isPasswordValid) {

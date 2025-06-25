@@ -4,7 +4,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from backend.app.db.db import SessionLocal
 from backend.app.db.models import Student, StudentCourse
 from backend.data.consts import DEPARTMENT_CREDITS
-from backend.app.core.validation import validate_username
+from backend.app.core.validation import validate_username,validate_username_for_light
 from backend.app.api.coursesInfo import get_courses
 from backend.app.core.logger import logger
 from backend.app.core.schemas import LoginRequest, SignupRequest
@@ -40,7 +40,8 @@ def guest_login():
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
     # Step 1: Authenticate user
-    if not validate_username(data.username):
+    username_validated = validate_username(data.username) or validate_username_for_light(data.username)
+    if not username_validated:
         logger.error(f"Username not in correct format, Somehow bypassed our frontend!!  Username::{data.username}")
         raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
 
@@ -163,7 +164,7 @@ def signup(data: SignupRequest, db: Session = Depends(get_db)):
 @router.post("/signuplight")
 def signuplight(data: SignupRequest, db: Session = Depends(get_db)):
     try:
-        if not validate_username(data.username):
+        if not validate_username_for_light(data.username):
             logger.error(f"Username not in correct format, Somehow bypassed our frontend!!  Username::{data.username}")
             raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
 
