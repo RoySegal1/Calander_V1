@@ -38,8 +38,7 @@ backend/
 │       └── init_db.py         # Database initialization
 ├── data/                       # Course data and constants
 │   ├── consts.py              # Department constants
-│   ├── departmentCourseInfo/  # Course JSON files
-│   └── userInfo/              # User data files
+│   ├── departmentCourseInfo/  # Temporary Course JSON files
 ├── scripts/                    # Utility scripts
 │   ├── WebScraperStudent.py   # Student data scraper
 │   └── WebScarper.py          # Course data scraper

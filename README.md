@@ -41,7 +41,7 @@ Calander_V1/
 ### 🔐 Authentication & Access
 - **Student Registration**: Full access with web scraping integration
 - **Guest Mode**: Limited exploration without registration
-- **Secure Authentication**: BCrypt password hashing and JWT tokens
+- **Secure Authentication**: BCrypt password hashing
 
 ### 🏫 Multi-Department Support
 - Computer Science (מדעי המחשב)
@@ -62,7 +62,6 @@ Calander_V1/
 - **ORM**: SQLAlchemy
 - **Web Scraping**: Selenium WebDriver
 - **Authentication**: BCrypt password hashing
-- **Validation**: Pydantic models
 
 ### Frontend
 - **Framework**: React 18.3.1 with TypeScript
