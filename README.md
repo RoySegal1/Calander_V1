@@ -62,7 +62,6 @@ Calander_V1/
 - **ORM**: SQLAlchemy
 - **Web Scraping**: Selenium WebDriver
 - **Authentication**: BCrypt password hashing
-- **Validation**: Pydantic models
 
 ### Frontend
 - **Framework**: React 18.3.1 with TypeScript
