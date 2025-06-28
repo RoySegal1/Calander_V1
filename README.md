@@ -41,7 +41,7 @@ Calander_V1/
 ### 🔐 Authentication & Access
 - **Student Registration**: Full access with web scraping integration
 - **Guest Mode**: Limited exploration without registration
-- **Secure Authentication**: BCrypt password hashing and JWT tokens
+- **Secure Authentication**: BCrypt password hashing
 
 ### 🏫 Multi-Department Support
 - Computer Science (מדעי המחשב)
