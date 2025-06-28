@@ -76,24 +76,38 @@ export default function WeeklySchedule({
       });
     });
 
-    // Add all available groups from selected courses that aren't already selected
-    // Only add them if we're not in "selected only" mode
-    if (!showSelectedOnly) {
-      selectedCourses.forEach(course => {
-        const selectedCourseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode)?.groups || [];
-        const selectedGroupCodes = new Set(selectedCourseGroups.map(g => g.groupCode));
-
-        course.groups.forEach(group => {
-          if (!selectedGroupCodes.has(group.groupCode)) {
-            blocks.push({
-              course,
-              group,
-              isSelected: false
-            });
-          }
-        });
+    // Helper function to add unselected groups for a course
+    const addUnselectedGroups = (course: Course, selectedGroupCodes: Set<string>) => {
+      course.groups.forEach(group => {
+        if (!selectedGroupCodes.has(group.groupCode)) {
+          blocks.push({
+            course,
+            group,
+            isSelected: false
+          });
+        }
       });
-    }
+    };
+
+    // Add unselected groups based on mode and course state
+    selectedCourses.forEach(course => {
+      const selectedCourseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode)?.groups || [];
+      const selectedGroupCodes = new Set(selectedCourseGroups.map(g => g.groupCode));
+      
+      // If in "show selected only" mode, check if course has both types selected
+      if (showSelectedOnly) {
+        const selectedLectureTypes = new Set(selectedCourseGroups.map(g => g.lectureType));
+        const hasBothTypes = selectedLectureTypes.has(0) && selectedLectureTypes.has(1);
+        
+        // Only add unselected groups if course doesn't have both types selected
+        if (!hasBothTypes) {
+          addUnselectedGroups(course, selectedGroupCodes);
+        }
+      } else {
+        // In normal mode, always add unselected groups
+        addUnselectedGroups(course, selectedGroupCodes);
+      }
+    });
 
     return blocks;
   };
@@ -265,12 +279,12 @@ export default function WeeklySchedule({
           {showSelectedOnly ? (
               <>
                 <Eye size={18} className="group-hover:scale-110 transition-transform duration-200"/>
-                הצג את כל הקורסים
+                הצג את כל המופעים
               </>
           ) : (
               <>
                 <EyeOff size={18} className="group-hover:scale-110 transition-transform duration-200"/>
-                הצג רק נבחרים
+               הסתר קורסים שהושלמה בהם הבחירה  
               </>
           )}
         </button>
@@ -331,7 +345,7 @@ export default function WeeklySchedule({
                   {hours.map(hour => (
                       <div
                           key={hour}
-                          className="h-[60px] border-t border-gray-100"
+                          className="h-[60px] border-t border-gray-200"
                       />
                   ))}
 
