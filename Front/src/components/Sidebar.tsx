@@ -12,6 +12,7 @@ interface SidebarProps {
     type: string;
   };
   onFilterChange: (filters: any) => void;
+  onClearSelectedCourses?: () => void;
   courseColors: Map<string, { bg: string; bgLight: string; text: string }>;
   uniqueCourseTypes: string[];
 }
@@ -26,8 +27,24 @@ export default function Sidebar({
   filters,
   courseColors,
   onFilterChange,
+  onClearSelectedCourses,
   uniqueCourseTypes,
 }: SidebarProps) {
+  // Special handler for department and semester changes
+  const handleSpecialFilterChange = (filterType: string, value: string) => {
+    const newFilters = { ...filters, [filterType]: value };
+    
+    // If department or semester changes, clear selected courses
+    if (filterType === 'department' || filterType === 'semester') {
+      if (onClearSelectedCourses) {
+        onClearSelectedCourses();
+      }
+    }
+    
+    // Always update the filters
+    onFilterChange(newFilters);
+  };
+
   return (
     <div className="w-full bg-white border-r border-gray-200 flex flex-col h-screen max-w-xs" dir="rtl">
       {/* Filters Section - translated to Hebrew */}
@@ -45,7 +62,7 @@ export default function Sidebar({
             </label>
             <select
               value={filters.department}
-              onChange={(e) => onFilterChange({ ...filters, department: e.target.value })}
+              onChange={(e) => handleSpecialFilterChange('department', e.target.value)}
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
               {departments.map(dept => (
@@ -59,7 +76,7 @@ export default function Sidebar({
             </label>
             <select
               value={filters.semester}
-              onChange={(e) => onFilterChange({ ...filters, semester: e.target.value })}
+              onChange={(e) => handleSpecialFilterChange('semester', e.target.value)}
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
               {semesters.map(sem => (

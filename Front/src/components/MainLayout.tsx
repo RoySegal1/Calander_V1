@@ -301,6 +301,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
           onCourseSelect={handleCourseSelect}
           filters={filters}
           onFilterChange={setFilters}
+          onClearSelectedCourses={handleClearSchedule}
           courseColors={courseColors}
           uniqueCourseTypes={uniqueCourseTypes}
         />
