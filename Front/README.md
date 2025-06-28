@@ -1,100 +1,224 @@
-# Calendar V1
+# Course Schedule Management System - Frontend
 
-## Overview
+A modern web application built with React and TypeScript for managing university course schedules. This system allows students to browse courses, create personalized schedules, and track their academic progress.
 
-Calendar V1 is a web application designed to help users manage their weekly schedules by displaying courses and their respective groups. Users can select courses to view their details and groups in a calendar format.
+## 🚀 Features
 
-## Components
+### Core Functionality
+- **Interactive Weekly Schedule**: Visual calendar interface displaying courses by days and time slots
+- **Course Management**: Browse and filter courses by department, semester, and type
+- **Schedule Creation**: Select course groups and automatically handle time conflicts
+- **Schedule Persistence**: Save and share schedules with unique IDs
+- **Progress Tracking**: Monitor academic progress, completed credits, and GPA
 
-### 1. `WeeklySchedule`
+### User Experience
+- **Multi-language Support**: Hebrew interface with RTL (Right-to-Left) layout
+- **Authentication System**: Login, signup, and guest access options
+- **Responsive Design**: Modern UI with smooth animations and hover effects
+- **Real-time Validation**: Form validation with helpful error messages
+- **Toast Notifications**: User-friendly feedback for actions
 
-**File:** `src/components/WeeklySchedule.tsx`
+## 🛠️ Technology Stack
 
-This component is responsible for displaying the weekly schedule in a calendar format. It shows the days of the week and the hours of the day, and it renders the groups of the selected courses.
+- **Framework**: React 18.3.1 with TypeScript
+- **Build Tool**: Vite 5.4.16
+- **Styling**: Tailwind CSS 3.4.1
+- **Icons**: Lucide React 0.344.0
+- **HTTP Client**: Axios 1.8.4
+- **Notifications**: React Hot Toast 2.5.2
+- **Development**: ESLint, PostCSS, Autoprefixer
 
-**Props:**
-- `selectedCourses`: An array of selected course IDs.
-- `selectedGroups`: An array of objects containing course IDs and their respective groups.
-- `onGroupSelect`: A function to handle the selection of a group.
+## 📁 Project Structure
 
-**Functions:**
-- `getTimeString(hour: number)`: Converts an hour to a string format (e.g., "08:00").
-- `getGroupStyle(group: CourseGroup, courseId: string, isSelected: boolean, conflictCount: number, conflictIndex: number)`: Calculates the style for a group based on its start and end times, and any conflicts.
+```
+src/
+├── components/
+│   ├── Api.tsx                    # API service layer
+│   ├── Auth.tsx                   # Authentication context and hooks
+│   ├── CourseList.tsx             # Course listing component
+│   ├── ImportScheduleModal.tsx    # Schedule import modal
+│   ├── LoginPage.tsx              # Login and signup interface
+│   ├── MainLayout.tsx             # Main application layout
+│   ├── NameScheduleModal.tsx      # Schedule naming modal
+│   ├── ProgressTracker.tsx        # Academic progress tracking
+│   ├── Sidebar.tsx                # Course filtering sidebar
+│   └── WeeklySchedule.tsx         # Interactive calendar component
+├── types/
+│   └── index.ts                   # TypeScript type definitions
+├── utils/
+│   └── Validation.tsx             # Form validation utilities
+├── App.tsx                        # Root application component
+├── main.tsx                       # Application entry point
+└── index.css                      # Global styles
+```
 
-### 2. `CourseList`
+## 🚦 Getting Started
 
-**File:** `src/components/CourseList.tsx`
+### Prerequisites
+- Node.js (version 16 or higher)
+- npm or yarn package manager
 
-This component displays a list of available courses. Users can hover over a course to view its groups.
+### Installation
 
-**Props:**
-- `courses`: An array of course objects.
-- `selectedCourses`: An array of selected course IDs.
-- `onGroupSelect`: A function to handle the selection of a group.
-- `onCourseToggle`: A function to handle the toggling of a course.
+1. **Clone the repository**
+   ```
 
-**Functions:**
-- `handleMouseEnter(courseId: string)`: Handles the mouse enter event to show the groups of a course.
-- `handleMouseLeave(courseId: string)`: Handles the mouse leave event to hide the groups of a course.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### 3. `SideBar`
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:5173`
 
-**File:** `src/components/SideBar.tsx`
+### Available Scripts
 
-This component displays a sidebar with a list of available courses. Users can click on a course to select or deselect it.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run start` - Serve production build on port 5642
 
-**Props:**
-- `courses`: An array of course objects.
-- `selectedCourses`: An array of selected course IDs.
-- `onCourseSelect`: A function to handle the selection of a course.
+## 🏗️ Architecture
 
-**Functions:**
-- `onClick(course)`: Handles the click event to select or deselect a course.
+### Component Overview
 
-### 4. `LoginPage`
+#### Authentication (`Auth.tsx`)
+- Context-based authentication management
+- Supports login, signup, and guest access
+- Manages user state throughout the application
 
-**File:** `src/components/LoginPage.tsx`
+#### Main Layout (`MainLayout.tsx`)
+- Primary application container
+- Handles course data fetching and state management
+- Coordinates between sidebar and schedule components
 
-This component handles user authentication. It provides a form for users to log in to the application.
+#### Weekly Schedule (`WeeklySchedule.tsx`)
+- Interactive calendar displaying course sessions
+- Features:
+  - Time slot visualization (8:00 - 22:00)
+  - Course group selection with conflict detection
+  - Hover information panels
+  - Schedule visibility toggles
+  - Import/export functionality
 
-### 5. `MainLayout`
+#### Sidebar (`Sidebar.tsx`)
+- Course filtering and selection interface
+- Filters: Department, Semester, Course Type
+- Real-time course list updates
 
-**File:** `src/components/MainLayout.tsx`
+#### Progress Tracker (`ProgressTracker.tsx`)
+- Academic progress visualization
+- Displays: Completed credits, GPA, enrolled courses
+- Saved schedules management
 
-This component serves as the main layout for the application. It includes the `SideBar`, `WeeklySchedule`, and other components to provide a cohesive user interface.
+### API Integration
 
-### 6. `ProgressTracker`
+The application communicates with a backend API at `http://127.0.0.1:8000` for:
+- User authentication
+- Course data retrieval
+- Schedule persistence
+- Progress tracking
 
-**File:** `src/components/ProgressTracker.tsx`
+### State Management
 
-This component tracks the user's progress in their courses. It displays information about completed and pending tasks.
+- **Authentication**: Context-based with React hooks
+- **Course Data**: Local state with API synchronization
+- **Schedule State**: Local state with backend persistence
+- **UI State**: Component-level state for modals and interactions
 
-## Types
+## 🎨 UI/UX Features
 
-### `Course`
+### Design Principles
+- **Clean Interface**: Minimalist design focusing on functionality
+- **Hebrew Support**: Native RTL layout and Hebrew text
+- **Visual Hierarchy**: Clear information organization
+- **Accessibility**: Keyboard navigation and screen reader support
 
-Represents a course with the following properties:
-- `id`: The unique identifier of the course.
-- `name`: The name of the course.
-- `type`: The type of the course (e.g., "Mandatory", "English").
-- `groups`: An array of `CourseGroup` objects.
+### Interactive Elements
+- **Hover Effects**: Course information on hover
+- **Color Coding**: Unique colors for different courses
+- **Drag-and-Drop**: Intuitive schedule manipulation
+- **Modal Dialogs**: Non-disruptive user interactions
 
-### `CourseGroup`
+## 🔧 Configuration
 
-Represents a group within a course with the following properties:
-- `GroupsCode`: The unique code of the group.
-- `lectureType`: The type of lecture (e.g., "Lecture", "Practice").
-- `lecturer`: The name of the lecturer.
-- `building`: The building where the group meets.
-- `classNumber`: The room number where the group meets.
-- `startTime`: The start time of the group.
-- `endTime`: The end time of the group.
+### Environment Setup
+The application expects a backend API running on `http://127.0.0.1:8000`. Ensure your backend service is running before starting the frontend.
 
-## Getting Started
+### Styling Configuration
+- **Tailwind CSS**: Configured in `tailwind.config.js`
+- **PostCSS**: Setup in `postcss.config.js`
+- **Custom Styles**: Additional styles in `src/index.css`
 
-To run the project locally, follow these steps:
+### TypeScript Configuration
+- **App Config**: `tsconfig.app.json` for application code
+- **Node Config**: `tsconfig.node.json` for build tools
+- **Main Config**: `tsconfig.json` as project references
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/Calander_V1.git
-   cd Calander_V1
+## 📱 Features in Detail
+
+### Course Management
+- Browse courses by department (Computer Science, Electrical Engineering, etc.)
+- Filter by semester (A, B, Summer)
+- Filter by course type (Mandatory, Elective, General)
+- Real-time search and filtering
+
+### Schedule Building
+- Visual time slot selection
+- Automatic conflict detection
+- Multiple group types (Lectures, Tutorials)
+- Schedule validation and optimization
+
+### Data Persistence
+- Save schedules with custom names
+- Share schedules via unique IDs
+- Import schedules from other users
+- Automatic progress synchronization
+
+### User Experience
+- Guest mode for exploration
+- Full authentication for data persistence
+- Progress tracking for registered users
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is part of an academic course scheduling system. Please refer to the main repository for licensing information.
+
+### Performance Optimization
+- Use React.memo for expensive components
+- Implement virtual scrolling for large course lists
+- Optimize bundle size with code splitting
+
+## 🚀 Deployment
+
+For production deployment:
+
+1. **Build the application**
+   ```bash
+   npm run build
+   ```
+
+2. **Serve static files**
+   ```bash
+   npm run start
+   ```
+
+The built application will be available in the `dist` folder and served on port 5642.
+
+---
+
+**Happy Scheduling!** 📅✨bash
+   git clone <repository-url>
+   cd Front
