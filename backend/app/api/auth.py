@@ -166,7 +166,7 @@ def signuplight(data: SignupRequest, db: Session = Depends(get_db)):
     try:
         if not validate_username_for_light(data.username):
             logger.error(f"Username not in correct format, Somehow bypassed our frontend!!  Username::{data.username}")
-            raise HTTPException(status_code=401, detail="Username must be in the format Firstname.Lastname")
+            raise HTTPException(status_code=401, detail="Username Not By Format")
 
         logger.info(f"Attempting light signup for user: {data.username}")
 
