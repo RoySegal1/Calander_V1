@@ -94,13 +94,18 @@ export default function WeeklySchedule({
       const selectedCourseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode)?.groups || [];
       const selectedGroupCodes = new Set(selectedCourseGroups.map(g => g.groupCode));
       
-      // If in "show selected only" mode, check if course has both types selected
+      // If in "show selected only" mode, check if course has all available types selected
       if (showSelectedOnly) {
+        // First, find what types are available for this course
+        const availableLectureTypes = new Set(course.groups.map(g => g.lectureType));
+        // Then, find what types are currently selected
         const selectedLectureTypes = new Set(selectedCourseGroups.map(g => g.lectureType));
-        const hasBothTypes = selectedLectureTypes.has(0) && selectedLectureTypes.has(1);
         
-        // Only add unselected groups if course doesn't have both types selected
-        if (!hasBothTypes) {
+        // Check if all available types have been selected
+        const hasAllAvailableTypes = [...availableLectureTypes].every(type => selectedLectureTypes.has(type));
+        
+        // Only add unselected groups if course doesn't have all available types selected
+        if (!hasAllAvailableTypes) {
           addUnselectedGroups(course, selectedGroupCodes);
         }
       } else {
