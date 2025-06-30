@@ -1,7 +1,7 @@
 import { Course, CourseGroup } from '../types';
 import { useState } from 'react';
 import {ImportScheduleModal} from "./ImportScheduleModal.tsx";
-import { Trash2, Eye, EyeOff, Save, Download } from 'lucide-react';
+import { Trash2, Eye, EyeOff, Save, Download, Calendar } from 'lucide-react';
 import { NameScheduleModal } from "./NameScheduleModal.tsx";
 import { useAuth } from './Auth.tsx';
 
@@ -323,7 +323,7 @@ export default function WeeklySchedule({
                     : 'bg-white/10 text-purple-600 border-purple-200/50 hover:bg-purple-50/50 hover:border-purple-300/70'
             }`}
         >
-          <EyeOff size={18} className="group-hover:scale-110 transition-transform duration-200"/>
+          <Calendar size={18} className="group-hover:scale-110 transition-transform duration-200"/>
           {isFreeFormMode ? 'בחירה לרישום' : 'בחירה חופשית'}
         </button>
 
