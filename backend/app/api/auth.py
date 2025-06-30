@@ -68,7 +68,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
     for sc in student_courses:
         matched = match_course(sc.course_code, all_data_json)
         if matched:
-            course_credit = float(matched["courseCredit"]) if matched.get("courseCredit") else 0
+            course_credit = float(matched["courseCredit"]) if matched.get("courseCredit") and float(matched["courseCredit"]) > 0 else 0
 
             if sc.grade is not None:
                 # Completed course
