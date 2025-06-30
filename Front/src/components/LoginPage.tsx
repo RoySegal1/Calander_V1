@@ -79,7 +79,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          מערכת רישום לקורסים
+          התחברות / הרשמה
         </h1>
 
         {mode === 'select' ? (

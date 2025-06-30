@@ -1,4 +1,4 @@
-from pydantic import BaseModel,Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 from datetime import datetime
 from pydantic import conlist
@@ -25,8 +25,7 @@ class SavedScheduleOut(BaseModel):
     share_code: str
     created_at: datetime
 
-    class Config:
-        orm_mode = True  # Enables interaction with SQLAlchemy models
+    model_config = ConfigDict(from_attributes=True)
 
 
 class LoginRequest(BaseModel):
