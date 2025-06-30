@@ -3,7 +3,7 @@ import json
 import os
 from sqlalchemy.orm import Session
 from backend.app.db.models import DepartmentCourses
-from backend.app.db import SessionLocal
+from backend.app.db.db import SessionLocal
 
 
 def insert_department_course(json_path: str, department_name: str, is_general: bool = False):
@@ -35,7 +35,7 @@ def insert_department_course(json_path: str, department_name: str, is_general: b
 
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Go up from /backend
-    JSON_PATH = os.path.join(BASE_DIR, "data", "departmentCourseInfo", "tiol_courses.json")
-    department_name = "הנדסת תעשיה וניהול"
+    JSON_PATH = os.path.join(BASE_DIR, "scripts", "combined_data", "courses_11_final.json")
+    department_name = "מדעי המחשב"
     is_general = False
     insert_department_course(JSON_PATH, department_name, is_general)
