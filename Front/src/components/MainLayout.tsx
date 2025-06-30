@@ -189,7 +189,10 @@ const addGroupToCourse = (group: CourseGroup, courseId: string) => {
     groupsToAdd = [group];
   } else {
     // Regular mode - get all matching groups (lecture + practice set)
-    const courseCode = group.groupCode.split('/')[0];
+    const courseCode = group.groupCode.includes('/')
+      ? group.groupCode.split('/')[0]
+      : group.groupCode.split('_')[0]; // Handle both "/" and "_" separators
+
     groupsToAdd = allCourses
       .find(course => course.courseCode === courseId)
       ?.groups.filter(g => g.groupCode.startsWith(courseCode)) || [];
@@ -261,7 +264,6 @@ const addGroupToCourse = (group: CourseGroup, courseId: string) => {
     }
   }
 };
-
 
 
 const handleToggleFreeForm = () => {
