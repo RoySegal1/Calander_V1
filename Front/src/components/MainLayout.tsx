@@ -29,7 +29,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   const [allStudentSchedule, setAllStudentSchedule] = useState<SavedSchedule[]>([]);
   const [allCourses, setAllCourses] = useState<Course[]>([]);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-
+  const [isFreeFormMode, setIsFreeFormMode] = useState(false);
   // Fetch student schedules
   useEffect(() => {
     const fetchStudentSchedules = async () => {
@@ -158,11 +158,84 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     }
   };
 
-  const handleGroupSelect = (group: CourseGroup, courseId: string) => {
-    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+const handleGroupSelect = (group: CourseGroup, courseId: string) => {
+  const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
 
-    if (courseGroups?.groups.some(g => g.groupCode === group.groupCode)) {
-      const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
+  if (isFreeFormMode) {
+    // In free form mode, handle by lecture type and base code
+    const clickedLectureType = group.lectureType;
+    const baseCode = group.groupCode.includes('/')
+      ? group.groupCode.split('/')[0]
+      : group.groupCode.split('_')[0];
+
+    if (clickedLectureType === 1) {
+      // Practice clicked - check if any practice is selected
+      const hasAnyPractice = courseGroups?.groups.some(g => g.lectureType === 1);
+
+      if (hasAnyPractice) {
+        // Remove all practice groups
+        const updatedGroups = courseGroups!.groups.filter(g => g.lectureType !== 1);
+
+        if (updatedGroups.length === 0) {
+          setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+        } else {
+          setSelectedGroups(selectedGroups.map(sg =>
+            sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
+          ));
+        }
+        return;
+      }
+    } else {
+      // Lecturer clicked - check if any lecturer with this base code is selected
+      const hasLecturerWithSameBase = courseGroups?.groups.some(g => {
+        if (g.lectureType !== 0) return false;
+        const gBaseCode = g.groupCode.includes('/')
+          ? g.groupCode.split('/')[0]
+          : g.groupCode.split('_')[0];
+        return gBaseCode === baseCode;
+      });
+
+      if (hasLecturerWithSameBase) {
+        // Remove all lecturer groups with the same base code
+        const updatedGroups = courseGroups!.groups.filter(g => {
+          if (g.lectureType !== 0) return true; // Keep practice groups
+          const gBaseCode = g.groupCode.includes('/')
+            ? g.groupCode.split('/')[0]
+            : g.groupCode.split('_')[0];
+          return gBaseCode !== baseCode;
+        });
+
+        if (updatedGroups.length === 0) {
+          setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+        } else {
+          setSelectedGroups(selectedGroups.map(sg =>
+            sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
+          ));
+        }
+        return;
+      }
+    }
+  } else {
+    // Regular mode - handle by base code as before
+    const baseCode = group.groupCode.includes('/')
+      ? group.groupCode.split('/')[0]
+      : group.groupCode.split('_')[0];
+
+    const hasGroupWithSameBase = courseGroups?.groups.some(g => {
+      const gBaseCode = g.groupCode.includes('/')
+        ? g.groupCode.split('/')[0]
+        : g.groupCode.split('_')[0];
+      return gBaseCode === baseCode;
+    });
+
+    if (hasGroupWithSameBase) {
+      // Remove all groups with the same base code
+      const updatedGroups = courseGroups!.groups.filter(g => {
+        const gBaseCode = g.groupCode.includes('/')
+          ? g.groupCode.split('/')[0]
+          : g.groupCode.split('_')[0];
+        return gBaseCode !== baseCode;
+      });
 
       if (updatedGroups.length === 0) {
         setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
@@ -173,64 +246,114 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
       }
       return;
     }
+  }
 
-    const hasConflict = selectedGroups.some(sg =>
-      sg.groups.some(g =>
-        g.dayOfWeek === group.dayOfWeek &&
+  // Try to add the group (conflicts will be checked in addGroupToCourse)
+  addGroupToCourse(group, courseId);
+};
+
+const addGroupToCourse = (group: CourseGroup, courseId: string) => {
+  const baseCode = group.groupCode.includes('/')
+    ? group.groupCode.split('/')[0]
+    : group.groupCode.split('_')[0];
+
+  const course = allCourses.find(course => course.courseCode === courseId);
+  if (!course) return;
+
+  let groupsToAdd: CourseGroup[] = [];
+
+  if (isFreeFormMode) {
+    // Free form mode - handle differently for practice vs lecturer
+    if (group.lectureType === 1) {
+      // Practice - add only the specific practice group
+      groupsToAdd = [group];
+    } else {
+      // Lecturer - add all instances with the same base code (all lecturer instances)
+      groupsToAdd = course.groups.filter(g => {
+        const gBaseCode = g.groupCode.includes('/')
+          ? g.groupCode.split('/')[0]
+          : g.groupCode.split('_')[0];
+        return gBaseCode === baseCode && g.lectureType === 0;
+      });
+    }
+  } else {
+    // Regular mode - get all matching groups (lecture + practice set)
+    groupsToAdd = course.groups.filter(g => g.groupCode.startsWith(baseCode));
+  }
+
+  // Check time conflicts for ALL groups that would be added
+  const hasConflict = groupsToAdd.some(newGroup =>
+    selectedGroups.some(sg =>
+      sg.courseId !== courseId && // Only check different courses
+      sg.groups.some(existingGroup =>
+        existingGroup.dayOfWeek === newGroup.dayOfWeek &&
         (
-          (parseInt(group.startTime.split(':')[0]) < parseInt(g.endTime.split(':')[0]) ||
-           (parseInt(group.startTime.split(':')[0]) === parseInt(g.endTime.split(':')[0]) &&
-            parseInt(group.startTime.split(':')[1]) < parseInt(g.endTime.split(':')[1]))) &&
-          (parseInt(group.endTime.split(':')[0]) > parseInt(g.startTime.split(':')[0]) ||
-           (parseInt(group.endTime.split(':')[0]) === parseInt(g.startTime.split(':')[0]) &&
-            parseInt(group.endTime.split(':')[1]) > parseInt(g.startTime.split(':')[1])))
+          (parseInt(newGroup.startTime.split(':')[0]) < parseInt(existingGroup.endTime.split(':')[0]) ||
+           (parseInt(newGroup.startTime.split(':')[0]) === parseInt(existingGroup.endTime.split(':')[0]) &&
+            parseInt(newGroup.startTime.split(':')[1]) < parseInt(existingGroup.endTime.split(':')[1]))) &&
+          (parseInt(newGroup.endTime.split(':')[0]) > parseInt(existingGroup.startTime.split(':')[0]) ||
+           (parseInt(newGroup.endTime.split(':')[0]) === parseInt(existingGroup.startTime.split(':')[0]) &&
+            parseInt(newGroup.endTime.split(':')[1]) > parseInt(existingGroup.startTime.split(':')[1])))
         )
       )
-    );
+    )
+  );
 
-    if (hasConflict) {
-      console.log("Time conflict detected!");
-      return;
-    }
+  if (hasConflict) {
+    toast.error("קונפליקט זמן! אחת או יותר מהקבוצות חופפות לקבוצות שכבר נבחרו");
+    return;
+  }
 
-    addGroupToCourse(group, courseId);
-  };
+  // No conflicts, proceed with adding
+  const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
 
-  const addGroupToCourse = (group: CourseGroup, courseId: string) => {
-    const relatedGroups = allCourses
-      .find(course => course.courseCode === courseId)
-      ?.groups.filter(g => g.lectureType === group.lectureType) || [];
+  if (isFreeFormMode) {
+    if (courseGroups) {
+      let updatedGroups = [...courseGroups.groups];
 
-    const groupsToAdd = relatedGroups.filter(g =>
-      g.groupCode.startsWith(group.groupCode.split('_')[0])
-    );
+      if (group.lectureType === 1) {
+        // Practice - replace any existing practice
+        updatedGroups = updatedGroups.filter(g => g.lectureType !== 1);
+        updatedGroups.push(...groupsToAdd);
+      } else {
+        // Lecturer - replace any existing lecturer groups
+        updatedGroups = updatedGroups.filter(g => g.lectureType !== 0);
+        updatedGroups.push(...groupsToAdd);
+      }
 
-    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
-
-    const isDuplicateType = courseGroups?.groups.some(g => g.lectureType === group.lectureType);
-
-    if (isDuplicateType) {
       setSelectedGroups(selectedGroups.map(sg =>
         sg.courseId === courseId
-          ? {
-              ...sg,
-              groups: [
-                ...sg.groups.filter(g => g.lectureType !== group.lectureType),
-                ...groupsToAdd,
-              ],
-            }
-          : sg
-      ));
-    } else if (courseGroups) {
-      setSelectedGroups(selectedGroups.map(sg =>
-        sg.courseId === courseId
-          ? { ...sg, groups: [...sg.groups, ...groupsToAdd] }
+          ? { ...sg, groups: updatedGroups }
           : sg
       ));
     } else {
       setSelectedGroups([...selectedGroups, { courseId, groups: groupsToAdd }]);
     }
-  };
+  } else {
+    // Regular mode - replace all groups for the course
+    if (courseGroups) {
+      setSelectedGroups(selectedGroups.map(sg =>
+        sg.courseId === courseId
+          ? { ...sg, groups: groupsToAdd }
+          : sg
+      ));
+    } else {
+      setSelectedGroups([...selectedGroups, { courseId, groups: groupsToAdd }]);
+    }
+  }
+};
+
+const handleToggleFreeForm = () => {
+  setIsFreeFormMode(!isFreeFormMode);
+  if (!isFreeFormMode) {
+    toast("בחירה חופשית !! - אתם עלולים לא להיות מסוגלים להירשם לקורסים בתצורה זו", {
+      icon: '⚠️',
+      duration: 6000,
+    });
+  }
+};
+
+
 
   const uniqueCourseTypes = useMemo(() => {
     return Array.from(new Set(allCourses.map(course => course.courseType)));
@@ -283,6 +406,8 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
               onClearSchedule={handleClearSchedule}
               onScheduleChosen={handleScheduleChosen}
               handleImportSchedule={handleImportScheduleFromId}
+              isFreeFormMode={isFreeFormMode}
+              onToggleFreeForm={handleToggleFreeForm}
             />
           </div>
 
