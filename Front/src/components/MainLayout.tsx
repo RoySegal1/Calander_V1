@@ -29,7 +29,7 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
   const [allStudentSchedule, setAllStudentSchedule] = useState<SavedSchedule[]>([]);
   const [allCourses, setAllCourses] = useState<Course[]>([]);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-
+  const [isFreeFormMode, setIsFreeFormMode] = useState(false);
   // Fetch student schedules
   useEffect(() => {
     const fetchStudentSchedules = async () => {
@@ -158,79 +158,124 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
     }
   };
 
-  const handleGroupSelect = (group: CourseGroup, courseId: string) => {
-    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+const handleGroupSelect = (group: CourseGroup, courseId: string) => {
+  const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
 
-    if (courseGroups?.groups.some(g => g.groupCode === group.groupCode)) {
-      const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
+  // Check if this specific group is already selected
+  if (courseGroups?.groups.some(g => g.groupCode === group.groupCode)) {
+    // Remove this specific group
+    const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
 
-      if (updatedGroups.length === 0) {
-        setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
-      } else {
-        setSelectedGroups(selectedGroups.map(sg =>
-          sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
-        ));
-      }
-      return;
+    if (updatedGroups.length === 0) {
+      setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+    } else {
+      setSelectedGroups(selectedGroups.map(sg =>
+        sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
+      ));
     }
+    return;
+  }
 
-    const hasConflict = selectedGroups.some(sg =>
-      sg.groups.some(g =>
-        g.dayOfWeek === group.dayOfWeek &&
+  // Try to add the group (conflicts will be checked in addGroupToCourse)
+  addGroupToCourse(group, courseId);
+};
+
+
+const addGroupToCourse = (group: CourseGroup, courseId: string) => {
+  let groupsToAdd: CourseGroup[] = [];
+
+  if (isFreeFormMode) {
+    // Free form mode - just the single group
+    groupsToAdd = [group];
+  } else {
+    // Regular mode - get all matching groups (lecture + practice set)
+    const courseCode = group.groupCode.split('/')[0];
+    groupsToAdd = allCourses
+      .find(course => course.courseCode === courseId)
+      ?.groups.filter(g => g.groupCode.startsWith(courseCode)) || [];
+  }
+
+  // Check time conflicts for ALL groups that would be added
+  const hasConflict = groupsToAdd.some(newGroup =>
+    selectedGroups.some(sg =>
+      sg.courseId !== courseId && // Only check different courses
+      sg.groups.some(existingGroup =>
+        existingGroup.dayOfWeek === newGroup.dayOfWeek &&
         (
-          (parseInt(group.startTime.split(':')[0]) < parseInt(g.endTime.split(':')[0]) ||
-           (parseInt(group.startTime.split(':')[0]) === parseInt(g.endTime.split(':')[0]) &&
-            parseInt(group.startTime.split(':')[1]) < parseInt(g.endTime.split(':')[1]))) &&
-          (parseInt(group.endTime.split(':')[0]) > parseInt(g.startTime.split(':')[0]) ||
-           (parseInt(group.endTime.split(':')[0]) === parseInt(g.startTime.split(':')[0]) &&
-            parseInt(group.endTime.split(':')[1]) > parseInt(g.startTime.split(':')[1])))
+          (parseInt(newGroup.startTime.split(':')[0]) < parseInt(existingGroup.endTime.split(':')[0]) ||
+           (parseInt(newGroup.startTime.split(':')[0]) === parseInt(existingGroup.endTime.split(':')[0]) &&
+            parseInt(newGroup.startTime.split(':')[1]) < parseInt(existingGroup.endTime.split(':')[1]))) &&
+          (parseInt(newGroup.endTime.split(':')[0]) > parseInt(existingGroup.startTime.split(':')[0]) ||
+           (parseInt(newGroup.endTime.split(':')[0]) === parseInt(existingGroup.startTime.split(':')[0]) &&
+            parseInt(newGroup.endTime.split(':')[1]) > parseInt(existingGroup.startTime.split(':')[1])))
         )
       )
-    );
+    )
+  );
 
-    if (hasConflict) {
-      console.log("Time conflict detected!");
-      return;
-    }
+  if (hasConflict) {
+    toast.error("קונפליקט זמן! אחת או יותר מהקבוצות חופפות לקבוצות שכבר נבחרו");
+    return;
+  }
 
-    addGroupToCourse(group, courseId);
-  };
-
-  const addGroupToCourse = (group: CourseGroup, courseId: string) => {
-    const relatedGroups = allCourses
-      .find(course => course.courseCode === courseId)
-      ?.groups.filter(g => g.lectureType === group.lectureType) || [];
-
-    const groupsToAdd = relatedGroups.filter(g =>
-      g.groupCode.startsWith(group.groupCode.split('_')[0])
-    );
-
+  // No conflicts, proceed with adding
+  if (isFreeFormMode) {
     const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
 
-    const isDuplicateType = courseGroups?.groups.some(g => g.lectureType === group.lectureType);
+    if (courseGroups) {
+      const existingGroupOfSameType = courseGroups.groups.find(g => g.lectureType === group.lectureType);
 
-    if (isDuplicateType) {
+      if (existingGroupOfSameType) {
+        setSelectedGroups(selectedGroups.map(sg =>
+          sg.courseId === courseId
+            ? {
+                ...sg,
+                groups: [
+                  ...sg.groups.filter(g => g.lectureType !== group.lectureType),
+                  group
+                ]
+              }
+            : sg
+        ));
+      } else {
+        setSelectedGroups(selectedGroups.map(sg =>
+          sg.courseId === courseId
+            ? { ...sg, groups: [...sg.groups, group] }
+            : sg
+        ));
+      }
+    } else {
+      setSelectedGroups([...selectedGroups, { courseId, groups: [group] }]);
+    }
+  } else {
+    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+
+    if (courseGroups) {
       setSelectedGroups(selectedGroups.map(sg =>
         sg.courseId === courseId
-          ? {
-              ...sg,
-              groups: [
-                ...sg.groups.filter(g => g.lectureType !== group.lectureType),
-                ...groupsToAdd,
-              ],
-            }
-          : sg
-      ));
-    } else if (courseGroups) {
-      setSelectedGroups(selectedGroups.map(sg =>
-        sg.courseId === courseId
-          ? { ...sg, groups: [...sg.groups, ...groupsToAdd] }
+          ? { ...sg, groups: groupsToAdd }
           : sg
       ));
     } else {
       setSelectedGroups([...selectedGroups, { courseId, groups: groupsToAdd }]);
     }
-  };
+  }
+};
+
+
+
+const handleToggleFreeForm = () => {
+  setIsFreeFormMode(!isFreeFormMode);
+  if (!isFreeFormMode) {
+    toast("בחירה חופשית !! - אתם עלולים לא להיות מסוגלים להירשם לקורסים בתצורה זו", {
+      icon: '⚠️',
+      duration: 6000,
+    });
+  }
+};
+
+
+
 
   const uniqueCourseTypes = useMemo(() => {
     return Array.from(new Set(allCourses.map(course => course.courseType)));
@@ -283,6 +328,8 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
               onClearSchedule={handleClearSchedule}
               onScheduleChosen={handleScheduleChosen}
               handleImportSchedule={handleImportScheduleFromId}
+              isFreeFormMode={isFreeFormMode}
+              onToggleFreeForm={handleToggleFreeForm}
             />
           </div>
 

@@ -16,6 +16,8 @@ interface WeeklyScheduleProps {
   onClearSchedule?: () => void;
   onScheduleChosen?: (scheduleName: string) => void;
   handleImportSchedule: (scheduleId: string) => void;
+  isFreeFormMode?: boolean;
+  onToggleFreeForm?: () => void;
 }
 
 export default function WeeklySchedule({
@@ -26,6 +28,8 @@ export default function WeeklySchedule({
   onClearSchedule,
   onScheduleChosen,
   handleImportSchedule,
+  isFreeFormMode = false,
+  onToggleFreeForm,
 }: WeeklyScheduleProps) {
   const days = ['יום ראשון', 'יום שני', 'יום שלישי', 'יום רביעי', 'יום חמישי', 'יום שישי'];
   const hours = Array.from({ length: 16 }, (_, i) => i + 8); // 8:00 to 22:00
@@ -284,18 +288,18 @@ export default function WeeklySchedule({
           ) : (
               <>
                 <EyeOff size={18} className="group-hover:scale-110 transition-transform duration-200"/>
-               הסתר קורסים שהושלמה בהם הבחירה  
+                הסתר קורסים שהושלמה בהם הבחירה
               </>
           )}
         </button>
         {auth.isAuthenticated && auth.user && !auth.isGuest && (
-        <button
-            onClick={() => setShowNameModal(true)}
-            className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
-        >
-          <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
-          בחר מערכת
-        </button>)}
+            <button
+                onClick={() => setShowNameModal(true)}
+                className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
+            >
+              <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
+              בחר מערכת
+            </button>)}
 
         <button
             onClick={() => setShowModal(true)}
@@ -304,21 +308,33 @@ export default function WeeklySchedule({
           <Download size={18} className="group-hover:scale-110 transition-transform duration-200"/>
           בחר מערכת לפי מזהה
         </button>
+        <button
+            onClick={onToggleFreeForm}
+            className={`group flex items-center gap-2 px-4 py-2.5 backdrop-blur-sm border rounded-xl font-medium active:scale-95 transition-all duration-200 ${
+                isFreeFormMode
+                    ? 'bg-orange-50/50 text-orange-600 border-orange-200/50 hover:bg-orange-100/50 hover:border-orange-300/70'
+                    : 'bg-white/10 text-purple-600 border-purple-200/50 hover:bg-purple-50/50 hover:border-purple-300/70'
+            }`}
+        >
+          <EyeOff size={18} className="group-hover:scale-110 transition-transform duration-200"/>
+          {isFreeFormMode ? 'בחירה לרישום' : 'בחירה חופשית'}
+        </button>
+
         {showModal && (
             <ImportScheduleModal
                 onImport={handleImportSchedule}
                 onClose={() => setShowModal(false)}
             />
         )}
-          {showNameModal &&  (
-        <NameScheduleModal
-          onSave={(name) => {
-            onScheduleChosen?.(name);  // You can now accept the name
-            setShowNameModal(false);
-          }}
-          onClose={() => setShowNameModal(false)}
-        />
-      )}
+        {showNameModal && (
+            <NameScheduleModal
+                onSave={(name) => {
+                  onScheduleChosen?.(name);  // You can now accept the name
+                  setShowNameModal(false);
+                }}
+                onClose={() => setShowNameModal(false)}
+            />
+        )}
       </div>
 
       <div className="flex">
