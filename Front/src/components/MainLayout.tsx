@@ -157,45 +157,236 @@ export default function MainLayout({ auth, onLogout }: MainLayoutProps) {
       setSelectedCourses([...selectedCourses, course.courseCode]);
     }
   };
+//
+// const handleGroupSelect = (group: CourseGroup, courseId: string) => {
+//   const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+//
+//   // Check if this specific group is already selected
+//   if (courseGroups?.groups.some(g => g.groupCode === group.groupCode)) {
+//     // Remove this specific group
+//     const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
+//
+//     if (updatedGroups.length === 0) {
+//       setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+//     } else {
+//       setSelectedGroups(selectedGroups.map(sg =>
+//         sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
+//       ));
+//     }
+//     return;
+//   }
+//
+//   // Try to add the group (conflicts will be checked in addGroupToCourse)
+//   addGroupToCourse(group, courseId);
+// };
+//
+//
+// const addGroupToCourse = (group: CourseGroup, courseId: string) => {
+//   let groupsToAdd: CourseGroup[] = [];
+//
+//   if (isFreeFormMode) {
+//     // Free form mode - just the single group
+//     groupsToAdd = [group];
+//   } else {
+//     // Regular mode - get all matching groups (lecture + practice set)
+//     const courseCode = group.groupCode.includes('/')
+//       ? group.groupCode.split('/')[0]
+//       : group.groupCode.split('_')[0]; // Handle both "/" and "_" separators
+//
+//     groupsToAdd = allCourses
+//       .find(course => course.courseCode === courseId)
+//       ?.groups.filter(g => g.groupCode.startsWith(courseCode)) || [];
+//   }
+//
+//   // Check time conflicts for ALL groups that would be added
+//   const hasConflict = groupsToAdd.some(newGroup =>
+//     selectedGroups.some(sg =>
+//       sg.courseId !== courseId && // Only check different courses
+//       sg.groups.some(existingGroup =>
+//         existingGroup.dayOfWeek === newGroup.dayOfWeek &&
+//         (
+//           (parseInt(newGroup.startTime.split(':')[0]) < parseInt(existingGroup.endTime.split(':')[0]) ||
+//            (parseInt(newGroup.startTime.split(':')[0]) === parseInt(existingGroup.endTime.split(':')[0]) &&
+//             parseInt(newGroup.startTime.split(':')[1]) < parseInt(existingGroup.endTime.split(':')[1]))) &&
+//           (parseInt(newGroup.endTime.split(':')[0]) > parseInt(existingGroup.startTime.split(':')[0]) ||
+//            (parseInt(newGroup.endTime.split(':')[0]) === parseInt(existingGroup.startTime.split(':')[0]) &&
+//             parseInt(newGroup.endTime.split(':')[1]) > parseInt(existingGroup.startTime.split(':')[1])))
+//         )
+//       )
+//     )
+//   );
+//
+//   if (hasConflict) {
+//     toast.error("קונפליקט זמן! אחת או יותר מהקבוצות חופפות לקבוצות שכבר נבחרו");
+//     return;
+//   }
+//
+//   // No conflicts, proceed with adding
+//   if (isFreeFormMode) {
+//     const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+//
+//     if (courseGroups) {
+//       const existingGroupOfSameType = courseGroups.groups.find(g => g.lectureType === group.lectureType);
+//
+//       if (existingGroupOfSameType) {
+//         setSelectedGroups(selectedGroups.map(sg =>
+//           sg.courseId === courseId
+//             ? {
+//                 ...sg,
+//                 groups: [
+//                   ...sg.groups.filter(g => g.lectureType !== group.lectureType),
+//                   group
+//                 ]
+//               }
+//             : sg
+//         ));
+//       } else {
+//         setSelectedGroups(selectedGroups.map(sg =>
+//           sg.courseId === courseId
+//             ? { ...sg, groups: [...sg.groups, group] }
+//             : sg
+//         ));
+//       }
+//     } else {
+//       setSelectedGroups([...selectedGroups, { courseId, groups: [group] }]);
+//     }
+//   } else {
+//     const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+//
+//     if (courseGroups) {
+//       setSelectedGroups(selectedGroups.map(sg =>
+//         sg.courseId === courseId
+//           ? { ...sg, groups: groupsToAdd }
+//           : sg
+//       ));
+//     } else {
+//       setSelectedGroups([...selectedGroups, { courseId, groups: groupsToAdd }]);
+//     }
+//   }
+// };
+//
 
 const handleGroupSelect = (group: CourseGroup, courseId: string) => {
   const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
 
-  // Check if this specific group is already selected
-  if (courseGroups?.groups.some(g => g.groupCode === group.groupCode)) {
-    // Remove this specific group
-    const updatedGroups = courseGroups.groups.filter(g => g.groupCode !== group.groupCode);
+  if (isFreeFormMode) {
+    // In free form mode, handle by lecture type and base code
+    const clickedLectureType = group.lectureType;
+    const baseCode = group.groupCode.includes('/')
+      ? group.groupCode.split('/')[0]
+      : group.groupCode.split('_')[0];
 
-    if (updatedGroups.length === 0) {
-      setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+    if (clickedLectureType === 1) {
+      // Practice clicked - check if any practice is selected
+      const hasAnyPractice = courseGroups?.groups.some(g => g.lectureType === 1);
+
+      if (hasAnyPractice) {
+        // Remove all practice groups
+        const updatedGroups = courseGroups!.groups.filter(g => g.lectureType !== 1);
+
+        if (updatedGroups.length === 0) {
+          setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+        } else {
+          setSelectedGroups(selectedGroups.map(sg =>
+            sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
+          ));
+        }
+        return;
+      }
     } else {
-      setSelectedGroups(selectedGroups.map(sg =>
-        sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
-      ));
+      // Lecturer clicked - check if any lecturer with this base code is selected
+      const hasLecturerWithSameBase = courseGroups?.groups.some(g => {
+        if (g.lectureType !== 0) return false;
+        const gBaseCode = g.groupCode.includes('/')
+          ? g.groupCode.split('/')[0]
+          : g.groupCode.split('_')[0];
+        return gBaseCode === baseCode;
+      });
+
+      if (hasLecturerWithSameBase) {
+        // Remove all lecturer groups with the same base code
+        const updatedGroups = courseGroups!.groups.filter(g => {
+          if (g.lectureType !== 0) return true; // Keep practice groups
+          const gBaseCode = g.groupCode.includes('/')
+            ? g.groupCode.split('/')[0]
+            : g.groupCode.split('_')[0];
+          return gBaseCode !== baseCode;
+        });
+
+        if (updatedGroups.length === 0) {
+          setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+        } else {
+          setSelectedGroups(selectedGroups.map(sg =>
+            sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
+          ));
+        }
+        return;
+      }
     }
-    return;
+  } else {
+    // Regular mode - handle by base code as before
+    const baseCode = group.groupCode.includes('/')
+      ? group.groupCode.split('/')[0]
+      : group.groupCode.split('_')[0];
+
+    const hasGroupWithSameBase = courseGroups?.groups.some(g => {
+      const gBaseCode = g.groupCode.includes('/')
+        ? g.groupCode.split('/')[0]
+        : g.groupCode.split('_')[0];
+      return gBaseCode === baseCode;
+    });
+
+    if (hasGroupWithSameBase) {
+      // Remove all groups with the same base code
+      const updatedGroups = courseGroups!.groups.filter(g => {
+        const gBaseCode = g.groupCode.includes('/')
+          ? g.groupCode.split('/')[0]
+          : g.groupCode.split('_')[0];
+        return gBaseCode !== baseCode;
+      });
+
+      if (updatedGroups.length === 0) {
+        setSelectedGroups(selectedGroups.filter(sg => sg.courseId !== courseId));
+      } else {
+        setSelectedGroups(selectedGroups.map(sg =>
+          sg.courseId === courseId ? { ...sg, groups: updatedGroups } : sg
+        ));
+      }
+      return;
+    }
   }
 
   // Try to add the group (conflicts will be checked in addGroupToCourse)
   addGroupToCourse(group, courseId);
 };
 
-
 const addGroupToCourse = (group: CourseGroup, courseId: string) => {
+  const baseCode = group.groupCode.includes('/')
+    ? group.groupCode.split('/')[0]
+    : group.groupCode.split('_')[0];
+
+  const course = allCourses.find(course => course.courseCode === courseId);
+  if (!course) return;
+
   let groupsToAdd: CourseGroup[] = [];
 
   if (isFreeFormMode) {
-    // Free form mode - just the single group
-    groupsToAdd = [group];
+    // Free form mode - handle differently for practice vs lecturer
+    if (group.lectureType === 1) {
+      // Practice - add only the specific practice group
+      groupsToAdd = [group];
+    } else {
+      // Lecturer - add all instances with the same base code (all lecturer instances)
+      groupsToAdd = course.groups.filter(g => {
+        const gBaseCode = g.groupCode.includes('/')
+          ? g.groupCode.split('/')[0]
+          : g.groupCode.split('_')[0];
+        return gBaseCode === baseCode && g.lectureType === 0;
+      });
+    }
   } else {
     // Regular mode - get all matching groups (lecture + practice set)
-    const courseCode = group.groupCode.includes('/')
-      ? group.groupCode.split('/')[0]
-      : group.groupCode.split('_')[0]; // Handle both "/" and "_" separators
-
-    groupsToAdd = allCourses
-      .find(course => course.courseCode === courseId)
-      ?.groups.filter(g => g.groupCode.startsWith(courseCode)) || [];
+    groupsToAdd = course.groups.filter(g => g.groupCode.startsWith(baseCode));
   }
 
   // Check time conflicts for ALL groups that would be added
@@ -222,37 +413,32 @@ const addGroupToCourse = (group: CourseGroup, courseId: string) => {
   }
 
   // No conflicts, proceed with adding
+  const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
+
   if (isFreeFormMode) {
-    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
-
     if (courseGroups) {
-      const existingGroupOfSameType = courseGroups.groups.find(g => g.lectureType === group.lectureType);
+      let updatedGroups = [...courseGroups.groups];
 
-      if (existingGroupOfSameType) {
-        setSelectedGroups(selectedGroups.map(sg =>
-          sg.courseId === courseId
-            ? {
-                ...sg,
-                groups: [
-                  ...sg.groups.filter(g => g.lectureType !== group.lectureType),
-                  group
-                ]
-              }
-            : sg
-        ));
+      if (group.lectureType === 1) {
+        // Practice - replace any existing practice
+        updatedGroups = updatedGroups.filter(g => g.lectureType !== 1);
+        updatedGroups.push(...groupsToAdd);
       } else {
-        setSelectedGroups(selectedGroups.map(sg =>
-          sg.courseId === courseId
-            ? { ...sg, groups: [...sg.groups, group] }
-            : sg
-        ));
+        // Lecturer - replace any existing lecturer groups
+        updatedGroups = updatedGroups.filter(g => g.lectureType !== 0);
+        updatedGroups.push(...groupsToAdd);
       }
+
+      setSelectedGroups(selectedGroups.map(sg =>
+        sg.courseId === courseId
+          ? { ...sg, groups: updatedGroups }
+          : sg
+      ));
     } else {
-      setSelectedGroups([...selectedGroups, { courseId, groups: [group] }]);
+      setSelectedGroups([...selectedGroups, { courseId, groups: groupsToAdd }]);
     }
   } else {
-    const courseGroups = selectedGroups.find(sg => sg.courseId === courseId);
-
+    // Regular mode - replace all groups for the course
     if (courseGroups) {
       setSelectedGroups(selectedGroups.map(sg =>
         sg.courseId === courseId
@@ -265,7 +451,6 @@ const addGroupToCourse = (group: CourseGroup, courseId: string) => {
   }
 };
 
-
 const handleToggleFreeForm = () => {
   setIsFreeFormMode(!isFreeFormMode);
   if (!isFreeFormMode) {
@@ -275,7 +460,6 @@ const handleToggleFreeForm = () => {
     });
   }
 };
-
 
 
 
