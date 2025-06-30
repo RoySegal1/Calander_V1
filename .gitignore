@@ -4,4 +4,10 @@ venv/
 backend/.idea
 backend/.venv
 backend/data/userInfo/Gilad.Tsfaty.json
+backend/scripts/combined_data
+backend/scripts/raw_scraper_data
+backend/scripts/logs
+backend/scripts/transformed_data
+backend/data
+./logs
 __pycache__/

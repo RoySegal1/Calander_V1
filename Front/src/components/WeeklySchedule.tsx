@@ -299,7 +299,7 @@ export default function WeeklySchedule({
             className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
         >
           <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
-          בחר מערכת
+          שמור מערכת
         </button>)}
 
         <button
