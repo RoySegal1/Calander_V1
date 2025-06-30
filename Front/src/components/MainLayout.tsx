@@ -426,6 +426,7 @@ const handleToggleFreeForm = () => {
           onCourseSelect={handleCourseSelect}
           filters={filters}
           onFilterChange={setFilters}
+          onClearSelectedCourses={handleClearSchedule}
           courseColors={courseColors}
           uniqueCourseTypes={uniqueCourseTypes}
         />

@@ -1,7 +1,6 @@
 # backend/init_db.py
 
-from backend.app.db import Base, engine
-from .models import Student, StudentCourse
+from .db import Base, engine
 
 
 def init():

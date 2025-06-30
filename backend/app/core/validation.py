@@ -8,11 +8,11 @@ def validate_username(username: str):
 
 def validate_username_for_light(username: str):
     if not username.strip():
-        return False, 'Username cannot be empty.'
+        return False
 
     if len(username) < 3:
-        return False, 'Username must be at least 3 characters long.'
+        return False
 
     if not re.match(r'^[a-zA-Z0-9_.]+$', username):
-        return False, 'Username can only contain letters, numbers, dots, hyphens, and underscores.'
+        return False
     return True

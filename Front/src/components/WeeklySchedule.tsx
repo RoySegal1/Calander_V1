@@ -98,13 +98,18 @@ export default function WeeklySchedule({
       const selectedCourseGroups = selectedGroups.find(sg => sg.courseId === course.courseCode)?.groups || [];
       const selectedGroupCodes = new Set(selectedCourseGroups.map(g => g.groupCode));
       
-      // If in "show selected only" mode, check if course has both types selected
+      // If in "show selected only" mode, check if course has all available types selected
       if (showSelectedOnly) {
+        // First, find what types are available for this course
+        const availableLectureTypes = new Set(course.groups.map(g => g.lectureType));
+        // Then, find what types are currently selected
         const selectedLectureTypes = new Set(selectedCourseGroups.map(g => g.lectureType));
-        const hasBothTypes = selectedLectureTypes.has(0) && selectedLectureTypes.has(1);
         
-        // Only add unselected groups if course doesn't have both types selected
-        if (!hasBothTypes) {
+        // Check if all available types have been selected
+        const hasAllAvailableTypes = [...availableLectureTypes].every(type => selectedLectureTypes.has(type));
+        
+        // Only add unselected groups if course doesn't have all available types selected
+        if (!hasAllAvailableTypes) {
           addUnselectedGroups(course, selectedGroupCodes);
         }
       } else {
@@ -293,13 +298,15 @@ export default function WeeklySchedule({
           )}
         </button>
         {auth.isAuthenticated && auth.user && !auth.isGuest && (
-            <button
-                onClick={() => setShowNameModal(true)}
-                className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
-            >
-              <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
-              בחר מערכת
-            </button>)}
+
+        <button
+            onClick={() => setShowNameModal(true)}
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-sm text-green-600 border border-green-200/50 rounded-xl font-medium hover:bg-green-50/50 hover:border-green-300/70 active:scale-95 transition-all duration-200"
+        >
+          <Save size={18} className="group-hover:scale-110 transition-transform duration-200"/>
+          שמור מערכת
+        </button>)}
+
 
         <button
             onClick={() => setShowModal(true)}
