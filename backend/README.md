@@ -31,11 +31,14 @@ backend/
 │   │   ├── logger.py          # Logging configuration
 │   │   ├── schemas.py         # Pydantic models
 │   │   └── validation.py      # Data validation
-│   └── db/                     # Database layer
-│       ├── models.py          # SQLAlchemy models
-│       ├── crud.py            # Database operations
-│       ├── db.py              # Database configuration
-│       └── init_db.py         # Database initialization
+│   ├── db/                     # Database layer
+│   │    ├── models.py          # SQLAlchemy models
+│   │    ├── crud.py            # Database operations
+│   │    ├── db.py              # Database configuration
+│   │    └── init_db.py          # Database initialization
+│   └── tests/                  # Security utilities
+│       ├── conftest.py          # Pytest configuration and shared fixtures
+│       ├── test_auth.py         # Unit tests for authentication endpoints
 ├── data/                       # Course data and constants
 │   ├── consts.py              # Department constants
 │   ├── departmentCourseInfo/  # Temporary Course JSON files
@@ -168,7 +171,33 @@ Logs are written to `scripts/logs/app.log` and also displayed in the console wit
 
 Course data is cached in memory during application startup for improved performance. The cache is automatically populated from the course JSON files from DB.
 
+## 🧪 Testing
 
+The `tests/` directory contains automated tests for the backend API and functionality:
+
+### Test Structure
+
+- **conftest.py**: Contains pytest configuration, shared fixtures, and test setup utilities
+- **test_auth.py**: Tests for authentication functionality including login, signup, and validation
+- **Fixtures**: Reusable test components for database connections, mock data, and API clients
+
+### Running Tests
+
+To run the test suite:
+
+```bash
+# Run all tests
+pytest
+
+# Run with verbose output
+pytest -v
+
+# Run specific test file
+pytest tests/test_auth.py
+
+# Run with coverage report
+pytest --cov=backend
+```
 ## 📝 Web Scraping
 
 The system includes web scraping capabilities for:
