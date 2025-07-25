@@ -35,7 +35,6 @@ src/
 ├── components/
 │   ├── Api.tsx                    # API service layer
 │   ├── Auth.tsx                   # Authentication context and hooks
-│   ├── CourseList.tsx             # Course listing component
 │   ├── ImportScheduleModal.tsx    # Schedule import modal
 │   ├── LoginPage.tsx              # Login and signup interface
 │   ├── MainLayout.tsx             # Main application layout
