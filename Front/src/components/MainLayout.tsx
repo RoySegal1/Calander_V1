@@ -386,13 +386,13 @@ const handleToggleFreeForm = () => {
             </h2>
             {auth.isAuthenticated && auth.user && (
               <div className="text-sm text-gray-600 mt-2 sm:mt-0 flex items-center ">
-              <span className="italic whitespace-nowrap">Logged in as: {auth.user.username}</span>
-              <button onClick={onLogout} className="ml-4 text-red-600 hover:text-red-800">Logout</button>
+              <span className="italic whitespace-nowrap">{auth.user.username}:מחובר כ </span>
+              <button onClick={onLogout} className="ml-4 text-red-600 hover:text-red-800">התנתק</button>
               </div>
             )}
             {auth.isGuest && (
               <div className="text-sm text-gray-600 mt-2 sm:mt-0 flex items-center">
-                <span className="italic whitespace-nowrap">Guest Mode</span>
+                <span className="italic whitespace-nowrap">מצב אורח</span>
               </div>
             )}
           </div>
