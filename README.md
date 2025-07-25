@@ -271,17 +271,4 @@ npm run lint
 - **Web Scraping**: Check Chrome/Chromium installation and permissions
 - **Port Conflicts**: Verify ports 8000 (backend) and 5173 (frontend) are available
 
-## 📄 License
-
-This project is for educational/internal use. Please check with the repository owner for licensing details.
-
-## 📧 Support
-
-For issues and questions:
-- Create an issue in the repository
-- Contact the development team
-- Check the API documentation at `/docs` endpoint
-
----
-
 **Built with ❤️ for seamless university schedule management** 📅✨
