@@ -214,8 +214,20 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg max-w-md w-full">
               <h3 className="text-lg font-medium text-gray-900 mb-3 justify-end text-right">מידע על ההרשמה</h3>
-              <p className="text-gray-600 mb-6 justify-end text-right">
-                הזן את שם המשתמש והסיסמה של אפקה ואשר אותם. ע"י המשך הרשמה, אתה מסכים לספק לנו את המידע שלך
+              <p className="text-gray-600 mb-6 justify-end text-right font-medium">
+                הזינו את שם המשתמש והסיסמה של אפקה ואשרו אותם. ע"י המשך הרשמה, אתם מסכימים לספק לנו את המידע שלכם
+                <br></br>
+                אם האימות שלכם דרך אפקה הוא <span className="font-bold">לא</span> הודעה לטלפון אלא מספר שצריך להזין או כל דרך אחרת כרגע הרישום הזה לא מותאם ולכן עדיף להרשם דרך{' '}
+                <button
+                  onClick={() => {
+                    setShowSignupInfo(false);
+                    setMode('signupLight');
+                  }}
+                  className="text-blue-600 hover:text-blue-700 underline font-bold"
+                >
+                  מעבר להרשמה מהירה
+                </button>
+                {' '}בהמשך אנחנו נוסיף אפשרות להירשם עם עוד פונקציות של אימות
               </p>
               <div className="flex justify-end space-x-3">
                 <button

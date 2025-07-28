@@ -2,8 +2,8 @@ import re
 
 
 def validate_username(username: str):
-    pattern = r'^[A-Z][a-z]+\.[A-Z][a-z]+$'
-    return bool(re.fullmatch(pattern, username))
+    pattern = r'^([A-Z][a-z]+\.){1,4}[A-Z][a-z]+$'
+    return bool(re.fullmatch(pattern, username)) and len(username) <= 30
 
 
 def validate_username_for_light(username: str):

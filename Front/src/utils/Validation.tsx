@@ -8,12 +8,16 @@ export function validateUsername(
         setError?.('שם משתמש לא יכול להיות ריק');
         return false;
       }
-      if (!/^[A-Z][a-z]+\.[A-Z][a-z]+$/.test(value)) {
-        setError?.('שם המשתמש צריך להיות בפורמט: שם פרטי.שם משפחה (עם אות גדולה בתחילת כל מילה');
-        return false;
-      }
+    if (!/^([A-Z][a-z]+\.){1,4}[A-Z][a-z]+$/.test(value)) {
+      setError?.('שם המשתמש צריך להיות בפורמט: שם.שם.שם (עם אות גדולה בתחילת כל מילה)');
+      return false;
+    }
       if (value.length < 3) {
         setError?.('שם םשתמש חייב להיות להיוך באורך של לפחות 3 תווים');
+        return false;
+      }
+      if(value.length > 30) {
+        setError?.('שם משתמש לא יכול להיות ארוך מ-30 תווים');
         return false;
       }
     }
@@ -29,6 +33,10 @@ export function validateUsername(
       }
       if (!/^[a-zA-Z0-9_.]+$/.test(value)) {
         setError?.('שם םשתמש יכול להכיל אותיות באנגלית, מספרים וקו תחתון בלבד');
+        return false;
+      }
+      if (value.length > 30) {
+        setError?.('שם משתמש לא יכול להיות ארוך מ-30 תווים');
         return false;
       }
     }
