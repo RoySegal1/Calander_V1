@@ -32,3 +32,17 @@ COURSES_FROM_DIFFERENT_YEARS = {
     "10244": {"courseCredit": "4", "courseType": "חובה"},
     "88006": {"courseCredit": "2", "courseType": "רוח"},
 }
+
+# Whitelist valid endpoints
+VALID_ENDPOINTS = {
+    "/auth/login",
+    "/auth/signup",
+    "/auth/signuplight",
+    "/auth/guest",
+    "/courses",
+    "/schedule/",
+    "/schedule/student/",
+    "/docs",
+    "/openapi.json"
+}
+
