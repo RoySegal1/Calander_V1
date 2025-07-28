@@ -35,6 +35,7 @@ COURSES_FROM_DIFFERENT_YEARS = {
 
 # Whitelist valid endpoints
 VALID_ENDPOINTS = {
+    "/",
     "/auth/login",
     "/auth/signup",
     "/auth/signuplight",
