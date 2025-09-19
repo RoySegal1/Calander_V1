@@ -16,7 +16,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
   const [usernameErrorMessage, setusernameErrorMessage] = useState<string | null>(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState<string | null>(null);
   const [mode, setMode] = useState<'select' | 'login' | 'signup'| 'signupLight'>('select');
-  const [showSignupInfo, setShowSignupInfo] = useState(false);
+  // const [showSignupInfo, setShowSignupInfo] = useState(false); // Commented out for future use
 
   const departments = [
     'מדעי המחשב',
@@ -62,18 +62,20 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
     }
   };
 
-  const handleSignupClick = () => {
-    setShowSignupInfo(true);
-  };
+  // Commented out for future use when afeka signup is ready
+  // const handleSignupClick = () => {
+  //   setShowSignupInfo(true);
+  // };
+  
   const handleSignupLightClick = () => {
     setMode('signupLight');
   };
 
-
-  const handleSignupConfirm = () => {
-    setShowSignupInfo(false);
-    setMode('signup');
-  };
+  // Commented out for future use when afeka signup is ready
+  // const handleSignupConfirm = () => {
+  //   setShowSignupInfo(false);
+  //   setMode('signup');
+  // };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
@@ -92,13 +94,16 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
               התחברות
             </button>
 
-            <button
-              onClick={handleSignupClick}
-              className="w-full flex justify-center items-center gap-2 bg-emerald-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-            >
-              <UserPlus size={18} />
-              הרשמה דרך אפקה
-            </button>
+            <div className="relative">
+              <button
+                disabled
+                // onClick={handleSignupClick} // Commented out - will be enabled when afeka integration is ready
+                className="w-full flex justify-center items-center gap-2 bg-gray-400 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-200 cursor-not-allowed"
+              >
+                <UserPlus size={18} />
+                הרשמה דרך אפקה
+              </button>
+            </div>
 
             
             <button
@@ -209,7 +214,8 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
           </form>
         )}
       
-        {/* Signup Information Modal */}
+        {/* Commented out for future use when afeka signup is ready */}
+        {/* 
         {showSignupInfo && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg max-w-md w-full">
@@ -246,6 +252,7 @@ export default function LoginPage({ onLogin, onGuestLogin, onSignup,onSignupLigh
             </div>
           </div>
         )}
+        */}
       </div>
     </div>
   );
