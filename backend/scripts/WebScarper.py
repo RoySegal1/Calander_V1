@@ -238,8 +238,8 @@ def open_course_schedule(driver, wait, child_row):
         return False
 
 
-def process_child_row(driver, wait, subject_url, child_row_index, course_subject):
-    """Process a child row (specific course)"""
+def process_child_row(driver, wait, subject_url, child_row_index, course_subject, only_courses=None):
+    """Process a child row (specific course). With only_courses, other courses are skipped without a request"""
     rows = find_rows(wait)
     if child_row_index >= len(rows):
         return [], False, child_row_index
@@ -247,6 +247,9 @@ def process_child_row(driver, wait, subject_url, child_row_index, course_subject
     cells = rows[child_row_index].find_elements(By.XPATH, "./div")
     course_code = cell_value(cells[0])
     course_name = cell_value(cells[1])
+
+    if only_courses and course_code not in only_courses:
+        return [], True, child_row_index + 1
 
     if course_name == "פרויקט גמר חלק ב'":
         print("not going into פרויקט גמר חלק ב'")
@@ -313,7 +316,7 @@ def collect_subjects(wait):
     return subjects
 
 
-def process_subject(driver, wait, course_subject, subject_url):
+def process_subject(driver, wait, course_subject, subject_url, only_courses=None):
     """Process every course listed under a subject"""
     print(f"Found course link: {subject_url}")
     polite_pause()
@@ -325,7 +328,7 @@ def process_subject(driver, wait, course_subject, subject_url):
     more_child_rows = True
     while more_child_rows:
         child_data, more_child_rows, child_row_index = process_child_row(
-            driver, wait, subject_url, child_row_index, course_subject
+            driver, wait, subject_url, child_row_index, course_subject, only_courses
         )
         all_courses_data.extend(child_data)
 
@@ -379,6 +382,9 @@ def main():
     parser.add_argument("--program", help="study program code, e.g. 30")
     parser.add_argument("--spec", help="specialization code, e.g. 304 (omit for base courses)")
     parser.add_argument("--headless", action="store_true", help="run Chrome without a window")
+    parser.add_argument("--courses", nargs="+", metavar="CODE",
+                        help="only scrape these course codes (e.g. ones that failed) and save them to a _retry file "
+                             "that is appended to the combined file")
     parser.add_argument("--delay-min", type=float, default=REQUEST_DELAY_SECONDS[0],
                         help="minimum seconds to wait before each request (default %(default)s)")
     parser.add_argument("--delay-max", type=float, default=REQUEST_DELAY_SECONDS[1],
@@ -388,6 +394,7 @@ def main():
     if not 0 <= args.delay_min <= args.delay_max:
         parser.error("expected 0 <= --delay-min <= --delay-max")
     REQUEST_DELAY_SECONDS[:] = [args.delay_min, args.delay_max]
+    only_courses = set(args.courses) if args.courses else None
 
     if args.program:
         program_names = {code: name for name, code in scripts_consts.study_programs.items()}
@@ -409,12 +416,14 @@ def main():
 
         all_courses_data = []
         for course_subject, subject_url in collect_subjects(wait):
-            all_courses_data.extend(process_subject(driver, wait, course_subject, subject_url))
+            all_courses_data.extend(process_subject(driver, wait, course_subject, subject_url, only_courses))
     finally:
         driver.quit()
 
     # Save results and clean up
     suffix = f"{selected_program_code}_{selected_specialization_code}" if selected_specialization_code else f"{selected_program_code}_base"
+    if only_courses:
+        suffix += "_retry"
 
     # Save raw scraped data
     raw_path = os.path.join("raw_scraper_data", f"courses_{suffix}.json")

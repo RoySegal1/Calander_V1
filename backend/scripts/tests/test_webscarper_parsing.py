@@ -186,6 +186,26 @@ def test_process_child_row_skips_courses_without_a_schedule(child_row_env, monke
     assert (data, more, next_index) == ([], True, 1)
 
 
+def test_process_child_row_skips_courses_outside_the_filter_without_a_request(child_row_env, monkeypatch):
+    WebScarper, driver = child_row_env
+    calls = []
+    monkeypatch.setattr(WebScarper, "scrape_course", lambda *args: calls.append(1) or [])
+
+    data, more, next_index = WebScarper.process_child_row(driver, None, "subject-url", 0, "subject", {"99999"})
+
+    assert (data, more, next_index) == ([], True, 1)
+    assert calls == [] and driver.visited == []
+
+
+def test_process_child_row_scrapes_courses_inside_the_filter(child_row_env, monkeypatch):
+    WebScarper, driver = child_row_env
+    monkeypatch.setattr(WebScarper, "scrape_course", lambda *args: [{"Course Code": "10016"}])
+
+    data, _, _ = WebScarper.process_child_row(driver, None, "subject-url", 0, "subject", {"10016"})
+
+    assert data == [{"Course Code": "10016"}]
+
+
 def test_process_child_row_reports_end_of_list(child_row_env):
     WebScarper, driver = child_row_env
 
