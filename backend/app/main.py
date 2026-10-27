@@ -92,7 +92,7 @@ async def rate_limit_middleware(request: Request, call_next):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://www.happy-schedule.fun", "http://localhost:5173"],
+    allow_origins=["https://www.happy-schedule.fun", "https://calander-v1-7vki.vercel.app", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
