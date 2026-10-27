@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import argparse
+import random
 import time
 import json
 import re
@@ -14,6 +15,8 @@ from transform_schdule import transform_schedule
 SEARCH_URL = "https://yedionp.afeka.ac.il/yedion/fireflyweb.aspx?prgname=Enter_Search"
 # Row ids look like MyFather<table id><index> and the table id changes on every page load
 ROWS_XPATH = "//*[starts-with(@id,'MyFather')]"
+# Afeka noticed the old request rate - every page load or form post waits a random human-like interval
+REQUEST_DELAY_SECONDS = [10.0, 20.0]
 
 DAY_NAMES = {
     "ראשון": "א",
@@ -65,6 +68,11 @@ def normalize_day(text):
     return DAY_NAMES.get(day, day)
 
 
+def polite_pause():
+    """Wait before a request to the site"""
+    time.sleep(random.uniform(*REQUEST_DELAY_SECONDS))
+
+
 def setup_driver(headless=False):
     """Initialize and return the WebDriver"""
     options = webdriver.ChromeOptions()
@@ -94,6 +102,7 @@ def is_stale(element):
 
 def navigate_to_course_search(driver, wait, program, specialization=''):
     """Navigate to the initial course search page"""
+    polite_pause()
     driver.get(SEARCH_URL)
 
     xpath_value_to_select = f".//option[@value='{scripts_consts.study_programs[program]}']"
@@ -105,6 +114,7 @@ def navigate_to_course_search(driver, wait, program, specialization=''):
     # Click to show courses
     show_courses_button = wait.until(EC.element_to_be_clickable(
         (By.XPATH, button_xpath('הצגת קורסים בתוכנית לימוד'))))
+    polite_pause()
     show_courses_button.click()
     print("Clicked 'הצגת קורסים בתוכנית לימוד'")
 
@@ -118,6 +128,7 @@ def navigate_to_course_search(driver, wait, program, specialization=''):
     # Wait for search button and click it
     search_program_button = wait.until(EC.element_to_be_clickable(
         (By.XPATH, button_xpath('חפש תוכניות לימוד אפשריות למסלול'))))
+    polite_pause()
     search_program_button.click()
     print("Clicked 'חפש תוכניות לימוד אפשריות למסלול'")
 
@@ -127,6 +138,7 @@ def navigate_to_course_search(driver, wait, program, specialization=''):
 def get_credits_and_prerequisites(driver, wait):
     """Extract course credits and prerequisite courses"""
     more_info_button = wait.until(EC.element_to_be_clickable((By.XPATH, button_xpath('פרטים נוספים'))))
+    polite_pause()
     more_info_button.click()
 
     credit_element = wait.until(EC.presence_of_element_located(
@@ -144,7 +156,6 @@ def get_credits_and_prerequisites(driver, wait):
             if value:
                 found.add(value)
 
-    time.sleep(1)
     return credit_found, pre_course, pre_course_maybe
 
 
@@ -193,6 +204,7 @@ def extract_course_info(wait, course_subject, course_name, course_code):
 
 def open_course_schedule(driver, wait, child_row):
     """Click the row's schedule button. Returns False if the site showed a 'no schedule' popup instead"""
+    polite_pause()
     child_row.find_element(By.XPATH, button_xpath('חיפוש קורס במערכת השעות', scope=".//")).click()
 
     def outcome(d):
@@ -239,8 +251,8 @@ def process_child_row(driver, wait, subject_url, child_row_index, course_subject
         courses_data = []
     finally:
         # Navigate by URL instead of history - the course pages are form posts
+        polite_pause()
         driver.get(subject_url)
-        time.sleep(8)
 
     return courses_data, True, child_row_index + 1
 
@@ -267,6 +279,7 @@ def collect_subjects(wait):
 def process_subject(driver, wait, course_subject, subject_url):
     """Process every course listed under a subject"""
     print(f"Found course link: {subject_url}")
+    polite_pause()
     driver.get(subject_url)
     find_rows(wait)
 
@@ -279,7 +292,6 @@ def process_subject(driver, wait, course_subject, subject_url):
         )
         all_courses_data.extend(child_data)
 
-    time.sleep(5)
     return all_courses_data
 
 
@@ -330,7 +342,15 @@ def main():
     parser.add_argument("--program", help="study program code, e.g. 30")
     parser.add_argument("--spec", help="specialization code, e.g. 304 (omit for base courses)")
     parser.add_argument("--headless", action="store_true", help="run Chrome without a window")
+    parser.add_argument("--delay-min", type=float, default=REQUEST_DELAY_SECONDS[0],
+                        help="minimum seconds to wait before each request (default %(default)s)")
+    parser.add_argument("--delay-max", type=float, default=REQUEST_DELAY_SECONDS[1],
+                        help="maximum seconds to wait before each request (default %(default)s)")
     args = parser.parse_args()
+
+    if not 0 <= args.delay_min <= args.delay_max:
+        parser.error("expected 0 <= --delay-min <= --delay-max")
+    REQUEST_DELAY_SECONDS[:] = [args.delay_min, args.delay_max]
 
     if args.program:
         program_names = {code: name for name, code in scripts_consts.study_programs.items()}

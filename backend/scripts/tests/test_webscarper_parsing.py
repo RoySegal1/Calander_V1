@@ -77,3 +77,28 @@ def test_button_xpath_matches_input_and_button_elements():
 
 def test_button_xpath_can_be_scoped_to_an_element():
     assert all(part.strip().startswith(".//") for part in button_xpath("x", scope=".//").split("|"))
+
+
+def test_polite_pause_sleeps_a_random_time_within_the_configured_range(monkeypatch):
+    import WebScarper
+    slept = []
+    monkeypatch.setattr(WebScarper.time, "sleep", slept.append)
+    monkeypatch.setattr(WebScarper, "REQUEST_DELAY_SECONDS", [3.0, 5.0])
+
+    for _ in range(50):
+        WebScarper.polite_pause()
+
+    assert len(slept) == 50
+    assert all(3.0 <= seconds <= 5.0 for seconds in slept)
+    assert len(set(slept)) > 1
+
+
+def test_polite_pause_with_zero_range_does_not_wait(monkeypatch):
+    import WebScarper
+    slept = []
+    monkeypatch.setattr(WebScarper.time, "sleep", slept.append)
+    monkeypatch.setattr(WebScarper, "REQUEST_DELAY_SECONDS", [0.0, 0.0])
+
+    WebScarper.polite_pause()
+
+    assert slept == [0.0]
