@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -19,6 +19,7 @@ ROWS_XPATH = "//*[starts-with(@id,'MyFather')]"
 # Afeka noticed the old request rate - every page load or form post waits a random human-like interval
 REQUEST_DELAY_SECONDS = [10.0, 20.0]
 COURSE_ATTEMPTS = 2
+SCHEDULE_TIMEOUT_SECONDS = 45
 
 DAY_NAMES = {
     "ראשון": "א",
@@ -217,18 +218,24 @@ def open_course_schedule(driver, wait, child_row):
     polite_pause()
     child_row.find_element(By.XPATH, button_xpath('חיפוש קורס במערכת השעות', scope=".//")).click()
 
-    def outcome(d):
-        if any(b.is_displayed() for b in d.find_elements(By.CSS_SELECTOR, "button.closefirstmodal")):
-            return "popup"
-        if (is_stale(child_row) and d.execute_script("return document.readyState") == "complete"
-                and d.find_elements(By.CLASS_NAME, "TextAlignRight")):
-            return "schedule"
-        return False
+    # The site also shows a modal while a slow page loads, so a visible modal alone doesn't mean "no schedule".
+    # Wait for the page to change first and only treat a modal as the answer if it never does.
+    def schedule_loaded(d):
+        return (is_stale(child_row) and d.execute_script("return document.readyState") == "complete"
+                and bool(d.find_elements(By.CLASS_NAME, "TextAlignRight")))
 
-    if wait.until(outcome) == "popup":
-        next(b for b in driver.find_elements(By.CSS_SELECTOR, "button.closefirstmodal") if b.is_displayed()).click()
+    try:
+        WebDriverWait(driver, SCHEDULE_TIMEOUT_SECONDS, ignored_exceptions=[StaleElementReferenceException]) \
+            .until(schedule_loaded)
+        return True
+    except TimeoutException:
+        close_buttons = [b for b in driver.find_elements(By.CSS_SELECTOR, "button.closefirstmodal") if b.is_displayed()]
+        if not close_buttons:
+            raise
+        modal_text = " ".join(m.text for m in driver.find_elements(By.CSS_SELECTOR, ".modal") if m.is_displayed())
+        print(f"Popup instead of schedule: {' '.join(modal_text.split())[:200]}")
+        close_buttons[0].click()
         return False
-    return True
 
 
 def process_child_row(driver, wait, subject_url, child_row_index, course_subject):

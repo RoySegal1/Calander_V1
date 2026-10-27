@@ -193,3 +193,80 @@ def test_process_child_row_reports_end_of_list(child_row_env):
 
     assert (data, more, next_index) == ([], False, 5)
     assert driver.visited == []
+
+
+class FakeElement:
+    def __init__(self, displayed=True, text="", stale=False):
+        self.displayed, self.text, self.stale, self.clicked = displayed, text, stale, False
+        self.navigates_on_click = False
+
+    def is_displayed(self):
+        return self.displayed
+
+    def is_enabled(self):
+        import WebScarper
+        if self.stale:
+            raise WebScarper.StaleElementReferenceException("gone")
+        return True
+
+    def click(self):
+        self.clicked = True
+        self.stale = self.stale or self.navigates_on_click
+
+    def find_element(self, by, value):
+        return self
+
+
+class FakeBrowser:
+    def __init__(self, row, navigates, modal_close_buttons=(), modals=()):
+        self.row = row
+        row.navigates_on_click = navigates
+        self.modal_close_buttons, self.modals = list(modal_close_buttons), list(modals)
+
+    def execute_script(self, script):
+        return "complete"
+
+    def find_elements(self, by, value):
+        if value == "TextAlignRight":
+            return [FakeElement()] if self.row.stale else []
+        if value == "button.closefirstmodal":
+            return self.modal_close_buttons
+        if value == ".modal":
+            return self.modals
+        return []
+
+
+@pytest.fixture
+def schedule_env(monkeypatch):
+    import WebScarper
+    monkeypatch.setattr(WebScarper, "polite_pause", lambda: None)
+    monkeypatch.setattr(WebScarper, "SCHEDULE_TIMEOUT_SECONDS", 0.2)
+    return WebScarper
+
+
+def test_open_course_schedule_waits_for_navigation_even_when_a_loading_modal_is_visible(schedule_env):
+    row = FakeElement()
+    loading_close_button = FakeElement(displayed=True)
+    browser = FakeBrowser(row, navigates=True, modal_close_buttons=[loading_close_button])
+
+    assert schedule_env.open_course_schedule(browser, None, row) is True
+    assert loading_close_button.clicked is False
+
+
+def test_open_course_schedule_closes_the_popup_when_the_page_never_changes(schedule_env, capsys):
+    row = FakeElement()
+    close_button = FakeElement(displayed=True)
+    browser = FakeBrowser(row, navigates=False, modal_close_buttons=[FakeElement(displayed=False), close_button],
+                          modals=[FakeElement(displayed=True, text="לא נמצאו   קבוצות")])
+
+    assert schedule_env.open_course_schedule(browser, None, row) is False
+    assert close_button.clicked is True
+    assert "Popup instead of schedule: לא נמצאו קבוצות" in capsys.readouterr().out
+
+
+def test_open_course_schedule_raises_when_nothing_happens(schedule_env):
+    row = FakeElement()
+    browser = FakeBrowser(row, navigates=False, modal_close_buttons=[FakeElement(displayed=False)])
+
+    with pytest.raises(schedule_env.TimeoutException):
+        schedule_env.open_course_schedule(browser, None, row)
