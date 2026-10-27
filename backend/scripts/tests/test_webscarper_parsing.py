@@ -102,3 +102,94 @@ def test_polite_pause_with_zero_range_does_not_wait(monkeypatch):
     WebScarper.polite_pause()
 
     assert slept == [0.0]
+
+
+class FakeRow:
+    def __init__(self, code, name):
+        self.cells = [code, name]
+
+    def find_elements(self, by, value):
+        return self.cells
+
+
+class FakeDriver:
+    def __init__(self):
+        self.visited = []
+
+    def get(self, url):
+        self.visited.append(url)
+
+
+@pytest.fixture
+def child_row_env(monkeypatch):
+    import WebScarper
+    driver = FakeDriver()
+    monkeypatch.setattr(WebScarper, "polite_pause", lambda: None)
+    monkeypatch.setattr(WebScarper, "cell_value", lambda cell: cell)
+    monkeypatch.setattr(WebScarper, "find_rows", lambda wait: [FakeRow("10016", "מבוא למדעי המחשב")])
+    return WebScarper, driver
+
+
+def test_process_child_row_retries_once_when_the_page_goes_stale(child_row_env, monkeypatch):
+    WebScarper, driver = child_row_env
+    outcomes = [WebScarper.StaleElementReferenceException("redrawn"), [{"Course Code": "10016"}]]
+
+    def fake_scrape_course(*args):
+        outcome = outcomes.pop(0)
+        if isinstance(outcome, Exception):
+            raise outcome
+        return outcome
+    monkeypatch.setattr(WebScarper, "scrape_course", fake_scrape_course)
+
+    data, more, next_index = WebScarper.process_child_row(driver, None, "subject-url", 0, "subject")
+
+    assert data == [{"Course Code": "10016"}]
+    assert (more, next_index) == (True, 1)
+    assert driver.visited == ["subject-url", "subject-url"]
+
+
+def test_process_child_row_gives_up_after_repeated_stale_pages(child_row_env, monkeypatch):
+    WebScarper, driver = child_row_env
+
+    def always_stale(*args):
+        raise WebScarper.StaleElementReferenceException("redrawn")
+    monkeypatch.setattr(WebScarper, "scrape_course", always_stale)
+
+    data, more, next_index = WebScarper.process_child_row(driver, None, "subject-url", 0, "subject")
+
+    assert data == []
+    assert (more, next_index) == (True, 1)
+    assert len(driver.visited) == WebScarper.COURSE_ATTEMPTS
+
+
+def test_process_child_row_does_not_retry_other_errors(child_row_env, monkeypatch):
+    WebScarper, driver = child_row_env
+    calls = []
+
+    def broken(*args):
+        calls.append(1)
+        raise ValueError("unexpected page")
+    monkeypatch.setattr(WebScarper, "scrape_course", broken)
+
+    data, _, next_index = WebScarper.process_child_row(driver, None, "subject-url", 0, "subject")
+
+    assert (data, next_index, len(calls)) == ([], 1, 1)
+    assert driver.visited == ["subject-url"]
+
+
+def test_process_child_row_skips_courses_without_a_schedule(child_row_env, monkeypatch):
+    WebScarper, driver = child_row_env
+    monkeypatch.setattr(WebScarper, "scrape_course", lambda *args: None)
+
+    data, more, next_index = WebScarper.process_child_row(driver, None, "subject-url", 0, "subject")
+
+    assert (data, more, next_index) == ([], True, 1)
+
+
+def test_process_child_row_reports_end_of_list(child_row_env):
+    WebScarper, driver = child_row_env
+
+    data, more, next_index = WebScarper.process_child_row(driver, None, "subject-url", 5, "subject")
+
+    assert (data, more, next_index) == ([], False, 5)
+    assert driver.visited == []

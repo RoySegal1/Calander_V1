@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import argparse
 import random
 import time
+import traceback
 import json
 import re
 import scripts_consts
@@ -17,6 +18,7 @@ SEARCH_URL = "https://yedionp.afeka.ac.il/yedion/fireflyweb.aspx?prgname=Enter_S
 ROWS_XPATH = "//*[starts-with(@id,'MyFather')]"
 # Afeka noticed the old request rate - every page load or form post waits a random human-like interval
 REQUEST_DELAY_SECONDS = [10.0, 20.0]
+COURSE_ATTEMPTS = 2
 
 DAY_NAMES = {
     "ראשון": "א",
@@ -85,11 +87,19 @@ def setup_driver(headless=False):
 
 def create_wait(driver, timeout=20):
     """Create and return a WebDriverWait object"""
-    return WebDriverWait(driver, timeout)
+    # Elements go stale while a form post replaces the page; keep polling instead of failing
+    return WebDriverWait(driver, timeout, ignored_exceptions=[StaleElementReferenceException])
 
 
 def find_rows(wait):
     return wait.until(EC.presence_of_all_elements_located((By.XPATH, ROWS_XPATH)))
+
+
+def error_location(error):
+    """'function:line' of the innermost frame in this file that raised the error"""
+    frames = [frame for frame in traceback.extract_tb(error.__traceback__)
+              if os.path.basename(frame.filename) == os.path.basename(__file__)]
+    return f"{frames[-1].name}:{frames[-1].lineno}" if frames else "unknown"
 
 
 def is_stale(element):
@@ -210,7 +220,8 @@ def open_course_schedule(driver, wait, child_row):
     def outcome(d):
         if any(b.is_displayed() for b in d.find_elements(By.CSS_SELECTOR, "button.closefirstmodal")):
             return "popup"
-        if is_stale(child_row) and d.find_elements(By.CLASS_NAME, "TextAlignRight"):
+        if (is_stale(child_row) and d.execute_script("return document.readyState") == "complete"
+                and d.find_elements(By.CLASS_NAME, "TextAlignRight")):
             return "schedule"
         return False
 
@@ -235,26 +246,45 @@ def process_child_row(driver, wait, subject_url, child_row_index, course_subject
         return [], True, child_row_index + 1
 
     courses_data = []
-    try:
-        if not open_course_schedule(driver, wait, rows[child_row_index]):
-            print(f"No schedule for {course_code} {course_name}")
-            return [], True, child_row_index + 1
-
-        courses_data = extract_course_info(wait, course_subject, course_name, course_code)
-        course_credit, pre_courses, pre_courses_maybe = get_credits_and_prerequisites(driver, wait)
-        for course_data in courses_data:
-            course_data["Course Credit"] = course_credit
-            course_data["Course PreCondition"] = list(pre_courses)
-            course_data["Course PreConditionAlt"] = list(pre_courses_maybe)
-    except Exception as e:
-        print(f"Error processing course {course_code} {course_name}: {e}")
-        courses_data = []
-    finally:
-        # Navigate by URL instead of history - the course pages are form posts
-        polite_pause()
-        driver.get(subject_url)
+    for attempt in range(1, COURSE_ATTEMPTS + 1):
+        try:
+            if attempt > 1:
+                rows = find_rows(wait)
+            courses_data = scrape_course(driver, wait, rows[child_row_index], course_subject, course_name, course_code)
+            if courses_data is None:
+                print(f"No schedule for {course_code} {course_name}")
+                courses_data = []
+            else:
+                print(f"Scraped {course_code} {course_name}: {len(courses_data)} meetings")
+            break
+        except StaleElementReferenceException as e:
+            courses_data = []
+            print(f"Page changed while reading {course_code} {course_name} "
+                  f"(attempt {attempt}/{COURSE_ATTEMPTS}, at {error_location(e)}): {e.msg.split(';')[0]}")
+        except Exception as e:
+            courses_data = []
+            print(f"Error processing course {course_code} {course_name} (at {error_location(e)}): {e}")
+            break
+        finally:
+            # Navigate by URL instead of history - the course pages are form posts
+            polite_pause()
+            driver.get(subject_url)
 
     return courses_data, True, child_row_index + 1
+
+
+def scrape_course(driver, wait, child_row, course_subject, course_name, course_code):
+    """Scrape one course's meetings, credits and prerequisites. Returns None if it has no schedule"""
+    if not open_course_schedule(driver, wait, child_row):
+        return None
+
+    courses_data = extract_course_info(wait, course_subject, course_name, course_code)
+    course_credit, pre_courses, pre_courses_maybe = get_credits_and_prerequisites(driver, wait)
+    for course_data in courses_data:
+        course_data["Course Credit"] = course_credit
+        course_data["Course PreCondition"] = list(pre_courses)
+        course_data["Course PreConditionAlt"] = list(pre_courses_maybe)
+    return courses_data
 
 
 def collect_subjects(wait):
