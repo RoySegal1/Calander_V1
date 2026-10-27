@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Course, SavedSchedule, User } from '../types';
 
-const BASE_URL = 'https://calander-v1.onrender.com';
+const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000';
 
 
 export class ApiService {
