@@ -1,156 +1,208 @@
 from selenium import webdriver
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import argparse
+import random
 import time
+import traceback
 import json
 import re
 import scripts_consts
 import os
 from transform_schdule import transform_schedule
 
+SEARCH_URL = "https://yedionp.afeka.ac.il/yedion/fireflyweb.aspx?prgname=Enter_Search"
+# Row ids look like MyFather<table id><index> and the table id changes on every page load
+ROWS_XPATH = "//*[starts-with(@id,'MyFather')]"
+# Afeka noticed the old request rate - every page load or form post waits a random human-like interval
+REQUEST_DELAY_SECONDS = [10.0, 20.0]
+COURSE_ATTEMPTS = 2
+SCHEDULE_TIMEOUT_SECONDS = 45
+
+DAY_NAMES = {
+    "ראשון": "א",
+    "שני": "ב",
+    "שלישי": "ג",
+    "רביעי": "ד",
+    "חמישי": "ה",
+    "שישי": "ו",
+    "שבת": "ש",
+}
 
 
-def setup_driver():
+def button_xpath(label, scope="//"):
+    """XPath for a button by its caption - the site renders both <input type=button> and <button>"""
+    return f"{scope}input[@value='{label}'] | {scope}button[contains(normalize-space(.), '{label}')]"
+
+
+def clean_cell_text(text, labels=()):
+    """Remove the cell's caption labels (e.g. 'קוד קורס:') and collapse whitespace"""
+    for label in labels:
+        text = text.replace(label, "", 1)
+    return " ".join(text.replace("\xa0", " ").split())
+
+
+def cell_value(element):
+    """Visible value of a table cell, without its 'LabelIn' caption (shown only on narrow windows)"""
+    labels = [label.get_attribute("textContent") for label in element.find_elements(By.CLASS_NAME, "LabelIn")]
+    return clean_cell_text(element.get_attribute("textContent"), labels)
+
+
+def parse_credits(text):
+    credit_match = re.search(r"(?:נ\"ז|נקודות זכות)\s*:\s*(\d+(?:\.\d+)?)", text)
+    return credit_match.group(1) if credit_match else '-1'
+
+
+def parse_group_header(html_text):
+    """Extract (course type, group number) from a schedule group header"""
+    course_type_match = re.search(r"(?<=קורס מסוג\s).*?(?=\s*&nbsp;)", html_text)
+    course_type = course_type_match.group(0).strip() if course_type_match else 'Didnt Find Course Type'
+
+    group_match = re.search(r"קבוצה\s*:\s*(\d+)", html_text)
+    group_number = group_match.group(1) if group_match else 'Didnt Find Group Number'
+    return course_type, group_number
+
+
+def normalize_day(text):
+    """'יום ראשון' -> 'א'; single letters are returned unchanged"""
+    day = text.replace("יום", "").strip()
+    return DAY_NAMES.get(day, day)
+
+
+def polite_pause():
+    """Wait before a request to the site"""
+    time.sleep(random.uniform(*REQUEST_DELAY_SECONDS))
+
+
+def setup_driver(headless=False):
     """Initialize and return the WebDriver"""
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    if headless:
+        options.add_argument("--headless=new")
+        options.add_argument("--window-size=1400,1000")
+    driver = webdriver.Chrome(options=options)
     return driver
 
 
-def create_wait(driver, timeout=10):
+def create_wait(driver, timeout=20):
     """Create and return a WebDriverWait object"""
-    return WebDriverWait(driver, timeout)
+    # Elements go stale while a form post replaces the page; keep polling instead of failing
+    return WebDriverWait(driver, timeout, ignored_exceptions=[StaleElementReferenceException])
+
+
+def find_rows(wait):
+    return wait.until(EC.presence_of_all_elements_located((By.XPATH, ROWS_XPATH)))
+
+
+def error_location(error):
+    """'function:line' of the innermost frame in this file that raised the error"""
+    frames = [frame for frame in traceback.extract_tb(error.__traceback__)
+              if os.path.basename(frame.filename) == os.path.basename(__file__)]
+    return f"{frames[-1].name}:{frames[-1].lineno}" if frames else "unknown"
+
+
+def is_stale(element):
+    try:
+        element.is_enabled()
+        return False
+    except StaleElementReferenceException:
+        return True
 
 
 def navigate_to_course_search(driver, wait, program, specialization=''):
     """Navigate to the initial course search page"""
-    driver.get("https://yedionp.afeka.ac.il/yedion/fireflyweb.aspx?prgname=Enter_Search")
+    polite_pause()
+    driver.get(SEARCH_URL)
 
-    # Select computer science department
     xpath_value_to_select = f".//option[@value='{scripts_consts.study_programs[program]}']"
-    select_element = wait.until(EC.element_to_be_clickable((By.ID, "R1C9")))
+    select_element = wait.until(EC.presence_of_element_located((By.ID, "R1C9")))
     option = select_element.find_element(By.XPATH, xpath_value_to_select)
     option.click()
     print(f"Selected {program}")
 
     # Click to show courses
     show_courses_button = wait.until(EC.element_to_be_clickable(
-        (By.XPATH, "//input[@value='הצגת קורסים בתוכנית לימוד']")))
+        (By.XPATH, button_xpath('הצגת קורסים בתוכנית לימוד'))))
+    polite_pause()
     show_courses_button.click()
     print("Clicked 'הצגת קורסים בתוכנית לימוד'")
 
     if specialization:
         time.sleep(4)
-        select_element_two = wait.until(EC.element_to_be_clickable((By.ID, "R1C2")))
+        select_element_two = wait.until(EC.presence_of_element_located((By.ID, "R1C2")))
         xpath_value_to_select = f".//option[@value='{specialization}']"
         option = select_element_two.find_element(By.XPATH, xpath_value_to_select)
         option.click()
 
     # Wait for search button and click it
-    value_to_search = "//input[@value='חפש תוכניות לימוד אפשריות למסלול' and @class='btn btn-primary rounded g-mb-12']"
-    wait.until(EC.presence_of_element_located((By.XPATH, value_to_search)))
-    search_program_button = driver.find_element(By.XPATH, value_to_search)
+    search_program_button = wait.until(EC.element_to_be_clickable(
+        (By.XPATH, button_xpath('חפש תוכניות לימוד אפשריות למסלול'))))
+    polite_pause()
     search_program_button.click()
     print("Clicked 'חפש תוכניות לימוד אפשריות למסלול'")
 
-    # Wait for the table to load
-    wait.until(EC.presence_of_element_located(
-        (By.XPATH, "//div[contains(@class, 'Table container ncontainer WithSearch')]")))
+    find_rows(wait)
 
 
-def get_credits_and_prerequisites(driver,wait):
+def get_credits_and_prerequisites(driver, wait):
     """Extract course credits and prerequisite courses"""
-    more_info_button = wait.until(EC.element_to_be_clickable(
-        (By.XPATH, "//input[@type='button' and @value='פרטים נוספים' and contains(@class, 'btn-primary')]")
-    ))
+    more_info_button = wait.until(EC.element_to_be_clickable((By.XPATH, button_xpath('פרטים נוספים'))))
+    polite_pause()
     more_info_button.click()
 
-    # Extract credits
     credit_element = wait.until(EC.presence_of_element_located(
-        (By.XPATH, "//div[@class='col' and contains(text(), 'נ\"ז')]")
+        (By.XPATH, "//div[@class='col' and (contains(text(), 'נ\"ז') or contains(text(), 'נקודות זכות'))]")
     ))
-    credits_pattern = r"נ\"ז : (\d+(\.\d+)?)"
-    credit_type_match = re.search(credits_pattern, credit_element.text)
-    credit_found = credit_type_match.group(1) if credit_type_match else '-1'
+    credit_found = parse_credits(credit_element.text)
 
-    # Extract prerequisite courses
     pre_course = set()
     pre_course_maybe = set()
-    try:
-        related_topics = driver.find_elements(By.XPATH,
-                                              "//div[@class='col InRange'][label[contains(text(), 'נושא נקשר')]]")
+    for label, found in (('נושא נקשר', pre_course), ('חליפי', pre_course_maybe)):
+        related_topics = driver.find_elements(
+            By.XPATH, f"//div[contains(@class, 'InRange')][*[contains(@class, 'LabelIn') and contains(., '{label}')]]")
         for topic in related_topics:
-            #print(topic.text)
-            if topic.text.strip():
-                pre_course.add(topic.text)
+            value = cell_value(topic)
+            if value:
+                found.add(value)
 
-        related_topics = driver.find_elements(By.XPATH, "//div[@class='col InRange'][label[contains(text(), 'חליפי')]]")
-        for topic in related_topics:
-            #print(topic.text)
-            if topic.text.strip():
-                pre_course_maybe.add(topic.text)
-    except Exception:
-        print("Didnt find Any PRE COURSES NEEDED YOU ARE THE BEST GILAD")
-
-    time.sleep(1)
     return credit_found, pre_course, pre_course_maybe
 
 
-def extract_course_info(driver, wait, course_subject, course_name, course_code, course_credit, pre_courses,
-                        pre_courses_maybe):
-    """Extract detailed information for a specific course"""
-    #courses_section = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'Father')))
-    group_and_type_section = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'TextAlignRight')))
+def extract_course_info(wait, course_subject, course_name, course_code):
+    """Extract every scheduled meeting of a course from its schedule page"""
+    # The page has one extra TextAlignRight block that is not a group header
+    group_and_type_section = [element for element in
+                              wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'TextAlignRight')))
+                              if 'קבוצה' in element.get_attribute('textContent')]
     all_course_tables = wait.until(
         EC.presence_of_all_elements_located((By.CLASS_NAME, 'Table.container.ncontainer.WithSearch')))
     courses = []
     for courseTable, group_and_type in zip(all_course_tables, group_and_type_section):
         try:
-            html_text = group_and_type.get_attribute('innerHTML')
+            course_type, group_number = parse_group_header(group_and_type.get_attribute('innerHTML'))
             courses_rows = courseTable.find_elements(By.CLASS_NAME, "row.Tr.Father")
 
-            # Extract course type and group number
-            course_type_pattern = r"(?<=קורס מסוג\s).*?(?=\s*&nbsp;)"
-            group_pattern = r"קבוצה : (\d+)"
-
-            course_type_match = re.search(course_type_pattern, html_text)
-            course_type = course_type_match.group(0) if course_type_match else 'Didnt Find Course Type'
-
-            group_match = re.search(group_pattern, html_text)
-            group_number = group_match.group(1) if group_match else 'Didnt Find Group Number'
-
-           # print("Course Type:", course_type)
-           # print("Group Number:", group_number)
             for course in courses_rows:
-                # Extract course details
-                semester = course.find_element(By.XPATH, ".//div[contains(@class, 'InRange')][1]").text.split(":")[
-                    -1].strip()
-                day = course.find_element(By.XPATH, ".//div[contains(@class, 'InRange')][2]").text.split(":")[-1].strip()
-                start_time = course.find_element(By.XPATH, ".//div[contains(@class, 'InRange')][3]").text
-                end_time = course.find_element(By.XPATH, ".//div[contains(@class, 'InRange')][4]").text
-
+                cells = course.find_elements(By.XPATH, ".//div[contains(@class, 'InRange')]")
                 try:
-                    lecturer = course.find_element(By.XPATH, ".//div[contains(@class, 'InRange')][5]//a").text.strip()
+                    lecturer = cells[4].find_element(By.TAG_NAME, "a").text.strip()
                 except Exception:
                     lecturer = "No Lecturer Yet"
 
-                room = course.find_element(By.XPATH, ".//div[contains(@class, 'InRange')][6]").text.split(":")[-1].strip()
-                # Create course data dictionary
                 course_data = {
                     "Course Subject": course_subject,
                     "Course Name": course_name,
                     "Course Code": course_code,
-                    "Course Credit": course_credit,
-                    "Course PreCondition": list(pre_courses),
-                    "Course PreConditionAlt": list(pre_courses_maybe),
                     "Group Code": group_number,
                     "Lecture Type": course_type,
-                    "Semester": semester,
-                    "Day": day,
-                    "StartTime": start_time,
-                    "EndTime": end_time,
+                    "Semester": cell_value(cells[0]),
+                    "Day": normalize_day(cell_value(cells[1])),
+                    "StartTime": cell_value(cells[2]),
+                    "EndTime": cell_value(cells[3]),
                     "Lecturer": lecturer,
-                    "Room": room,
+                    "Room": cell_value(cells[5]),
                 }
 
                 courses.append(course_data)
@@ -161,119 +213,126 @@ def extract_course_info(driver, wait, course_subject, course_name, course_code, 
     return courses
 
 
-def process_child_row(driver, wait, parent_row_index, child_row_index, course_subject):
-    """Process a child row (specific course)"""
-    flag = True
+def open_course_schedule(driver, wait, child_row):
+    """Click the row's schedule button. Returns False if the site showed a 'no schedule' popup instead"""
+    polite_pause()
+    child_row.find_element(By.XPATH, button_xpath('חיפוש קורס במערכת השעות', scope=".//")).click()
+
+    # The site also shows a modal while a slow page loads, so a visible modal alone doesn't mean "no schedule".
+    # Wait for the page to change first and only treat a modal as the answer if it never does.
+    def schedule_loaded(d):
+        return (is_stale(child_row) and d.execute_script("return document.readyState") == "complete"
+                and bool(d.find_elements(By.CLASS_NAME, "TextAlignRight")))
+
+    try:
+        WebDriverWait(driver, SCHEDULE_TIMEOUT_SECONDS, ignored_exceptions=[StaleElementReferenceException]) \
+            .until(schedule_loaded)
+        return True
+    except TimeoutException:
+        close_buttons = [b for b in driver.find_elements(By.CSS_SELECTOR, "button.closefirstmodal") if b.is_displayed()]
+        if not close_buttons:
+            raise
+        modal_text = " ".join(m.text for m in driver.find_elements(By.CSS_SELECTOR, ".modal") if m.is_displayed())
+        print(f"Popup instead of schedule: {' '.join(modal_text.split())[:200]}")
+        close_buttons[0].click()
+        return False
+
+
+def process_child_row(driver, wait, subject_url, child_row_index, course_subject, only_courses=None):
+    """Process a child row (specific course). With only_courses, other courses are skipped without a request"""
+    rows = find_rows(wait)
+    if child_row_index >= len(rows):
+        return [], False, child_row_index
+
+    cells = rows[child_row_index].find_elements(By.XPATH, "./div")
+    course_code = cell_value(cells[0])
+    course_name = cell_value(cells[1])
+
+    if only_courses and course_code not in only_courses:
+        return [], True, child_row_index + 1
+
+    if course_name == "פרויקט גמר חלק ב'":
+        print("not going into פרויקט גמר חלק ב'")
+        return [], True, child_row_index + 1
+
     courses_data = []
-
-    try:
-        child_row_id = f"MyFather1000{child_row_index}"
-        child_row_xpath = f"//div[@id='{child_row_id}']"
-
-        child_row = driver.find_element(By.XPATH, child_row_xpath)
-        course_name = child_row.find_elements(By.XPATH, ".//div")[1].text
-        course_code = child_row.find_elements(By.XPATH, ".//div")[0].text
-
-        if course_name == "פרויקט גמר חלק ב'":
-            print("not going into פרויקט גמר חלק ב'")
-            return [], True, child_row_index + 1
-        # Find and click the button
-        button = child_row.find_element(By.XPATH,
-                                        ".//input[@value='חיפוש קורס במערכת השעות' and @tabindex='0']")
-        button.click()
-        #print(f"Clicked button in row {child_row_id} for course: {course_name}")
-
-        # Check for popup
+    for attempt in range(1, COURSE_ATTEMPTS + 1):
         try:
-            popup_close_button = driver.find_element(By.XPATH,
-                                                     "//button[@class='btn btn-secondary closefirstmodal' and @data-dismiss='modal']")
-            popup_close_button.click()
-            driver.back()
-            print("Closed the popup modal")
-            return [], True, child_row_index + 1
-        except Exception:
-            print("No popup detected")
+            if attempt > 1:
+                rows = find_rows(wait)
+            courses_data = scrape_course(driver, wait, rows[child_row_index], course_subject, course_name, course_code)
+            if courses_data is None:
+                print(f"No schedule for {course_code} {course_name}")
+                courses_data = []
+            else:
+                print(f"Scraped {course_code} {course_name}: {len(courses_data)} meetings")
+            break
+        except StaleElementReferenceException as e:
+            courses_data = []
+            print(f"Page changed while reading {course_code} {course_name} "
+                  f"(attempt {attempt}/{COURSE_ATTEMPTS}, at {error_location(e)}): {e.msg.split(';')[0]}")
+        except Exception as e:
+            courses_data = []
+            print(f"Error processing course {course_code} {course_name} (at {error_location(e)}): {e}")
+            break
+        finally:
+            # Navigate by URL instead of history - the course pages are form posts
+            polite_pause()
+            driver.get(subject_url)
 
-        # Get prerequisites and credits
-        if flag:
-            course_credit, pre_courses, pre_courses_maybe = get_credits_and_prerequisites(driver, wait)
-            flag = False
-            driver.back()
-
-        # Extract course information
-        course_info = extract_course_info(
-            driver, wait, course_subject, course_name, course_code,
-            course_credit, pre_courses, pre_courses_maybe
-        )
-        courses_data.extend(course_info)
-
-        # Navigate back
-        wait.until(EC.presence_of_element_located(
-            (By.XPATH, "//div[contains(@class, 'Table container ncontainer WithSearch')]")))
-        driver.back()
-        wait.until(EC.presence_of_element_located(
-            (By.XPATH, "//div[contains(@class, 'Table container ncontainer WithSearch')]")))
-        time.sleep(8)
-
-        return courses_data, True, child_row_index + 1
-
-    except Exception as e:
-        print(f"No more child rows to process or error. Last processed child row index: {child_row_index - 1}")
-        #print(f"Error: {e}")
-        return courses_data, False, child_row_index
+    return courses_data, True, child_row_index + 1
 
 
-def process_parent_row(driver, wait, parent_row_index):
-    """Process a parent row (course subject)"""
-    all_courses_data = []
+def scrape_course(driver, wait, child_row, course_subject, course_name, course_code):
+    """Scrape one course's meetings, credits and prerequisites. Returns None if it has no schedule"""
+    if not open_course_schedule(driver, wait, child_row):
+        return None
 
-    try:
-        parent_row_id = f"MyFather1000{parent_row_index}"
-        parent_row_xpath = f"//div[@id='{parent_row_id}']"
+    courses_data = extract_course_info(wait, course_subject, course_name, course_code)
+    course_credit, pre_courses, pre_courses_maybe = get_credits_and_prerequisites(driver, wait)
+    for course_data in courses_data:
+        course_data["Course Credit"] = course_credit
+        course_data["Course PreCondition"] = list(pre_courses)
+        course_data["Course PreConditionAlt"] = list(pre_courses_maybe)
+    return courses_data
 
-        parent_row = driver.find_element(By.XPATH, parent_row_xpath)
-        course_subject = parent_row.find_elements(By.XPATH, ".//div")[0].text
+
+def collect_subjects(wait):
+    """Read the (subject, link) pairs from the program table, applying the skip rules"""
+    subjects = []
+    for parent_row in find_rows(wait):
+        cells = parent_row.find_elements(By.XPATH, "./div")
+        course_subject = cell_value(cells[0])
 
         if course_subject == 'קורסי חובה נוספים':
-            return all_courses_data, True, parent_row_index + 1
+            continue
 
         if course_subject == 'קורסי יחידה ללימודי חברה ורוח':
-            return all_courses_data, False, parent_row_index + 1
+            break
 
-        # Extract and navigate to the course link
-        course_link = parent_row.find_elements(By.XPATH, ".//div")[1].find_element(By.TAG_NAME, "a").get_attribute(
-            "href")
-        print(f"Found course link: {course_link}")
+        links = cells[1].find_elements(By.TAG_NAME, "a")
+        if links:
+            subjects.append((course_subject, links[0].get_attribute("href")))
+    return subjects
 
-        driver.get(course_link)
-        #print(f"Clicked the course link: {course_link}")
 
-        # Wait for the page to load
-        wait.until(EC.presence_of_element_located(
-            (By.XPATH, "//div[contains(@class, 'Table container ncontainer WithSearch')]")))
+def process_subject(driver, wait, course_subject, subject_url, only_courses=None):
+    """Process every course listed under a subject"""
+    print(f"Found course link: {subject_url}")
+    polite_pause()
+    driver.get(subject_url)
+    find_rows(wait)
 
-        # Process all child rows
-        child_row_index = 1
-        more_child_rows = True
+    all_courses_data = []
+    child_row_index = 0
+    more_child_rows = True
+    while more_child_rows:
+        child_data, more_child_rows, child_row_index = process_child_row(
+            driver, wait, subject_url, child_row_index, course_subject, only_courses
+        )
+        all_courses_data.extend(child_data)
 
-        while more_child_rows:
-            child_data, more_child_rows, child_row_index = process_child_row(
-                driver, wait, parent_row_index, child_row_index, course_subject
-            )
-            all_courses_data.extend(child_data)
-
-        # Navigate back to parent page
-        driver.back()
-        wait.until(EC.presence_of_element_located(
-            (By.XPATH, "//div[contains(@class, 'Table container ncontainer WithSearch')]")))
-        time.sleep(5)
-
-        return all_courses_data, True, parent_row_index + 1
-
-    except Exception as e:
-        print(f"No more parent rows to process or error. Last processed parent row index: {parent_row_index - 1}")
-        #print(f"Error: {e}")
-        return all_courses_data, False, parent_row_index
+    return all_courses_data
 
 
 def save_to_json(courses_data, filename='courses_electricity_specialization.json'):
@@ -283,30 +342,16 @@ def save_to_json(courses_data, filename='courses_electricity_specialization.json
     print(f"Data saved to {filename}")
 
 
-def main():
-    """Main function to run the course scraper"""
-    # Initialize
-    # Mapping of study programs to possible specializations
-    specialization_map = {
-        "20": scripts_consts.specialization_electricity,
-        "30": scripts_consts.specialization_mechanic,
-        "50": scripts_consts.specialization_medicine,
-        "10": scripts_consts.specialization_Software,
-        "40": scripts_consts.specialization_tiol
-    }
-
-    # Display study programs
+def choose_interactively(specialization_map):
+    """Ask for a study program and specialization on the console"""
     print("Available Study Programs:")
     for idx, (name, code) in enumerate(scripts_consts.study_programs.items(), start=1):
         print(f"{idx}. {name} ({code})")
 
-    # Get user choice for study program
     selected_index = int(input("Select a study program by number: ")) - 1
     selected_program_name = list(scripts_consts.study_programs.keys())[selected_index]
     selected_program_code = scripts_consts.study_programs[selected_program_name]
 
-    # Determine if a specialization is needed
-    selected_specialization_name = None
     selected_specialization_code = None
     if selected_program_code in specialization_map:
         specializations = specialization_map[selected_program_code]
@@ -320,30 +365,69 @@ def main():
             selected_specialization_name = list(specializations.keys())[spec_choice - 1]
             selected_specialization_code = specializations[selected_specialization_name]
 
-    driver = setup_driver()
+    return selected_program_name, selected_program_code, selected_specialization_code
+
+
+def main():
+    """Main function to run the course scraper"""
+    specialization_map = {
+        "20": scripts_consts.specialization_electricity,
+        "30": scripts_consts.specialization_mechanic,
+        "50": scripts_consts.specialization_medicine,
+        "10": scripts_consts.specialization_Software,
+        "40": scripts_consts.specialization_tiol
+    }
+
+    parser = argparse.ArgumentParser(description="Scrape Afeka courses. Without arguments, asks interactively.")
+    parser.add_argument("--program", help="study program code, e.g. 30")
+    parser.add_argument("--spec", help="specialization code, e.g. 304 (omit for base courses)")
+    parser.add_argument("--headless", action="store_true", help="run Chrome without a window")
+    parser.add_argument("--courses", nargs="+", metavar="CODE",
+                        help="only scrape these course codes (e.g. ones that failed) and save them to a _retry file "
+                             "that is appended to the combined file")
+    parser.add_argument("--delay-min", type=float, default=REQUEST_DELAY_SECONDS[0],
+                        help="minimum seconds to wait before each request (default %(default)s)")
+    parser.add_argument("--delay-max", type=float, default=REQUEST_DELAY_SECONDS[1],
+                        help="maximum seconds to wait before each request (default %(default)s)")
+    args = parser.parse_args()
+
+    if not 0 <= args.delay_min <= args.delay_max:
+        parser.error("expected 0 <= --delay-min <= --delay-max")
+    REQUEST_DELAY_SECONDS[:] = [args.delay_min, args.delay_max]
+    only_courses = set(args.courses) if args.courses else None
+
+    if args.program:
+        program_names = {code: name for name, code in scripts_consts.study_programs.items()}
+        if args.program not in program_names:
+            parser.error(f"unknown program {args.program}, expected one of {sorted(program_names)}")
+        if args.spec and args.spec not in specialization_map.get(args.program, {}).values():
+            parser.error(f"unknown specialization {args.spec} for program {args.program}")
+        selected_program_name = program_names[args.program]
+        selected_program_code = args.program
+        selected_specialization_code = args.spec
+    else:
+        selected_program_name, selected_program_code, selected_specialization_code = \
+            choose_interactively(specialization_map)
+
+    driver = setup_driver(args.headless)
     wait = create_wait(driver)
-    navigate_to_course_search(driver, wait, selected_program_name, selected_specialization_code)
+    try:
+        navigate_to_course_search(driver, wait, selected_program_name, selected_specialization_code)
 
-    # Initialize data collection
-    all_courses_data = []
-    parent_row_index = 1
-    more_parent_rows = True
-
-    # Process all parent rows (course subjects)
-    while more_parent_rows:
-        courses_data, more_parent_rows, parent_row_index = process_parent_row(driver, wait, parent_row_index)
-        all_courses_data.extend(courses_data)
-
+        all_courses_data = []
+        for course_subject, subject_url in collect_subjects(wait):
+            all_courses_data.extend(process_subject(driver, wait, course_subject, subject_url, only_courses))
+    finally:
+        driver.quit()
 
     # Save results and clean up
     suffix = f"{selected_program_code}_{selected_specialization_code}" if selected_specialization_code else f"{selected_program_code}_base"
+    if only_courses:
+        suffix += "_retry"
 
     # Save raw scraped data
     raw_path = os.path.join("raw_scraper_data", f"courses_{suffix}.json")
     save_to_json(all_courses_data, raw_path)
-
-    driver.quit()
-
 
     # Transform and save to transformed folder
     transformed_path = os.path.join("transformed_data", f"courses_{suffix}.json")
@@ -371,4 +455,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
